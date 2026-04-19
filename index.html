@@ -981,27 +981,48 @@
         });
 
         /* ── Formulaire ── */
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const domain = document.getElementById('domain').value;
-            const stress = document.getElementById('stress').value;
+        async function submitForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const domain = document.getElementById('domain').value.trim();
+            const stress = document.getElementById('stress').value.trim();
+            const msgEl = document.getElementById('form-message');
 
             if (!name || !email) {
-                document.getElementById('form-message').textContent = 'Prénom et email requis.';
-                document.getElementById('form-message').style.color = 'var(--accent-lime)';
+                msgEl.textContent = 'Prénom et email requis.';
+                msgEl.style.color = 'var(--accent-lime)';
                 return;
             }
 
-            document.getElementById('form-message').textContent = '✓ Merci ! On t\'envoie un email pour confirmer.';
-            document.getElementById('form-message').style.color = 'var(--accent-lime)';
+            const submitBtn = document.querySelector('.form-group .cta-button');
+            submitBtn.textContent = 'Envoi en cours…';
+            submitBtn.disabled = true;
 
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('domain').value = '';
-            document.getElementById('stress').value = '';
+            try {
+                const response = await fetch('https://formspree.io/f/mvzdqkqp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, domain, stress })
+                });
 
-            console.log({ name, email, domain, stress });
+                if (response.ok) {
+                    msgEl.textContent = '✓ Merci ! Tu recevras un email de confirmation bientôt.';
+                    msgEl.style.color = 'var(--accent-lime)';
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('domain').value = '';
+                    document.getElementById('stress').value = '';
+                } else {
+                    msgEl.textContent = 'Une erreur est survenue. Réessaie dans quelques instants.';
+                    msgEl.style.color = '#ff6b6b';
+                }
+            } catch (err) {
+                msgEl.textContent = 'Impossible d\'envoyer. Vérifie ta connexion et réessaie.';
+                msgEl.style.color = '#ff6b6b';
+            }
+
+            submitBtn.textContent = 'Envoyer';
+            submitBtn.disabled = false;
         }
     </script>
 </body>
