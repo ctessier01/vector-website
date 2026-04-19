@@ -53,13 +53,27 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
             font-family: 'Red Hat Display', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: -1px;
         }
 
-        .logo span {
+        .logo-text span {
             color: var(--accent-lime);
         }
 
@@ -475,7 +489,29 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo"><span>V</span>ector</div>
+            <a href="#" class="logo" onclick="showPage('home'); return false;">
+                <svg width="40" height="44" viewBox="0 0 120 128" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="80" r="46" fill="#1C2030" stroke="rgba(139,255,60,0.22)" stroke-width="1.2"/>
+                    <rect x="57.5" y="27" width="5" height="8" rx="2" fill="#8BFF3C"/>
+                    <rect x="52.5" y="19" width="15" height="9" rx="4" fill="#8BFF3C"/>
+                    <g transform="translate(33.6,42.3) rotate(-35)">
+                        <rect x="-2" y="-9" width="4" height="7" rx="1.5" fill="#8BFF3C" opacity="0.6"/>
+                        <rect x="-6" y="-13" width="12" height="5" rx="2" fill="#8BFF3C" opacity="0.6"/>
+                    </g>
+                    <g transform="translate(86.4,42.3) rotate(35)">
+                        <rect x="-2" y="-9" width="4" height="7" rx="1.5" fill="#8BFF3C" opacity="0.6"/>
+                        <rect x="-6" y="-13" width="12" height="5" rx="2" fill="#8BFF3C" opacity="0.6"/>
+                    </g>
+                    <circle cx="103.5" cy="80" r="2.5" fill="rgba(139,255,60,0.55)"/>
+                    <circle cx="60" cy="123.5" r="2.5" fill="rgba(139,255,60,0.55)"/>
+                    <circle cx="16.5" cy="80" r="2.5" fill="rgba(139,255,60,0.55)"/>
+                    <line x1="60" y1="80" x2="41" y2="47" stroke="#8BFF3C" stroke-width="3.5" stroke-linecap="round"/>
+                    <line x1="60" y1="80" x2="72.5" y2="56" stroke="#8BFF3C" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="60" cy="80" r="5" fill="#8BFF3C"/>
+                    <circle cx="60" cy="80" r="2.2" fill="#1C2030"/>
+                </svg>
+                <div class="logo-text"><span>V</span>ector</div>
+            </a>
             <ul>
                 <li><a href="#" onclick="showPage('home'); return false;">Accueil</a></li>
                 <li><a href="#" onclick="showPage('blog'); return false;">Articles</a></li>
