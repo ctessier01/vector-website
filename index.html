@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector — Gère tes projets. Sans stress.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #10131A;
+            --bg-secondary: #1C2030;
+            --accent-lime: #8BFF3C;
+            --text-primary: #F5F4EF;
+            --text-secondary: #6B7290;
+            --border: rgba(139, 255, 60, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(16, 19, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent-lime);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-lime);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 255, 60, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-lime);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(139, 255, 60, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-lime);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(139, 255, 60, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-lime);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Section Titles */
+        section h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        section > p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Early Access Form */
+        .early-access {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .early-access h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            background: rgba(139, 255, 60, 0.05);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-lime);
+            background: rgba(139, 255, 60, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Blog Section */
+        .blog {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            border-color: var(--accent-lime);
+            transform: translateY(-4px);
+        }
+
+        .blog-card h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .blog-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+            color: var(--accent-lime);
+            font-weight: 600;
+        }
+
+        /* Article View */
+        .article-view {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .article-view.active {
+            display: block;
+        }
+
+        .article-view h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .article-meta {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .article-view article {
+            color: var(--text-primary);
+        }
+
+        .article-view p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .article-view h2 {
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-lime);
+        }
+
+        .article-view ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-view li {
+            margin-bottom: 0.7rem;
+            line-height: 1.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-lime);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1200px;
+            margin: 6rem auto 0;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero::before {
+                width: 250px;
+                height: 250px;
+                top: 20%;
+            }
+
+            .features-grid {
+                gap: 2rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Page Navigation */
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        .nav-buttons {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .nav-buttons button {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .nav-buttons button:hover {
+            border-color: var(--accent-lime);
+            color: var(--accent-lime);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo"><span>V</span>ector</div>
+            <ul>
+                <li><a href="#" onclick="showPage('home'); return false;">Accueil</a></li>
+                <li><a href="#" onclick="showPage('blog'); return false;">Articles</a></li>
+                <li><a href="#early-access" onclick="document.getElementById('early-access').scrollIntoView();">Inscription</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home View -->
+    <div class="view active" id="home-view">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Tu sais ce que tu fais <span class="highlight">aujourd'hui.</span> <span class="highlight">Sans stress.</span></h1>
+                <p>L'IA planifie, toi tu accomplis. Vector est l'assistant qui transforme ton chaos en clarté.</p>
+                <button class="cta-button" onclick="document.getElementById('early-access').scrollIntoView();">Rejoindre la beta</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Pourquoi Vector change la donne</h2>
+            <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">Trois principes. Zéro stress.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Rien n'est oublié</h3>
+                    <p>L'IA scanne tes conversations, tes notes, tout. Zéro tâche ne s'échappe. Dors tranquille.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁</div>
+                    <h3>Vois venir les problèmes</h3>
+                    <p>Les deadlines qui s'approchent. Les goulots. Les dépendances. Tu sais où tu vas avant que ce soit le chaos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Exécute. C'est prêt.</h3>
+                    <p>Plus de paralysie. Vector t'organise. Tu fais. Simple.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Early Access Form -->
+        <section class="early-access" id="early-access">
+            <h2>Les 25 premiers testeurs reçoivent 6 mois Pro gratuit</h2>
+            <p style="color: var(--text-secondary);">Rejoins la beta. Test Vector. Aide-nous à l'améliorer. Une seule condition: du feedback au mois 1.</p>
+            
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Ton prénom" required>
+                <input type="email" id="email" placeholder="Ton email" required>
+                <input type="text" id="domain" placeholder="Ton domaine (freelance, consultant, etc.)">
+                <textarea id="stress" placeholder="En 1 phrase: c'est quoi ton plus gros stress de solopreneur?" rows="3"></textarea>
+                <button class="cta-button" onclick="submitForm();">Envoyer</button>
+            </div>
+            <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem;"></p>
+        </section>
+
+        <!-- Blog Preview -->
+        <section class="blog">
+            <h2>Articles récents</h2>
+            <p style="color: var(--text-secondary);">Des histoires vraies. Des solutions concrètes.</p>
+            
+            <div class="blog-grid">
+                <div class="blog-card" onclick="showArticle('article-1')">
+                    <div class="blog-date">15 avril 2026</div>
+                    <h3>Pourquoi les solopreneurs oublient des tâches</h3>
+                    <p>Et comment ça change tout quand ça s'arrête.</p>
+                </div>
+                <div class="blog-card" onclick="showArticle('article-2')">
+                    <div class="blog-date">17 avril 2026</div>
+                    <h3>Le problème avec les to-do lists</h3>
+                    <p>Et pourquoi Vector est différent.</p>
+                </div>
+                <div class="blog-card" onclick="showArticle('article-3')">
+                    <div class="blog-date">19 avril 2026</div>
+                    <h3>Combien de temps devrait prendre ta gestion de projet</h3>
+                    <p>Spoiler: moins que tu crois.</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button onclick="showPage('blog');">Voir tous les articles →</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Blog View -->
+    <div class="view" id="blog-view">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem;">
+            <button class="back-link" onclick="showPage('home');">← Retour à l'accueil</button>
+            
+            <h2 style="text-align: left; margin-bottom: 2rem;">Articles</h2>
+
+            <!-- Article 1 -->
+            <div class="article-view active" id="article-1">
+                <h1>Pourquoi les solopreneurs oublient des tâches (et comment ça change tout)</h1>
+                <div class="article-meta">15 avril 2026 • Lecture: 5 min</div>
+                <article>
+                    <p>Tu as déjà oublié une tâche importante ? Un appel client. Une facture à envoyer. Un suivi à faire ?</p>
+                    <p>Ce n'est pas de ta faute. Ce n'est pas non plus un manque de discipline. C'est une réalité neurologique : le cerveau humain peut gérer environ 7 tâches en parallèle. Quand tu en as 30, quelques-unes t'échappent.</p>
+                    
+                    <h2>Ça coûte combien, vraiment?</h2>
+                    <p>Oublier une tâche ne signifie pas simplement la perdre. C'est une épée de Damoclès mentale.</p>
+                    <p>Et cela crée une cascade :</p>
+                    <ul>
+                        <li>Stress chronique (même quand tu dors)</li>
+                        <li>Productivité qui s'effondre (le stress paralyse)</li>
+                        <li>Clients insatisfaits (tu réponds tard)</li>
+                        <li>Revenu qui baisse</li>
+                    </ul>
+                    
+                    <h2>La vraie solution</h2>
+                    <p>Ce que tu cherches n'est pas un meilleur système de tâches. C'est la paix mentale. Savoir que rien ne t'échappe.</p>
+                    <p>Cela est possible. Et c'est là qu'intervient une approche différente : au lieu de compter sur ta mémoire, tu externalises tout dans un système auquel tu peux faire confiance.</p>
+                    <p>Et si ce système était intelligent ? Si l'IA pouvait analyser tout ce que tu écris, dis et penses, pour identifier les tâches avant même que tu ne les oublies ?</p>
+                    <p>C'est ce qu'on construit avec Vector.</p>
+                </article>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="article-view" id="article-2">
+                <h1>Le problème avec les to-do lists (et pourquoi Vector est différent)</h1>
+                <div class="article-meta">17 avril 2026 • Lecture: 6 min</div>
+                <article>
+                    <p>Tu as probablement essayé 5+ applications de productivité. Notion. Todoist. Microsoft To Do. Peut-être même Reclaim.</p>
+                    <p>Et peut-être qu'elles fonctionnaient... pendant 2 semaines. Puis tu as abandonné.</p>
+                    
+                    <h2>Pourquoi les to-do lists échouent</h2>
+                    <p>Parce qu'elles te demandent quelque chose d'irréaliste : <strong>être parfait</strong>.</p>
+                    <p>Un système de tâches ne fonctionne que si :</p>
+                    <ul>
+                        <li>Tu mets chaque tâche dedans (aucun risque d'oublier)</li>
+                        <li>Tu estimes une durée précise pour chacune</li>
+                        <li>Tu respectes ce que tu as planifié</li>
+                        <li>Tu le mets à jour chaque jour</li>
+                    </ul>
+                    <p>C'est psychologiquement épuisant. Et c'est pour cette raison que 90 % des gens abandonnent.</p>
+                    
+                    <h2>La différence avec Vector</h2>
+                    <p>Vector effectue le travail pour toi. Tu indiques tes projets. L'IA les analyse. Elle identifie les tâches. Elle estime les durées (basé sur l'historique de tes projets passés). Et elle crée un plan.</p>
+                    <p>Tu dois simplement... exécuter.</p>
+                    <p>Cela réduit la friction de 90 %. Et cela élimine le stress.</p>
+                </article>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="article-view" id="article-3">
+                <h1>Combien de temps devrait prendre ta gestion de projet (spoiler: moins que tu crois)</h1>
+                <div class="article-meta">19 avril 2026 • Lecture: 4 min</div>
+                <article>
+                    <p>La plupart des solopreneurs passent 2-3 heures par jour à gérer leurs tâches et leurs priorités.</p>
+                    <p>C'est considérable. C'est aussi inefficace.</p>
+                    
+                    <h2>Pourquoi c'est long</h2>
+                    <p>Parce que tu dois :</p>
+                    <ul>
+                        <li>Écrire les tâches (30 min)</li>
+                        <li>Les organiser par projet (20 min)</li>
+                        <li>Estimer les durées (30 min)</li>
+                        <li>Les planifier dans le temps (40 min)</li>
+                        <li>Faire le suivi sur ce qui est en retard (30 min)</li>
+                    </ul>
+                    <p>Total : 2h30. <strong>Chaque jour.</strong></p>
+                    
+                    <h2>Avec Vector</h2>
+                    <p>C'est 15 minutes. Maximum. L'IA effectue le travail intensif. Tu valides simplement et tu avances.</p>
+                    <p>Cela libère 2h15 chaque jour. C'est 10h par semaine. 40h par mois. 480h par an.</p>
+                    <p>C'est du revenu, cela.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.</p>
+    </footer>
+
+    <script>
+        function showPage(page) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
+            
+            // Show requested page
+            if (page === 'home') {
+                document.getElementById('home-view').classList.add('active');
+            } else if (page === 'blog') {
+                document.getElementById('blog-view').classList.add('active');
+                document.getElementById('article-1').classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function showArticle(articleId) {
+            // Show blog view
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('blog-view').classList.add('active');
+            
+            // Show specific article
+            document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
+            document.getElementById(articleId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const domain = document.getElementById('domain').value;
+            const stress = document.getElementById('stress').value;
+
+            if (!name || !email) {
+                document.getElementById('form-message').textContent = 'Nom et email requis.';
+                document.getElementById('form-message').style.color = 'var(--accent-lime)';
+                return;
+            }
+
+            // Create form data
+            const formData = new FormData();
+            formData.append('entry.1234567890', name); // Replace with actual Google Form field ID
+            formData.append('entry.0987654321', email);
+            formData.append('entry.1111111111', domain);
+            formData.append('entry.2222222222', stress);
+
+            // Show success message
+            document.getElementById('form-message').textContent = '✓ Merci! On t\'envoie un email pour confirmer.';
+            document.getElementById('form-message').style.color = 'var(--accent-lime)';
+            
+            // Clear form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('domain').value = '';
+            document.getElementById('stress').value = '';
+
+            // Note: In production, integrate with Google Forms or email service
+            console.log({ name, email, domain, stress });
+        }
+    </script>
+</body>
+</html>
