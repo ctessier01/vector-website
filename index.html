@@ -33,7 +33,7 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
+        /* ── Header ── */
         header {
             position: sticky;
             top: 0;
@@ -41,7 +41,7 @@
             background: rgba(16, 19, 26, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
+            padding: 0.85rem 2rem;
         }
 
         nav {
@@ -55,25 +55,44 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.9rem;
             text-decoration: none;
             color: var(--text-primary);
         }
 
         .logo svg {
-            width: 40px;
-            height: 44px;
+            width: 52px;
+            height: 57px;
             flex-shrink: 0;
         }
 
-        .logo-text {
-            font-family: 'Red Hat Display', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
+        .logo-wordmark {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
-        .logo-text span {
+        .logo-name {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1;
+        }
+
+        .logo-name span {
+            color: var(--accent-lime);
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0;
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .logo-tagline span {
             color: var(--accent-lime);
         }
 
@@ -94,13 +113,13 @@
             color: var(--accent-lime);
         }
 
-        /* Hero Section */
+        /* ── Hero ── */
         .hero {
-            min-height: 100vh;
+            min-height: 72vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 2rem;
             position: relative;
             overflow: hidden;
         }
@@ -131,14 +150,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .hero h1 {
@@ -181,10 +194,10 @@
             box-shadow: 0 12px 24px rgba(139, 255, 60, 0.2);
         }
 
-        /* Features Section */
+        /* ── Features ── */
         .features {
             max-width: 1200px;
-            margin: 6rem auto;
+            margin: 4rem auto;
             padding: 0 2rem;
         }
 
@@ -203,15 +216,12 @@
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease-out;
             animation-fill-mode: both;
+            cursor: pointer;
+            position: relative;
         }
 
-        .feature-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .feature-card:nth-child(3) {
-            animation-delay: 0.4s;
-        }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.4s; }
 
         .feature-card:hover {
             border-color: var(--accent-lime);
@@ -238,7 +248,20 @@
             line-height: 1.7;
         }
 
-        /* Section Titles */
+        .feature-card .read-more {
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-size: 0.82rem;
+            color: var(--accent-lime);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .feature-card:hover .read-more {
+            opacity: 1;
+        }
+
+        /* ── Section titles ── */
         section h2 {
             font-family: 'Red Hat Display', sans-serif;
             font-size: clamp(2rem, 5vw, 3rem);
@@ -254,7 +277,7 @@
             font-size: 1.05rem;
         }
 
-        /* Early Access Form */
+        /* ── Early Access Form ── */
         .early-access {
             max-width: 1200px;
             margin: 6rem auto;
@@ -265,9 +288,7 @@
             text-align: center;
         }
 
-        .early-access h2 {
-            margin-bottom: 1rem;
-        }
+        .early-access h2 { margin-bottom: 1rem; }
 
         .form-group {
             display: flex;
@@ -303,7 +324,7 @@
             color: var(--text-secondary);
         }
 
-        /* Blog Section */
+        /* ── Blog ── */
         .blog {
             max-width: 1200px;
             margin: 6rem auto;
@@ -349,9 +370,56 @@
             font-size: 0.8rem;
             color: var(--accent-lime);
             font-weight: 600;
+            margin-bottom: 0.6rem;
         }
 
-        /* Article View */
+        /* ── Articles list (blog page) ── */
+        .articles-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .articles-list h2 {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .article-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 2rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-card:hover {
+            border-color: var(--accent-lime);
+            transform: translateX(6px);
+        }
+
+        .article-card h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.25rem;
+            margin: 0.4rem 0 0.6rem;
+            color: var(--text-primary);
+        }
+
+        .article-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .article-card .read-label {
+            font-size: 0.82rem;
+            color: var(--accent-lime);
+            margin-top: 0.8rem;
+            display: inline-block;
+        }
+
+        /* ── Article View ── */
         .article-view {
             display: none;
             max-width: 800px;
@@ -359,9 +427,7 @@
             padding: 4rem 2rem;
         }
 
-        .article-view.active {
-            display: block;
-        }
+        .article-view.active { display: block; }
 
         .article-view h1 {
             font-family: 'Red Hat Display', sans-serif;
@@ -403,19 +469,53 @@
             line-height: 1.7;
         }
 
+        .article-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-nav-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.65rem 1.25rem;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .article-nav-btn:hover {
+            border-color: var(--accent-lime);
+            color: var(--accent-lime);
+        }
+
+        .article-nav-btn.invisible {
+            visibility: hidden;
+        }
+
         .back-link {
             display: inline-block;
+            background: none;
+            border: none;
             color: var(--accent-lime);
             text-decoration: none;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
             transition: opacity 0.3s ease;
+            padding: 0;
         }
 
-        .back-link:hover {
-            opacity: 0.8;
-        }
+        .back-link:hover { opacity: 0.75; }
 
-        /* Footer */
+        /* ── Footer ── */
         footer {
             max-width: 1200px;
             margin: 6rem auto 0;
@@ -426,40 +526,9 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .hero {
-                padding: 2rem 1rem;
-            }
-
-            .hero::before {
-                width: 250px;
-                height: 250px;
-                top: 20%;
-            }
-
-            .features-grid {
-                gap: 2rem;
-            }
-
-            .feature-card {
-                padding: 2rem;
-            }
-        }
-
-        /* Page Navigation */
-        .view {
-            display: none;
-        }
-
-        .view.active {
-            display: block;
-        }
+        /* ── Page views ── */
+        .view { display: none; }
+        .view.active { display: block; }
 
         .nav-buttons {
             margin-top: 3rem;
@@ -483,14 +552,94 @@
             border-color: var(--accent-lime);
             color: var(--accent-lime);
         }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 12, 18, 0.85);
+            backdrop-filter: blur(6px);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            padding: 3rem;
+            position: relative;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .modal-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.6rem;
+            color: var(--accent-lime);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal p strong {
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover { color: var(--text-primary); }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            nav ul { gap: 1rem; font-size: 0.85rem; }
+            .logo svg { width: 40px; height: 44px; }
+            .logo-name { font-size: 1.5rem; }
+            .hero { padding: 2rem 1rem; }
+            .hero::before { width: 250px; height: 250px; top: 20%; }
+            .features-grid { gap: 2rem; }
+            .feature-card { padding: 2rem; }
+            .modal { padding: 2rem; }
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- ── HEADER ── -->
     <header>
         <nav>
             <a href="#" class="logo" onclick="showPage('home'); return false;">
-                <svg width="40" height="44" viewBox="0 0 120 128" xmlns="http://www.w3.org/2000/svg">
+                <svg width="52" height="57" viewBox="0 0 120 128" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="60" cy="80" r="46" fill="#1C2030" stroke="rgba(139,255,60,0.22)" stroke-width="1.2"/>
                     <rect x="57.5" y="27" width="5" height="8" rx="2" fill="#8BFF3C"/>
                     <rect x="52.5" y="19" width="15" height="9" rx="4" fill="#8BFF3C"/>
@@ -510,7 +659,10 @@
                     <circle cx="60" cy="80" r="5" fill="#8BFF3C"/>
                     <circle cx="60" cy="80" r="2.2" fill="#1C2030"/>
                 </svg>
-                <div class="logo-text"><span>V</span>ector</div>
+                <div class="logo-wordmark">
+                    <div class="logo-name"><span>V</span>ector</div>
+                    <div class="logo-tagline">L'IA planifie, <span>toi tu accomplis.</span></div>
+                </div>
             </a>
             <ul>
                 <li><a href="#" onclick="showPage('home'); return false;">Accueil</a></li>
@@ -520,37 +672,41 @@
         </nav>
     </header>
 
-    <!-- Home View -->
+    <!-- ── HOME VIEW ── -->
     <div class="view active" id="home-view">
-        <!-- Hero Section -->
+
+        <!-- Hero -->
         <section class="hero">
             <div class="hero-content">
                 <h1>Tu sais ce que tu fais <span class="highlight">aujourd'hui.</span> <span class="highlight">Sans stress.</span></h1>
-                <p>L'IA planifie, toi tu accomplis. Vector est l'assistant qui transforme ton chaos en clarté.</p>
+                <p>Vector est l'assistant qui transforme ton chaos en clarté — pour que tu arrêtes de gérer et que tu commences à avancer.</p>
                 <button class="cta-button" onclick="document.getElementById('early-access').scrollIntoView();">Rejoindre la beta</button>
             </div>
         </section>
 
-        <!-- Features Section -->
+        <!-- Features -->
         <section class="features">
             <h2>Pourquoi Vector change la donne</h2>
             <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">Trois principes. Zéro stress.</p>
-            
+
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" onclick="openModal('modal-oublie')">
                     <div class="feature-icon">✓</div>
                     <h3>Rien n'est oublié</h3>
                     <p>L'IA scanne tes conversations, tes notes, tout. Zéro tâche ne s'échappe. Dors tranquille.</p>
+                    <span class="read-more">En savoir plus →</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" onclick="openModal('modal-problemes')">
                     <div class="feature-icon">👁</div>
                     <h3>Vois venir les problèmes</h3>
-                    <p>Les deadlines qui s'approchent. Les goulots. Les dépendances. Tu sais où tu vas avant que ce soit le chaos.</p>
+                    <p>Les deadlines qui s'approchent. Les goulots. Les dépendances. Vector gère tout ça avant que ce soit le chaos.</p>
+                    <span class="read-more">En savoir plus →</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" onclick="openModal('modal-execute')">
                     <div class="feature-icon">⚡</div>
                     <h3>Exécute. C'est prêt.</h3>
-                    <p>Plus de paralysie. Vector t'organise. Tu fais. Simple.</p>
+                    <p>Plus de paralysie. Vector t'organise. Il ne te reste qu'à suivre un plan bien ficelé. C'est simple.</p>
+                    <span class="read-more">En savoir plus →</span>
                 </div>
             </div>
         </section>
@@ -558,8 +714,8 @@
         <!-- Early Access Form -->
         <section class="early-access" id="early-access">
             <h2>Les 25 premiers testeurs reçoivent 6 mois Pro gratuit</h2>
-            <p style="color: var(--text-secondary);">Rejoins la beta. Test Vector. Aide-nous à l'améliorer. Une seule condition: du feedback au mois 1.</p>
-            
+            <p style="color: var(--text-secondary);">Rejoins la beta. Teste Vector. Aide-nous à l'améliorer. Une seule condition : du feedback dans le premier mois.</p>
+
             <div class="form-group">
                 <input type="text" id="name" placeholder="Ton prénom" required>
                 <input type="email" id="email" placeholder="Ton email" required>
@@ -574,7 +730,7 @@
         <section class="blog">
             <h2>Articles récents</h2>
             <p style="color: var(--text-secondary);">Des histoires vraies. Des solutions concrètes.</p>
-            
+
             <div class="blog-grid">
                 <div class="blog-card" onclick="showArticle('article-1')">
                     <div class="blog-date">15 avril 2026</div>
@@ -599,125 +755,232 @@
         </section>
     </div>
 
-    <!-- Blog View -->
+    <!-- ── BLOG VIEW ── -->
     <div class="view" id="blog-view">
-        <div style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem;">
+
+        <!-- Liste des articles -->
+        <div id="articles-list" class="articles-list">
             <button class="back-link" onclick="showPage('home');">← Retour à l'accueil</button>
-            
-            <h2 style="text-align: left; margin-bottom: 2rem;">Articles</h2>
+            <h2>Articles</h2>
 
-            <!-- Article 1 -->
-            <div class="article-view active" id="article-1">
-                <h1>Pourquoi les solopreneurs oublient des tâches (et comment ça change tout)</h1>
-                <div class="article-meta">15 avril 2026 • Lecture: 5 min</div>
-                <article>
-                    <p>Tu as déjà oublié une tâche importante ? Un appel client. Une facture à envoyer. Un suivi à faire ?</p>
-                    <p>Ce n'est pas de ta faute. Ce n'est pas non plus un manque de discipline. C'est une réalité neurologique : le cerveau humain peut gérer environ 7 tâches en parallèle. Quand tu en as 30, quelques-unes t'échappent.</p>
-                    
-                    <h2>Ça coûte combien, vraiment?</h2>
-                    <p>Oublier une tâche ne signifie pas simplement la perdre. C'est une épée de Damoclès mentale.</p>
-                    <p>Et cela crée une cascade :</p>
-                    <ul>
-                        <li>Stress chronique (même quand tu dors)</li>
-                        <li>Productivité qui s'effondre (le stress paralyse)</li>
-                        <li>Clients insatisfaits (tu réponds tard)</li>
-                        <li>Revenu qui baisse</li>
-                    </ul>
-                    
-                    <h2>La vraie solution</h2>
-                    <p>Ce que tu cherches n'est pas un meilleur système de tâches. C'est la paix mentale. Savoir que rien ne t'échappe.</p>
-                    <p>Cela est possible. Et c'est là qu'intervient une approche différente : au lieu de compter sur ta mémoire, tu externalises tout dans un système auquel tu peux faire confiance.</p>
-                    <p>Et si ce système était intelligent ? Si l'IA pouvait analyser tout ce que tu écris, dis et penses, pour identifier les tâches avant même que tu ne les oublies ?</p>
-                    <p>C'est ce qu'on construit avec Vector.</p>
-                </article>
+            <div class="article-card" onclick="showArticle('article-1')">
+                <div class="blog-date">15 avril 2026 • 5 min</div>
+                <h3>Pourquoi les solopreneurs oublient des tâches</h3>
+                <p>Et comment ça change tout quand ça s'arrête.</p>
+                <span class="read-label">Lire →</span>
             </div>
-
-            <!-- Article 2 -->
-            <div class="article-view" id="article-2">
-                <h1>Le problème avec les to-do lists (et pourquoi Vector est différent)</h1>
-                <div class="article-meta">17 avril 2026 • Lecture: 6 min</div>
-                <article>
-                    <p>Tu as probablement essayé 5+ applications de productivité. Notion. Todoist. Microsoft To Do. Peut-être même Reclaim.</p>
-                    <p>Et peut-être qu'elles fonctionnaient... pendant 2 semaines. Puis tu as abandonné.</p>
-                    
-                    <h2>Pourquoi les to-do lists échouent</h2>
-                    <p>Parce qu'elles te demandent quelque chose d'irréaliste : <strong>être parfait</strong>.</p>
-                    <p>Un système de tâches ne fonctionne que si :</p>
-                    <ul>
-                        <li>Tu mets chaque tâche dedans (aucun risque d'oublier)</li>
-                        <li>Tu estimes une durée précise pour chacune</li>
-                        <li>Tu respectes ce que tu as planifié</li>
-                        <li>Tu le mets à jour chaque jour</li>
-                    </ul>
-                    <p>C'est psychologiquement épuisant. Et c'est pour cette raison que 90 % des gens abandonnent.</p>
-                    
-                    <h2>La différence avec Vector</h2>
-                    <p>Vector effectue le travail pour toi. Tu indiques tes projets. L'IA les analyse. Elle identifie les tâches. Elle estime les durées (basé sur l'historique de tes projets passés). Et elle crée un plan.</p>
-                    <p>Tu dois simplement... exécuter.</p>
-                    <p>Cela réduit la friction de 90 %. Et cela élimine le stress.</p>
-                </article>
+            <div class="article-card" onclick="showArticle('article-2')">
+                <div class="blog-date">17 avril 2026 • 6 min</div>
+                <h3>Le problème avec les to-do lists</h3>
+                <p>Et pourquoi Vector est différent.</p>
+                <span class="read-label">Lire →</span>
             </div>
-
-            <!-- Article 3 -->
-            <div class="article-view" id="article-3">
-                <h1>Combien de temps devrait prendre ta gestion de projet (spoiler: moins que tu crois)</h1>
-                <div class="article-meta">19 avril 2026 • Lecture: 4 min</div>
-                <article>
-                    <p>La plupart des solopreneurs passent 2-3 heures par jour à gérer leurs tâches et leurs priorités.</p>
-                    <p>C'est considérable. C'est aussi inefficace.</p>
-                    
-                    <h2>Pourquoi c'est long</h2>
-                    <p>Parce que tu dois :</p>
-                    <ul>
-                        <li>Écrire les tâches (30 min)</li>
-                        <li>Les organiser par projet (20 min)</li>
-                        <li>Estimer les durées (30 min)</li>
-                        <li>Les planifier dans le temps (40 min)</li>
-                        <li>Faire le suivi sur ce qui est en retard (30 min)</li>
-                    </ul>
-                    <p>Total : 2h30. <strong>Chaque jour.</strong></p>
-                    
-                    <h2>Avec Vector</h2>
-                    <p>C'est 15 minutes. Maximum. L'IA effectue le travail intensif. Tu valides simplement et tu avances.</p>
-                    <p>Cela libère 2h15 chaque jour. C'est 10h par semaine. 40h par mois. 480h par an.</p>
-                    <p>C'est du revenu, cela.</p>
-                </article>
+            <div class="article-card" onclick="showArticle('article-3')">
+                <div class="blog-date">19 avril 2026 • 4 min</div>
+                <h3>Combien de temps devrait prendre ta gestion de projet</h3>
+                <p>Spoiler: moins que tu crois.</p>
+                <span class="read-label">Lire →</span>
             </div>
         </div>
+
+        <!-- Article 1 -->
+        <div class="article-view" id="article-1">
+            <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
+            <h1>Pourquoi les solopreneurs oublient des tâches (et comment ça change tout)</h1>
+            <div class="article-meta">15 avril 2026 • Lecture : 5 min</div>
+            <article>
+                <p>Tu as déjà oublié une tâche importante ? Un appel client. Une facture à envoyer. Un suivi à faire ?</p>
+                <p>Ce n'est pas de ta faute. Ce n'est pas non plus un manque de discipline. C'est une réalité neurologique : le cerveau humain peut gérer environ 7 tâches en parallèle. Quand tu en as 30, quelques-unes t'échappent.</p>
+
+                <h2>Ça coûte combien, vraiment?</h2>
+                <p>Oublier une tâche ne signifie pas simplement la perdre. C'est une épée de Damoclès mentale.</p>
+                <p>Et cela crée une cascade :</p>
+                <ul>
+                    <li>Stress chronique (même quand tu dors)</li>
+                    <li>Productivité qui s'effondre (le stress paralyse)</li>
+                    <li>Clients insatisfaits (tu réponds tard)</li>
+                    <li>Revenu qui baisse</li>
+                </ul>
+
+                <h2>La vraie solution</h2>
+                <p>Ce que tu cherches n'est pas un meilleur système de tâches. C'est la paix mentale. Savoir que rien ne t'échappe.</p>
+                <p>Cela est possible. Et c'est là qu'intervient une approche différente : au lieu de compter sur ta mémoire, tu externalises tout dans un système auquel tu peux faire confiance.</p>
+                <p>Et si ce système était intelligent ? Si l'IA pouvait analyser tout ce que tu écris, dis et penses, pour identifier les tâches avant même que tu ne les oublies ?</p>
+                <p>C'est ce qu'on construit avec Vector.</p>
+            </article>
+            <div class="article-nav">
+                <button class="article-nav-btn invisible">←</button>
+                <button class="article-nav-btn" onclick="showArticle('article-2');">Article suivant →</button>
+            </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="article-view" id="article-2">
+            <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
+            <h1>Le problème avec les to-do lists (et pourquoi Vector est différent)</h1>
+            <div class="article-meta">17 avril 2026 • Lecture : 6 min</div>
+            <article>
+                <p>Tu as probablement essayé 5+ applications de productivité. Notion. Todoist. Microsoft To Do. Peut-être même Reclaim.</p>
+                <p>Et peut-être qu'elles fonctionnaient... pendant 2 semaines. Puis tu as abandonné.</p>
+
+                <h2>Pourquoi les to-do lists échouent</h2>
+                <p>Parce qu'elles te demandent quelque chose d'irréaliste : <strong>être parfait</strong>.</p>
+                <p>Un système de tâches ne fonctionne que si :</p>
+                <ul>
+                    <li>Tu mets chaque tâche dedans (aucun risque d'oublier)</li>
+                    <li>Tu estimes une durée précise pour chacune</li>
+                    <li>Tu respectes ce que tu as planifié</li>
+                    <li>Tu le mets à jour chaque jour</li>
+                </ul>
+                <p>C'est psychologiquement épuisant. Et c'est pour cette raison que 90 % des gens abandonnent.</p>
+
+                <h2>La différence avec Vector</h2>
+                <p>Vector effectue le travail pour toi. Tu indiques tes projets. L'IA les analyse. Elle identifie les tâches. Elle estime les durées (basé sur l'historique de tes projets passés). Et elle crée un plan.</p>
+                <p>Tu dois simplement... exécuter.</p>
+                <p>Cela réduit la friction de 90 %. Et cela élimine le stress.</p>
+            </article>
+            <div class="article-nav">
+                <button class="article-nav-btn" onclick="showArticle('article-1');">← Article précédent</button>
+                <button class="article-nav-btn" onclick="showArticle('article-3');">Article suivant →</button>
+            </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="article-view" id="article-3">
+            <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
+            <h1>Combien de temps devrait prendre ta gestion de projet (spoiler: moins que tu crois)</h1>
+            <div class="article-meta">19 avril 2026 • Lecture : 4 min</div>
+            <article>
+                <p>La plupart des solopreneurs passent 2-3 heures par jour à gérer leurs tâches et leurs priorités.</p>
+                <p>C'est considérable. C'est aussi inefficace.</p>
+
+                <h2>Pourquoi c'est long</h2>
+                <p>Parce que tu dois :</p>
+                <ul>
+                    <li>Écrire les tâches (30 min)</li>
+                    <li>Les organiser par projet (20 min)</li>
+                    <li>Estimer les durées (30 min)</li>
+                    <li>Les planifier dans le temps (40 min)</li>
+                    <li>Faire le suivi sur ce qui est en retard (30 min)</li>
+                </ul>
+                <p>Total : 2h30. <strong>Chaque jour.</strong></p>
+
+                <h2>Avec Vector</h2>
+                <p>C'est 15 minutes. Maximum. L'IA effectue le travail intensif. Tu valides simplement et tu avances.</p>
+                <p>Cela libère 2h15 chaque jour. C'est 10h par semaine. 40h par mois. 480h par an.</p>
+                <p>C'est du revenu, cela.</p>
+            </article>
+            <div class="article-nav">
+                <button class="article-nav-btn" onclick="showArticle('article-2');">← Article précédent</button>
+                <button class="article-nav-btn invisible">→</button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Footer -->
+    <!-- ── FOOTER ── -->
     <footer>
         <p>&copy; 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.</p>
     </footer>
 
+    <!-- ── MODALES FEATURES ── -->
+
+    <!-- Modale 1 : Rien n'est oublié -->
+    <div class="modal-overlay" id="modal-oublie" onclick="closeModalOutside(event, 'modal-oublie')">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('modal-oublie')">✕</button>
+            <div class="modal-icon">✓</div>
+            <h3>Rien n'est oublié</h3>
+            <p>La plupart des outils de productivité reposent sur une prémisse fragile : <strong>que tu penses à tout noter</strong>. En pratique, ça ne fonctionne pas. Le cerveau filtre, oublie, laisse filer.</p>
+            <p>Vector renverse ce paradigme. Son moteur d'IA analyse en continu tes conversations, tes notes, tes échanges — et extrait automatiquement chaque tâche, chaque engagement, chaque action à poser. Tu n'as pas à y penser. Vector y pense pour toi.</p>
+            <p><strong>Le résultat ?</strong> Une liste de tâches toujours à jour, sans effort. Aucune livraison oubliée. Aucun client laissé sans réponse. Aucune facture perdue dans les oubliettes. La paix mentale que tu cherches depuis le début.</p>
+        </div>
+    </div>
+
+    <!-- Modale 2 : Vois venir les problèmes -->
+    <div class="modal-overlay" id="modal-problemes" onclick="closeModalOutside(event, 'modal-problemes')">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('modal-problemes')">✕</button>
+            <div class="modal-icon">👁</div>
+            <h3>Vois venir les problèmes</h3>
+            <p>Une deadline qui approche. Deux projets simultanés. Une dépendance que tu n'avais pas vue. Dans les outils classiques, tu le découvres trop tard — souvent en pleine urgence, quand il est déjà trop tard pour réagir sereinement.</p>
+            <p>Vector calcule en continu ta charge de travail réelle sur chaque projet. Il détecte les conflits d'agenda <strong>avant qu'ils explosent</strong>, identifie les goulots d'étranglement, et te signale proactivement les risques. Tu ne réagis plus aux crises. Tu les désamorces avant même qu'elles existent.</p>
+            <p><strong>La différence entre un solopreneur stressé et un solopreneur en contrôle ?</strong> Ce n'est pas la quantité de travail. C'est la visibilité sur ce qui s'en vient.</p>
+        </div>
+    </div>
+
+    <!-- Modale 3 : Exécute. C'est prêt. -->
+    <div class="modal-overlay" id="modal-execute" onclick="closeModalOutside(event, 'modal-execute')">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('modal-execute')">✕</button>
+            <div class="modal-icon">⚡</div>
+            <h3>Exécute. C'est prêt.</h3>
+            <p>Combien d'heures passes-tu chaque semaine à décider quoi faire ? À réorganiser ta liste de tâches ? À te demander si tu es dans les délais, si tu as oublié quelque chose, par quoi commencer ?</p>
+            <p>C'est la paralysie par la planification. Et elle coûte cher.</p>
+            <p>Avec Vector, tu ouvres l'application et tu sais exactement quoi faire maintenant. L'IA a déjà <strong>priorisé, planifié, estimé</strong> — en tenant compte de tes disponibilités, de tes deadlines et de tes préférences. Le plan est là, cohérent, réaliste. Il ne te reste qu'à exécuter.</p>
+            <p>C'est ça, la vraie productivité : zéro friction à l'entrée, toute l'énergie dans l'action.</p>
+        </div>
+    </div>
+
     <script>
+        /* ── Navigation ── */
         function showPage(page) {
-            // Hide all views
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
-            
-            // Show requested page
+
             if (page === 'home') {
                 document.getElementById('home-view').classList.add('active');
             } else if (page === 'blog') {
                 document.getElementById('blog-view').classList.add('active');
-                document.getElementById('article-1').classList.add('active');
+                document.getElementById('articles-list').style.display = 'block';
+                document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             }
             window.scrollTo(0, 0);
         }
 
         function showArticle(articleId) {
-            // Show blog view
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById('blog-view').classList.add('active');
-            
-            // Show specific article
+            document.getElementById('articles-list').style.display = 'none';
+
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             document.getElementById(articleId).classList.add('active');
             window.scrollTo(0, 0);
         }
 
+        function backToArticles() {
+            document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
+            document.getElementById('articles-list').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        /* ── Modales ── */
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOutside(event, id) {
+            if (event.target === document.getElementById(id)) {
+                closeModal(id);
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.open').forEach(m => {
+                    m.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+
+        /* ── Formulaire ── */
         function submitForm() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -725,29 +988,19 @@
             const stress = document.getElementById('stress').value;
 
             if (!name || !email) {
-                document.getElementById('form-message').textContent = 'Nom et email requis.';
+                document.getElementById('form-message').textContent = 'Prénom et email requis.';
                 document.getElementById('form-message').style.color = 'var(--accent-lime)';
                 return;
             }
 
-            // Create form data
-            const formData = new FormData();
-            formData.append('entry.1234567890', name); // Replace with actual Google Form field ID
-            formData.append('entry.0987654321', email);
-            formData.append('entry.1111111111', domain);
-            formData.append('entry.2222222222', stress);
-
-            // Show success message
-            document.getElementById('form-message').textContent = '✓ Merci! On t\'envoie un email pour confirmer.';
+            document.getElementById('form-message').textContent = '✓ Merci ! On t\'envoie un email pour confirmer.';
             document.getElementById('form-message').style.color = 'var(--accent-lime)';
-            
-            // Clear form
+
             document.getElementById('name').value = '';
             document.getElementById('email').value = '';
             document.getElementById('domain').value = '';
             document.getElementById('stress').value = '';
 
-            // Note: In production, integrate with Google Forms or email service
             console.log({ name, email, domain, stress });
         }
     </script>
