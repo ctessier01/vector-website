@@ -21,9 +21,7 @@
             --border: rgba(139, 255, 60, 0.2);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'DM Sans', sans-serif;
@@ -60,17 +58,9 @@
             color: var(--text-primary);
         }
 
-        .logo svg {
-            width: 52px;
-            height: 57px;
-            flex-shrink: 0;
-        }
+        .logo svg { width: 52px; height: 57px; flex-shrink: 0; }
 
-        .logo-wordmark {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
+        .logo-wordmark { display: flex; flex-direction: column; gap: 2px; }
 
         .logo-name {
             font-family: 'Red Hat Display', sans-serif;
@@ -80,9 +70,7 @@
             line-height: 1;
         }
 
-        .logo-name span {
-            color: var(--accent-lime);
-        }
+        .logo-name span { color: var(--accent-lime); }
 
         .logo-tagline {
             font-size: 0.75rem;
@@ -92,15 +80,9 @@
             line-height: 1;
         }
 
-        .logo-tagline span {
-            color: var(--accent-lime);
-        }
+        .logo-tagline span { color: var(--accent-lime); }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
 
         nav a {
             color: var(--text-secondary);
@@ -109,9 +91,7 @@
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--accent-lime);
-        }
+        nav a:hover { color: var(--accent-lime); }
 
         /* ── Hero ── */
         .hero {
@@ -163,9 +143,7 @@
             letter-spacing: -2px;
         }
 
-        .hero h1 .highlight {
-            color: var(--accent-lime);
-        }
+        .hero h1 .highlight { color: var(--accent-lime); }
 
         .hero p {
             font-size: 1.2rem;
@@ -229,11 +207,7 @@
             box-shadow: 0 16px 32px rgba(139, 255, 60, 0.1);
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; display: inline-block; }
 
         .feature-card h3 {
             font-family: 'Red Hat Display', sans-serif;
@@ -242,11 +216,7 @@
             color: var(--accent-lime);
         }
 
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
+        .feature-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
 
         .feature-card .read-more {
             display: inline-block;
@@ -257,9 +227,7 @@
             transition: opacity 0.2s;
         }
 
-        .feature-card:hover .read-more {
-            opacity: 1;
-        }
+        .feature-card:hover .read-more { opacity: 1; }
 
         /* ── Section titles ── */
         section h2 {
@@ -270,12 +238,7 @@
             letter-spacing: -1px;
         }
 
-        section > p {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
+        section > p { text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.05rem; }
 
         /* ── Early Access Form ── */
         .early-access {
@@ -320,16 +283,10 @@
         }
 
         .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-secondary);
-        }
+        .form-group textarea::placeholder { color: var(--text-secondary); }
 
         /* ── Blog ── */
-        .blog {
-            max-width: 1200px;
-            margin: 6rem auto;
-            padding: 0 2rem;
-        }
+        .blog { max-width: 1200px; margin: 6rem auto; padding: 0 2rem; }
 
         .blog-grid {
             display: grid;
@@ -347,10 +304,7 @@
             transition: all 0.3s ease;
         }
 
-        .blog-card:hover {
-            border-color: var(--accent-lime);
-            transform: translateY(-4px);
-        }
+        .blog-card:hover { border-color: var(--accent-lime); transform: translateY(-4px); }
 
         .blog-card h3 {
             font-family: 'Red Hat Display', sans-serif;
@@ -359,31 +313,13 @@
             color: var(--text-primary);
         }
 
-        .blog-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
+        .blog-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
 
-        .blog-date {
-            font-size: 0.8rem;
-            color: var(--accent-lime);
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-        }
+        .blog-date { font-size: 0.8rem; color: var(--accent-lime); font-weight: 600; margin-bottom: 0.6rem; }
 
         /* ── Articles list (blog page) ── */
-        .articles-list {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .articles-list h2 {
-            text-align: left;
-            margin-bottom: 2.5rem;
-        }
+        .articles-list { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        .articles-list h2 { text-align: left; margin-bottom: 2.5rem; }
 
         .article-card {
             background: var(--bg-secondary);
@@ -395,10 +331,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .article-card:hover {
-            border-color: var(--accent-lime);
-            transform: translateX(6px);
-        }
+        .article-card:hover { border-color: var(--accent-lime); transform: translateX(6px); }
 
         .article-card h3 {
             font-family: 'Red Hat Display', sans-serif;
@@ -407,10 +340,7 @@
             color: var(--text-primary);
         }
 
-        .article-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
+        .article-card p { color: var(--text-secondary); font-size: 0.95rem; }
 
         .article-card .read-label {
             font-size: 0.82rem;
@@ -436,21 +366,9 @@
             letter-spacing: -1px;
         }
 
-        .article-meta {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .article-view article {
-            color: var(--text-primary);
-        }
-
-        .article-view p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
+        .article-meta { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
+        .article-view article { color: var(--text-primary); }
+        .article-view p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; }
 
         .article-view h2 {
             text-align: left;
@@ -459,15 +377,8 @@
             color: var(--accent-lime);
         }
 
-        .article-view ul {
-            margin-left: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .article-view li {
-            margin-bottom: 0.7rem;
-            line-height: 1.7;
-        }
+        .article-view ul { margin-left: 2rem; margin-bottom: 1.5rem; }
+        .article-view li { margin-bottom: 0.7rem; line-height: 1.7; }
 
         .article-nav {
             display: flex;
@@ -490,14 +401,8 @@
             transition: all 0.3s ease;
         }
 
-        .article-nav-btn:hover {
-            border-color: var(--accent-lime);
-            color: var(--accent-lime);
-        }
-
-        .article-nav-btn.invisible {
-            visibility: hidden;
-        }
+        .article-nav-btn:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+        .article-nav-btn.invisible { visibility: hidden; }
 
         .back-link {
             display: inline-block;
@@ -530,12 +435,7 @@
         .view { display: none; }
         .view.active { display: block; }
 
-        .nav-buttons {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
+        .nav-buttons { margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; }
 
         .nav-buttons button {
             padding: 0.75rem 1.5rem;
@@ -548,10 +448,7 @@
             font-family: 'DM Sans', sans-serif;
         }
 
-        .nav-buttons button:hover {
-            border-color: var(--accent-lime);
-            color: var(--accent-lime);
-        }
+        .nav-buttons button:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
 
         /* ── Modal ── */
         .modal-overlay {
@@ -566,9 +463,7 @@
             padding: 2rem;
         }
 
-        .modal-overlay.open {
-            display: flex;
-        }
+        .modal-overlay.open { display: flex; }
 
         .modal {
             background: var(--bg-secondary);
@@ -581,29 +476,10 @@
             animation: fadeInUp 0.3s ease-out;
         }
 
-        .modal-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal h3 {
-            font-family: 'Red Hat Display', sans-serif;
-            font-size: 1.6rem;
-            color: var(--accent-lime);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .modal p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .modal p strong {
-            color: var(--text-primary);
-        }
+        .modal-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+        .modal h3 { font-family: 'Red Hat Display', sans-serif; font-size: 1.6rem; color: var(--accent-lime); margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+        .modal p { color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 1.2rem; }
+        .modal p strong { color: var(--text-primary); }
 
         .modal-close {
             position: absolute;
@@ -631,6 +507,260 @@
             .feature-card { padding: 2rem; }
             .modal { padding: 2rem; }
         }
+
+        /* ══════════════════════════════════════════
+           ── Admin Panel ──
+        ══════════════════════════════════════════ */
+
+        .admin-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        /* Login */
+        .admin-login-box {
+            max-width: 380px;
+            margin: 8rem auto;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .admin-login-box h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.6rem;
+            color: var(--accent-lime);
+            margin-bottom: 0.4rem;
+        }
+
+        .admin-login-box .admin-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            background: rgba(139, 255, 60, 0.05);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .admin-input:focus { outline: none; border-color: var(--accent-lime); background: rgba(139, 255, 60, 0.1); }
+        .admin-input::placeholder { color: var(--text-secondary); }
+
+        .admin-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .admin-btn:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+
+        .admin-btn.primary {
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            border-color: var(--accent-lime);
+            font-weight: 600;
+        }
+
+        .admin-btn.primary:hover { box-shadow: 0 6px 18px rgba(139,255,60,0.25); transform: translateY(-1px); color: var(--bg-primary); }
+
+        .admin-btn.danger { border-color: rgba(255, 90, 90, 0.4); color: #ff7070; }
+        .admin-btn.danger:hover { border-color: #ff7070; background: rgba(255,90,90,0.1); color: #ff7070; }
+
+        .admin-btn.sm { padding: 0.45rem 0.9rem; font-size: 0.82rem; }
+
+        .admin-login-error { color: #ff7070; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; }
+
+        /* Top bar */
+        .admin-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .admin-bar h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .admin-bar-actions { display: flex; gap: 0.75rem; align-items: center; }
+
+        /* Article list */
+        .admin-article-row {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .admin-article-row:hover { border-color: rgba(139,255,60,0.4); }
+
+        .admin-article-info { flex: 1; min-width: 0; }
+
+        .admin-article-title {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-article-meta { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.2rem; }
+        .admin-article-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+        /* Editor */
+        .admin-editor-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-editor-card h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.3rem;
+            color: var(--accent-lime);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-field { margin-bottom: 1.2rem; }
+        .admin-field label { display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.4rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
+        .admin-field .admin-input { margin-bottom: 0; }
+
+        .admin-field textarea.admin-input {
+            resize: vertical;
+            min-height: 60px;
+            line-height: 1.6;
+        }
+
+        #editor-content-ta { min-height: 280px; font-family: 'DM Mono', 'Courier New', monospace; font-size: 0.88rem; }
+
+        .admin-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .admin-toolbar button {
+            padding: 0.35rem 0.7rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .admin-toolbar button:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+
+        .admin-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) { .admin-two-col { grid-template-columns: 1fr; } }
+
+        .admin-preview-box {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: rgba(139,255,60,0.02);
+            margin-top: 0.6rem;
+            min-height: 80px;
+        }
+
+        .admin-preview-box p { margin-bottom: 1rem; line-height: 1.7; font-size: 0.95rem; }
+        .admin-preview-box h2 { font-family: 'Red Hat Display', sans-serif; color: var(--accent-lime); font-size: 1.15rem; margin: 1rem 0 0.5rem; text-align: left; letter-spacing: 0; }
+        .admin-preview-box ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+        .admin-preview-box li { margin-bottom: 0.4rem; font-size: 0.95rem; }
+
+        .admin-editor-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .admin-empty {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 3rem;
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+        }
+
+        .admin-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .admin-section-header h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .admin-notice {
+            background: rgba(139,255,60,0.06);
+            border: 1px solid rgba(139,255,60,0.2);
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .admin-notice strong { color: var(--accent-lime); }
+
+        .tab-active-indicator {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-lime);
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -641,6 +771,7 @@
             <a href="#" class="logo" onclick="showPage('home'); return false;">
                 <svg width="52" height="57" viewBox="0 0 120 128" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="60" cy="80" r="46" fill="#1C2030" stroke="rgba(139,255,60,0.22)" stroke-width="1.2"/>
+                    <path d="M60 34 A46 46 0 0 1 99.8 57.5" fill="none" stroke="rgba(139,255,60,0.18)" stroke-width="1.2"/>
                     <rect x="57.5" y="27" width="5" height="8" rx="2" fill="#8BFF3C"/>
                     <rect x="52.5" y="19" width="15" height="9" rx="4" fill="#8BFF3C"/>
                     <g transform="translate(33.6,42.3) rotate(-35)">
@@ -726,29 +857,11 @@
             <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem;"></p>
         </section>
 
-        <!-- Blog Preview -->
+        <!-- Blog Preview (dynamique) -->
         <section class="blog">
             <h2>Articles récents</h2>
             <p style="color: var(--text-secondary);">Des histoires vraies. Des solutions concrètes.</p>
-
-            <div class="blog-grid">
-                <div class="blog-card" onclick="showArticle('article-1')">
-                    <div class="blog-date">15 avril 2026</div>
-                    <h3>Pourquoi les solopreneurs oublient des tâches</h3>
-                    <p>Et comment ça change tout quand ça s'arrête.</p>
-                </div>
-                <div class="blog-card" onclick="showArticle('article-2')">
-                    <div class="blog-date">17 avril 2026</div>
-                    <h3>Le problème avec les to-do lists</h3>
-                    <p>Et pourquoi Vector est différent.</p>
-                </div>
-                <div class="blog-card" onclick="showArticle('article-3')">
-                    <div class="blog-date">19 avril 2026</div>
-                    <h3>Combien de temps devrait prendre ta gestion de projet</h3>
-                    <p>Spoiler: moins que tu crois.</p>
-                </div>
-            </div>
-
+            <div class="blog-grid" id="home-blog-grid"></div>
             <div class="nav-buttons">
                 <button onclick="showPage('blog');">Voir tous les articles →</button>
             </div>
@@ -758,124 +871,109 @@
     <!-- ── BLOG VIEW ── -->
     <div class="view" id="blog-view">
 
-        <!-- Liste des articles -->
+        <!-- Liste des articles (dynamique) -->
         <div id="articles-list" class="articles-list">
             <button class="back-link" onclick="showPage('home');">← Retour à l'accueil</button>
             <h2>Articles</h2>
+            <div id="articles-list-container"></div>
+        </div>
 
-            <div class="article-card" onclick="showArticle('article-1')">
-                <div class="blog-date">15 avril 2026 • 5 min</div>
-                <h3>Pourquoi les solopreneurs oublient des tâches</h3>
-                <p>Et comment ça change tout quand ça s'arrête.</p>
-                <span class="read-label">Lire →</span>
-            </div>
-            <div class="article-card" onclick="showArticle('article-2')">
-                <div class="blog-date">17 avril 2026 • 6 min</div>
-                <h3>Le problème avec les to-do lists</h3>
-                <p>Et pourquoi Vector est différent.</p>
-                <span class="read-label">Lire →</span>
-            </div>
-            <div class="article-card" onclick="showArticle('article-3')">
-                <div class="blog-date">19 avril 2026 • 4 min</div>
-                <h3>Combien de temps devrait prendre ta gestion de projet</h3>
-                <p>Spoiler: moins que tu crois.</p>
-                <span class="read-label">Lire →</span>
+        <!-- Article views (dynamique) -->
+        <div id="article-views-container"></div>
+
+    </div>
+
+    <!-- ── ADMIN VIEW ── -->
+    <div class="view" id="admin-view">
+
+        <!-- Login Screen -->
+        <div id="admin-login-screen">
+            <div class="admin-login-box">
+                <h2>⚙ Admin</h2>
+                <p class="admin-subtitle">Vector Blog</p>
+                <input type="password" id="admin-pwd-input" class="admin-input" placeholder="Mot de passe" onkeydown="if(event.key==='Enter') adminLogin();">
+                <button class="admin-btn primary" style="width:100%;" onclick="adminLogin();">Accéder</button>
+                <p class="admin-login-error" id="admin-login-error"></p>
             </div>
         </div>
 
-        <!-- Article 1 -->
-        <div class="article-view" id="article-1">
-            <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
-            <h1>Pourquoi les solopreneurs oublient des tâches (et comment ça change tout)</h1>
-            <div class="article-meta">15 avril 2026 • Lecture : 5 min</div>
-            <article>
-                <p>Tu as déjà oublié une tâche importante ? Un appel client. Une facture à envoyer. Un suivi à faire ?</p>
-                <p>Ce n'est pas de ta faute. Ce n'est pas non plus un manque de discipline. C'est une réalité neurologique : le cerveau humain peut gérer environ 7 tâches en parallèle. Quand tu en as 30, quelques-unes t'échappent.</p>
+        <!-- Dashboard (masqué jusqu'à la connexion) -->
+        <div id="admin-dashboard" style="display:none">
+            <div class="admin-wrap">
 
-                <h2>Ça coûte combien, vraiment?</h2>
-                <p>Oublier une tâche ne signifie pas simplement la perdre. C'est une épée de Damoclès mentale.</p>
-                <p>Et cela crée une cascade :</p>
-                <ul>
-                    <li>Stress chronique (même quand tu dors)</li>
-                    <li>Productivité qui s'effondre (le stress paralyse)</li>
-                    <li>Clients insatisfaits (tu réponds tard)</li>
-                    <li>Revenu qui baisse</li>
-                </ul>
+                <div class="admin-notice">
+                    <strong>Comment publier :</strong> Modifie tes articles ici, puis clique sur <strong>Télécharger index.html</strong> et dépose le fichier sur Netlify.
+                </div>
 
-                <h2>La vraie solution</h2>
-                <p>Ce que tu cherches n'est pas un meilleur système de tâches. C'est la paix mentale. Savoir que rien ne t'échappe.</p>
-                <p>Cela est possible. Et c'est là qu'intervient une approche différente : au lieu de compter sur ta mémoire, tu externalises tout dans un système auquel tu peux faire confiance.</p>
-                <p>Et si ce système était intelligent ? Si l'IA pouvait analyser tout ce que tu écris, dis et penses, pour identifier les tâches avant même que tu ne les oublies ?</p>
-                <p>C'est ce qu'on construit avec Vector.</p>
-            </article>
-            <div class="article-nav">
-                <button class="article-nav-btn invisible">←</button>
-                <button class="article-nav-btn" onclick="showArticle('article-2');">Article suivant →</button>
+                <div class="admin-bar">
+                    <h2><span class="tab-active-indicator"></span>Articles du blog</h2>
+                    <div class="admin-bar-actions">
+                        <button class="admin-btn" onclick="exportHTML();">↓ Télécharger index.html</button>
+                        <button class="admin-btn" onclick="adminLogout();">Déconnexion</button>
+                    </div>
+                </div>
+
+                <!-- Éditeur d'article (masqué par défaut) -->
+                <div id="admin-editor" style="display:none">
+                    <div class="admin-editor-card">
+                        <h3 id="editor-heading">Nouvel article</h3>
+
+                        <div class="admin-field">
+                            <label>Titre</label>
+                            <input type="text" id="editor-title" class="admin-input" placeholder="Titre de l'article">
+                        </div>
+
+                        <div class="admin-two-col">
+                            <div class="admin-field">
+                                <label>Date (affichée)</label>
+                                <input type="text" id="editor-date" class="admin-input" placeholder="ex : 25 avril 2026">
+                            </div>
+                            <div class="admin-field">
+                                <label>Durée de lecture (min)</label>
+                                <input type="number" id="editor-readtime" class="admin-input" placeholder="5" min="1" max="60">
+                            </div>
+                        </div>
+
+                        <div class="admin-field">
+                            <label>Extrait (1-2 phrases, affiché dans les listes)</label>
+                            <textarea id="editor-excerpt" class="admin-input" rows="2" placeholder="Courte description visible sur les cartes..."></textarea>
+                        </div>
+
+                        <div class="admin-field">
+                            <label>Contenu HTML</label>
+                            <div class="admin-toolbar">
+                                <button onclick="insertTag('p')">¶ &lt;p&gt;</button>
+                                <button onclick="insertTag('h2')">H2</button>
+                                <button onclick="insertTag('strong')"><b>Gras</b></button>
+                                <button onclick="insertTag('ul')">⊞ &lt;ul&gt;</button>
+                                <button onclick="insertTag('li')">• &lt;li&gt;</button>
+                                <button onclick="updatePreview()">👁 Aperçu</button>
+                            </div>
+                            <textarea id="editor-content-ta" class="admin-input" oninput="updatePreview()" placeholder="Écris le contenu HTML ici...&#10;&#10;Exemple :&#10;&lt;p&gt;Ton paragraphe ici.&lt;/p&gt;&#10;&lt;h2&gt;Un sous-titre&lt;/h2&gt;&#10;&lt;ul&gt;&#10;  &lt;li&gt;Élément 1&lt;/li&gt;&#10;  &lt;li&gt;Élément 2&lt;/li&gt;&#10;&lt;/ul&gt;"></textarea>
+                        </div>
+
+                        <div class="admin-field">
+                            <label>Aperçu du contenu</label>
+                            <div class="admin-preview-box article-view" id="editor-preview" style="display:block; padding: 1rem 1.5rem;"></div>
+                        </div>
+
+                        <div class="admin-editor-footer">
+                            <button class="admin-btn" onclick="cancelEdit();">Annuler</button>
+                            <button class="admin-btn primary" onclick="saveArticle();">Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Liste des articles -->
+                <div class="admin-section-header">
+                    <h3 id="admin-article-count"></h3>
+                    <button class="admin-btn primary sm" id="admin-new-btn" onclick="openArticleEditor(null);">+ Nouvel article</button>
+                </div>
+
+                <div id="admin-article-list"></div>
+
             </div>
         </div>
-
-        <!-- Article 2 -->
-        <div class="article-view" id="article-2">
-            <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
-            <h1>Le problème avec les to-do lists (et pourquoi Vector est différent)</h1>
-            <div class="article-meta">17 avril 2026 • Lecture : 6 min</div>
-            <article>
-                <p>Tu as probablement essayé 5+ applications de productivité. Notion. Todoist. Microsoft To Do. Peut-être même Reclaim.</p>
-                <p>Et peut-être qu'elles fonctionnaient... pendant 2 semaines. Puis tu as abandonné.</p>
-
-                <h2>Pourquoi les to-do lists échouent</h2>
-                <p>Parce qu'elles te demandent quelque chose d'irréaliste : <strong>être parfait</strong>.</p>
-                <p>Un système de tâches ne fonctionne que si :</p>
-                <ul>
-                    <li>Tu mets chaque tâche dedans (aucun risque d'oublier)</li>
-                    <li>Tu estimes une durée précise pour chacune</li>
-                    <li>Tu respectes ce que tu as planifié</li>
-                    <li>Tu le mets à jour chaque jour</li>
-                </ul>
-                <p>C'est psychologiquement épuisant. Et c'est pour cette raison que 90 % des gens abandonnent.</p>
-
-                <h2>La différence avec Vector</h2>
-                <p>Vector effectue le travail pour toi. Tu indiques tes projets. L'IA les analyse. Elle identifie les tâches. Elle estime les durées (basé sur l'historique de tes projets passés). Et elle crée un plan.</p>
-                <p>Tu dois simplement... exécuter.</p>
-                <p>Cela réduit la friction de 90 %. Et cela élimine le stress.</p>
-            </article>
-            <div class="article-nav">
-                <button class="article-nav-btn" onclick="showArticle('article-1');">← Article précédent</button>
-                <button class="article-nav-btn" onclick="showArticle('article-3');">Article suivant →</button>
-            </div>
-        </div>
-
-        <!-- Article 3 -->
-        <div class="article-view" id="article-3">
-            <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
-            <h1>Combien de temps devrait prendre ta gestion de projet (spoiler: moins que tu crois)</h1>
-            <div class="article-meta">19 avril 2026 • Lecture : 4 min</div>
-            <article>
-                <p>La plupart des solopreneurs passent 2-3 heures par semaine à gérer leurs tâches et leurs priorités.</p>
-                <p>C'est considérable. C'est aussi inefficace.</p>
-
-                <h2>Pourquoi c'est long</h2>
-                <p>Parce que tu dois :</p>
-                <ul>
-                    <li>Écrire les tâches (30 min)</li>
-                    <li>Les organiser par projet (20 min)</li>
-                    <li>Estimer les durées (30 min)</li>
-                    <li>Les planifier dans le temps (40 min)</li>
-                    <li>Faire le suivi sur ce qui est en retard (30 min)</li>
-                </ul>
-                <p>Total : 2h30. <strong>Chaque semaine.</strong></p>
-
-                <h2>Avec Vector</h2>
-                <p>C'est 15 minutes par semaine. Maximum. L'IA effectue le travail intensif. Tu valides simplement et tu avances.</p>
-                <p>Cela libère 2h15 chaque semaine. C'est près de 10h par mois. Environ 120h par an.</p>
-                <p>C'est du revenu, cela.</p>
-            </article>
-            <div class="article-nav">
-                <button class="article-nav-btn" onclick="showArticle('article-2');">← Article précédent</button>
-                <button class="article-nav-btn invisible">→</button>
-            </div>
-        </div>
-
     </div>
 
     <!-- ── FOOTER ── -->
@@ -885,7 +983,6 @@
 
     <!-- ── MODALES FEATURES ── -->
 
-    <!-- Modale 1 : Rien n'est oublié -->
     <div class="modal-overlay" id="modal-oublie" onclick="closeModalOutside(event, 'modal-oublie')">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('modal-oublie')">✕</button>
@@ -897,7 +994,6 @@
         </div>
     </div>
 
-    <!-- Modale 2 : Vois venir les problèmes -->
     <div class="modal-overlay" id="modal-problemes" onclick="closeModalOutside(event, 'modal-problemes')">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('modal-problemes')">✕</button>
@@ -909,7 +1005,6 @@
         </div>
     </div>
 
-    <!-- Modale 3 : Exécute. C'est prêt. -->
     <div class="modal-overlay" id="modal-execute" onclick="closeModalOutside(event, 'modal-execute')">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('modal-execute')">✕</button>
@@ -923,7 +1018,113 @@
     </div>
 
     <script>
-        /* ── Navigation ── */
+        /* ══════════════════════════════════════════════════════
+           ── DONNÉES DES ARTICLES ──
+           Pour mettre à jour les articles publiés :
+           1. Modifier via le panneau admin (//#admin)
+           2. Cliquer "Télécharger index.html"
+           3. Déposer sur Netlify
+        ══════════════════════════════════════════════════════ */
+
+        /* @@ARTICLES_BEGIN@@ */
+        const INITIAL_ARTICLES = [
+  {
+    "id": "article-1",
+    "title": "Pourquoi les solopreneurs oublient des tâches (et comment ça change tout)",
+    "date": "15 avril 2026",
+    "readTime": "5",
+    "excerpt": "Et comment ça change tout quand ça s'arrête.",
+    "content": "<p>Tu as déjà oublié une tâche importante ? Un appel client. Une facture à envoyer. Un suivi à faire ?</p>\n<p>Ce n'est pas de ta faute. Ce n'est pas non plus un manque de discipline. C'est une réalité neurologique : le cerveau humain peut gérer environ 7 tâches en parallèle. Quand tu en as 30, quelques-unes t'échappent.</p>\n<h2>Ça coûte combien, vraiment?</h2>\n<p>Oublier une tâche ne signifie pas simplement la perdre. C'est une épée de Damoclès mentale.</p>\n<p>Et cela crée une cascade :</p>\n<ul>\n    <li>Stress chronique (même quand tu dors)</li>\n    <li>Productivité qui s'effondre (le stress paralyse)</li>\n    <li>Clients insatisfaits (tu réponds tard)</li>\n    <li>Revenu qui baisse</li>\n</ul>\n<h2>La vraie solution</h2>\n<p>Ce que tu cherches n'est pas un meilleur système de tâches. C'est la paix mentale. Savoir que rien ne t'échappe.</p>\n<p>Cela est possible. Et c'est là qu'intervient une approche différente : au lieu de compter sur ta mémoire, tu externalises tout dans un système auquel tu peux faire confiance.</p>\n<p>Et si ce système était intelligent ? Si l'IA pouvait analyser tout ce que tu écris, dis et penses, pour identifier les tâches avant même que tu ne les oublies ?</p>\n<p>C'est ce qu'on construit avec Vector.</p>"
+  },
+  {
+    "id": "article-2",
+    "title": "Le problème avec les to-do lists (et pourquoi Vector est différent)",
+    "date": "17 avril 2026",
+    "readTime": "6",
+    "excerpt": "Et pourquoi Vector est différent.",
+    "content": "<p>Tu as probablement essayé 5+ applications de productivité. Notion. Todoist. Microsoft To Do. Peut-être même Reclaim.</p>\n<p>Et peut-être qu'elles fonctionnaient... pendant 2 semaines. Puis tu as abandonné.</p>\n<h2>Pourquoi les to-do lists échouent</h2>\n<p>Parce qu'elles te demandent quelque chose d'irréaliste : <strong>être parfait</strong>.</p>\n<p>Un système de tâches ne fonctionne que si :</p>\n<ul>\n    <li>Tu mets chaque tâche dedans (aucun risque d'oublier)</li>\n    <li>Tu estimes une durée précise pour chacune</li>\n    <li>Tu respectes ce que tu as planifié</li>\n    <li>Tu le mets à jour chaque jour</li>\n</ul>\n<p>C'est psychologiquement épuisant. Et c'est pour cette raison que 90 % des gens abandonnent.</p>\n<h2>La différence avec Vector</h2>\n<p>Vector effectue le travail pour toi. Tu indiques tes projets. L'IA les analyse. Elle identifie les tâches. Elle estime les durées (basé sur l'historique de tes projets passés). Et elle crée un plan.</p>\n<p>Tu dois simplement... exécuter.</p>\n<p>Cela réduit la friction de 90 %. Et cela élimine le stress.</p>"
+  },
+  {
+    "id": "article-3",
+    "title": "Combien de temps devrait prendre ta gestion de projet (spoiler: moins que tu crois)",
+    "date": "19 avril 2026",
+    "readTime": "4",
+    "excerpt": "Spoiler: moins que tu crois.",
+    "content": "<p>La plupart des solopreneurs passent 2-3 heures par semaine à gérer leurs tâches et leurs priorités.</p>\n<p>C'est considérable. C'est aussi inefficace.</p>\n<h2>Pourquoi c'est long</h2>\n<p>Parce que tu dois :</p>\n<ul>\n    <li>Écrire les tâches (30 min)</li>\n    <li>Les organiser par projet (20 min)</li>\n    <li>Estimer les durées (30 min)</li>\n    <li>Les planifier dans le temps (40 min)</li>\n    <li>Faire le suivi sur ce qui est en retard (30 min)</li>\n</ul>\n<p>Total : 2h30. <strong>Chaque semaine.</strong></p>\n<h2>Avec Vector</h2>\n<p>C'est 15 minutes par semaine. Maximum. L'IA effectue le travail intensif. Tu valides simplement et tu avances.</p>\n<p>Cela libère 2h15 chaque semaine. C'est près de 10h par mois. Environ 120h par an.</p>\n<p>C'est du revenu, cela.</p>"
+  }
+];
+        /* @@ARTICLES_END@@ */
+
+        /* ── État en mémoire ── */
+        let articles = JSON.parse(JSON.stringify(INITIAL_ARTICLES)); // copie de travail
+
+        /* ══════════════════════════════════════════════════════
+           ── RENDU DYNAMIQUE DU BLOG ──
+        ══════════════════════════════════════════════════════ */
+
+        function renderBlog() {
+            // --- Grille d'accueil (3 derniers articles) ---
+            const grid = document.getElementById('home-blog-grid');
+            if (grid) {
+                const recent = articles.slice(-3).reverse();
+                grid.innerHTML = recent.map(a => `
+                    <div class="blog-card" onclick="showArticle('${a.id}')">
+                        <div class="blog-date">${a.date}</div>
+                        <h3>${escHtml(a.title)}</h3>
+                        <p>${escHtml(a.excerpt)}</p>
+                    </div>`).join('');
+            }
+
+            // --- Liste complète (page Articles) ---
+            const listContainer = document.getElementById('articles-list-container');
+            if (listContainer) {
+                if (articles.length === 0) {
+                    listContainer.innerHTML = '<p style="color:var(--text-secondary)">Aucun article pour l\'instant.</p>';
+                } else {
+                    listContainer.innerHTML = articles.map(a => `
+                        <div class="article-card" onclick="showArticle('${a.id}')">
+                            <div class="blog-date">${a.date} • ${a.readTime} min</div>
+                            <h3>${escHtml(a.title)}</h3>
+                            <p>${escHtml(a.excerpt)}</p>
+                            <span class="read-label">Lire →</span>
+                        </div>`).join('');
+                }
+            }
+
+            // --- Vues des articles individuels ---
+            const viewsContainer = document.getElementById('article-views-container');
+            if (viewsContainer) {
+                viewsContainer.innerHTML = articles.map((a, idx) => {
+                    const prev = articles[idx - 1];
+                    const next = articles[idx + 1];
+                    return `
+                    <div class="article-view" id="${a.id}">
+                        <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
+                        <h1>${escHtml(a.title)}</h1>
+                        <div class="article-meta">${a.date} • Lecture : ${a.readTime} min</div>
+                        <article>${a.content}</article>
+                        <div class="article-nav">
+                            ${prev
+                                ? `<button class="article-nav-btn" onclick="showArticle('${prev.id}');">← Article précédent</button>`
+                                : `<button class="article-nav-btn invisible">←</button>`}
+                            ${next
+                                ? `<button class="article-nav-btn" onclick="showArticle('${next.id}');">Article suivant →</button>`
+                                : `<button class="article-nav-btn invisible">→</button>`}
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+        }
+
+        function escHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── NAVIGATION ──
+        ══════════════════════════════════════════════════════ */
+
         function showPage(page) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
@@ -934,6 +1135,11 @@
                 document.getElementById('blog-view').classList.add('active');
                 document.getElementById('articles-list').style.display = 'block';
                 document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
+            } else if (page === 'admin') {
+                document.getElementById('admin-view').classList.add('active');
+                if (sessionStorage.getItem('vec_admin') === '1') {
+                    showAdminDashboard();
+                }
             }
             window.scrollTo(0, 0);
         }
@@ -942,9 +1148,9 @@
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById('blog-view').classList.add('active');
             document.getElementById('articles-list').style.display = 'none';
-
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
-            document.getElementById(articleId).classList.add('active');
+            const target = document.getElementById(articleId);
+            if (target) target.classList.add('active');
             window.scrollTo(0, 0);
         }
 
@@ -952,6 +1158,225 @@
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             document.getElementById('articles-list').style.display = 'block';
             window.scrollTo(0, 0);
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── ADMIN — AUTHENTIFICATION ──
+        ══════════════════════════════════════════════════════ */
+
+        const ADMIN_PASSWORD = 'vector2026'; // ← change ce mot de passe ici
+
+        function adminLogin() {
+            const pwd = document.getElementById('admin-pwd-input').value;
+            if (pwd === ADMIN_PASSWORD) {
+                sessionStorage.setItem('vec_admin', '1');
+                document.getElementById('admin-pwd-input').value = '';
+                showAdminDashboard();
+            } else {
+                document.getElementById('admin-login-error').textContent = 'Mot de passe incorrect.';
+            }
+        }
+
+        function adminLogout() {
+            sessionStorage.removeItem('vec_admin');
+            document.getElementById('admin-dashboard').style.display = 'none';
+            document.getElementById('admin-login-screen').style.display = 'block';
+            document.getElementById('admin-login-error').textContent = '';
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('admin-login-screen').style.display = 'none';
+            document.getElementById('admin-dashboard').style.display = 'block';
+            renderAdminList();
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── ADMIN — LISTE D'ARTICLES ──
+        ══════════════════════════════════════════════════════ */
+
+        function renderAdminList() {
+            const count = document.getElementById('admin-article-count');
+            const list = document.getElementById('admin-article-list');
+            count.textContent = articles.length + ' article' + (articles.length !== 1 ? 's' : '');
+
+            if (articles.length === 0) {
+                list.innerHTML = '<div class="admin-empty">Aucun article. Crée le premier !</div>';
+                return;
+            }
+
+            list.innerHTML = articles.map((a, idx) => `
+                <div class="admin-article-row">
+                    <div class="admin-article-info">
+                        <div class="admin-article-title">${escHtml(a.title)}</div>
+                        <div class="admin-article-meta">${a.date} · ${a.readTime} min · ID: ${a.id}</div>
+                    </div>
+                    <div class="admin-article-actions">
+                        ${idx > 0 ? `<button class="admin-btn sm" onclick="moveArticle(${idx}, -1)" title="Monter">↑</button>` : ''}
+                        ${idx < articles.length - 1 ? `<button class="admin-btn sm" onclick="moveArticle(${idx}, 1)" title="Descendre">↓</button>` : ''}
+                        <button class="admin-btn sm" onclick="openArticleEditor('${a.id}')">Modifier</button>
+                        <button class="admin-btn sm danger" onclick="deleteArticle('${a.id}')">Supprimer</button>
+                    </div>
+                </div>`).join('');
+        }
+
+        function moveArticle(idx, dir) {
+            const newIdx = idx + dir;
+            if (newIdx < 0 || newIdx >= articles.length) return;
+            [articles[idx], articles[newIdx]] = [articles[newIdx], articles[idx]];
+            renderAdminList();
+            renderBlog();
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── ADMIN — ÉDITEUR ──
+        ══════════════════════════════════════════════════════ */
+
+        let editingId = null; // null = nouvel article
+
+        function openArticleEditor(id) {
+            editingId = id;
+            const editor = document.getElementById('admin-editor');
+            editor.style.display = 'block';
+            document.getElementById('admin-new-btn').style.display = 'none';
+
+            if (id === null) {
+                // Nouveau
+                document.getElementById('editor-heading').textContent = 'Nouvel article';
+                document.getElementById('editor-title').value = '';
+                document.getElementById('editor-date').value = formatDateFr(new Date());
+                document.getElementById('editor-readtime').value = '5';
+                document.getElementById('editor-excerpt').value = '';
+                document.getElementById('editor-content-ta').value = '';
+                document.getElementById('editor-preview').innerHTML = '';
+            } else {
+                // Modifier existant
+                const a = articles.find(x => x.id === id);
+                if (!a) return;
+                document.getElementById('editor-heading').textContent = 'Modifier l\'article';
+                document.getElementById('editor-title').value = a.title;
+                document.getElementById('editor-date').value = a.date;
+                document.getElementById('editor-readtime').value = a.readTime;
+                document.getElementById('editor-excerpt').value = a.excerpt;
+                document.getElementById('editor-content-ta').value = a.content;
+                updatePreview();
+            }
+
+            editor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function cancelEdit() {
+            editingId = null;
+            document.getElementById('admin-editor').style.display = 'none';
+            document.getElementById('admin-new-btn').style.display = '';
+        }
+
+        function saveArticle() {
+            const title    = document.getElementById('editor-title').value.trim();
+            const date     = document.getElementById('editor-date').value.trim();
+            const readTime = document.getElementById('editor-readtime').value.trim();
+            const excerpt  = document.getElementById('editor-excerpt').value.trim();
+            const content  = document.getElementById('editor-content-ta').value.trim();
+
+            if (!title || !date || !content) {
+                alert('Le titre, la date et le contenu sont requis.');
+                return;
+            }
+
+            if (editingId === null) {
+                // Créer
+                const newId = 'article-' + Date.now();
+                articles.push({ id: newId, title, date, readTime: readTime || '5', excerpt, content });
+            } else {
+                // Mettre à jour
+                const idx = articles.findIndex(x => x.id === editingId);
+                if (idx !== -1) {
+                    articles[idx] = { ...articles[idx], title, date, readTime: readTime || '5', excerpt, content };
+                }
+            }
+
+            cancelEdit();
+            renderAdminList();
+            renderBlog();
+        }
+
+        function deleteArticle(id) {
+            if (!confirm('Supprimer cet article ? Cette action est irréversible.')) return;
+            articles = articles.filter(a => a.id !== id);
+            if (editingId === id) cancelEdit();
+            renderAdminList();
+            renderBlog();
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── ADMIN — ÉDITEUR HTML ──
+        ══════════════════════════════════════════════════════ */
+
+        function insertTag(tag) {
+            const ta = document.getElementById('editor-content-ta');
+            const start = ta.selectionStart;
+            const end   = ta.selectionEnd;
+            const selected = ta.value.substring(start, end);
+            let insertion;
+
+            if (tag === 'ul') {
+                insertion = `<ul>\n    <li>${selected || 'Élément'}</li>\n</ul>`;
+            } else if (tag === 'li') {
+                insertion = `<li>${selected || 'Élément'}</li>`;
+            } else {
+                insertion = `<${tag}>${selected || '...'}</${tag}>`;
+            }
+
+            ta.value = ta.value.substring(0, start) + insertion + ta.value.substring(end);
+            ta.focus();
+            ta.selectionStart = ta.selectionEnd = start + insertion.length;
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const content = document.getElementById('editor-content-ta').value;
+            document.getElementById('editor-preview').innerHTML = content;
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── ADMIN — EXPORT ──
+        ══════════════════════════════════════════════════════ */
+
+        async function exportHTML() {
+            try {
+                const response = await fetch(window.location.href);
+                let html = await response.text();
+
+                const articlesJSON = JSON.stringify(articles, null, 2);
+                const newBlock =
+                    '/* @@ARTICLES_BEGIN@@ */\n' +
+                    '        const INITIAL_ARTICLES = ' + articlesJSON + ';\n' +
+                    '        /* @@ARTICLES_END@@ */';
+
+                html = html.replace(
+                    /\/\* @@ARTICLES_BEGIN@@ \*\/[\s\S]*?\/\* @@ARTICLES_END@@ \*\//,
+                    newBlock
+                );
+
+                const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'index.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(a.href);
+            } catch (err) {
+                alert('Erreur lors de la génération du fichier : ' + err.message);
+            }
+        }
+
+        /* ══════════════════════════════════════════════════════
+           ── UTILITAIRES ──
+        ══════════════════════════════════════════════════════ */
+
+        function formatDateFr(d) {
+            const mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+            return d.getDate() + ' ' + mois[d.getMonth()] + ' ' + d.getFullYear();
         }
 
         /* ── Modales ── */
@@ -966,9 +1391,7 @@
         }
 
         function closeModalOutside(event, id) {
-            if (event.target === document.getElementById(id)) {
-                closeModal(id);
-            }
+            if (event.target === document.getElementById(id)) closeModal(id);
         }
 
         document.addEventListener('keydown', function(e) {
@@ -982,11 +1405,11 @@
 
         /* ── Formulaire ── */
         async function submitForm() {
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
+            const name   = document.getElementById('name').value.trim();
+            const email  = document.getElementById('email').value.trim();
             const domain = document.getElementById('domain').value.trim();
             const stress = document.getElementById('stress').value.trim();
-            const msgEl = document.getElementById('form-message');
+            const msgEl  = document.getElementById('form-message');
 
             if (!name || !email) {
                 msgEl.textContent = 'Prénom et email requis.';
@@ -1024,6 +1447,18 @@
             submitBtn.textContent = 'Envoyer';
             submitBtn.disabled = false;
         }
+
+        /* ── Initialisation ── */
+        renderBlog();
+
+        // Accès admin via #admin dans l'URL
+        if (window.location.hash === '#admin') {
+            showPage('admin');
+        }
+
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash === '#admin') showPage('admin');
+        });
     </script>
 </body>
 </html>
