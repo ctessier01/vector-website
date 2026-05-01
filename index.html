@@ -8,17 +8,22 @@
     <meta name="keywords" content="solopreneur, planification IA, gestion de projet, productivité, tarification freelance, sous-pricing, application solopreneur">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Vector">
-    <link rel="canonical" href="https://vectorapp.co/">
+    <link rel="canonical" href="https://vectorplanning.ai/">
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vectorapp.co/">
+    <meta property="og:url" content="https://vectorplanning.ai/">
     <meta property="og:title" content="Vector — L'IA planifie, toi tu accomplis.">
     <meta property="og:description" content="Vector est l'application de planification intelligente pour solopreneurs. Dumps in, plan out.">
+    <meta property="og:image" content="https://vectorplanning.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Vector — L'IA planifie, toi tu accomplis.">
     <meta property="og:locale" content="fr_CA">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Vector — L'IA planifie, toi tu accomplis.">
     <meta name="twitter:description" content="Vector est l'application de planification intelligente pour solopreneurs. Dumps in, plan out.">
+    <meta name="twitter:image" content="https://vectorplanning.ai/og-image.png">
     <!-- Schema.org -->
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Vector","description":"Application de planification intelligente pour solopreneurs","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":"fr"}</script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=">
@@ -1338,7 +1343,7 @@
                 if (articles.length === 0) {
                     listContainer.innerHTML = '<p style="color:var(--text-secondary)">Aucun article pour l\'instant.</p>';
                 } else {
-                    listContainer.innerHTML = articles.map(a => `
+                    listContainer.innerHTML = [...articles].reverse().map(a => `
                         <div class="article-card" onclick="showArticle('${a.id}')">
                             <div class="blog-date">${a.date} • ${a.readTime} min</div>
                             <h3>${escHtml(a.title)}</h3>
