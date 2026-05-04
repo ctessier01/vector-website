@@ -1603,18 +1603,67 @@
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
             document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
             document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
-            const _u = new URL(window.location.href);
-            _u.searchParams.set('lang', currentLang);
-            history.replaceState(null, '', _u.toString());
             applyTranslations();
             const savedState = { ...currentState };
             renderBlog();
             // Restore current view after re-render
             if (savedState.articleId) {
-                showArticle(savedState.articleId);
-            } else if (savedState.page === 'blog') {
-                showPage('blog');
+                showArticle(savedState.articleId); // showArticle appelle setURL avec le bon slug
+            } else {
+                setURL(null); // met à jour ?lang= sans ?article=
+                if (savedState.page === 'blog') showPage('blog');
             }
+        }
+
+
+        /* ══════════════════════════════════════════════════════
+           ── SLUGS D'ARTICLES ──
+        ══════════════════════════════════════════════════════ */
+
+        const ARTICLE_SLUGS = {
+            fr: {
+                'article-1': '2026-04-15-fr-pourquoi-les-solopreneurs-oublient-des-taches',
+                'article-2': '2026-04-17-fr-le-probleme-avec-les-to-do-lists',
+                'article-3': '2026-04-20-fr-combien-de-temps-devrait-prendre-la-gestion-de-projet',
+                'article-4': '2026-04-24-fr-pourquoi-jai-construit-vector',
+                'article-5': '2026-04-28-fr-ai-fatigue-12-outils-ia',
+                'article-6': '2026-04-30-fr-pourquoi-tu-charges-encore-trop-peu',
+                'article-7': '2026-05-01-fr-la-solitude-du-solopreneur',
+                'article-8': '2026-05-03-fr-le-context-switching'
+            },
+            en: {
+                'article-1': '2026-04-15-en-why-solopreneurs-forget-tasks',
+                'article-2': '2026-04-17-en-the-problem-with-to-do-lists',
+                'article-3': '2026-04-20-en-how-long-should-project-management-take',
+                'article-4': '2026-04-24-en-why-i-built-vector',
+                'article-5': '2026-04-28-en-ai-fatigue-12-tools',
+                'article-6': '2026-04-30-en-why-youre-still-undercharging',
+                'article-7': '2026-05-01-en-the-solopreneurs-loneliness',
+                'article-8': '2026-05-03-en-context-switching'
+            }
+        };
+
+        // Lookup inverse : slug → { id, lang }
+        const SLUG_TO_ARTICLE = {};
+        Object.entries(ARTICLE_SLUGS).forEach(([lang, map]) => {
+            Object.entries(map).forEach(([id, slug]) => {
+                SLUG_TO_ARTICLE[slug] = { id, lang };
+            });
+        });
+
+        function getArticleSlug(articleId) {
+            return (ARTICLE_SLUGS[currentLang] && ARTICLE_SLUGS[currentLang][articleId]) || articleId;
+        }
+
+        function setURL(params) {
+            const u = new URL(window.location.href);
+            u.searchParams.set('lang', currentLang);
+            if (params && params.article) {
+                u.searchParams.set('article', params.article);
+            } else {
+                u.searchParams.delete('article');
+            }
+            history.replaceState(null, '', u.toString());
         }
 
         /* ── État en mémoire ── */
@@ -1717,6 +1766,7 @@
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             currentState = { page, articleId: null };
+            setURL(null);
 
             if (page === 'home') {
                 document.getElementById('home-view').classList.add('active');
@@ -1741,6 +1791,7 @@
             const target = document.getElementById(articleId);
             if (target) target.classList.add('active');
             currentState = { page: 'blog', articleId };
+            setURL({ article: getArticleSlug(articleId) });
             window.scrollTo(0, 0);
         }
 
@@ -1748,6 +1799,7 @@
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             document.getElementById('articles-list').style.display = 'block';
             currentState = { page: 'blog', articleId: null };
+            setURL(null);
             window.scrollTo(0, 0);
         }
 
@@ -2122,17 +2174,28 @@
         }
 
         /* ── Initialisation ── */
-        (function detectLangFromURL() {
+        (function detectFromURL() {
             const p = new URLSearchParams(window.location.search);
-            const l = p.get('lang');
-            if (l === 'en' || l === 'fr') {
-                currentLang = l;
-                document.getElementById('lang-fr').classList.toggle('active', l === 'fr');
-                document.getElementById('lang-en').classList.toggle('active', l === 'en');
+            // ?article= prime sur ?lang= pour la détection de langue
+            const slug = p.get('article');
+            if (slug && SLUG_TO_ARTICLE[slug]) {
+                currentLang = SLUG_TO_ARTICLE[slug].lang;
+            } else {
+                const l = p.get('lang');
+                if (l === 'en' || l === 'fr') currentLang = l;
             }
+            document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
+            document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
         })();
         renderBlog();
         applyTranslations();
+        // Navigation vers l'article cible si slug présent
+        (function navigateToArticle() {
+            const slug = new URLSearchParams(window.location.search).get('article');
+            if (slug && SLUG_TO_ARTICLE[slug]) {
+                showArticle(SLUG_TO_ARTICLE[slug].id);
+            }
+        })();
 
         // Gestion des deep links au chargement (#admin, #article-X)
         (function handleHash() {
