@@ -1603,6 +1603,9 @@
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
             document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
             document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+            const _u = new URL(window.location.href);
+            _u.searchParams.set('lang', currentLang);
+            history.replaceState(null, '', _u.toString());
             applyTranslations();
             const savedState = { ...currentState };
             renderBlog();
@@ -2119,6 +2122,15 @@
         }
 
         /* ── Initialisation ── */
+        (function detectLangFromURL() {
+            const p = new URLSearchParams(window.location.search);
+            const l = p.get('lang');
+            if (l === 'en' || l === 'fr') {
+                currentLang = l;
+                document.getElementById('lang-fr').classList.toggle('active', l === 'fr');
+                document.getElementById('lang-en').classList.toggle('active', l === 'en');
+            }
+        })();
         renderBlog();
         applyTranslations();
 
