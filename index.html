@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -996,6 +996,44 @@
             margin-right: 6px;
             vertical-align: middle;
         }
+
+        /* ── Language Toggle ── */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .lang-toggle {
+            display: inline-flex;
+            align-items: center;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2px;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .lang-toggle .lang-opt {
+            padding: 0.22rem 0.62rem;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.73rem;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            line-height: 1.4;
+            user-select: none;
+        }
+        .lang-toggle .lang-opt.active {
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            font-weight: 700;
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 0.6rem; }
+            .lang-toggle { padding: 2px; }
+        }
     </style>
 </head>
 <body>
@@ -1027,14 +1065,20 @@
                 </svg>
                 <div class="logo-wordmark">
                     <div class="logo-name"><span>V</span>ector</div>
-                    <div class="logo-tagline">L'IA planifie, <span>toi tu accomplis.</span></div>
+                    <div class="logo-tagline" data-i18n-html="logoTagline">L'IA planifie, <span>toi tu accomplis.</span></div>
                 </div>
             </a>
-            <ul>
-                <li><a href="#" onclick="showPage('home'); return false;">Accueil</a></li>
-                <li><a href="#" onclick="showPage('blog'); return false;">Articles</a></li>
-                <li><a href="#early-access" onclick="document.getElementById('early-access').scrollIntoView();">Inscription</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="#" onclick="showPage('home'); return false;" data-i18n="navHome">Accueil</a></li>
+                    <li><a href="#" onclick="showPage('blog'); return false;" data-i18n="navArticles">Articles</a></li>
+                    <li><a href="#early-access" onclick="document.getElementById('early-access').scrollIntoView();" data-i18n="navSignup">Inscription</a></li>
+                </ul>
+                <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" aria-label="Switch language / Changer de langue">
+                    <span class="lang-opt active" id="lang-fr">FR</span>
+                    <span class="lang-opt" id="lang-en">EN</span>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -1044,61 +1088,61 @@
         <!-- Hero -->
         <section class="hero">
             <div class="hero-content">
-                <h1>Tu sais ce que tu fais <span class="highlight">aujourd'hui.</span> <span class="highlight">Sans stress.</span></h1>
-                <p>Vector est l'assistant qui transforme ton chaos en clarté — pour que tu arrêtes de gérer et que tu commences à avancer.</p>
-                <button class="cta-button" onclick="document.getElementById('early-access').scrollIntoView();">Rejoindre la beta</button>
+                <h1 data-i18n-html="heroH1">Tu sais ce que tu fais <span class="highlight">aujourd'hui.</span> <span class="highlight">Sans stress.</span></h1>
+                <p data-i18n="heroP">Vector est l'assistant qui transforme ton chaos en clarté — pour que tu arrêtes de gérer et que tu commences à avancer.</p>
+                <button class="cta-button" onclick="document.getElementById('early-access').scrollIntoView();" data-i18n="heroCTA">Rejoindre la beta</button>
             </div>
         </section>
 
         <!-- Features -->
         <section class="features">
-            <h2>Pourquoi Vector change la donne</h2>
-            <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">Trois principes. Zéro stress.</p>
+            <h2 data-i18n="featuresH2">Pourquoi Vector change la donne</h2>
+            <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;" data-i18n="featuresSubtitle">Trois principes. Zéro stress.</p>
 
             <div class="features-grid">
                 <div class="feature-card" onclick="openModal('modal-oublie')">
                     <div class="feature-icon">✓</div>
-                    <h3>Rien n'est oublié</h3>
-                    <p>L'IA scanne tes conversations, tes notes, tout. Zéro tâche ne s'échappe. Dors tranquille.</p>
-                    <span class="read-more">En savoir plus →</span>
+                    <h3 data-i18n="feature1Title">Rien n'est oublié</h3>
+                    <p data-i18n="feature1P">L'IA scanne tes conversations, tes notes, tout. Zéro tâche ne s'échappe. Dors tranquille.</p>
+                    <span class="read-more" data-i18n="readMore">En savoir plus →</span>
                 </div>
                 <div class="feature-card" onclick="openModal('modal-problemes')">
                     <div class="feature-icon">👁</div>
-                    <h3>Vois venir les problèmes</h3>
-                    <p>Les deadlines qui s'approchent. Les goulots. Les dépendances. Vector gère tout ça avant que ce soit le chaos.</p>
-                    <span class="read-more">En savoir plus →</span>
+                    <h3 data-i18n="feature2Title">Vois venir les problèmes</h3>
+                    <p data-i18n="feature2P">Les deadlines qui s'approchent. Les goulots. Les dépendances. Vector gère tout ça avant que ce soit le chaos.</p>
+                    <span class="read-more" data-i18n="readMore">En savoir plus →</span>
                 </div>
                 <div class="feature-card" onclick="openModal('modal-execute')">
                     <div class="feature-icon">⚡</div>
-                    <h3>Exécute. C'est prêt.</h3>
-                    <p>Plus de paralysie. Vector t'organise. Il ne te reste qu'à suivre un plan bien ficelé. C'est simple.</p>
-                    <span class="read-more">En savoir plus →</span>
+                    <h3 data-i18n="feature3Title">Exécute. C'est prêt.</h3>
+                    <p data-i18n="feature3P">Plus de paralysie. Vector t'organise. Il ne te reste qu'à suivre un plan bien ficelé. C'est simple.</p>
+                    <span class="read-more" data-i18n="readMore">En savoir plus →</span>
                 </div>
             </div>
         </section>
 
         <!-- Early Access Form -->
         <section class="early-access" id="early-access">
-            <h2>Les 25 premiers testeurs reçoivent 6 mois Pro gratuit</h2>
-            <p style="color: var(--text-secondary);">Rejoins la beta. Teste Vector. Aide-nous à l'améliorer. Une seule condition : du feedback dans le premier mois.</p>
+            <h2 data-i18n="earlyH2">Les 25 premiers testeurs reçoivent 6 mois Pro gratuit</h2>
+            <p style="color: var(--text-secondary);" data-i18n="earlyP">Rejoins la beta. Teste Vector. Aide-nous à l'améliorer. Une seule condition : du feedback dans le premier mois.</p>
 
             <div class="form-group">
-                <input type="text" id="name" placeholder="Ton prénom" required>
-                <input type="email" id="email" placeholder="Ton email" required>
-                <input type="text" id="domain" placeholder="Ton domaine (freelance, consultant, etc.)">
-                <textarea id="stress" placeholder="En 1 phrase: c'est quoi ton plus gros stress de solopreneur?" rows="3"></textarea>
-                <button class="cta-button" onclick="submitForm();">Envoyer</button>
+                <input type="text" id="name" placeholder="Ton prénom" data-i18n-placeholder="namePH" required>
+                <input type="email" id="email" placeholder="Ton email" data-i18n-placeholder="emailPH" required>
+                <input type="text" id="domain" placeholder="Ton domaine (freelance, consultant, etc.)" data-i18n-placeholder="domainPH">
+                <textarea id="stress" placeholder="En 1 phrase: c'est quoi ton plus gros stress de solopreneur?" data-i18n-placeholder="stressPH" rows="3"></textarea>
+                <button class="cta-button" onclick="submitForm();" data-i18n="submitBtn">Envoyer</button>
             </div>
             <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem;"></p>
         </section>
 
         <!-- Blog Preview (dynamique) -->
         <section class="blog">
-            <h2>Articles récents</h2>
-            <p style="color: var(--text-secondary);">Des histoires vraies. Des solutions concrètes.</p>
+            <h2 data-i18n="blogH2">Articles récents</h2>
+            <p style="color: var(--text-secondary);" data-i18n="blogSubtitle">Des histoires vraies. Des solutions concrètes.</p>
             <div class="blog-grid" id="home-blog-grid"></div>
             <div class="nav-buttons">
-                <button onclick="showPage('blog');">Voir tous les articles →</button>
+                <button onclick="showPage('blog');" data-i18n="blogAllBtn">Voir tous les articles →</button>
             </div>
         </section>
     </div>
@@ -1108,8 +1152,8 @@
 
         <!-- Liste des articles (dynamique) -->
         <div id="articles-list" class="articles-list">
-            <button class="back-link" onclick="showPage('home');">← Retour à l'accueil</button>
-            <h2>Articles</h2>
+            <button class="back-link" onclick="showPage('home');" data-i18n="backLink">← Retour à l'accueil</button>
+            <h2 data-i18n="articlesTitle">Articles</h2>
             <div id="articles-list-container"></div>
         </div>
 
@@ -1213,7 +1257,7 @@
 
     <!-- ── FOOTER ── -->
     <footer>
-        <p>&copy; 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.</p>
+        <p data-i18n="footerCopy">&copy; 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.</p>
         <p style="margin-top: 1.2rem;">
             <a href="#" onclick="showPage('admin'); return false;" style="color: var(--text-secondary); font-size: 0.78rem; opacity: 0.4; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.4'">Admin</a>
         </p>
@@ -1225,10 +1269,10 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal('modal-oublie')">✕</button>
             <div class="modal-icon">✓</div>
-            <h3>Rien n'est oublié</h3>
-            <p>La plupart des outils de productivité reposent sur une prémisse fragile : <strong>que tu penses à tout noter</strong>. En pratique, ça ne fonctionne pas. Le cerveau filtre, oublie, laisse filer.</p>
-            <p>Vector renverse ce paradigme. Son moteur d'IA analyse en continu tes conversations, tes notes, tes échanges — et extrait automatiquement chaque tâche, chaque engagement, chaque action à poser. Tu n'as pas à y penser. Vector y pense pour toi.</p>
-            <p><strong>Le résultat ?</strong> Une liste de tâches toujours à jour, sans effort. Aucune livraison oubliée. Aucun client laissé sans réponse. Aucune facture perdue dans les oubliettes. La paix mentale que tu cherches depuis le début.</p>
+            <h3 data-i18n="modal1H3">Rien n'est oublié</h3>
+            <p data-i18n-html="modal1P1">La plupart des outils de productivité reposent sur une prémisse fragile : <strong>que tu penses à tout noter</strong>. En pratique, ça ne fonctionne pas. Le cerveau filtre, oublie, laisse filer.</p>
+            <p data-i18n-html="modal1P2">Vector renverse ce paradigme. Son moteur d'IA analyse en continu tes conversations, tes notes, tes échanges — et extrait automatiquement chaque tâche, chaque engagement, chaque action à poser. Tu n'as pas à y penser. Vector y pense pour toi.</p>
+            <p data-i18n-html="modal1P3"><strong>Le résultat ?</strong> Une liste de tâches toujours à jour, sans effort. Aucune livraison oubliée. Aucun client laissé sans réponse. Aucune facture perdue dans les oubliettes. La paix mentale que tu cherches depuis le début.</p>
         </div>
     </div>
 
@@ -1236,10 +1280,10 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal('modal-problemes')">✕</button>
             <div class="modal-icon">👁</div>
-            <h3>Vois venir les problèmes</h3>
-            <p>Une deadline qui approche. Deux projets simultanés. Une dépendance que tu n'avais pas vue. Dans les outils classiques, tu le découvres trop tard — souvent en pleine urgence, quand il est déjà trop tard pour réagir sereinement.</p>
-            <p>Vector calcule en continu ta charge de travail réelle sur chaque projet. Il détecte les conflits d'agenda <strong>avant qu'ils explosent</strong>, identifie les goulots d'étranglement, et te signale proactivement les risques. Tu ne réagis plus aux crises. Tu les désamorces avant même qu'elles existent.</p>
-            <p><strong>La différence entre un solopreneur stressé et un solopreneur en contrôle ?</strong> Ce n'est pas la quantité de travail. C'est la visibilité sur ce qui s'en vient.</p>
+            <h3 data-i18n="modal2H3">Vois venir les problèmes</h3>
+            <p data-i18n-html="modal2P1">Une deadline qui approche. Deux projets simultanés. Une dépendance que tu n'avais pas vue. Dans les outils classiques, tu le découvres trop tard — souvent en pleine urgence, quand il est déjà trop tard pour réagir sereinement.</p>
+            <p data-i18n-html="modal2P2">Vector calcule en continu ta charge de travail réelle sur chaque projet. Il détecte les conflits d'agenda <strong>avant qu'ils explosent</strong>, identifie les goulots d'étranglement, et te signale proactivement les risques. Tu ne réagis plus aux crises. Tu les désamorces avant même qu'elles existent.</p>
+            <p data-i18n-html="modal2P3"><strong>La différence entre un solopreneur stressé et un solopreneur en contrôle ?</strong> Ce n'est pas la quantité de travail. C'est la visibilité sur ce qui s'en vient.</p>
         </div>
     </div>
 
@@ -1247,11 +1291,11 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal('modal-execute')">✕</button>
             <div class="modal-icon">⚡</div>
-            <h3>Exécute. C'est prêt.</h3>
-            <p>Combien d'heures passes-tu chaque semaine à décider quoi faire ? À réorganiser ta liste de tâches ? À te demander si tu es dans les délais, si tu as oublié quelque chose, par quoi commencer ?</p>
-            <p>C'est la paralysie par la planification. Et elle coûte cher.</p>
-            <p>Avec Vector, tu ouvres l'application et tu sais exactement quoi faire maintenant. L'IA a déjà <strong>priorisé, planifié, estimé</strong> — en tenant compte de tes disponibilités, de tes deadlines et de tes préférences. Le plan est là, cohérent, réaliste. Il ne te reste qu'à exécuter.</p>
-            <p>C'est ça, la vraie productivité : zéro friction à l'entrée, toute l'énergie dans l'action.</p>
+            <h3 data-i18n="modal3H3">Exécute. C'est prêt.</h3>
+            <p data-i18n-html="modal3P1">Combien d'heures passes-tu chaque semaine à décider quoi faire ? À réorganiser ta liste de tâches ? À te demander si tu es dans les délais, si tu as oublié quelque chose, par quoi commencer ?</p>
+            <p data-i18n-html="modal3P2">C'est la paralysie par la planification. Et elle coûte cher.</p>
+            <p data-i18n-html="modal3P3">Avec Vector, tu ouvres l'application et tu sais exactement quoi faire maintenant. L'IA a déjà <strong>priorisé, planifié, estimé</strong> — en tenant compte de tes disponibilités, de tes deadlines et de tes préférences. Le plan est là, cohérent, réaliste. Il ne te reste qu'à exécuter.</p>
+            <p data-i18n-html="modal3P4">C'est ça, la vraie productivité : zéro friction à l'entrée, toute l'énergie dans l'action.</p>
         </div>
     </div>
 
@@ -1313,9 +1357,262 @@
     "readTime": "6",
     "excerpt": "Tu connais ta valeur. Tu as fait les calculs. Et pourtant, la main tremble avant d'appuyer sur Envoyer. Ce blocage n'est pas un probl\u00e8me de pricing \u2014 c'est un probl\u00e8me d'identit\u00e9.",
     "content": "<p>Il y a une conversation que presque chaque solopreneur a eue avec lui-m\u00eame, souvent tr\u00e8s tard le soir, souvent apr\u00e8s avoir envoy\u00e9 une proposition \u00e0 un client.</p>\n<p><em>\u00ab Est-ce que c'est trop cher ? Est-ce qu'il va accepter ? Peut-\u00eatre que je devrais mettre un peu moins pour \u00eatre s\u00fbr... \u00bb</em></p>\n<p>Et souvent, on baisse. Juste un peu. Juste pour s\u00e9curiser le deal. Juste pour ne pas perdre le client.</p>\n<p>Ce moment \u2014 cette h\u00e9sitation \u2014 n'a rien \u00e0 voir avec les chiffres. Tu pourrais conna\u00eetre ta valeur marchande sur le bout des doigts, avoir fait tous les calculs, savoir rationnellement que ton tarif est justifi\u00e9. Et pourtant, la main tremble au-dessus du clavier avant d'appuyer sur Envoyer.</p>\n<div class=\"article-highlight\">Ce n'est pas un probl\u00e8me de pricing. C'est un probl\u00e8me d'identit\u00e9.</div>\n\n<h2>Le salariat t'a programm\u00e9 pour \u00e7a</h2>\n<p>Passe 5, 10, 15 ans dans le monde du salariat, et ton cerveau int\u00e8gre une r\u00e8gle fondamentale : <strong>ta valeur est fix\u00e9e par quelqu'un d'autre</strong>.</p>\n<p>Un manager. Une grille salariale. Une convention collective. Peu importe le m\u00e9canisme \u2014 quelqu'un d'externe d\u00e9finit ce que tu vaux. Et ton r\u00f4le, c'est d'accepter, de n\u00e9gocier \u00e0 la marge, et de rentrer dans la case.</p>\n<p>Ce n'est pas une critique. C'est simplement le contrat implicite du salariat, et il est parfaitement raisonnable dans ce contexte.</p>\n<p>Le probl\u00e8me, c'est quand tu deviens solopreneur. Du jour au lendemain, personne ne fixe ta valeur \u00e0 ta place. C'est \u00e0 toi de le faire. Et l\u00e0, deux choses se passent simultan\u00e9ment dans ton cerveau :</p>\n<p>La premi\u00e8re : l'excitation. <em>Enfin, je suis libre de me payer ce que je m\u00e9rite vraiment.</em></p>\n<p>La deuxi\u00e8me, beaucoup plus sournoise : <strong>la panique de l\u00e9gitimit\u00e9</strong>. <em>Mais qui suis-je pour d\u00e9cider que je vaux \u00e7a ?</em></p>\n<p>Et c'est cette deuxi\u00e8me voix qui gagne, la plupart du temps. Pas parce qu'elle a raison. Parce qu'elle est plus ancienne, plus profonde, et qu'elle parle le langage de la survie.</p>\n\n<h2>Le tarif horaire : le pi\u00e8ge le plus r\u00e9pandu</h2>\n<p>Il y a une chose que presque tous les solopreneurs font au d\u00e9but \u2014 et que beaucoup continuent de faire longtemps apr\u00e8s : <strong>calculer leur tarif \u00e0 partir de leur ancien salaire</strong>.</p>\n<p>L'\u00e9quation est simple. Tu prenais 60 000 $ par an. Tu divises par 220 jours ouvrables, puis par 8 heures. Et tu obtiens un tarif horaire qui te semble \u00ab honnête \u00bb.</p>\n<p>Sauf que cette \u00e9quation oublie quelques d\u00e9tails :</p>\n<ul>\n  <li>Que tu ne factures pas 8 heures par jour. Tu en factures 4 ou 5, quand tout va bien \u2014 le reste, c'est la prospection, la comptabilit\u00e9, les emails, la gestion de projet, les appels d\u00e9couverte.</li>\n  <li>Que tu n'as plus de cong\u00e9s pay\u00e9s. Plus de cotisations patronales. Plus d'\u00e9quipement fourni. Plus de formation prise en charge.</li>\n  <li>Que tu portes un risque que ton ancien employeur portait \u00e0 ta place.</li>\n  <li>Et surtout : <strong>que tu n'es plus en train de vendre du temps. Tu vends des r\u00e9sultats.</strong></li>\n</ul>\n<p>C'est l\u00e0 que tout change \u2014 et c'est l\u00e0 que beaucoup de solopreneurs restent coinc\u00e9s pendant des ann\u00e9es.</p>\n\n<h2>Vendre du temps vs vendre de la valeur</h2>\n<p>Un salari\u00e9 est pay\u00e9 pour \u00eatre disponible. Un solopreneur est pay\u00e9 pour transformer une situation.</p>\n<p>Ce n'est pas la m\u00eame chose. Et le tarif ne devrait pas se calculer de la m\u00eame fa\u00e7on.</p>\n<p>Quand un client fait appel \u00e0 toi, il ne t'ach\u00e8te pas des heures. Il ach\u00e8te la r\u00e9solution d'un probl\u00e8me qui lui co\u00fbte de l'argent, du temps, ou de l'\u00e9nergie. Il ach\u00e8te une transformation \u2014 un avant et un apr\u00e8s.</p>\n<p>La question que tu devrais te poser en fixant ton prix n'est pas <em>combien d'heures \u00e7a va me prendre ?</em> C'est <em>quelle est la valeur de ce r\u00e9sultat pour ce client ?</em></p>\n<p>Un consultant qui aide une PME \u00e0 doubler son taux de conversion en trois mois ne vaut pas 75 $ de l'heure. Il vaut une fraction de ce qu'il g\u00e9n\u00e8re. Et si le client ne comprend pas \u00e7a, le probl\u00e8me n'est pas ton prix \u2014 c'est ton positionnement.</p>\n\n<h2>Le client qui dit \u00ab c'est trop cher \u00bb ne te dit pas que tu vaux moins</h2>\n<p>C'est peut-\u00eatre la le\u00e7on la plus difficile \u00e0 int\u00e9grer : <strong>un prospect qui d\u00e9cline ton tarif ne te dit pas que tu n'es pas bon.</strong></p>\n<p>Il te dit une ou plusieurs de ces choses :</p>\n<ul>\n  <li>Il n'a pas encore compris la valeur de ce que tu fais.</li>\n  <li>Il n'est pas ton client id\u00e9al.</li>\n  <li>Il n'a simplement pas le budget \u2014 et ce n'est pas ton probl\u00e8me \u00e0 r\u00e9soudre en baissant tes prix.</li>\n</ul>\n<div class=\"article-highlight\">Le jour o\u00f9 j'ai arr\u00eat\u00e9 d'essayer de convaincre les mauvais clients, les bons clients ont commenc\u00e9 \u00e0 appara\u00eetre.</div>\n<p>Ce n'est pas de la pens\u00e9e magique. C'est de la s\u00e9lection naturelle. Un tarif \u00e9lev\u00e9 \u00e9loigne ceux qui veulent du cheap. Il attire ceux qui veulent de la qualit\u00e9. Et paradoxalement, les clients qui paient bien sont souvent les moins probl\u00e9matiques \u2014 parce qu'ils comprennent ce qu'ils ach\u00e8tent.</p>\n\n<h2>Moins de clients. Plus de revenus. Moins d'\u00e9puisement.</h2>\n<p>Il y a un mod\u00e8le que les solopreneurs les plus solides finissent tous par adopter, \u00e0 un moment ou \u00e0 un autre.</p>\n<p>Pas 12 petits clients \u00e0 500 $ par mois. Trois ou quatre clients strat\u00e9giques \u00e0 3 000 $, 5 000 $, 10 000 $ par engagement \u2014 selon ton domaine.</p>\n<p>Moins de surface de contact. Moins de dispersion. Moins d'emails \u00e0 g\u00e9rer, moins de contextes \u00e0 switcher en permanence, moins de relations \u00e0 entretenir.</p>\n<p>Et \u00e9trangement : plus de profondeur. Plus d'impact r\u00e9el sur les projets. Plus de r\u00e9sultats dont tu peux \u00eatre fier.</p>\n<p>Quand chaque projet compte vraiment \u2014 financi\u00e8rement et symboliquement \u2014 tu travailles diff\u00e9remment. Tu planifies mieux. Tu t'investis pleinement. Tu livres quelque chose dont tu es fier.</p>\n<p>C'est d'ailleurs quelque chose qu'on observe chez les utilisateurs de Vector en phase de test : quand les projets sont moins nombreux mais plus significatifs, la planification devient critique. Pas parce qu'on est perfectionniste \u2014 mais parce qu'on ne peut pas se permettre de perdre du fil sur un engagement qui compte vraiment.</p>\n\n<h2>Par o\u00f9 commencer, concr\u00e8tement</h2>\n<p>Si tu veux sortir de la spirale du sous-pricing, il n'y a pas de formule magique. Mais il y a quelques d\u00e9placements concrets qui changent les choses :</p>\n<ul>\n  <li><strong>Arr\u00eate de calculer \u00e0 partir de ton ancien salaire.</strong> Calcule \u00e0 partir de ce que tes clients gagnent gr\u00e2ce \u00e0 toi.</li>\n  <li><strong>Teste l'inconf ort.</strong> La prochaine fois que tu envoies une proposition, monte de 20 %. Si \u00e7a ne fait pas l\u00e9g\u00e8rement peur, c'est probablement encore trop bas.</li>\n  <li><strong>Documente tes r\u00e9sultats.</strong> Pas pour te vanter \u2014 pour te souvenir. Chaque fois qu'un client t'exprime de la gratitude, note-le. C'est ton antidote contre la voix qui dit que tu n'es pas l\u00e9gitime.</li>\n  <li><strong>Choisis un segment.</strong> Les g\u00e9n\u00e9ralistes se battent sur le prix. Les sp\u00e9cialistes se battent sur la valeur. Plus tu es pr\u00e9cis sur ce que tu r\u00e9sous, pour qui, et dans quel contexte \u2014 plus tu peux commander des tarifs \u00e9lev\u00e9s sans que personne ne sourcille.</li>\n</ul>\n\n<h2>Le vrai luxe du solopreneur</h2>\n<p>Il y a quelque chose que peu de gens disent tout haut sur la vie solopreneur.</p>\n<p>Le vrai luxe, ce n'est pas de travailler de n'importe o\u00f9. Ce n'est pas de ne pas avoir de patron. C'est \u00e7a : <strong>le droit de d\u00e9cider que ton travail vaut ce qu'il vaut, et de trouver des gens qui sont d'accord avec toi.</strong></p>\n<p>C'est intimidant au d\u00e9but. C'est lib\u00e9rateur avec le temps.</p>\n<p>Et c'est une libert\u00e9 que personne d'autre ne peut te donner. Elle se construit, une proposition envoy\u00e9e \u00e0 la fois, un non assum\u00e9 \u00e0 la fois, un client id\u00e9al trouv\u00e9 \u00e0 la fois.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Rejoins les early adopters de Vector</p>\n  <p>Vector est une application de planification intelligente pens\u00e9e pour les solopreneurs qui g\u00e8rent des projets \u00e0 haute valeur \u2014 ceux qui ont besoin de clart\u00e9, pas d'une liste de t\u00e2ches suppl\u00e9mentaire.</p>\n  <p>On construit quelque chose pour les solopreneurs qui ont d\u00e9cid\u00e9 de travailler mieux, pas plus. Acc\u00e8s en avant-premi\u00e8re, tarifs fondateurs, et la possibilit\u00e9 d'influencer directement ce qu'on construit.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Je rejoins la liste des early adopters \u2192</button>\n</div>"
+  },
+  {
+    "id": "article-7",
+    "title": "La solitude du solopreneur : la partie qu'on ne montre pas sur Instagram",
+    "date": "1 mai 2026",
+    "readTime": "7",
+    "excerpt": "Il y a une image qui circule dans la culture solopreneur — un bureau bien rangé, des chiffres qui montent. Ce qu'elle ne montre pas, c'est la solitude au cœur même de la liberté choisie.",
+    "content": "<p>Il y a une image qui circule dans la culture solopreneur.</p>\n<p>Un bureau bien rangé. Une tasse de café. Un écran avec des chiffres qui montent. Une légende sobre&nbsp;: <em>«&nbsp;Construit ça en 18 mois depuis chez moi.&nbsp;»</em></p>\n<p>Des milliers de likes. Des centaines de commentaires admiratifs. Et quelque part, dans un appartement ou un bureau à domicile, un autre solopreneur qui regarde ça en pensant — <em>ouais, mais il ne montre pas le reste.</em></p>\n<p>Il ne montre pas le mercredi après-midi où une décision importante ne peut pas attendre, mais il n'y a personne à qui la soumettre. Pas d'équipe. Pas de collègue de bureau. Pas de manager à appeler — ce qui était autrefois une contrainte est maintenant, bizarrement, un manque.</p>\n<p>Il ne montre pas cette chose étrange et un peu honteuse que ressentent la plupart des solopreneurs à un moment ou à un autre&nbsp;: <strong>la solitude au cœur même de la liberté qu'ils ont choisie.</strong></p>\n\n<h2>La liberté a un coût émotionnel que personne ne mentionne dans le business plan</h2>\n<p>Quand on quitte le salariat pour travailler à son compte, on se prépare à beaucoup de choses. On anticipe l'instabilité des revenus. On se forme à la comptabilité. On apprend à prospecter, à vendre, à livrer.</p>\n<p>On ne se prépare pas à ça&nbsp;: <strong>l'absence de témoins.</strong></p>\n<p>Dans une entreprise, même imparfaite, il y a des gens qui voient ton travail. Qui savent quand tu as bien géré une situation difficile. Qui remarquent quand tu es épuisé. Ce tissu social — souvent invisible, souvent sous-estimé — disparaît du jour au lendemain quand tu te lances seul.</p>\n<p>Et ce n'est pas un manque de résilience. Ce n'est pas un signe que tu n'es pas fait pour l'entrepreneuriat. C'est une réalité neurologique&nbsp;: les humains sont des animaux sociaux, et le cerveau humain n'est tout simplement pas conçu pour prendre des décisions à haute intensité émotionnelle en permanente isolation.</p>\n\n<div class=\"article-highlight\">La solitude chronique active les mêmes zones du cerveau que la douleur physique. Elle dégrade la qualité des décisions. Elle amplifie les biais cognitifs — dont le syndrome de l'imposteur, qui prospère précisément dans le silence.</div>\n\n<h2>Le syndrome de l'imposteur pousse mieux dans le silence</h2>\n<p>Il y a une chose que le travail en équipe fait naturellement, sans qu'on s'en rende vraiment compte&nbsp;: <strong>il calibre ta perception de toi-même.</strong></p>\n<p>Un collègue qui dit <em>c'était vraiment bien géré</em>. Une réunion où ton idée est adoptée. Un client satisfait dont tu vois la réaction en temps réel. Ces micro-signaux, accumulés sur des années, construisent une image de toi-même ancrée dans la réalité externe.</p>\n<p>Quand tu travailles seul, ces signaux s'effacent. Il reste ta propre voix intérieure — et elle est rarement la plus objective. Elle amplifie les ratés, minimise les succès, compare ton quotidien chaotique avec les highlights soigneusement filtrés que les autres publient en ligne.</p>\n<p>Le résultat, c'est ce que beaucoup de solopreneurs décrivent comme un <strong>brouillard de légitimité permanent</strong>&nbsp;: tu avances, tu livres, tu reçois des retours positifs — et tu n'y crois jamais tout à fait. Comme si un verdict définitif sur ta valeur réelle était toujours en attente, et que personne n'était là pour le prononcer.</p>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.15rem;letter-spacing:-0.3px\">Isolation</div><div class=\"stat-label\">amplifie le syndrome de l'imposteur</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.15rem;letter-spacing:-0.3px\">Silence</div><div class=\"stat-label\">efface les signaux de validation externe</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.15rem;letter-spacing:-0.3px\">Filtre</div><div class=\"stat-label\">ton quotidien vs les highlights Instagram</div></div>\n</div>\n\n<h2>Les fausses solutions et pourquoi elles ne suffisent pas</h2>\n<p>La communauté solopreneur a ses réponses habituelles&nbsp;: les <em>masterminds</em>, les espaces de coworking, les communautés Slack et Discord. Toutes ces solutions ont de la valeur. Aucune ne règle complètement le problème.</p>\n<p>Parce que le problème, ce n'est pas l'absence de gens autour de toi. C'est l'absence de quelqu'un qui <strong>comprend exactement ce que tu vis en ce moment</strong> — pas dans les grandes lignes, pas de façon générique, mais dans le détail précis de ton projet, de tes contraintes, de ta semaine en cours.</p>\n<p>Un mastermind mensuel ne sait pas que tu as trois livrables qui se chevauchent cette semaine et que tu n'arrives pas à décider lequel prioriser. Un espace de coworking ne sait pas que tu hésites depuis deux jours sur une décision de pricing qui pourrait changer la trajectoire d'un client important.</p>\n<div class=\"article-highlight\">C'est cette granularité-là qui manque. Et personne n'a vraiment résolu ça — parce que ça demande une présence intelligente qui connaît ton contexte en profondeur, disponible à 14h un mardi.</div>\n\n<h2>Ce que j'ai appris en parlant à des dizaines de solopreneurs</h2>\n<p>En construisant Vector, on a eu des conversations longues avec des solopreneurs de tous horizons — designers, consultants, développeurs, créateurs de contenu, coachs. Et une chose revenait presque à chaque fois, formulée de façons différentes mais pointant vers le même endroit&nbsp;:</p>\n<p><em>«&nbsp;Ce qui me manque le plus, c'est quelqu'un qui connaît mon contexte et qui peut m'aider à réfléchir à voix haute.&nbsp;»</em></p>\n<p>Pas un coach — trop formel, trop cher, une heure par semaine. Pas un associé — trop d'implications, trop de complexité. Juste... une présence qui comprend où tu en es, qui voit ta semaine telle qu'elle est, et qui peut t'aider à y voir clair quand la tête tourne.</p>\n<p>C'est une partie de ce qu'on essaie de construire avec Vector. Pas un outil de plus. Un système qui connaît tes projets, ton rythme, tes priorités — et qui peut devenir ce point d'appui quand tu en as besoin. Ça ne remplace pas les connexions humaines. Mais ça comble quelque chose de réel dans les moments où elles ne sont pas disponibles.</p>\n\n<h2>La solitude n'est pas une faille. C'est un signal.</h2>\n<p>Si tu te reconnais dans ce texte, retiens une chose avant de fermer cet onglet.</p>\n<p>Ce que tu ressens n'est pas le signe que tu n'es pas fait pour ça. Ce n'est pas un manque de caractère, de discipline ou de vision. C'est le signe que tu es humain, que tu fais un travail difficile dans des conditions qui n'ont pas encore de manuel d'instructions, et que l'infrastructure émotionnelle du solopreneur reste le grand angle mort de l'industrie de la productivité.</p>\n<p><strong>Tu n'es pas le seul à le vivre.</strong> Et ce n'est pas une faiblesse dont il faut se débarrasser — c'est une réalité dont il faut s'occuper, activement, avec autant de sérieux qu'on met à construire son funnel marketing ou à optimiser ses tarifs.</p>\n\n<h2>Quelques choses qui aident vraiment — sans bullshit</h2>\n<ul>\n  <li><strong>Nomme ce que tu vis.</strong> Reconnaître que la solitude du solopreneur est réelle, et qu'elle mérite d'être prise au sérieux — pas minimisée derrière <em>«&nbsp;mais je suis libre, je ne vais quand même pas me plaindre.&nbsp;»</em></li>\n  <li><strong>Trouve un pair, pas un mentor.</strong> Les mentors sont utiles pour la direction. Les pairs — quelqu'un au même stade que toi — sont utiles pour ne pas se sentir seul dans la réalité quotidienne. La différence est importante.</li>\n  <li><strong>Externalise la mémoire de tes projets.</strong> Une part significative de l'épuisement vient du fait de tout porter dans sa tête. Quand ce contexte est quelque part en dehors de toi, accessible et organisé, la charge mentale baisse — juste assez pour que la tête soit moins pleine quand tu en as le plus besoin.</li>\n  <li><strong>Célèbre ce que tu as livré.</strong> Pas publiquement si ça ne t'est pas naturel. Mais note-le. Les succès solopreneurs ont tendance à disparaître instantanément dans la pression de ce qui reste à faire — et cette amnésie sélective est l'une des causes silencieuses du syndrome de l'imposteur.</li>\n</ul>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Construis quelque chose seul&nbsp;? Vector est fait pour toi.</p>\n  <p>Un système qui connaît ton contexte, organise tes projets, et allège la charge de tout porter dans ta tête. Accès anticipé, tarifs fondateurs, et une communauté de solopreneurs qui comprennent exactement ce qu'on vient de décrire.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Rejoindre les early adopters →</button>\n</div>"
+  },
+  {
+    "id": "article-8",
+    "title": "Context switching : pourquoi tu n'arrives jamais à vraiment finir quelque chose",
+    "date": "3 mai 2026",
+    "readTime": "6",
+    "excerpt": "Il y a un coût invisible dans tes journées. 23 minutes de concentration perdue à chaque interruption, 50 transitions par jour. Voici pourquoi le context switching détruit la productivité des solopreneurs — et ce qui change vraiment.",
+    "content": "<p>Il y a un coût que tu ne vois pas dans tes journées. Il ne s'affiche nulle part. Il ne génère aucune notification. Et pourtant, il explique en grande partie pourquoi tu termines tes journées épuisé, avec l'impression persistante que rien n'a vraiment avancé.</p>\n<p>Ce coût, c'est celui des transitions entre les tâches. Et pour un solopreneur, il est dévastateur.</p>\n\n<h2>La journée type que personne ne décrit honnêtement</h2>\n<p>Tu ouvres ton ordinateur avec l'intention de travailler sur la proposition client que tu dois envoyer ce soir. Avant d'ouvrir le fichier, tu vérifies rapidement tes emails. Un message d'un autre client te demande une mise à jour. Tu y réponds — cinq minutes, pas plus. Sauf qu'en répondant, tu réalises que tu dois vérifier l'avancement de ce projet. Tu ouvres Notion. Tu tombes sur une tâche marquée «&nbsp;à faire cette semaine&nbsp;» et qui n'est toujours pas commencée. Un peu d'anxiété. Tu décides de t'en occuper rapidement. Trente-cinq minutes plus tard, tu t'en souviens&nbsp;: la proposition.</p>\n\n<div class=\"article-highlight\">Il est 11h. Tu n'as pas encore commencé ce pour quoi tu t'étais levé ce matin.</div>\n\n<p>Ce scénario n'est pas un problème de discipline. C'est un problème de <strong>context switching</strong> — et pour les solopreneurs, c'est structurellement inévitable si l'environnement de travail n'est pas conçu pour le contrer.</p>\n\n<h2>Ce que la recherche dit — et que personne ne lit</h2>\n<p>En 2001, une étude de Gloria Mark à l'Université de Californie Irvine a produit un chiffre qui reste l'un des plus cités en psychologie cognitive appliquée au travail.</p>\n\n<div class=\"stat-single stat-block\">\n  <div class=\"stat-number\">23<span class=\"stat-unit\"> min</span></div>\n  <div class=\"stat-label\">c'est le temps moyen dont le cerveau humain a besoin pour retrouver un état de concentration profonde après une interruption</div>\n</div>\n\n<p>Vingt-trois minutes. Pour chaque transition. Et les recherches plus récentes sont encore moins encourageantes&nbsp;: dans un environnement de travail fragmenté, un travailleur peut changer de tâche ou de contexte <strong>plus de 50 fois par jour</strong>. La majorité de ces transitions sont auto-infligées — une notification, une pensée parasite, une «&nbsp;vérification rapide&nbsp;» qui ne l'est jamais vraiment.</p>\n<p>Le résultat&nbsp;: la grande majorité du temps de travail est consacrée à des tâches en mode partiel — démarrées, interrompues, reprises, re-interrompues. La concentration profonde, celle qui produit les vraies avancées, n'est présente que pendant une fraction de la journée.</p>\n\n<div class=\"stat-comparison stat-block\">\n  <div class=\"stat-compare-item\">\n    <div class=\"stat-compare-label\">Transitions / jour</div>\n    <div class=\"stat-compare-number muted\">50+</div>\n    <div class=\"stat-compare-sub\">changements de contexte</div>\n  </div>\n  <div class=\"stat-compare-divider\">×</div>\n  <div class=\"stat-compare-item\">\n    <div class=\"stat-compare-label highlight\">Coût par transition</div>\n    <div class=\"stat-compare-number\">23 min</div>\n    <div class=\"stat-compare-sub\">pour retrouver le focus</div>\n  </div>\n</div>\n\n<h2>Pourquoi le solopreneur est particulièrement vulnérable</h2>\n<p>Dans une entreprise avec une équipe, les rôles créent naturellement une protection contre le context switching. Le développeur a ses sprints. Le chef de projet absorbe les interruptions pour protéger les autres.</p>\n<p>En solo, tu es tous ces rôles à la fois. Chaque rôle réclame ton attention de façon concurrente, souvent simultanée. Il n'y a personne pour filtrer, prioriser, ou absorber les demandes à ta place. Tout atterrit directement sur toi — et ton cerveau essaie de tout gérer en parallèle, ce pour quoi il n'a pas été conçu.</p>\n<p>Le context switching chronique produit trois effets que les solopreneurs reconnaissent immédiatement quand on les nomme&nbsp;:</p>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.1rem;letter-spacing:-0.2px\">Fatigue</div><div class=\"stat-label\">sans raison apparente — tu n'as pas travaillé dur, mais tu es épuisé</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.1rem;letter-spacing:-0.2px\">Inachèvement</div><div class=\"stat-label\">beaucoup de choses avancées, rien de vraiment terminé</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.1rem;letter-spacing:-0.2px\">Anxiété</div><div class=\"stat-label\">l'impression diffuse que quelque chose d'important t'échappe</div></div>\n</div>\n\n<p>Ce ne sont pas des symptômes d'un mauvais caractère ou d'un manque de rigueur. Ce sont les effets prévisibles d'un cerveau soumis à trop de transitions dans un environnement sans structure protectrice.</p>\n\n<h2>Le vrai problème avec la plupart des solutions proposées</h2>\n<p>La réponse habituelle au context switching, c'est le <strong>time blocking</strong>&nbsp;: bloquer des plages horaires dans son calendrier pour chaque type de tâche, créer des zones de «&nbsp;deep work&nbsp;», désactiver les notifications.</p>\n<p>C'est une bonne idée en théorie. En pratique, ça échoue pour une raison précise&nbsp;: <strong>le time blocking ne résiste pas au premier imprévu.</strong></p>\n<p>Un client urgent. Une tâche qui prend deux fois plus longtemps que prévu. Un problème technique à gérer maintenant. Dès que la réalité dévie du plan — ce qu'elle fait toujours — le time blocking s'effondre. Et reconstruire son plan manuellement en pleine journée, c'est justement le genre de méta-travail épuisant qui aggrave la fatigue cognitive au lieu de la réduire.</p>\n\n<div class=\"article-highlight\">La vraie solution au context switching n'est pas de mieux planifier une fois par semaine. C'est d'avoir un système capable de replanifier en temps réel quand l'imprévu arrive — sans que ce soit toi qui fasses le travail de reconstruction.</div>\n\n<h2>Ce que ça change quand ton plan s'adapte à toi</h2>\n<p>Imagine une journée structurée différemment. Pas une liste de tâches dans laquelle tu pioches selon l'humeur ou l'urgence — mais un plan qui t'indique, à chaque moment de la journée, quelle est la prochaine chose à faire, dans quel contexte, avec quel niveau d'énergie requis.</p>\n<p>Un plan qui sait que tu as 90 minutes libres le matin avant ton appel de 10h, et que ce créneau est parfait pour le travail de fond qui demande de la concentration. Qui sait que l'après-midi, après deux heures de réunions, tu es moins disponible pour la création et plus à l'aise pour les tâches administratives. Qui s'ajuste automatiquement quand quelque chose prend plus longtemps que prévu — sans que tu aies à tout recalculer toi-même.</p>\n\n<h2>Vector : une planification conçue pour les cerveaux fragmentés</h2>\n<p>Vector est une application de planification IA conçue spécifiquement pour les solopreneurs — et le context switching est l'une des réalités centrales qu'elle adresse.</p>\n<p>Quand tu utilises Vector, tu ne crées pas une liste de tâches que tu vas ensuite essayer de respecter. Tu lui donnes le chaos brut de ta semaine — projets, priorités, contraintes, disponibilités — et il génère un plan structuré, avec des blocs de travail cohérents, des estimations basées sur ton historique réel, et la capacité de se réajuster quand quelque chose change.</p>\n<p>Le résultat&nbsp;: moins de décisions à prendre en cours de journée. Moins de transitions subies. Plus de plages de concentration profonde, parce qu'elles sont protégées par le plan — pas par ta seule volonté.</p>\n<p><strong>Ce n'est pas un outil qui te demande d'être discipliné pour fonctionner. C'est un outil conçu pour fonctionner même quand tu ne l'es pas.</strong></p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Prêt à reprendre le contrôle de tes journées&nbsp;?</p>\n  <p>Vector est en accès anticipé pour les solopreneurs qui veulent tester une approche radicalement différente de la planification — une approche qui travaille <em>avec</em> la réalité de ton cerveau, pas contre elle.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Rejoindre la liste d'attente →</button>\n</div>"
   }
 ];
         /* @@ARTICLES_END@@ */
+
+
+        /* ── Articles EN ── */
+        const ARTICLES_EN = [
+  {
+    "id": "article-1",
+    "title": "Why solopreneurs forget tasks (and how to stop it from changing everything)",
+    "date": "April 15, 2026",
+    "readTime": "5",
+    "excerpt": "If you regularly forget important tasks, the problem probably isn't a lack of discipline — it's that your system still relies too much on your memory.",
+    "content": "<p>Have you ever forgotten an important task?</p>\n<p>A client call. An invoice to send. A follow-up to make. A promising idea that seemed obvious in the moment — then vanished.</p>\n<p>When that happens, the reaction is almost always the same: you blame yourself for not being structured enough. You tell yourself you should be more disciplined, more organized, more rigorous.</p>\n<p>But in many cases, the problem isn't there.</p>\n<p>The real problem is that you're asking your brain to do a job it wasn't designed for.</p>\n\n<h2>The human brain is not a task manager</h2>\n<p>When you work alone, your brain often becomes your central system:</p>\n<ul>\n  <li>you remember what to do</li>\n  <li>you keep urgent items top of mind</li>\n  <li>you juggle follow-ups</li>\n  <li>you try not to forget important details</li>\n  <li>you mentally store ideas to handle later</li>\n</ul>\n<p>This is exactly where things break down.</p>\n<p><strong>Human working memory is limited</strong>. It can keep only a handful of things active at once. This isn't a personal flaw — it's a normal cognitive constraint. When your business depends on dozens of micro-commitments, implicit reminders, ideas, follow-ups, and competing priorities, it becomes inevitable that some things fall through the cracks.</p>\n<p>In other words: if you forget tasks, it's not necessarily because you're disorganized. It's often because your system still relies too heavily on your memory.</p>\n\n<div class=\"stat-single stat-block\">\n  <div class=\"stat-number\">~4<span class=\"stat-unit\"> items</span></div>\n  <div class=\"stat-label\">the active capacity of human working memory — not enough to run a solo business</div>\n</div>\n\n<h2>Why it's often the right tasks that get lost</h2>\n<p>The most insidious thing is that forgotten tasks aren't always the least important. Often, they're the ones that don't explode immediately:</p>\n<ul>\n  <li>following up with a warm prospect</li>\n  <li>sending an invoice</li>\n  <li>replying to a message that deserves more than a quick answer</li>\n  <li>preparing a deliverable due next week</li>\n  <li>capturing a strategic idea before it evaporates</li>\n</ul>\n<p>Why these? Because the brain naturally favors what is <strong>visible, urgent, loud, or emotionally charged</strong>. What's important but not immediate slips under the radar more easily.</p>\n<p>This is exactly why an entrepreneur can spend an entire day feeling busy while neglecting the actions that have the most impact on revenue, credibility, or growth.</p>\n<div class=\"article-highlight\">You don't just forget tasks. You often forget levers.</div>\n\n<h2>The real cost of forgetting is bigger than it seems</h2>\n<p>A forgotten task looks small in isolation. An invoice sent two days late. An unanswered email. A follow-up pushed to tomorrow.</p>\n<p>But in practice, these lapses create a chain reaction.</p>\n\n<h3>1. They increase mental load</h3>\n<p>Every uncaptured or unclarified task stays open in your head. Even when you're not consciously thinking about it, it continues to occupy mental space. This creates that vague but exhausting feeling of <em>\"I'm probably forgetting something.\"</em></p>\n\n<h3>2. They feed chronic stress</h3>\n<p>Entrepreneurial stress isn't always caused by too much work. Often, it comes from uncertainty:</p>\n<ul>\n  <li>What did I forget?</li>\n  <li>Is there a client waiting on me?</li>\n  <li>Am I missing a deadline?</li>\n  <li>Did I leave money on the table without realizing it?</li>\n</ul>\n<p>When your system isn't reliable, your brain stays on high alert.</p>\n\n<h3>3. They reduce your capacity to focus</h3>\n<p>Every time you try to remember everything, you waste cognitive energy on internal management instead of directing it toward actual execution. You're not just doing your work — you're simultaneously trying to mentally monitor everything that exists <em>around</em> your work. That's inefficient, exhausting, and hard to sustain long-term.</p>\n\n<h3>4. They ultimately cost you money</h3>\n<p>For a solopreneur, lapses don't need to be dramatic to be costly. It only takes:</p>\n<ul>\n  <li>delayed invoices</li>\n  <li>missed follow-ups</li>\n  <li>opportunities not chased</li>\n  <li>important tasks deferred too long</li>\n  <li>inconsistent execution</li>\n</ul>\n<p>These aren't usually spectacular losses. They're small, repeated leaks — and it's precisely these leaks that end up hurting revenue, professional reputation, and stability.</p>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-icon\"><svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='6' y='7' width='24' height='22' rx='4' stroke='#8BFF3C' stroke-width='1.5'/><rect x='10' y='21.5' width='16' height='2.5' rx='1.2' fill='rgba(139,255,60,0.2)'/><rect x='10' y='16.5' width='16' height='2.5' rx='1.2' fill='rgba(139,255,60,0.5)'/><rect x='10' y='11.5' width='16' height='2.5' rx='1.2' fill='#8BFF3C'/></svg></div><div class=\"stat-label\">Increased mental load</div></div>\n  <div class=\"stat-item\"><div class=\"stat-icon\"><svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='18' cy='18' r='15' stroke='rgba(139,255,60,0.12)' stroke-width='1'/><polyline points='4,18 8,18 10,12 12,24 14.5,15 16.5,21 18.5,8 20.5,28 23,18 27,18 32,18' stroke='#8BFF3C' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg></div><div class=\"stat-label\">Chronic stress</div></div>\n  <div class=\"stat-item\"><div class=\"stat-icon\"><svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='18' cy='18' r='15' stroke='rgba(139,255,60,0.85)' stroke-width='1.5'/><circle cx='18' cy='18' r='9.5' stroke='rgba(139,255,60,0.5)' stroke-width='1.5' stroke-dasharray='7 5'/><circle cx='18' cy='18' r='4.5' stroke='rgba(139,255,60,0.22)' stroke-width='1.5' stroke-dasharray='4 7'/></svg></div><div class=\"stat-label\">Reduced focus</div></div>\n  <div class=\"stat-item\"><div class=\"stat-icon\"><svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='4' y='11' width='7' height='18' rx='1.5' fill='rgba(139,255,60,0.22)'/><rect x='14.5' y='17' width='7' height='12' rx='1.5' fill='rgba(139,255,60,0.48)'/><rect x='25' y='23' width='7' height='6' rx='1.5' fill='#8BFF3C'/><path d='M7.5 11L18 17L28.5 23' stroke='#8BFF3C' stroke-width='1.5' stroke-linecap='round'/></svg></div><div class=\"stat-label\">Real financial losses</div></div>\n</div>\n\n<h2>The false remedy: \"I'll just get more organized\"</h2>\n<p>This is where many solopreneurs go wrong. They sense the problem, so they add a new tool, a new method, another list, a more detailed dashboard, a more sophisticated priority system.</p>\n<p>But if this system still depends on <em>you</em> to think of everything to capture, sort every idea, manually create every task, prioritize every action, and decide when to do it — then you haven't eliminated the mental load. You've just moved it.</p>\n<p>You've created a system that still demands too much from an already overloaded person.</p>\n<div class=\"article-highlight\">The problem isn't just the absence of a tool. The problem is the level of friction between your reality and your system.</div>\n\n<h2>What you're really looking for: peace of mind</h2>\n<p>Ultimately, what most solopreneurs want isn't \"a better to-do list.\" They want to work without carrying their entire business in their head.</p>\n<p>They want to:</p>\n<ul>\n  <li>know that nothing important gets lost</li>\n  <li>stop constantly double-checking mentally</li>\n  <li>trust their system</li>\n  <li>free up space to think, produce, and decide</li>\n</ul>\n<p>The real value of a good system isn't just organization. It's tranquility. It's the moment you stop operating from memory alone.</p>\n\n<h2>What we're building with Vector</h2>\n<p>At Vector, we start from a simple idea: <strong>a solopreneur shouldn't lose an important task simply because they're human.</strong></p>\n<p>We're building a system that aims to reduce forgotten tasks at the source:</p>\n<ul>\n  <li>by capturing tasks more easily</li>\n  <li>by structuring what's fuzzy</li>\n  <li>by surfacing priorities at the right moment</li>\n  <li>by turning mental overload into a clearer action plan</li>\n</ul>\n<p>The goal isn't to demand more discipline from you. The goal is to help you stop managing your business with your memory.</p>\n\n<h2>Conclusion</h2>\n<p>If you regularly forget tasks, the right diagnosis isn't necessarily <em>\"I lack rigor.\"</em></p>\n<p>The real diagnosis is often simpler and more useful: <strong>my system still relies too much on my head.</strong></p>\n<p>The right question isn't <em>How can I remember everything?</em></p>\n<p>The right question is: <strong>How can I build a system reliable enough that I no longer have to?</strong></p>\n<p>That's exactly the problem Vector wants to solve.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Want to follow Vector's launch?</p>\n  <p>Sign up for the waitlist to be among the first to discover how to reduce your mental load — and stop letting important tasks slip through the cracks.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the waitlist &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-2",
+    "title": "The problem with to-do lists (and why solopreneurs give up)",
+    "date": "April 17, 2026",
+    "readTime": "5",
+    "excerpt": "You didn't give up on your to-do list because you lack discipline. You gave up because it was designed for teams — not for you.",
+    "content": "<p>You've probably tried 5+ productivity apps. Notion. Todoist. Microsoft To Do. Maybe even Reclaim or Motion.</p>\n<p>And maybe they worked… for 2 weeks. Then you gave up. Not because you're lazy. Not because you lack discipline. But because these tools were designed for teams — and you work alone.</p>\n\n<h2>The myth of the \"right\" to-do list</h2>\n<p>You've been told for years that the problem is you. That if you <em>really</em> used the GTD method, or time blocks, or the Eisenhower matrix, everything would be fine. That you don't need a better tool — you need more discipline.</p>\n<p>That's false. And the numbers confirm it.</p>\n<p>The reality of a solopreneur in 2026 looks like this: you're simultaneously wearing the hat of developer, marketer, customer service rep, accountant, and project manager. Your to-do list has 47 items. Your calendar has meetings scattered throughout the week, leaving 45-minute gaps — too short to get into deep work, too long to ignore. You have 8 tabs open with half-written tasks. And somewhere in Notion, there's a project from last November you haven't looked at since.</p>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\">47</div><div class=\"stat-label\">tasks on your list</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\">8</div><div class=\"stat-label\">half-written tabs open</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\">1</div><div class=\"stat-label\">project forgotten since November</div></div>\n</div>\n<div class=\"article-highlight\">You're not disorganized. You're doing the work of 5 people.</div>\n\n<h2>Why to-do lists really fail</h2>\n<p>Here's the fundamental problem nobody explains clearly: <strong>a task system only works if it's perfect.</strong> And perfection, working solo, is exhausting.</p>\n<p>For your to-do list to hold, you need to:</p>\n<ul>\n  <li><strong>Capture every task</strong> the moment it appears — the client message at 10 PM, the idea in the shower, the bug reported between two calls</li>\n  <li><strong>Estimate an exact duration</strong> for each one — even though you often have no idea how long things actually take</li>\n  <li><strong>Respect what you planned</strong> — even when the unexpected arrives and destroys your afternoon</li>\n  <li><strong>Update everything daily</strong> — otherwise the system drifts, priorities go fuzzy, and you end up doing easy tasks instead of important ones</li>\n</ul>\n<p>It's psychologically exhausting. Every morning, before you even open a file or write a line, you're already making dozens of micro-decisions: <em>How long will this take? Is it urgent or important? Does it block anything else?</em> These micro-decisions accumulate. They drain your cognitive energy. And by 10 AM, you're already tired — not because you've been working, but because you spent an hour <em>planning</em> to work.</p>\n<p>This is why 90% of people abandon their productivity systems. It's not a willpower problem. <strong>It's a design problem.</strong></p>\n\n<div class=\"stat-single stat-block\">\n  <div class=\"stat-number\">90<span class=\"stat-unit\">%</span></div>\n  <div class=\"stat-label\">of people abandon their productivity system — not from lack of willpower, but lack of adapted design</div>\n</div>\n\n<h2>The invisible cost of friction</h2>\n<p>There's something we never measure: the cost of <strong>invisible chaos</strong>. That moment when you spend 20 minutes trying to find where a project stands because your notes are split between Notion, a Google doc, and a Slack thread. That moment when you realize you forgot a critical task — not because you neglected it, but because it wasn't anywhere. That moment when you postpone a decision because you don't have the energy to think through its implications on the rest of the plan.</p>\n<p>This isn't a tool question. It's a <strong>mental load</strong> question. And for a solopreneur, this load is constant, invisible, and cumulative.</p>\n\n<h2>What AI changes concretely</h2>\n<p>The promise of AI applied to productivity isn't \"an assistant that answers your emails.\" It's something more fundamental: <strong>shifting the mental effort forward</strong>, so all you have to do is execute.</p>\n<p>Think of the difference between arriving in a kitchen where all the ingredients are prepped, measured, and laid out in order — versus arriving in an empty kitchen where you have to get everything out, measure everything, organize everything before you start. Same recipe, same result. But the experience is radically different.</p>\n<p>That's exactly what a planning AI tool for solopreneurs should do: absorb the chaos you give it, and hand you back something structured, actionable, and realistic.</p>\n\n<h2>The difference with Vector</h2>\n<p>Vector is built around one simple, almost counter-intuitive principle: <strong>the planning effort should be done by the AI, not by you.</strong></p>\n<p>Here's what it looks like in practice. You open the app, you do a <em>brain dump</em> — you write or paste anything. A client email. A messy list. A raw thought: <em>\"I need to finish the payment module, follow up with the 3 prospects from last week, and prep for the March launch.\"</em> No structure. No format. You dump, that's it.</p>\n<p>Vector analyzes what you've given it. It identifies projects, tasks, sub-tasks, implicit dependencies. It estimates durations — not generically, but based on <em>your</em> past project history, because it's learned that you take 2 hours for a newsletter, not 45 minutes like you thought. It generates a complete plan with realistic dates calculated on your actual weekly capacity.</p>\n<p>Then it gives you two options only: <strong>[Add to Vector]</strong> or <strong>[Edit first]</strong>.</p>\n<p>One click to accept everything. Two if you want to adjust. You never leave empty-handed.</p>\n\n<h2>What Vector doesn't do</h2>\n<p>Vector doesn't judge you. It doesn't tell you that you're behind on 3 tasks with a red exclamation mark. It doesn't generate reports on your \"productivity patterns.\" It doesn't send notifications to remind you that you were supposed to finish something yesterday.</p>\n<p>If Vector says nothing, everything is fine. You don't have to check. You trust and execute.</p>\n<p>That's a radically different posture from most productivity tools, which tend to maximize notifications, badges, streaks — everything that creates engagement, but also anxiety. Vector makes the opposite assumption: <strong>a solopreneur who isn't needlessly interrupted is a solopreneur who delivers.</strong></p>\n\n<h2>The honest question</h2>\n<p>Does Vector solve all your productivity problems? No. No tool does.</p>\n<p>What it solves is the starting friction — that moment between \"I have things to do\" and \"I know exactly what to do right now.\" That friction is real, it's costly, and it's avoidable.</p>\n<div class=\"article-highlight\">If you spend more time managing your task system than executing inside it, the problem isn't your lack of discipline. It's that your tool is asking too much of you.</div>\n<p>Vector is built so you arrive at something ready. Your only decision: execute.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Vector is in early access.</p>\n  <p>If you're a solopreneur and want to test AI planning before the public launch, join the waitlist now.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the waitlist &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-3",
+    "title": "How long should project management really take? (Spoiler: less than you think)",
+    "date": "April 20, 2026",
+    "readTime": "5",
+    "excerpt": "Most solopreneurs spend 130 hours a year managing their tasks — not completing them. Here's why, and how to reclaim that time.",
+    "content": "<p>Do you remember the last time you finished a week feeling like everything was under control?</p>\n<p>Not just that you worked hard — but that you worked on the right things, in the right order, without letting anything drag.</p>\n<p>For most solopreneurs, that feeling is rare. And often, the reason isn't a lack of talent or effort. It's that too much time and energy goes into <strong>managing the work</strong> — not doing it.</p>\n\n<h2>The busy solopreneur paradox</h2>\n<p>There's something nobody says clearly about solo life: a significant portion of your work time produces nothing concrete.</p>\n<p>Not because you're inefficient. But because running a solo business also means doing invisible work: deciding what to do, when to do it, how to organize it, in what order to plan it. This work-on-work — sometimes called <em>meta-work</em> — is necessary. But it needs to stay proportionate.</p>\n<p>For many solopreneurs, these proportions have drifted without them fully realizing it.</p>\n\n<h2>What solopreneurs actually do during those 2.5 hours of management</h2>\n<p>When you ask solopreneurs how long they spend managing their tasks, the typical answer is: <em>\"Oh, not that much. Maybe 30 minutes a day.\"</em></p>\n<p>In reality, when you break down the activities, you often arrive at <strong>2.5 hours per week</strong> — sometimes more. Here's what it looks like:</p>\n<ul>\n  <li><strong>Capturing tasks (30 min)</strong> — noting what comes in throughout the week, from emails, conversations, ideas, client requests</li>\n  <li><strong>Organizing by project (20 min)</strong> — deciding where things go, what connects to what, what's urgent vs. important</li>\n  <li><strong>Estimating durations (30 min)</strong> — calculating how long each task will take, often blindly</li>\n  <li><strong>Scheduling in time (40 min)</strong> — distributing tasks in your calendar, juggling availability, avoiding conflicts</li>\n  <li><strong>Tracking progress (30 min)</strong> — checking what's done, what slipped, what needs to be rescheduled or revisited</li>\n</ul>\n<p>Total: 2.5 hours. Every week. 52 weeks a year.</p>\n\n<h2>The real cost: 130 hours a year</h2>\n<p>2.5 hours a week seems reasonable. But multiplied over a year, that's <strong>130 hours spent managing tasks</strong> — not completing them.</p>\n<p>130 hours is:</p>\n<ul>\n  <li>16 full work days</li>\n  <li>enough time to deliver 6 to 8 additional client projects</li>\n  <li>entire weeks of content creation, development, strategic thinking</li>\n</ul>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\">130h</div><div class=\"stat-label\">lost per year</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\">16</div><div class=\"stat-label\">full work days</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\">8</div><div class=\"stat-label\">fewer client projects</div></div>\n</div>\n\n<p>And that's without counting the cognitive cost. Because task management doesn't just take time — it takes mental energy. The energy you spend organizing your week on Monday morning is energy you no longer have for your best work the rest of the week.</p>\n\n<h2>Planning fatigue: an invisible brake</h2>\n<p>There's a well-documented phenomenon in cognitive psychology: <strong>decision fatigue</strong>. The more decisions you make in a day, the worse the quality of subsequent decisions becomes.</p>\n<p>And task management is fundamentally a long series of small decisions: <em>Is this urgent? What does it block? How long will it take? Where do I fit it in the week?</em></p>\n<p>When you do this first thing in the morning, before opening a file or writing a single line, you're already drawing down your cognitive reserves for the rest of the day.</p>\n<div class=\"article-highlight\">This is why so many solopreneurs feel exhausted for no apparent reason. It's not the work that's tiring — it's the constant management of work.</div>\n\n<h2>What \"managing your time well\" really means</h2>\n<p>There's a common confusion between <em>planning well</em> and <em>planning a lot</em>.</p>\n<p>An effective management system for a solopreneur doesn't demand more time and energy — it demands less. Its goal isn't to create perfect plans. Its goal is to <strong>minimize the friction between \"I have things to do\" and \"I know exactly where to start.\"</strong></p>\n<p>The right question isn't: <em>How can I plan my week better?</em></p>\n<p>The right question is: <strong>Which part of this planning can be done by something else on my behalf?</strong></p>\n\n<h2>What Vector changes about the equation</h2>\n<p>This is exactly where Vector comes in.</p>\n<p>Instead of asking you to manage each task manually, Vector takes over the planning work itself. You do a <em>brain dump</em> — you give it the raw chaos of your week. What's on your mind, emails received, ongoing projects, floating priorities. No particular format.</p>\n<p>Vector analyzes, structures, estimates durations based on your real history, detects dependencies, and generates a complete plan. All you have to do is validate — or adjust if something doesn't work for you.</p>\n<p>Result: what used to take 2.5 hours per week shrinks to <strong>15 minutes or less</strong>. You arrive Monday morning to a plan already built. You validate. You work.</p>\n<p>And every minute you don't spend organizing, you spend producing.</p>\n\n<div class=\"stat-comparison stat-block\">\n  <div class=\"stat-compare-item\">\n    <div class=\"stat-compare-label\">Without Vector</div>\n    <div class=\"stat-compare-number muted\">2h30</div>\n    <div class=\"stat-compare-sub\">management / week</div>\n  </div>\n  <div class=\"stat-compare-divider\">&rarr;</div>\n  <div class=\"stat-compare-item\">\n    <div class=\"stat-compare-label highlight\">With Vector</div>\n    <div class=\"stat-compare-number\">15 min</div>\n    <div class=\"stat-compare-sub\">management / week</div>\n  </div>\n</div>\n\n<h2>What you could do with 2 hours back</h2>\n<p>Concretely, getting 2 hours back per week means:</p>\n<ul>\n  <li>one more client meeting</li>\n  <li>a blog article written and published</li>\n  <li>a proposal sent</li>\n  <li>an hour of strategic work you keep putting off week after week</li>\n  <li>real free time — not \"I finished my list\" but truly offline</li>\n</ul>\n<p>Over a year, it's a fundamental transformation in how you work — and in what you're capable of delivering.</p>\n\n<h2>The question to ask yourself this week</h2>\n<p>The next time you spend time reorganizing your task list, estimating durations, juggling your calendar — ask yourself one question:</p>\n<div class=\"article-highlight\">Am I working right now, or am I managing the fact that I have work to do?</div>\n<p>Because if you spend more time organizing your work than executing it, it's not a method question. It's a system question.</p>\n<p>And a well-designed system should do that work for you.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Ready to reclaim those 130 hours?</p>\n  <p>Vector is in early access. Join the waitlist and be among the first to test AI planning for solopreneurs.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the waitlist &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-4",
+    "title": "Why I built Vector",
+    "date": "April 24, 2026",
+    "readTime": "5",
+    "excerpt": "This isn't a technology story. It's a Tuesday night at 10 PM, a list of 40 tasks scattered everywhere, and a decision to never manage a business with your memory again.",
+    "content": "<p>There's a moment I won't forget.</p>\n<p>It was a Tuesday night, around 10 PM. I had a list of 40+ tasks spread across Notion, my notes app, a client message thread, and a sheet somewhere on my desk. I'd worked all day. And yet, I had no idea whether I'd actually moved the needle on the right things.</p>\n<p>It wasn't an exceptionally bad day. It was a normal day.</p>\n<p>And that's when I understood the problem wasn't me. It was the system — or rather, the absence of a system that worked <em>for</em> me.</p>\n\n<h2>The reality of solo work nobody prepares you for</h2>\n<p>When you launch your solo business, everyone talks about freedom. Autonomy. Choosing your projects, your clients, your schedule.</p>\n<p>What nobody talks about is the permanent mental load.</p>\n<p>Because as a solopreneur, you're not just the producer. You're also the project manager, the priority manager, the follow-up coordinator, the planning officer. And you have to do all of this on top of the actual work itself, often outside normal hours, often in the corners of the day.</p>\n<p>I lived that. For a long time, I thought it was normal. That it was the price of freedom. That the people who seemed to have it together had a discipline I hadn't developed yet.</p>\n<p>It wasn't a discipline question. It was a design question.</p>\n\n<h2>The tools I tried (and why they didn't stick)</h2>\n<p>Like most solopreneurs, I looked for the solution in tools.</p>\n<p>Notion first — with its databases, Kanban views, elaborate templates. It worked well for a few weeks, then the system became too heavy to maintain. I was spending more time organizing Notion than working in it.</p>\n<p>Todoist next. Simpler, faster to capture. But no big-picture view, no connection between projects, no realistic estimate of what was actually doable in a week.</p>\n<p>I tested methods too — GTD, time blocking, the two-minute rule. Some were relevant in principle. But they all had the same weak point: they depended entirely on <strong>me</strong> to feed them, maintain them, and follow them.</p>\n<div class=\"article-highlight\">The problem with all these tools was that they demanded I be perfect to function. And nobody is, especially not working solo.</div>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.35rem;letter-spacing:-0.5px\">Notion</div><div class=\"stat-label\">too heavy to maintain</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.35rem;letter-spacing:-0.5px\">Todoist</div><div class=\"stat-label\">no big-picture view</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.35rem;letter-spacing:-0.5px\">GTD</div><div class=\"stat-label\">demands too much of me</div></div>\n</div>\n\n<h2>The moment I changed the question</h2>\n<p>For a long time, I was asking the wrong question: <em>How can I get better organized?</em></p>\n<p>One day, I changed it: <em>Why am I still the one doing all this organizational work?</em></p>\n<p>That shift seems subtle. It isn't.</p>\n<p>The first question tries to improve me. The second tries to eliminate an entire task from my plate.</p>\n<p>And at that moment, AI had just reached a level where that second question had a concrete answer. Not the AI of generic chatbots — the AI capable of reading context, understanding implicit priorities, estimating durations, detecting dependencies. The AI that can take chaos in and return a plan out.</p>\n<p>I started building Vector from there.</p>\n\n<h2>What I wanted to create (and what I didn't)</h2>\n<p>From the start, I had a very clear idea of what Vector would <em>not</em> be.</p>\n<p>Not another dashboard with productivity metrics. Not an app that sends you notifications to remind you you're behind. Not a tool that judges you or maximizes your engagement through anxiety.</p>\n<p>What I wanted to build was almost the opposite: <strong>a tool that speaks as little as possible.</strong> That only interrupts when it's truly useful. That does the heavy lifting in silence and presents a clear result. That trusts you to execute once the plan is there.</p>\n<p>The core idea: you come to Vector with the chaos of your week — the projects, the ideas, the emails, the urgencies. You dump everything. Vector analyzes, structures, plans. And you just execute.</p>\n<p><em>Dumps in, plan out.</em></p>\n\n<h2>Who I'm building Vector for</h2>\n<p>I'm building Vector for the person I was that Tuesday night at 10 PM.</p>\n<p>The solopreneur who works hard but sometimes doubts they're working on the right things. Who forgets tasks not from negligence, but because their brain is at capacity. Who has tried several tools and abandoned each one, not from lack of willpower, but because they demanded too much in return.</p>\n<p>I'm building Vector for freelancers, consultants, creators, entrepreneurs who manage a complete business solo — and who deserve a system that matches that reality.</p>\n<p>Not a perfect system. But a <strong>reliable</strong> one. One that doesn't rely entirely on their memory and discipline to function.</p>\n\n<div class=\"stat-single stat-block\">\n  <div class=\"stat-number\">25<span class=\"stat-unit\"> spots</span></div>\n  <div class=\"stat-label\">beta testers &middot; 6 months Pro included &middot; one condition: feedback within 30 days</div>\n</div>\n\n<h2>Where Vector is today</h2>\n<p>Vector is still being built. We're in beta — the first features are in place, the AI engine is running, and we're actively working on the next iterations in collaboration with testers.</p>\n<p>What we're building right now:</p>\n<ul>\n  <li>intelligent <em>brain dump</em> — paste anything, get a structured plan</li>\n  <li>rolling horizon planning — what's realistically doable this week</li>\n  <li>duration learning — Vector learns how long <em>you</em> take for each type of task</li>\n  <li>COO mode — for those who want Vector to anticipate problems before they happen</li>\n</ul>\n<p>There's still a lot to do. But the direction is clear, and every feature answers the same question: does this reduce the solopreneur's mental load, or does it increase it?</p>\n<p>If it increases it, it doesn't belong in Vector.</p>\n\n<h2>An invitation</h2>\n<p>If you recognize yourself in what I described — the overflowing list, the system that runs on your memory, the fatigue of planning before you've even started — then Vector is built for you.</p>\n<p>Not because it's the perfect tool. Because it's the tool built by someone who lived exactly what you're living.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Join Vector's first testers.</p>\n  <p>The first 25 people to sign up receive 6 months of Pro for free. One condition: feedback within the first month.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the beta &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-5",
+    "title": "AI fatigue: I adopted 12 AI tools to move faster — I've never been so exhausted",
+    "date": "April 28, 2026",
+    "readTime": "6",
+    "excerpt": "Every tool promises to save you time. But the more you adopt, the higher your mental load. Here's why — and what it says about what AI should really do for solopreneurs.",
+    "content": "<p>18 months ago, a solopreneur who wanted to \"optimize\" their productivity installed Notion and already felt ahead of the game.</p>\n<p>Today, the stack looks something like this:</p>\n<p>ChatGPT for writing. Claude for thinking. Perplexity for research. Otter for meeting notes. Zapier for automations. Make for workflows. Notion AI for docs. Cal.ai for calendar. Superhuman for email. Motion for scheduling. Loom for client videos. And a fifteenth tool installed last week after a promising YouTube video.</p>\n<p>Every one of these tools promises to save you time.</p>\n<p>And yet.</p>\n\n<h2>The paradox nobody dares name</h2>\n<p>There's a phrase increasingly surfacing in solopreneur forums, podcasts, and 3 AM Reddit threads: <strong>AI fatigue</strong>.</p>\n<p>Not the fatigue of working hard. The fatigue of managing tools that are supposed to work for you.</p>\n<p>Because every tool has its interface. Its logic. Its subscription. Its updates. Its moments when it breaks and you spend 45 minutes debugging a Zapier automation that worked perfectly yesterday.</p>\n\n<div class=\"article-highlight\">The more AI tools you adopt, the higher your mental load. Not despite the tools. Because of them.</div>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\">12+</div><div class=\"stat-label\">tools in the average \"optimized\" solopreneur's stack</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\">45<span class=\"stat-unit\">min</span></div><div class=\"stat-label\">lost on average debugging a broken automation</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\">0</div><div class=\"stat-label\">tools that think ahead for you without being asked</div></div>\n</div>\n\n<h2>The solopreneur brain is not an orchestra conductor</h2>\n<p>There's a fantasy in productivity communities. The solopreneur as maestro, orchestrating an army of AI agents, each playing their part while they focus on the vision.</p>\n<p>It's a beautiful image. It's not reality.</p>\n<p>The reality is that orchestrating 12 tools is a full-time job. Deciding which tool to use for which task, maintaining the connections between them, adapting prompts, checking outputs — none of that happens by itself. That invisible work is work you're doing.</p>\n<p>And there's something particularly insidious about it: it <em>looks</em> like productivity, but it isn't. You spend hours configuring ways to work better without ever actually working better.</p>\n<p>Cognitive neuroscientists call this <strong>meta-work</strong> — work on the work. And for brains already running at full capacity — especially entrepreneur profiles with ADHD tendencies or hyperstimulation — it's a silent drain.</p>\n\n<h2>What AI should do — and doesn't yet</h2>\n<p>Here's the uncomfortable truth about most AI tools available today: they're <strong>reactive</strong>. They wait for you to talk to them. To formulate a good question. To copy-paste the right context. To know what you need.</p>\n<p>But the real problem for a solopreneur under pressure isn't a lack of tools to execute. It's a lack of clarity on <em>what</em> to execute, in what order, with what available energy.</p>\n<p>No AI tool solves that today. They all answer questions you ask them. But they don't help you know which questions to ask — or when to stop optimizing and start doing.</p>\n\n<div class=\"article-highlight\">The useful AI for a solopreneur isn't the one that does things for you once told what to do. It's the one that absorbs ambient disorder and surfaces a clear direction without you having to explicitly ask. The difference between an assistant and a co-pilot.</div>\n\n<h2>Fewer tools. More intelligence.</h2>\n<p>The trend emerging among the most advanced solopreneurs isn't adopting one more tool. It's the great cleanup: returning to a minimal infrastructure, with one central intelligence that actually does the work of connection.</p>\n<p>One external brain. Not a collection of partial brains.</p>\n<p>That's exactly the question we asked ourselves when building Vector: what if AI didn't just execute tasks, but took charge of the planning work itself? Absorb the chaos, estimate durations, organize priorities within the real time of your week — without configuration.</p>\n<p>Not one more tool in your stack. A layer of intelligence that makes your stack unnecessary.</p>\n\n<h2>You're not bad at productivity. You're over-tooled.</h2>\n<p>If you recognize yourself in this — if you feel like you spend as much time managing your tools as moving your projects forward — take one thing away from this.</p>\n<p>It's not a discipline problem. It's not that you're not rigorous or organized enough. It's that it's 2026, you're bombarded with tools designed for teams, sold to solopreneurs, and nobody has ever given you the system that actually makes it all hold together.</p>\n<p>That system is what we're building.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Stop managing your tools. Start delivering.</p>\n  <p>Vector is an intelligent planning app built for solopreneurs who want to arrive Monday morning with a clear plan — without having spent Sunday evening building it.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the early adopters &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-6",
+    "title": "Why you're still undercharging — and it's not a math problem",
+    "date": "April 30, 2026",
+    "readTime": "6",
+    "excerpt": "You know your worth. You've done the math. And yet, your hand trembles before hitting Send. This block isn't a pricing problem — it's an identity problem.",
+    "content": "<p>There's a conversation almost every solopreneur has had with themselves, often very late at night, often after sending a proposal to a client.</p>\n<p><em>\"Is this too expensive? Will they accept it? Maybe I should put a little less to make sure...\"</em></p>\n<p>And often, you lower it. Just a bit. Just to secure the deal. Just to not lose the client.</p>\n<p>This moment — this hesitation — has nothing to do with the numbers. You could know your market value cold, have done all the math, rationally know your rate is justified. And yet, your hand trembles over the keyboard before hitting Send.</p>\n<div class=\"article-highlight\">This isn't a pricing problem. It's an identity problem.</div>\n\n<h2>Employment programmed you for this</h2>\n<p>Spend 5, 10, 15 years as an employee, and your brain internalizes a fundamental rule: <strong>your value is set by someone else</strong>.</p>\n<p>A manager. A salary grid. A collective agreement. Whatever the mechanism — someone external defines what you're worth. And your role is to accept, negotiate at the margin, and fit the mold.</p>\n<p>That's not a criticism. It's simply the implicit contract of employment, and it makes perfect sense in that context.</p>\n<p>The problem is when you become a solopreneur. Overnight, nobody sets your value for you. You have to do it yourself. And at that point, two things happen simultaneously in your brain:</p>\n<p>The first: excitement. <em>Finally, I'm free to charge what I'm truly worth.</em></p>\n<p>The second, much more insidious: <strong>the legitimacy panic</strong>. <em>But who am I to decide I'm worth that?</em></p>\n<p>And it's that second voice that wins, most of the time. Not because it's right. Because it's older, deeper, and speaks the language of survival.</p>\n\n<h2>The hourly rate: the most widespread trap</h2>\n<p>There's one thing almost all solopreneurs do at the start — and many continue doing long after: <strong>calculate their rate based on their old salary</strong>.</p>\n<p>The equation is simple. You made $60K a year. You divide by 220 working days, then by 8 hours. And you get an hourly rate that feels \"honest.\"</p>\n<p>Except this equation forgets a few details:</p>\n<ul>\n  <li>You don't bill 8 hours a day. You bill 4 or 5, on a good day — the rest is prospecting, accounting, emails, project management, discovery calls.</li>\n  <li>You no longer have paid vacation. No employer contributions. No equipment provided. No paid training.</li>\n  <li>You're bearing risk your former employer carried for you.</li>\n  <li>And most importantly: <strong>you're no longer selling time. You're selling results.</strong></li>\n</ul>\n<p>That's where everything changes — and where many solopreneurs remain stuck for years.</p>\n\n<h2>Selling time vs. selling value</h2>\n<p>An employee is paid to be available. A solopreneur is paid to transform a situation.</p>\n<p>These aren't the same thing. And the rate shouldn't be calculated the same way.</p>\n<p>When a client hires you, they're not buying hours. They're buying the resolution of a problem that's costing them money, time, or energy. They're buying a transformation — a before and after.</p>\n<p>The question you should ask when setting your price isn't <em>how many hours will this take me?</em> It's <em>what is the value of this result to this client?</em></p>\n<p>A consultant who helps a company double its conversion rate in three months isn't worth $75 an hour. They're worth a fraction of what they generate. And if the client doesn't understand that, the problem isn't your price — it's your positioning.</p>\n\n<h2>The client who says \"too expensive\" is not telling you you're worth less</h2>\n<p>This might be the hardest lesson to internalize: <strong>a prospect who declines your rate is not telling you you're not good.</strong></p>\n<p>They're telling you one or more of these things:</p>\n<ul>\n  <li>They haven't yet understood the value of what you do.</li>\n  <li>They're not your ideal client.</li>\n  <li>They simply don't have the budget — and that's not your problem to solve by lowering your prices.</li>\n</ul>\n<div class=\"article-highlight\">The day I stopped trying to convince the wrong clients, the right clients started appearing.</div>\n<p>This isn't magical thinking. It's natural selection. A high rate repels those who want cheap. It attracts those who want quality. And paradoxically, clients who pay well are often the least problematic — because they understand what they're buying.</p>\n\n<h2>Fewer clients. More revenue. Less burnout.</h2>\n<p>There's a model that the most successful solopreneurs all eventually adopt, at some point.</p>\n<p>Not 12 small clients at $500/month. Three or four strategic clients at $3,000, $5,000, $10,000 per engagement — depending on your field.</p>\n<p>Less surface area. Less dispersion. Fewer emails to manage, fewer contexts to switch between, fewer relationships to maintain.</p>\n<p>And strangely: more depth. More real impact on projects. More results you can be proud of.</p>\n<p>When each project truly counts — financially and symbolically — you work differently. You plan better. You invest fully. You deliver something you're proud of.</p>\n<p>This is actually something we observe with Vector testers: when projects are fewer but more significant, planning becomes critical. Not out of perfectionism — but because you can't afford to lose track of a commitment that really matters.</p>\n\n<h2>Where to start concretely</h2>\n<p>If you want to break the underpricing cycle, there's no magic formula. But there are a few concrete shifts that change things:</p>\n<ul>\n  <li><strong>Stop calculating from your old salary.</strong> Calculate from what your clients gain through you.</li>\n  <li><strong>Test the discomfort.</strong> Next time you send a proposal, raise it by 20%. If it doesn't feel slightly scary, it's probably still too low.</li>\n  <li><strong>Document your results.</strong> Not to brag — to remember. Every time a client expresses gratitude, write it down. It's your antidote against the voice that says you're not legitimate.</li>\n  <li><strong>Choose a segment.</strong> Generalists compete on price. Specialists compete on value. The more precise you are about what you solve, for whom, and in what context — the higher the rates you can command without anyone blinking.</li>\n</ul>\n\n<h2>The real luxury of the solopreneur</h2>\n<p>There's something few people say out loud about solopreneur life.</p>\n<p>The real luxury isn't working from anywhere. It isn't having no boss. It's this: <strong>the right to decide your work is worth what it's worth, and to find people who agree with you.</strong></p>\n<p>It's intimidating at first. It's liberating with time.</p>\n<p>And it's a freedom nobody else can give you. It's built one proposal at a time, one assumed no at a time, one ideal client found at a time.</p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Join Vector's early adopters</p>\n  <p>Vector is an intelligent planning app built for solopreneurs managing high-value projects — those who need clarity, not another task list.</p>\n  <p>We're building something for solopreneurs who've decided to work better, not more. Early access, founder pricing, and the ability to directly influence what we build.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the early adopters list &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-7",
+    "title": "The solopreneur's loneliness: the part nobody shows on Instagram",
+    "date": "May 1, 2026",
+    "readTime": "7",
+    "excerpt": "There's an image that circulates in solopreneur culture — a clean desk, numbers going up. What it doesn't show is the loneliness at the heart of the freedom you chose.",
+    "content": "<p>There's an image that circulates in solopreneur culture.</p>\n<p>A clean desk. A cup of coffee. A screen with numbers going up. A caption: <em>\"Built this in 18 months from home.\"</em></p>\n<p>Thousands of likes. Hundreds of admiring comments. And somewhere, in an apartment or home office, another solopreneur looking at this thinking — <em>yeah, but they're not showing the rest.</em></p>\n<p>They're not showing the Wednesday afternoon when an important decision can't wait, but there's no one to run it by. No team. No office colleague. No manager to call — what was once a constraint is now, strangely, a gap.</p>\n<p>They're not showing that strange and slightly shameful thing most solopreneurs feel at some point: <strong>loneliness at the very heart of the freedom they chose.</strong></p>\n\n<h2>Freedom has an emotional cost nobody mentions in the business plan</h2>\n<p>When you leave employment to work for yourself, you prepare for a lot. You anticipate revenue instability. You learn accounting. You figure out prospecting, selling, delivering.</p>\n<p>You don't prepare for this: <strong>the absence of witnesses.</strong></p>\n<p>In a company, even an imperfect one, there are people who see your work. Who know when you handled a difficult situation well. Who notice when you're exhausted. The social fabric — often invisible, often underestimated — disappears overnight when you go solo.</p>\n<p>And this isn't a lack of resilience. It's not a sign you're not cut out for entrepreneurship. It's a neurological reality: humans are social animals, and the human brain simply isn't designed to make high-stakes emotional decisions in permanent isolation.</p>\n\n<div class=\"article-highlight\">Chronic loneliness activates the same brain regions as physical pain. It degrades decision quality. It amplifies cognitive biases — including impostor syndrome, which thrives precisely in silence.</div>\n\n<h2>Impostor syndrome grows best in silence</h2>\n<p>There's something that team work does naturally, without you quite noticing: <strong>it calibrates your perception of yourself.</strong></p>\n<p>A colleague who says <em>that was really well handled</em>. A meeting where your idea gets adopted. A satisfied client whose reaction you see in real time. These micro-signals, accumulated over years, build a self-image anchored in external reality.</p>\n<p>When you work alone, those signals disappear. What remains is your own inner voice — and it's rarely the most objective. It tends to amplify failures, minimize successes, and compare your chaotic daily reality with the carefully filtered highlights others post online.</p>\n<p>The result is what many solopreneurs describe as a kind of <strong>permanent legitimacy fog</strong>: you move forward, you deliver, you get positive feedback — and you never quite believe it. As if a definitive verdict on your real worth is always pending, and nobody is there to pronounce it.</p>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.15rem;letter-spacing:-0.3px\">Isolation</div><div class=\"stat-label\">amplifies impostor syndrome</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.15rem;letter-spacing:-0.3px\">Silence</div><div class=\"stat-label\">erases external validation signals</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.15rem;letter-spacing:-0.3px\">Filter</div><div class=\"stat-label\">your daily reality vs Instagram highlights</div></div>\n</div>\n\n<h2>The false solutions and why they don't quite work</h2>\n<p>The solopreneur community has its standard answers: <em>masterminds</em>, coworking spaces, Slack and Discord communities. All of these have value. None fully solves the problem.</p>\n<p>Because the problem isn't the absence of people around you. It's the absence of someone who <strong>understands exactly what you're going through right now</strong> — not in broad strokes, not generically, but in the precise detail of your project, your constraints, your week as it actually is.</p>\n<p>A monthly mastermind doesn't know you have three overlapping deliverables this week and can't figure out which to prioritize. A coworking space doesn't know you've been hesitating for two days on a pricing decision that could change the trajectory of an important client.</p>\n<div class=\"article-highlight\">That's the granularity that's missing. And nobody has really solved it — because it requires something that didn't exist until recently: an intelligent presence that knows your context deeply, available at 2 PM on a Tuesday.</div>\n\n<h2>What I learned from talking to dozens of solopreneurs</h2>\n<p>Building Vector, we had long conversations with solopreneurs from every field — designers, consultants, developers, content creators, coaches. And one thing came up almost every time, phrased differently but pointing to the same place:</p>\n<p><em>\"What I miss most is someone who knows my context and can help me think out loud.\"</em></p>\n<p>Not a coach — too formal, too expensive, one hour a week. Not a partner — too many implications, too much complexity. Just... a presence that understands where you are, that sees your week as it is, and can help you get clear when your head is spinning.</p>\n<p>That's part of what we're trying to build with Vector. Not another tool. A system that knows your projects, your pace, your priorities — and that can become that anchor when you need it. It doesn't replace human connection. But it fills something real in the moments when those connections aren't available.</p>\n\n<h2>Loneliness isn't a flaw. It's a signal.</h2>\n<p>If you recognize yourself in this, take one thing away before you close this tab.</p>\n<p>What you feel isn't a sign you're not built for this. It's not a lack of character, discipline, or vision. It's a sign that you're human, doing difficult work in conditions that don't yet have an instruction manual.</p>\n<p><strong>You're not the only one experiencing this.</strong> And it's not a weakness to get rid of — it's a reality to address actively, with as much seriousness as you bring to building your marketing funnel or optimizing your rates.</p>\n\n<h2>Things that actually help — no bullshit</h2>\n<ul>\n  <li><strong>Name what you're experiencing.</strong> Acknowledge that solopreneur loneliness is real, and that it deserves to be taken seriously — not minimized behind <em>\"but I'm free, I can't complain.\"</em></li>\n  <li><strong>Find a peer, not a mentor.</strong> Mentors are useful for direction. Peers — someone at the same stage as you — are useful for not feeling alone in the daily reality. The distinction matters.</li>\n  <li><strong>Externalize the memory of your projects.</strong> A significant part of solopreneur exhaustion comes from carrying everything in your head. When that context lives somewhere outside of you, accessible and organized, the mental load drops — just enough for your head to be less full when you need it most.</li>\n  <li><strong>Celebrate what you've delivered.</strong> Not publicly if that's not natural for you. But write it down. Solopreneur wins tend to vanish instantly into the pressure of what's left to do — and that selective amnesia is one of the silent causes of impostor syndrome.</li>\n</ul>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Building something alone? Vector is built for you.</p>\n  <p>A system that knows your context, organizes your projects, and lightens the load of carrying everything in your head. Early access, founder pricing, and a community of solopreneurs who understand exactly what we just described.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the early adopters &rarr;</button>\n</div>"
+  },
+  {
+    "id": "article-8",
+    "title": "Context switching: why you never quite finish anything",
+    "date": "May 3, 2026",
+    "readTime": "6",
+    "excerpt": "There's an invisible cost in your workdays. 23 minutes of lost focus per interruption, 50+ context switches per day. Here's why context switching destroys solopreneur productivity — and what actually changes it.",
+    "content": "<p>There's a cost that doesn't show up anywhere in your workday. No dashboard tracks it. No notification alerts you to it. And yet it explains, in large part, why you end your days exhausted with the persistent feeling that nothing really moved forward.</p>\n<p>That cost is the cost of switching between tasks. And for solopreneurs, it's devastating.</p>\n\n<h2>The typical workday nobody describes honestly</h2>\n<p>Here's what a normal solo workday actually looks like. You open your computer planning to work on the client proposal you need to send tonight. Before opening the file, you quickly check your emails. A message from another client asks for a project update. You reply — five minutes, no more. Except while replying, you realize you need to check that project's progress. You open Notion. You come across a task you'd marked \"to do this week\" that's still untouched. A bit of anxiety. You decide to handle it quickly. Thirty-five minutes later, you remember: the proposal.</p>\n\n<div class=\"article-highlight\">It's 11 AM. You haven't started what you got up to do this morning.</div>\n\n<p>This scenario isn't a discipline problem. It's a <strong>context switching</strong> problem — and for solopreneurs, it's structurally inevitable if the work environment isn't designed to counter it.</p>\n\n<h2>What the research says — and nobody reads</h2>\n<p>In 2001, a study by Gloria Mark at the University of California Irvine produced a number that remains one of the most cited in cognitive psychology applied to work.</p>\n\n<div class=\"stat-single stat-block\">\n  <div class=\"stat-number\">23<span class=\"stat-unit\"> min</span></div>\n  <div class=\"stat-label\">the average time the human brain needs to return to a state of deep focus after an interruption</div>\n</div>\n\n<p>Twenty-three minutes. Per transition. And more recent research is even less encouraging: in a fragmented work environment, a worker can switch tasks or context <strong>more than 50 times per day</strong>. Most of these transitions are self-inflicted — a notification, a stray thought, a \"quick check\" that never is.</p>\n<p>The result: the vast majority of work time is spent on tasks in partial mode — started, interrupted, resumed, interrupted again. Deep concentration, the kind that produces real progress, is present for only a fraction of the day.</p>\n\n<div class=\"stat-comparison stat-block\">\n  <div class=\"stat-compare-item\">\n    <div class=\"stat-compare-label\">Switches / day</div>\n    <div class=\"stat-compare-number muted\">50+</div>\n    <div class=\"stat-compare-sub\">context changes</div>\n  </div>\n  <div class=\"stat-compare-divider\">&times;</div>\n  <div class=\"stat-compare-item\">\n    <div class=\"stat-compare-label highlight\">Cost per switch</div>\n    <div class=\"stat-compare-number\">23 min</div>\n    <div class=\"stat-compare-sub\">to regain focus</div>\n  </div>\n</div>\n\n<h2>Why solopreneurs are especially vulnerable</h2>\n<p>In a company with a team, roles naturally create some protection against context switching. The developer has their sprints. The project manager absorbs interruptions to protect the others.</p>\n<p>Solo, you play all these roles simultaneously. Every role demands your attention concurrently, often at the same time. There's no one to filter, prioritize, or absorb requests on your behalf. Everything lands directly on you — and your brain tries to handle it all in parallel, which it wasn't designed to do.</p>\n<p>Chronic context switching produces three effects solopreneurs immediately recognize when they're named:</p>\n\n<div class=\"stat-grid stat-block\">\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.1rem;letter-spacing:-0.2px\">Fatigue</div><div class=\"stat-label\">for no apparent reason — you didn't work hard, but you're exhausted</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.1rem;letter-spacing:-0.2px\">Incompletion</div><div class=\"stat-label\">lots of things advanced, nothing truly finished</div></div>\n  <div class=\"stat-item\"><div class=\"stat-number\" style=\"font-size:1.1rem;letter-spacing:-0.2px\">Anxiety</div><div class=\"stat-label\">the diffuse sense that something important is slipping away</div></div>\n</div>\n\n<p>These aren't symptoms of bad character or lack of rigor. They're the predictable effects of a brain subjected to too many transitions in an environment with no protective structure.</p>\n\n<h2>The real problem with most proposed solutions</h2>\n<p>The standard answer to context switching is <strong>time blocking</strong>: scheduling chunks of time in your calendar for each type of task, creating \"deep work\" zones, turning off notifications.</p>\n<p>It's a good idea in theory. In practice, it fails for one specific reason: <strong>time blocking doesn't survive the first unexpected event.</strong></p>\n<p>An urgent client. A task that takes twice as long as expected. A technical issue to handle right now. The moment reality deviates from the plan — which it always does — time blocking collapses. And rebuilding your plan manually mid-day is exactly the kind of exhausting meta-work that makes cognitive fatigue worse, not better.</p>\n\n<div class=\"article-highlight\">The real solution to context switching isn't to plan better once a week. It's having a system capable of replanning in real time when the unexpected hits — without you doing the reconstruction work.</div>\n\n<h2>What changes when your plan adapts to you</h2>\n<p>Imagine a day structured differently. Not a task list you dip into based on mood or urgency — but a plan that tells you, at each point of the day, what's the next right thing to do, in what context, with what level of energy required.</p>\n<p>A plan that knows you have 90 minutes free in the morning before your 10 AM call, and that this slot is perfect for the deep-focus work that requires concentration. That knows that in the afternoon, after two hours of meetings, you're less available for creation and more comfortable with administrative tasks or emails. That automatically adjusts when something takes longer than expected — without you having to recalculate everything.</p>\n\n<h2>Vector: planning built for fragmented brains</h2>\n<p>Vector is an AI planning app designed specifically for solopreneurs — and context switching is one of the central realities it addresses.</p>\n<p>When you use Vector, you're not creating a task list you'll then try to stick to. You give it the raw chaos of your week — projects, priorities, constraints, availability — and it generates a structured plan with coherent work blocks, estimates based on your real history, and the ability to readjust when things change.</p>\n<p>The result: fewer decisions to make mid-day. Fewer unwanted transitions. More deep focus blocks, because they're protected by the plan — not by willpower alone.</p>\n<p><strong>This isn't a tool that asks you to be disciplined to work. It's a tool designed to work even when you're not.</strong></p>\n\n<div class=\"article-cta\">\n  <p class=\"article-cta-title\">Ready to take back control of your days?</p>\n  <p>Vector is in early access for solopreneurs who want to test a radically different approach to planning — one that works <em>with</em> the reality of your brain, not against it.</p>\n  <button class=\"cta-button\" onclick=\"goToSignup()\">Join the waitlist &rarr;</button>\n</div>"
+  }
+];
+
+        /* ══════════════════════════════════════════════════════
+           ── INTERNATIONALISATION ──
+        ══════════════════════════════════════════════════════ */
+
+        let currentLang = 'fr';
+        let currentState = { page: 'home', articleId: null };
+
+        function getDisplayArticles() {
+            return currentLang === 'en' ? ARTICLES_EN : articles;
+        }
+
+        const T = {
+            fr: {
+                navHome: 'Accueil',
+                navArticles: 'Articles',
+                navSignup: 'Inscription',
+                logoTagline: 'L\'IA planifie, <span>toi tu accomplis.</span>',
+                heroH1: 'Tu sais ce que tu fais <span class="highlight">aujourd\'hui.</span> <span class="highlight">Sans stress.</span>',
+                heroP: 'Vector est l\'assistant qui transforme ton chaos en clarté — pour que tu arrêtes de gérer et que tu commences à avancer.',
+                heroCTA: 'Rejoindre la beta',
+                featuresH2: 'Pourquoi Vector change la donne',
+                featuresSubtitle: 'Trois principes. Zéro stress.',
+                feature1Title: 'Rien n\'est oublié',
+                feature1P: 'L\'IA scanne tes conversations, tes notes, tout. Zéro tâche ne s\'échappe. Dors tranquille.',
+                feature2Title: 'Vois venir les problèmes',
+                feature2P: 'Les deadlines qui s\'approchent. Les goulots. Les dépendances. Vector gère tout ça avant que ce soit le chaos.',
+                feature3Title: 'Exécute. C\'est prêt.',
+                feature3P: 'Plus de paralysie. Vector t\'organise. Il ne te reste qu\'à suivre un plan bien ficelé. C\'est simple.',
+                readMore: 'En savoir plus →',
+                earlyH2: 'Les 25 premiers testeurs reçoivent 6 mois Pro gratuit',
+                earlyP: 'Rejoins la beta. Teste Vector. Aide-nous à l\'améliorer. Une seule condition : du feedback dans le premier mois.',
+                namePH: 'Ton prénom',
+                emailPH: 'Ton email',
+                domainPH: 'Ton domaine (freelance, consultant, etc.)',
+                stressPH: 'En 1 phrase: c\'est quoi ton plus gros stress de solopreneur?',
+                submitBtn: 'Envoyer',
+                blogH2: 'Articles récents',
+                blogSubtitle: 'Des histoires vraies. Des solutions concrètes.',
+                blogAllBtn: 'Voir tous les articles →',
+                backLink: '← Retour à l\'accueil',
+                articlesTitle: 'Articles',
+                readListLabel: 'Lire →',
+                backAllArticles: '← Tous les articles',
+                shareLabel: 'Partager cet article',
+                shareCopy: 'Copier le lien',
+                prevArticle: '← Article précédent',
+                nextArticle: 'Article suivant →',
+                modal1H3: 'Rien n\'est oublié',
+                modal1P1: 'La plupart des outils de productivité reposent sur une prémisse fragile : <strong>que tu penses à tout noter</strong>. En pratique, ça ne fonctionne pas. Le cerveau filtre, oublie, laisse filer.',
+                modal1P2: 'Vector renverse ce paradigme. Son moteur d\'IA analyse en continu tes conversations, tes notes, tes échanges — et extrait automatiquement chaque tâche, chaque engagement, chaque action à poser. Tu n\'as pas à y penser. Vector y pense pour toi.',
+                modal1P3: '<strong>Le résultat ?</strong> Une liste de tâches toujours à jour, sans effort. Aucune livraison oubliée. Aucun client laissé sans réponse. Aucune facture perdue dans les oubliettes. La paix mentale que tu cherches depuis le début.',
+                modal2H3: 'Vois venir les problèmes',
+                modal2P1: 'Une deadline qui approche. Deux projets simultanés. Une dépendance que tu n\'avais pas vue. Dans les outils classiques, tu le découvres trop tard — souvent en pleine urgence, quand il est déjà trop tard pour réagir sereinement.',
+                modal2P2: 'Vector calcule en continu ta charge de travail réelle sur chaque projet. Il détecte les conflits d\'agenda <strong>avant qu\'ils explosent</strong>, identifie les goulots d\'étranglement, et te signale proactivement les risques. Tu ne réagis plus aux crises. Tu les désamorces avant même qu\'elles existent.',
+                modal2P3: '<strong>La différence entre un solopreneur stressé et un solopreneur en contrôle ?</strong> Ce n\'est pas la quantité de travail. C\'est la visibilité sur ce qui s\'en vient.',
+                modal3H3: 'Exécute. C\'est prêt.',
+                modal3P1: 'Combien d\'heures passes-tu chaque semaine à décider quoi faire ? À réorganiser ta liste de tâches ? À te demander si tu es dans les délais, si tu as oublié quelque chose, par quoi commencer ?',
+                modal3P2: 'C\'est la paralysie par la planification. Et elle coûte cher.',
+                modal3P3: 'Avec Vector, tu ouvres l\'application et tu sais exactement quoi faire maintenant. L\'IA a déjà <strong>priorisé, planifié, estimé</strong> — en tenant compte de tes disponibilités, de tes deadlines et de tes préférences. Le plan est là, cohérent, réaliste. Il ne te reste qu\'à exécuter.',
+                modal3P4: 'C\'est ça, la vraie productivité : zéro friction à l\'entrée, toute l\'énergie dans l\'action.',
+                footerCopy: '© 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.',
+                formRequired: 'Prénom et email requis.',
+                formSuccess: '✓ Merci ! Tu recevras un email de confirmation bientôt.',
+                formError: 'Une erreur est survenue. Réessaie dans quelques instants.',
+                formNetwork: 'Impossible d\'envoyer. Vérifie ta connexion et réessaie.',
+                formSending: 'Envoi en cours…',
+                toastCopied: 'Lien copié !',
+                toastInstagram: 'Lien copié — colle-le dans ta story Instagram !',
+                toastLocal: 'Partage disponible une fois déployé (URL publique requise).',
+                articleMeta: (d, r) => d + ' • Lecture : ' + r + ' min',
+            },
+            en: {
+                navHome: 'Home',
+                navArticles: 'Articles',
+                navSignup: 'Sign Up',
+                logoTagline: 'AI plans, <span>you deliver.</span>',
+                heroH1: 'You know what you\'re doing <span class="highlight">today.</span> <span class="highlight">Stress-free.</span>',
+                heroP: 'Vector is the assistant that turns your chaos into clarity — so you stop managing and start moving forward.',
+                heroCTA: 'Join the beta',
+                featuresH2: 'Why Vector changes the game',
+                featuresSubtitle: 'Three principles. Zero stress.',
+                feature1Title: 'Nothing gets forgotten',
+                feature1P: 'The AI scans your conversations, your notes, everything. Zero task escapes. Sleep easy.',
+                feature2Title: 'See problems coming',
+                feature2P: 'Approaching deadlines. Bottlenecks. Dependencies. Vector handles all of it before it becomes chaos.',
+                feature3Title: 'Execute. It\'s ready.',
+                feature3P: 'No more paralysis. Vector organizes you. All that\'s left is to follow a solid plan. Simple.',
+                readMore: 'Learn more →',
+                earlyH2: 'The first 25 testers get 6 months of Pro for free',
+                earlyP: 'Join the beta. Test Vector. Help us improve it. One condition: feedback within the first month.',
+                namePH: 'Your first name',
+                emailPH: 'Your email',
+                domainPH: 'Your field (freelancer, consultant, etc.)',
+                stressPH: 'In 1 sentence: what\'s your biggest solopreneur stress?',
+                submitBtn: 'Send',
+                blogH2: 'Recent articles',
+                blogSubtitle: 'Real stories. Concrete solutions.',
+                blogAllBtn: 'View all articles →',
+                backLink: '← Back to home',
+                articlesTitle: 'Articles',
+                readListLabel: 'Read →',
+                backAllArticles: '← All articles',
+                shareLabel: 'Share this article',
+                shareCopy: 'Copy link',
+                prevArticle: '← Previous article',
+                nextArticle: 'Next article →',
+                modal1H3: 'Nothing gets forgotten',
+                modal1P1: 'Most productivity tools rest on a fragile premise: <strong>that you think to write everything down</strong>. In practice, that doesn\'t work. The brain filters, forgets, lets things slip.',
+                modal1P2: 'Vector flips this paradigm. Its AI engine continuously scans your conversations, notes, and exchanges — automatically extracting every task, every commitment, every action you need to take. You don\'t have to think about it. Vector thinks for you.',
+                modal1P3: '<strong>The result?</strong> A task list that\'s always current, effortlessly. No missed deliverable. No unanswered client. No invoice lost in the void. The peace of mind you\'ve been looking for.',
+                modal2H3: 'See problems coming',
+                modal2P1: 'An approaching deadline. Two overlapping projects. A dependency you hadn\'t spotted. With traditional tools, you find out too late — often mid-crisis, when it\'s already too late to respond calmly.',
+                modal2P2: 'Vector continuously calculates your real workload across every project. It detects scheduling conflicts <strong>before they blow up</strong>, identifies bottlenecks, and proactively flags risks. You no longer react to crises. You defuse them before they even exist.',
+                modal2P3: '<strong>The difference between a stressed solopreneur and one in control?</strong> It\'s not the volume of work. It\'s visibility into what\'s coming.',
+                modal3H3: 'Execute. It\'s ready.',
+                modal3P1: 'How many hours do you spend each week deciding what to do? Reorganizing your task list? Wondering if you\'re on track, if you\'ve forgotten something, where to start?',
+                modal3P2: 'That\'s planning paralysis. And it\'s costly.',
+                modal3P3: 'With Vector, you open the app and know exactly what to do right now. The AI has already <strong>prioritized, planned, estimated</strong> — taking into account your availability, deadlines, and preferences. The plan is there, coherent, realistic. All you have to do is execute.',
+                modal3P4: 'That\'s real productivity: zero friction at the start, all your energy in the action.',
+                footerCopy: '© 2026 Vector. Built for solopreneurs who have better things to do than manage their tasks.',
+                formRequired: 'First name and email are required.',
+                formSuccess: '✓ Thank you! You\'ll receive a confirmation email soon.',
+                formError: 'Something went wrong. Please try again in a moment.',
+                formNetwork: 'Unable to send. Check your connection and try again.',
+                formSending: 'Sending…',
+                toastCopied: 'Link copied!',
+                toastInstagram: 'Link copied — paste it in your Instagram story!',
+                toastLocal: 'Sharing available once deployed (public URL required).',
+                articleMeta: (d, r) => d + ' • ' + r + ' min read',
+            }
+        };
+
+        function applyTranslations() {
+            const t = T[currentLang];
+            document.documentElement.lang = currentLang;
+            document.title = currentLang === 'fr'
+                ? 'Vector — Gère tes projets. Sans stress.'
+                : 'Vector — Manage your projects. Stress-free.';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key] !== undefined) el.placeholder = t[key];
+            });
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
+            document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+            applyTranslations();
+            const savedState = { ...currentState };
+            renderBlog();
+            // Restore current view after re-render
+            if (savedState.articleId) {
+                showArticle(savedState.articleId);
+            } else if (savedState.page === 'blog') {
+                showPage('blog');
+            }
+        }
 
         /* ── État en mémoire ── */
         let articles = JSON.parse(JSON.stringify(INITIAL_ARTICLES)); // copie de travail
@@ -1325,10 +1622,11 @@
         ══════════════════════════════════════════════════════ */
 
         function renderBlog() {
+            const _arts = getDisplayArticles();
             // --- Grille d'accueil (3 derniers articles) ---
             const grid = document.getElementById('home-blog-grid');
             if (grid) {
-                const recent = articles.slice(-3).reverse();
+                const recent = _arts.slice(-3).reverse();
                 grid.innerHTML = recent.map(a => `
                     <div class="blog-card" onclick="showArticle('${a.id}')">
                         <div class="blog-date">${a.date}</div>
@@ -1343,12 +1641,12 @@
                 if (articles.length === 0) {
                     listContainer.innerHTML = '<p style="color:var(--text-secondary)">Aucun article pour l\'instant.</p>';
                 } else {
-                    listContainer.innerHTML = [...articles].reverse().map(a => `
+                    listContainer.innerHTML = [..._arts].reverse().map(a => `
                         <div class="article-card" onclick="showArticle('${a.id}')">
                             <div class="blog-date">${a.date} • ${a.readTime} min</div>
                             <h3>${escHtml(a.title)}</h3>
                             <p>${escHtml(a.excerpt)}</p>
-                            <span class="read-label">Lire →</span>
+                            <span class="read-label">${T[currentLang].readListLabel}</span>
                         </div>`).join('');
                 }
             }
@@ -1356,17 +1654,17 @@
             // --- Vues des articles individuels ---
             const viewsContainer = document.getElementById('article-views-container');
             if (viewsContainer) {
-                viewsContainer.innerHTML = articles.map((a, idx) => {
-                    const prev = articles[idx - 1];
-                    const next = articles[idx + 1];
+                viewsContainer.innerHTML = _arts.map((a, idx) => {
+                    const prev = _arts[idx - 1];
+                    const next = _arts[idx + 1];
                     return `
                     <div class="article-view" id="${a.id}">
-                        <button class="back-link" onclick="backToArticles();">← Tous les articles</button>
+                        <button class="back-link" onclick="backToArticles();">${T[currentLang].backAllArticles}</button>
                         <h1>${escHtml(a.title)}</h1>
-                        <div class="article-meta">${a.date} • Lecture : ${a.readTime} min</div>
+                        <div class="article-meta">${T[currentLang].articleMeta(a.date, a.readTime)}</div>
                         <article>${a.content}</article>
                         <div class="article-share">
-                            <p class="article-share-label">Partager cet article</p>
+                            <p class="article-share-label">${T[currentLang].shareLabel}</p>
                             <div class="share-buttons">
                                 <button class="share-btn" onclick="shareArticle('facebook','${a.id}')">
                                     <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1380,6 +1678,10 @@
                                     <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                                     LinkedIn
                                 </button>
+                                <button class="share-btn" onclick="shareArticle('copy','${a.id}')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;flex-shrink:0;fill:none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                                    ${T[currentLang].shareCopy}
+                                </button>
                                 <button class="share-btn" onclick="shareArticle('instagram','${a.id}')">
                                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.69.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                                     Instagram
@@ -1388,10 +1690,10 @@
                         </div>
                         <div class="article-nav">
                             ${prev
-                                ? `<button class="article-nav-btn" onclick="showArticle('${prev.id}');">← Article précédent</button>`
+                                ? `<button class="article-nav-btn" onclick="showArticle('${prev.id}');">${T[currentLang].prevArticle}</button>`
                                 : `<button class="article-nav-btn invisible">←</button>`}
                             ${next
-                                ? `<button class="article-nav-btn" onclick="showArticle('${next.id}');">Article suivant →</button>`
+                                ? `<button class="article-nav-btn" onclick="showArticle('${next.id}');">${T[currentLang].nextArticle}</button>`
                                 : `<button class="article-nav-btn invisible">→</button>`}
                         </div>
                     </div>`;
@@ -1411,6 +1713,7 @@
         function showPage(page) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
+            currentState = { page, articleId: null };
 
             if (page === 'home') {
                 document.getElementById('home-view').classList.add('active');
@@ -1434,12 +1737,14 @@
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             const target = document.getElementById(articleId);
             if (target) target.classList.add('active');
+            currentState = { page: 'blog', articleId };
             window.scrollTo(0, 0);
         }
 
         function backToArticles() {
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             document.getElementById('articles-list').style.display = 'block';
+            currentState = { page: 'blog', articleId: null };
             window.scrollTo(0, 0);
         }
 
@@ -1456,7 +1761,7 @@
         ══════════════════════════════════════════════════════ */
 
         function shareArticle(platform, articleId) {
-            const article = articles.find(a => a.id === articleId);
+            const article = getDisplayArticles().find(a => a.id === articleId);
             if (!article) return;
 
             // Les plateformes de partage exigent une URL publique https://.
@@ -1465,7 +1770,7 @@
             const host  = window.location.hostname;
             const isLocal = proto === 'file:' || host === 'localhost' || host === '127.0.0.1';
             if (isLocal) {
-                showToast('Partage disponible une fois déployé sur Netlify (URL publique requise).');
+                showToast(T[currentLang].toastLocal);
                 return;
             }
 
@@ -1498,12 +1803,18 @@
                     );
                     break;
 
+                case 'copy':
+                    navigator.clipboard.writeText(shareUrl)
+                        .then(() => showToast(T[currentLang].toastCopied))
+                        .catch(() => showToast(shareUrl));
+                    return;
+
                 case 'instagram':
                     if (navigator.share) {
                         navigator.share({ title, text: excerpt, url: shareUrl }).catch(() => {});
                     } else {
                         navigator.clipboard.writeText(shareUrl)
-                            .then(() => showToast('Lien copié — colle-le dans ta story Instagram !'))
+                            .then(() => showToast(T[currentLang].toastInstagram))
                             .catch(() => showToast('Copie manuelle : ' + shareUrl));
                     }
                     return;
@@ -1513,7 +1824,7 @@
         let toastTimer = null;
         function showToast(msg) {
             const toast = document.getElementById('share-toast');
-            toast.textContent = msg || 'Lien copié !';
+            toast.textContent = msg || T[currentLang].toastCopied;
             toast.style.display = 'block';
             clearTimeout(toastTimer);
             toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 2800);
@@ -1771,13 +2082,13 @@
             const msgEl  = document.getElementById('form-message');
 
             if (!name || !email) {
-                msgEl.textContent = 'Prénom et email requis.';
+                msgEl.textContent = T[currentLang].formRequired;
                 msgEl.style.color = 'var(--accent-lime)';
                 return;
             }
 
             const submitBtn = document.querySelector('.form-group .cta-button');
-            submitBtn.textContent = 'Envoi en cours…';
+            submitBtn.textContent = T[currentLang].formSending;
             submitBtn.disabled = true;
 
             try {
@@ -1788,27 +2099,28 @@
                 });
 
                 if (response.ok) {
-                    msgEl.textContent = '✓ Merci ! Tu recevras un email de confirmation bientôt.';
+                    msgEl.textContent = T[currentLang].formSuccess;
                     msgEl.style.color = 'var(--accent-lime)';
                     document.getElementById('name').value = '';
                     document.getElementById('email').value = '';
                     document.getElementById('domain').value = '';
                     document.getElementById('stress').value = '';
                 } else {
-                    msgEl.textContent = 'Une erreur est survenue. Réessaie dans quelques instants.';
+                    msgEl.textContent = T[currentLang].formError;
                     msgEl.style.color = '#ff6b6b';
                 }
             } catch (err) {
-                msgEl.textContent = 'Impossible d\'envoyer. Vérifie ta connexion et réessaie.';
+                msgEl.textContent = T[currentLang].formNetwork;
                 msgEl.style.color = '#ff6b6b';
             }
 
-            submitBtn.textContent = 'Envoyer';
+            submitBtn.textContent = T[currentLang].submitBtn;
             submitBtn.disabled = false;
         }
 
         /* ── Initialisation ── */
         renderBlog();
+        applyTranslations();
 
         // Gestion des deep links au chargement (#admin, #article-X)
         (function handleHash() {
