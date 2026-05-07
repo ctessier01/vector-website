@@ -28,6 +28,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Vector","description":"Application de planification intelligente pour solopreneurs","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":"fr"}</script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=">
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -1763,6 +1764,7 @@
         ══════════════════════════════════════════════════════ */
 
         function showPage(page) {
+            vStopTracking();
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             currentState = { page, articleId: null };
@@ -1793,9 +1795,11 @@
             currentState = { page: 'blog', articleId };
             setURL({ article: getArticleSlug(articleId) });
             window.scrollTo(0, 0);
+            vStartTracking(articleId);
         }
 
         function backToArticles() {
+            vStopTracking();
             document.querySelectorAll('.article-view').forEach(a => a.classList.remove('active'));
             document.getElementById('articles-list').style.display = 'block';
             currentState = { page: 'blog', articleId: null };
@@ -2216,6 +2220,83 @@
                 if (articles.find(a => a.id === id)) showArticle(id);
             }
         });
+
+        /* ══════════════════════════════════════════════════════
+           ── ANALYTICS — LECTURES ENGAGÉES ──
+
+           Deux métriques distinctes :
+           1. Cloudflare Web Analytics (automatique — aucun snippet requis)
+              → Cloudflare Pages injecte le beacon automatiquement
+              → Toutes les visites sont visibles dans le dashboard Cloudflare
+              → Configuration : Analytics > Web Analytics dans ton dashboard
+
+           2. Supabase article_view_events
+              → Trace uniquement les lectures de 30 secondes ou plus
+              → Metric utilisé par les agents IA pour sélectionner les articles
+              → Requête pour le scoring : vue article_views_36h
+
+           Exclusion de ton propre trafic :
+           → Tape UNE FOIS dans la console du navigateur :
+                localStorage.setItem('vector_no_track','1')
+           → À faire sur chaque navigateur/appareil que tu utilises
+
+           ÉTAPE À FAIRE (Supabase) :
+           → Remplace ANALYTICS_URL et ANALYTICS_KEY avec tes vraies valeurs
+           → Crée la table article_view_events avec le SQL ci-dessous dans Supabase :
+
+           create table public.article_view_events (
+               id        uuid primary key default gen_random_uuid(),
+               article_id text not null,
+               viewed_at  timestamptz not null default now()
+           );
+           alter table public.article_view_events enable row level security;
+           create policy "anon_insert" on public.article_view_events
+               for insert with check (true);
+           create policy "anon_select" on public.article_view_events
+               for select using (true);
+
+           create view public.article_views_36h as
+           select article_id, count(*) as views_36h
+           from public.article_view_events
+           where viewed_at > now() - interval '36 hours'
+           group by article_id;
+        ══════════════════════════════════════════════════════ */
+
+        const ANALYTICS_URL = 'https://yamocautjywasfsyzsqn.supabase.co';
+        const ANALYTICS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW9jYXV0anl3YXNmc3l6c3FuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MDE4MDUsImV4cCI6MjA5MDQ3NzgwNX0.fJhch1yxcaWA9R1cBDOe14tOnURRR4gXoyob3mpdc7s';
+        const ENGAGE_MS = 30000;
+
+        let _engageTimer = null;
+
+        function getSessionId() {
+            let sid = sessionStorage.getItem('v_sid');
+            if (!sid) { sid = crypto.randomUUID(); sessionStorage.setItem('v_sid', sid); }
+            return sid;
+        }
+
+        function vStopTracking() {
+            clearTimeout(_engageTimer);
+            _engageTimer = null;
+        }
+
+        function vStartTracking(articleId) {
+            vStopTracking();
+            if (localStorage.getItem('vector_no_track')) return;
+            _engageTimer = setTimeout(async function() {
+                try {
+                    await fetch(ANALYTICS_URL + '/rest/v1/article_view_events', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'apikey': ANALYTICS_KEY,
+                            'Authorization': 'Bearer ' + ANALYTICS_KEY,
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify({ article_id: articleId, session_id: getSessionId() })
+                    });
+                } catch (e) { /* silencieux — conflit 409 = déjà compté, c'est normal */ }
+            }, ENGAGE_MS);
+        }
     </script>    <div id="share-toast">Lien copié !</div>
 
 </body>
