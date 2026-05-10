@@ -291,7 +291,7 @@
 
     <header>
         <div class="header-inner">
-            <a href="/" class="back-link">
+            <a href="/" id="back-link-header" class="back-link">
                 <span class="arrow">←</span>
                 <span data-fr="Vector" data-en="Vector">Vector</span>
             </a>
@@ -955,7 +955,7 @@
     <footer>
         <p data-fr="© 2026 Vector — division de CapitalSoft inc." data-en="© 2026 Vector — a division of CapitalSoft inc.">© 2026 Vector — division de CapitalSoft inc.</p>
         <p class="privacy-mention" data-fr="🔒 Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire" data-en="🔒 Privacy-first · No tracking cookies · No advertising pixels">🔒 Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire</p>
-        <p style="margin-top: 0.8rem;"><a href="/" data-fr="← Retour à l'accueil" data-en="← Back to home">← Retour à l'accueil</a></p>
+        <p style="margin-top: 0.8rem;"><a href="/" id="back-link-footer" data-fr="← Retour à l'accueil" data-en="← Back to home">← Retour à l'accueil</a></p>
     </footer>
 
     <script>
@@ -994,6 +994,14 @@
 
             // Mise à jour de l'attribut lang du <html> (accessibilité + SEO)
             document.documentElement.lang = lang;
+
+            // Mise à jour des href des liens de retour vers le site principal
+            // pour transmettre la langue active dans l'URL
+            const homeHref = lang === 'fr' ? '/' : '/?lang=en';
+            const backHeader = document.getElementById('back-link-header');
+            const backFooter = document.getElementById('back-link-footer');
+            if (backHeader) backHeader.setAttribute('href', homeHref);
+            if (backFooter) backFooter.setAttribute('href', homeHref);
 
             // Mise à jour du <title>
             document.title = lang === 'en'

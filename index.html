@@ -1612,6 +1612,8 @@
 
         function toggleLang() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            // Persistance cross-page (cohérence avec /privacy)
+            localStorage.setItem('vector_lang', currentLang);
             document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
             document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
             applyTranslations();
@@ -2196,8 +2198,17 @@
                 currentLang = SLUG_TO_ARTICLE[slug].lang;
             } else {
                 const l = p.get('lang');
-                if (l === 'en' || l === 'fr') currentLang = l;
+                if (l === 'en' || l === 'fr') {
+                    currentLang = l;
+                } else {
+                    // Fallback : lire la langue préalablement choisie par le visiteur
+                    // (cohérence avec /privacy et autres pages du site)
+                    const stored = localStorage.getItem('vector_lang');
+                    if (stored === 'en' || stored === 'fr') currentLang = stored;
+                }
             }
+            // Synchroniser localStorage pour cohérence cross-page
+            localStorage.setItem('vector_lang', currentLang);
             document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
             document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
         })();
