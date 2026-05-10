@@ -1259,6 +1259,12 @@
     <!-- ── FOOTER ── -->
     <footer>
         <p data-i18n="footerCopy">&copy; 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.</p>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; opacity: 0.75;">
+            🔒 <span data-i18n="footerPrivacyMention">Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire</span>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">
+            <a href="/privacy" data-i18n="footerPrivacyLink" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Politique de confidentialité</a>
+        </p>
         <p style="margin-top: 1.2rem;">
             <a href="#" onclick="showPage('admin'); return false;" style="color: var(--text-secondary); font-size: 0.78rem; opacity: 0.4; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.4'">Admin</a>
         </p>
@@ -1508,6 +1514,8 @@
                 modal3P3: 'Avec Vector, tu ouvres l\'application et tu sais exactement quoi faire maintenant. L\'IA a déjà <strong>priorisé, planifié, estimé</strong> — en tenant compte de tes disponibilités, de tes deadlines et de tes préférences. Le plan est là, cohérent, réaliste. Il ne te reste qu\'à exécuter.',
                 modal3P4: 'C\'est ça, la vraie productivité : zéro friction à l\'entrée, toute l\'énergie dans l\'action.',
                 footerCopy: '© 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.',
+                footerPrivacyMention: 'Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire',
+                footerPrivacyLink: 'Politique de confidentialité',
                 formRequired: 'Prénom et email requis.',
                 formSuccess: '✓ Merci ! Tu recevras un email de confirmation bientôt.',
                 formError: 'Une erreur est survenue. Réessaie dans quelques instants.',
@@ -1567,6 +1575,8 @@
                 modal3P3: 'With Vector, you open the app and know exactly what to do right now. The AI has already <strong>prioritized, planned, estimated</strong> — taking into account your availability, deadlines, and preferences. The plan is there, coherent, realistic. All you have to do is execute.',
                 modal3P4: 'That\'s real productivity: zero friction at the start, all your energy in the action.',
                 footerCopy: '© 2026 Vector. Built for solopreneurs who have better things to do than manage their tasks.',
+                footerPrivacyMention: 'Privacy-first · No tracking cookies · No advertising pixels',
+                footerPrivacyLink: 'Privacy Policy',
                 formRequired: 'First name and email are required.',
                 formSuccess: '✓ Thank you! You\'ll receive a confirmation email soon.',
                 formError: 'Something went wrong. Please try again in a moment.',
@@ -2224,14 +2234,17 @@
         /* ══════════════════════════════════════════════════════
            ── ANALYTICS — LECTURES ENGAGÉES ──
 
+           Approche privacy-first : aucun cookie, aucun identifiant utilisateur.
+
            Deux métriques distinctes :
            1. Cloudflare Web Analytics (automatique — aucun snippet requis)
               → Cloudflare Pages injecte le beacon automatiquement
               → Toutes les visites sont visibles dans le dashboard Cloudflare
               → Configuration : Analytics > Web Analytics dans ton dashboard
 
-           2. Supabase article_view_events
+           2. Supabase article_view_events (anonyme)
               → Trace uniquement les lectures de 30 secondes ou plus
+              → Aucun identifiant de session, aucun lien entre les vues
               → Metric utilisé par les agents IA pour sélectionner les articles
               → Requête pour le scoring : vue article_views_36h
 
@@ -2240,9 +2253,7 @@
                 localStorage.setItem('vector_no_track','1')
            → À faire sur chaque navigateur/appareil que tu utilises
 
-           ÉTAPE À FAIRE (Supabase) :
-           → Remplace ANALYTICS_URL et ANALYTICS_KEY avec tes vraies valeurs
-           → Crée la table article_view_events avec le SQL ci-dessous dans Supabase :
+           Structure de la table (état actuel après migration cookieless) :
 
            create table public.article_view_events (
                id        uuid primary key default gen_random_uuid(),
@@ -2262,17 +2273,11 @@
            group by article_id;
         ══════════════════════════════════════════════════════ */
 
-        const ANALYTICS_URL = 'https://yamocautjywasfsyzsqn.supabase.co';
-        const ANALYTICS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW9jYXV0anl3YXNmc3l6c3FuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MDE4MDUsImV4cCI6MjA5MDQ3NzgwNX0.fJhch1yxcaWA9R1cBDOe14tOnURRR4gXoyob3mpdc7s';
+        const ANALYTICS_URL = 'https://zywdoslrrlnxhpoyauyp.supabase.co';
+        const ANALYTICS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d2Rvc2xycmxueGhwb3lhdXlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0NDU1NjcsImV4cCI6MjA5NDAyMTU2N30.9PNTLQac7Z13k9mGVeqIqQFcYA_OwLOmpKYtNCq8WSU';
         const ENGAGE_MS = 30000;
 
         let _engageTimer = null;
-
-        function getSessionId() {
-            let sid = sessionStorage.getItem('v_sid');
-            if (!sid) { sid = crypto.randomUUID(); sessionStorage.setItem('v_sid', sid); }
-            return sid;
-        }
 
         function vStopTracking() {
             clearTimeout(_engageTimer);
@@ -2292,9 +2297,9 @@
                             'Authorization': 'Bearer ' + ANALYTICS_KEY,
                             'Prefer': 'return=minimal'
                         },
-                        body: JSON.stringify({ article_id: articleId, session_id: getSessionId() })
+                        body: JSON.stringify({ article_id: articleId })
                     });
-                } catch (e) { /* silencieux — conflit 409 = déjà compté, c'est normal */ }
+                } catch (e) { /* silencieux */ }
             }, ENGAGE_MS);
         }
     </script>    <div id="share-toast">Lien copié !</div>
