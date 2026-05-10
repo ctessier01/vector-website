@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de confidentialité de Vector — application de planification anti-anxiété pour solopreneurs. Approche privacy-first conforme à la Loi 25 (Québec) et au RGPD.">
+    <meta name="robots" content="index, follow">
+
+    <title>Politique de confidentialité — Vector</title>
+
+    <link rel="canonical" href="https://vectorplanning.ai/privacy">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #10131A;
+            --bg-secondary: #1C2030;
+            --accent-lime: #8BFF3C;
+            --text-primary: #F5F4EF;
+            --text-secondary: #6B7290;
+            --border: rgba(139, 255, 60, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── Header ── */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(16, 19, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--accent-lime); }
+        .back-link .arrow { transition: transform 0.2s; }
+        .back-link:hover .arrow { transform: translateX(-3px); }
+
+        .lang-toggle {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .lang-btn {
+            padding: 0.4rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+
+        .lang-btn:not(.active):hover { color: var(--text-primary); }
+
+        /* ── Main content ── */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        h1 .highlight {
+            color: var(--accent-lime);
+        }
+
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta strong { color: var(--text-primary); font-weight: 600; }
+
+        h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-lime);
+            margin-top: 3rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+
+        h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        ul, ol {
+            margin: 0 0 1.3rem 1.5rem;
+            color: var(--text-primary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        strong { color: var(--text-primary); font-weight: 600; }
+        em { color: var(--text-secondary); font-style: italic; }
+
+        a {
+            color: var(--accent-lime);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+
+        a:hover { opacity: 0.8; }
+
+        /* ── Section "En bref" / "TL;DR" ── */
+        .summary-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .summary-box h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .summary-box ul {
+            margin-left: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .summary-box li {
+            margin-bottom: 0.7rem;
+        }
+
+        .summary-box li:last-child { margin-bottom: 0; }
+
+        /* ── Tableaux ── */
+        .table-wrapper {
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+
+        th, td {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(139, 255, 60, 0.1);
+        }
+
+        th {
+            background: var(--bg-secondary);
+            color: var(--accent-lime);
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.3px;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: rgba(28, 32, 48, 0.3); }
+
+        /* ── Citation contact ── */
+        .contact-block {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-lime);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .contact-block p { margin-bottom: 0.4rem; }
+        .contact-block p:last-child { margin-bottom: 0; }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 3rem 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer p { margin-bottom: 0.6rem; color: var(--text-secondary); }
+        footer .privacy-mention { font-size: 0.85rem; opacity: 0.85; }
+        footer a { color: var(--text-secondary); }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .header-inner { padding: 1rem 1.2rem; flex-wrap: wrap; }
+            main { padding: 2rem 1.2rem 3rem; }
+            .summary-box { padding: 1.4rem 1.3rem; }
+            h2 { font-size: 1.3rem; margin-top: 2.2rem; }
+            th, td { padding: 0.7rem 0.8rem; font-size: 0.85rem; }
+            .lang-btn { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="/" class="back-link">
+                <span class="arrow">←</span>
+                <span data-fr="Vector" data-en="Vector">Vector</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Language selector">
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ════════════════════════════════════════════════════ -->
+        <!-- ══════════════ VERSION FRANÇAISE ════════════════════ -->
+        <!-- ════════════════════════════════════════════════════ -->
+
+        <article id="content-fr" class="lang-content active">
+
+            <h1>Politique de <span class="highlight">confidentialité</span></h1>
+
+            <p class="meta">
+                <strong>Vector — Application de planification anti-anxiété pour solopreneurs</strong><br>
+                <strong>Date d'entrée en vigueur :</strong> 10 mai 2026<br>
+                <strong>Dernière mise à jour :</strong> 10 mai 2026 · <strong>Version :</strong> 1.0
+            </p>
+
+            <div class="summary-box">
+                <h2>🔒 En bref</h2>
+                <p>Vector adopte une approche <strong>« privacy-first »</strong>. Voici l'essentiel :</p>
+                <ul>
+                    <li><strong>Site marketing</strong> : aucun cookie de suivi, aucun pixel publicitaire, aucun témoin tiers. La mesure d'audience est entièrement anonyme.</li>
+                    <li><strong>Application</strong> : nous recueillons uniquement les renseignements nécessaires pour vous fournir le Service.</li>
+                    <li><strong>Vos données vous appartiennent</strong> : vous pouvez en obtenir une copie, les corriger, les transférer ou les supprimer en tout temps.</li>
+                    <li><strong>IA tierce</strong> : les contenus que vous saisissez ne sont jamais utilisés pour entraîner des modèles d'intelligence artificielle externes (Anthropic Claude, etc.).</li>
+                    <li><strong>Apprentissage interne</strong> : Vector apprend de vos durées de tâches pour personnaliser vos estimations. Sous forme strictement anonymisée et agrégée, ces données peuvent contribuer à améliorer les estimations par défaut offertes à l'ensemble des usagers.</li>
+                    <li><strong>Aucune vente de données</strong> : nous ne vendons jamais vos renseignements personnels à qui que ce soit.</li>
+                </ul>
+                <p style="margin-top: 1rem; margin-bottom: 0; font-size: 0.9rem; color: var(--text-secondary);">Cette section est un résumé. Les sections qui suivent en précisent les modalités complètes.</p>
+            </div>
+
+            <h2>1. Introduction</h2>
+
+            <p>La présente politique de confidentialité décrit comment <strong>CapitalSoft inc.</strong>, exploitant la division <strong>Vector</strong> (ci-après « <strong>Vector</strong> », « <strong>nous</strong> », « <strong>notre</strong> » ou « <strong>nos</strong> »), recueille, utilise, communique et protège vos renseignements personnels lorsque vous utilisez l'application Vector accessible sur <strong>vectorplanning.ai</strong> et ses sous-domaines (ci-après l'« <strong>Application</strong> » ou le « <strong>Service</strong> »).</p>
+
+            <p>CapitalSoft inc. est une société établie au Québec (Canada). La présente politique s'inscrit dans le cadre de la <em>Loi sur la protection des renseignements personnels dans le secteur privé</em> (RLRQ, c. P-39.1) telle que modifiée par la <em>Loi modernisant des dispositions législatives en matière de protection des renseignements personnels</em> (Loi 25), de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE) du Canada, ainsi que, lorsqu'elles s'appliquent, des autres lois étrangères en matière de protection des renseignements personnels, notamment le <em>Règlement général sur la protection des données</em> (RGPD) de l'Union européenne.</p>
+
+            <p>En utilisant l'Application, vous reconnaissez avoir pris connaissance de cette politique. Si vous n'êtes pas d'accord avec son contenu, nous vous invitons à ne pas utiliser le Service.</p>
+
+            <h2>2. Personne responsable de la protection des renseignements personnels</h2>
+
+            <p>Conformément à la Loi 25, nous avons désigné une personne responsable de la protection des renseignements personnels au sein de Vector. Vous pouvez communiquer avec cette personne pour toute question liée à la présente politique, pour exercer vos droits ou pour formuler une plainte :</p>
+
+            <div class="contact-block">
+                <p><strong>Responsable de la protection des renseignements personnels</strong></p>
+                <p>CapitalSoft inc. — division Vector</p>
+                <p>Courriel : <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a></p>
+            </div>
+
+            <p>Pour les utilisateurs situés dans l'Union européenne ou au Royaume-Uni, cette même personne agit également comme point de contact aux fins du RGPD et du UK GDPR. Vector n'a pas désigné de représentant au sens de l'article 27 du RGPD à ce jour, considérant que son traitement de données concernant des résidents de l'EEE demeure occasionnel et non à grande échelle ; cette situation sera réévaluée si elle évolue.</p>
+
+            <h2>3. Renseignements personnels que nous recueillons</h2>
+
+            <p>Nous recueillons uniquement les renseignements personnels nécessaires aux finalités décrites à l'article 4. Selon votre utilisation du Service, ces renseignements peuvent inclure :</p>
+
+            <h3>3.1 Renseignements que vous nous fournissez directement</h3>
+
+            <ul>
+                <li><strong>Renseignements de compte</strong> : nom d'affichage, adresse courriel, mot de passe (sous forme chiffrée — nous n'avons jamais accès à votre mot de passe en clair), ville et province ou pays (facultatif), industrie ou secteur d'activité (facultatif).</li>
+                <li><strong>Contenu créé dans l'Application</strong> : projets, tâches, sous-tâches, échéances, durées estimées, notes, contenus de réflexion (« brain dumps »), historique de planification, configurations personnalisées (par exemple, le nom donné à vos agents IA).</li>
+                <li><strong>Communications</strong> : contenu des échanges que vous avez avec nous (courriels, formulaires de contact, demandes d'assistance, échanges avec notre agente de soutien Lina).</li>
+                <li><strong>Renseignements de paiement</strong> : si vous souscrivez à un plan payant, votre fournisseur de paiement (Paddle) recueille les renseignements de paiement requis. <strong>Nous ne recueillons ni ne stockons vos numéros de carte de crédit ou autres données financières sensibles.</strong> Nous recevons uniquement les renseignements nécessaires à la gestion de votre abonnement (statut de l'abonnement, plan, date de renouvellement, devise, pays de facturation).</li>
+            </ul>
+
+            <h3>3.2 Renseignements recueillis automatiquement</h3>
+
+            <ul>
+                <li><strong>Données d'utilisation</strong> : événements liés à votre interaction avec l'Application (création de projet, complétion de tâche, fonctionnalités utilisées), pour mesurer l'usage et améliorer le Service.</li>
+                <li><strong>Données techniques</strong> : adresse IP (de manière anonymisée par notre fournisseur d'analyses), type de navigateur, système d'exploitation, langue, fuseau horaire, pages consultées sur le site marketing.</li>
+                <li><strong>Témoins (cookies) et technologies similaires</strong> : voir l'article 6.</li>
+            </ul>
+
+            <h3>3.3 Renseignements recueillis auprès de tiers</h3>
+
+            <p>Nous ne recueillons pas vos renseignements personnels auprès de tiers, sauf dans la mesure où vous choisissez de vous connecter à l'Application au moyen d'un fournisseur d'authentification tiers (par exemple Google), auquel cas nous recevons les renseignements minimaux nécessaires à la création de votre compte (adresse courriel, nom, identifiant unique).</p>
+
+            <h3>3.4 Renseignements sensibles</h3>
+
+            <p>Nous ne recueillons pas intentionnellement de renseignements considérés comme sensibles en vertu des lois applicables (origine ethnique, opinions politiques ou religieuses, état de santé, orientation sexuelle, données biométriques, etc.). Nous vous demandons de <strong>ne pas saisir</strong> de tels renseignements dans le contenu de vos tâches ou de vos projets.</p>
+
+            <h2>4. Finalités de la collecte et fondements juridiques</h2>
+
+            <p>Nous utilisons vos renseignements personnels uniquement pour les finalités suivantes :</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Finalité</th>
+                            <th>Base juridique (RGPD, lorsque applicable)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Créer et gérer votre compte, vous authentifier</td><td>Exécution du contrat</td></tr>
+                        <tr><td>Fournir les fonctionnalités de l'Application (planification, estimation IA, calendrier)</td><td>Exécution du contrat</td></tr>
+                        <tr><td>Traiter les paiements et gérer les abonnements</td><td>Exécution du contrat / Obligation légale</td></tr>
+                        <tr><td>Communiquer avec vous (notifications, soutien, mises à jour de service)</td><td>Exécution du contrat / Intérêt légitime</td></tr>
+                        <tr><td>Améliorer le Service, corriger les bogues, mesurer l'usage agrégé</td><td>Intérêt légitime</td></tr>
+                        <tr><td>Apprendre de vos données d'utilisation pour améliorer la précision des estimations de durée que vous recevez personnellement</td><td>Exécution du contrat</td></tr>
+                        <tr><td>Améliorer la qualité des estimations de durée par défaut offertes à tous les usagers, à partir de statistiques agrégées et anonymisées</td><td>Intérêt légitime</td></tr>
+                        <tr><td>Prévenir la fraude, l'utilisation abusive et assurer la sécurité du Service</td><td>Intérêt légitime / Obligation légale</td></tr>
+                        <tr><td>Vous envoyer des communications marketing (uniquement avec votre consentement)</td><td>Consentement</td></tr>
+                        <tr><td>Respecter nos obligations légales et réglementaires</td><td>Obligation légale</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Pour les utilisateurs au Québec et au Canada, votre consentement à ces finalités s'exprime par votre adhésion à la présente politique au moment de la création de votre compte. Vous pouvez retirer votre consentement à tout moment selon les modalités prévues à l'article 11.</p>
+
+            <h2>5. Intelligence artificielle et décisions automatisées</h2>
+
+            <p>L'Application utilise l'intelligence artificielle pour vous aider à organiser et à planifier votre travail. Cela inclut notamment :</p>
+
+            <ul>
+                <li>L'extraction de tâches à partir de contenus que vous saisissez ;</li>
+                <li>L'estimation automatique de la durée des tâches ;</li>
+                <li>La planification automatisée de votre calendrier ;</li>
+                <li>L'interaction avec vos agents IA (CPO et COO).</li>
+            </ul>
+
+            <p><strong>Comment cela fonctionne :</strong> Lorsque vous interagissez avec ces fonctionnalités, le contenu pertinent (par exemple, le texte d'une tâche, vos paramètres de projet) est transmis à notre fournisseur d'IA, <strong>Anthropic PBC</strong> (États-Unis), via une connexion sécurisée. Anthropic traite ces renseignements pour générer une réponse, qui vous est ensuite retournée. Selon les conditions commerciales d'Anthropic, ces renseignements <strong>ne sont pas utilisés pour entraîner ses modèles</strong>.</p>
+
+            <p><strong>Apprentissage de Vector à partir de vos données :</strong> En complément des fonctionnalités d'IA fournies par Anthropic, Vector tient à jour ses propres mécanismes d'apprentissage statistique pour améliorer la précision des estimations de durée. Ces mécanismes fonctionnent en deux niveaux :</p>
+
+            <ul>
+                <li><strong>Bibliothèque personnelle.</strong> Au fur et à mesure que vous complétez des tâches, Vector enregistre le temps réellement passé et l'utilise pour affiner progressivement les estimations futures qui vous sont proposées. Cette bibliothèque vous est <strong>strictement réservée</strong> : elle n'est pas partagée avec d'autres usagers, ni utilisée pour entraîner les modèles d'IA tiers.</li>
+                <li><strong>Bibliothèque communautaire (anonymisée).</strong> Pour offrir des estimations utiles aux nouveaux usagers qui n'ont pas encore d'historique personnel, Vector peut utiliser des <strong>statistiques agrégées et anonymisées</strong> calculées à partir des durées de tâches de l'ensemble des usagers (par exemple : durée moyenne pour une catégorie de tâche donnée). Ces statistiques <strong>ne contiennent aucun identifiant</strong> et ne permettent pas de remonter à une personne en particulier. Cette bibliothèque par défaut est progressivement remplacée par votre bibliothèque personnelle au fur et à mesure de votre utilisation du Service.</li>
+            </ul>
+
+            <p><strong>Vos droits relatifs aux décisions automatisées :</strong> Conformément à la Loi 25 et au RGPD, lorsqu'une décision vous concernant est fondée exclusivement sur un traitement automatisé (par exemple, l'estimation automatique de la durée d'une tâche, la planification automatique d'un créneau dans votre calendrier), vous avez le droit :</p>
+
+            <ul>
+                <li>D'être informé que cette décision est automatisée ;</li>
+                <li>De connaître les renseignements personnels qui ont été utilisés pour rendre cette décision ;</li>
+                <li>De connaître les principaux facteurs et paramètres qui ont mené à cette décision ;</li>
+                <li>De faire corriger les renseignements utilisés s'ils sont inexacts ;</li>
+                <li>De <strong>présenter vos observations</strong> à un membre de notre personnel et de faire réviser cette décision.</li>
+            </ul>
+
+            <p>Pour exercer ces droits, écrivez-nous à <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a>.</p>
+
+            <p><strong>Important :</strong> Vous gardez en tout temps la possibilité de modifier, refuser, remplacer ou ignorer toute suggestion ou planification générée par l'IA. Vous demeurez la personne décisionnelle.</p>
+
+            <h2>6. Témoins de connexion (cookies) et technologies similaires</h2>
+
+            <p>Vector adopte une approche minimaliste en matière de témoins et de technologies similaires.</p>
+
+            <h3>6.1 Site marketing (vectorplanning.ai)</h3>
+
+            <p>Notre site marketing <strong>n'utilise aucun témoin de suivi, aucun pixel publicitaire et aucun script tiers de pistage</strong>. Nous n'utilisons pas non plus de plateformes de gestion du consentement (CMP), car aucune des technologies déployées ne le requiert.</p>
+
+            <p>Pour mesurer l'intérêt suscité par nos contenus, nous nous appuyons sur deux mécanismes anonymes :</p>
+
+            <ul>
+                <li><strong>Cloudflare Web Analytics</strong> : un service de mesure d'audience qui ne dépose aucun témoin et n'identifie pas les visiteurs individuellement. Les autorités européennes de protection de la vie privée (notamment la CNIL et l'EDPB) reconnaissent ce type de mesure comme exempté de consentement préalable.</li>
+                <li><strong>Comptage anonyme des lectures d'articles</strong> : nous comptabilisons de manière strictement anonyme les vues d'articles dépassant 30 secondes. <strong>Aucun identifiant utilisateur n'est créé, stocké ou transmis.</strong> Cette mesure sert uniquement à évaluer la pertinence éditoriale de nos contenus.</li>
+            </ul>
+
+            <h3>6.2 Application Vector</h3>
+
+            <p>L'Application utilise quelques mécanismes de stockage local strictement nécessaires à son fonctionnement :</p>
+
+            <ul>
+                <li><strong>Stockage de session</strong> : nécessaire pour vous garder authentifié pendant votre session de travail.</li>
+                <li><strong>Préférences d'interface</strong> : enregistrement local de vos préférences d'affichage (thème clair ou sombre, langue, etc.) pour personnaliser votre expérience.</li>
+            </ul>
+
+            <p>Ces mécanismes ne servent à aucune fin de pistage, de profilage ou de mesure d'audience. Ils ne sont pas partagés avec des tiers et sont exemptés de consentement préalable en vertu des règles applicables, étant strictement nécessaires à la fourniture du Service que vous avez explicitement demandé.</p>
+
+            <p>Vous pouvez configurer votre navigateur pour bloquer les témoins et le stockage local, mais cela peut empêcher le bon fonctionnement de l'Application (par exemple, l'incapacité à rester authentifié).</p>
+
+            <h2>7. Profilage, identification et géolocalisation</h2>
+
+            <p>Conformément aux exigences de la Loi 25, nous vous informons que :</p>
+
+            <ul>
+                <li>L'Application <strong>n'effectue pas de profilage</strong> au sens de l'article 8.1 de la <em>Loi sur la protection des renseignements personnels dans le secteur privé</em> (c'est-à-dire l'évaluation de caractéristiques d'une personne physique aux fins notamment d'analyse du rendement, de la situation économique, de la santé, des préférences, des intérêts ou du comportement).</li>
+                <li>L'Application <strong>n'utilise pas de fonctions de géolocalisation</strong> vous identifiant à un emplacement précis.</li>
+                <li>L'Application <strong>n'effectue pas d'identification biométrique</strong>.</li>
+            </ul>
+
+            <p>Si nous devions ajouter de telles fonctionnalités, nous vous informerions au préalable et vous offririons la possibilité de les activer ou non, conformément à la loi.</p>
+
+            <h2>8. Communication à des tiers et sous-traitants</h2>
+
+            <p>Nous ne vendons jamais vos renseignements personnels.</p>
+
+            <p>Nous communiquons certains renseignements à des <strong>fournisseurs de services tiers</strong> (sous-traitants, ou <em>processors</em> au sens du RGPD) qui les traitent pour notre compte, sous notre responsabilité, et uniquement aux fins prévues par la présente politique. Ces fournisseurs sont liés par des engagements contractuels de confidentialité et de sécurité.</p>
+
+            <p>Les principales catégories de sous-traitants au moment de la rédaction de cette politique sont :</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>Fournisseur principal</th>
+                            <th>Pays principal d'établissement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Hébergement et infrastructure</td><td>Cloudflare, Inc.</td><td>États-Unis</td></tr>
+                        <tr><td>Base de données et authentification</td><td>Supabase, Inc.</td><td>États-Unis</td></tr>
+                        <tr><td>Intelligence artificielle</td><td>Anthropic PBC</td><td>États-Unis</td></tr>
+                        <tr><td>Traitement des paiements</td><td>Paddle.com Market Ltd.</td><td>Royaume-Uni / États-Unis</td></tr>
+                        <tr><td>Envoi de courriels transactionnels</td><td>Resend, Inc.</td><td>États-Unis</td></tr>
+                        <tr><td>Formulaires du site marketing</td><td>Formspree, Inc.</td><td>États-Unis</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Cette liste peut évoluer. Une version à jour est disponible sur demande à <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a>.</p>
+
+            <p>Nous pouvons également communiquer vos renseignements personnels :</p>
+
+            <ul>
+                <li>À toute autorité publique, tribunal ou organisme de réglementation lorsque la loi l'exige ;</li>
+                <li>Pour faire valoir nos droits, prévenir une fraude ou protéger la sécurité de personnes ou de biens ;</li>
+                <li>Dans le cadre d'une transaction commerciale (fusion, acquisition, vente d'actifs), auquel cas vous serez informé conformément à la loi applicable.</li>
+            </ul>
+
+            <h2>9. Communication de renseignements à l'extérieur du Québec</h2>
+
+            <p>Plusieurs de nos sous-traitants sont établis à l'extérieur du Québec, principalement aux États-Unis et au Royaume-Uni. Conformément à l'article 17 de la <em>Loi sur la protection des renseignements personnels dans le secteur privé</em>, nous procédons à une <strong>évaluation des facteurs relatifs à la vie privée (ÉFVP)</strong> avant toute communication de renseignements personnels à l'extérieur du Québec. Cette évaluation tient compte notamment :</p>
+
+            <ul>
+                <li>De la sensibilité des renseignements ;</li>
+                <li>De la finalité de leur utilisation ;</li>
+                <li>Des mesures de protection mises en place, y compris contractuelles ;</li>
+                <li>Du régime juridique applicable dans la juridiction de destination, notamment des principes de protection des renseignements personnels qui y sont applicables.</li>
+            </ul>
+
+            <p>Lorsque les renseignements de personnes situées dans l'Espace économique européen ou au Royaume-Uni sont transférés vers un pays ne bénéficiant pas d'une décision d'adéquation, nous nous appuyons sur des mécanismes de transfert reconnus, notamment les clauses contractuelles types adoptées par la Commission européenne ou des mécanismes équivalents.</p>
+
+            <h2>10. Conservation des renseignements personnels</h2>
+
+            <p>Nous conservons vos renseignements personnels aussi longtemps que nécessaire pour atteindre les finalités décrites à l'article 4, y compris pour :</p>
+
+            <ul>
+                <li>Vous fournir le Service tant que votre compte demeure actif ;</li>
+                <li>Respecter nos obligations légales, comptables, fiscales et contractuelles ;</li>
+                <li>Permettre l'exercice ou la défense d'un droit en justice.</li>
+            </ul>
+
+            <p>Lorsque vous supprimez votre compte, nous procédons à la suppression ou à l'anonymisation de vos renseignements personnels dans un délai raisonnable, sous réserve des renseignements que nous devons conserver pour respecter une obligation légale ou pour la gestion de différends. Certains renseignements de sauvegarde peuvent subsister dans nos systèmes pour une période limitée avant d'être effacés selon nos cycles de sauvegarde.</p>
+
+            <p>Pour les renseignements de facturation, la durée de conservation correspond aux délais imposés par les lois fiscales applicables (généralement 6 à 7 ans au Canada).</p>
+
+            <h2>11. Vos droits</h2>
+
+            <p>Sous réserve des conditions et limites prévues par les lois applicables, vous disposez des droits suivants à l'égard de vos renseignements personnels :</p>
+
+            <ul>
+                <li><strong>Droit d'accès</strong> : obtenir la confirmation que nous détenons des renseignements personnels vous concernant et en obtenir une copie.</li>
+                <li><strong>Droit de rectification</strong> : faire corriger des renseignements inexacts, incomplets ou équivoques.</li>
+                <li><strong>Droit à la portabilité</strong> : obtenir vos renseignements personnels informatisés que vous nous avez fournis dans un format technologique structuré et couramment utilisé, ou demander leur transmission à un tiers que vous désignez, lorsque cela est techniquement possible et n'entraîne pas de difficultés pratiques sérieuses.</li>
+                <li><strong>Droit à la cessation de la diffusion, à la désindexation ou à la réindexation</strong> (« droit à l'oubli ») : demander que cessent la diffusion de vos renseignements personnels ou la désindexation d'un hyperlien rattaché à votre nom, dans les conditions prévues par la loi.</li>
+                <li><strong>Droit de retirer votre consentement</strong> à tout moment, lorsque le traitement repose sur celui-ci, sans que cela n'affecte la licéité du traitement antérieur.</li>
+                <li><strong>Droit à l'effacement</strong> (RGPD) : demander la suppression de vos renseignements personnels dans les conditions prévues par le RGPD.</li>
+                <li><strong>Droit à la limitation du traitement</strong> et <strong>droit d'opposition</strong> (RGPD) : dans les conditions prévues par le RGPD.</li>
+                <li><strong>Droit relatif aux décisions automatisées</strong> : voir l'article 5.</li>
+            </ul>
+
+            <p><strong>Comment exercer vos droits :</strong> envoyez votre demande, accompagnée d'une preuve raisonnable de votre identité, à <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a>. Nous vous répondrons dans le délai prévu par la loi applicable (généralement 30 jours au Québec et au Canada, et un mois en vertu du RGPD), ce délai pouvant être prolongé conformément à la loi en cas de demande complexe.</p>
+
+            <p>Aucuns frais ne s'appliquent à une demande raisonnable. Des frais minimaux peuvent être exigés pour la transcription, la reproduction ou la transmission, conformément à la loi, et leur montant approximatif vous sera communiqué à l'avance.</p>
+
+            <p><strong>Droit de plainte :</strong></p>
+
+            <ul>
+                <li>Si vous êtes au Québec et que vous n'êtes pas satisfait du traitement de votre demande, vous pouvez déposer une plainte auprès de la <strong>Commission d'accès à l'information du Québec</strong> (<a href="https://cai.gouv.qc.ca" target="_blank" rel="noopener">cai.gouv.qc.ca</a>).</li>
+                <li>Si vous êtes ailleurs au Canada, vous pouvez vous adresser au <strong>Commissariat à la protection de la vie privée du Canada</strong> (<a href="https://priv.gc.ca" target="_blank" rel="noopener">priv.gc.ca</a>).</li>
+                <li>Si vous êtes dans l'EEE ou au Royaume-Uni, vous pouvez vous adresser à l'autorité de protection des données de votre pays de résidence.</li>
+            </ul>
+
+            <h2>12. Sécurité des renseignements personnels</h2>
+
+            <p>Nous mettons en place des mesures de sécurité raisonnables, conformes aux pratiques généralement reconnues dans l'industrie, pour protéger vos renseignements personnels contre la perte, le vol, l'accès non autorisé, l'utilisation, la modification ou la communication non autorisés. Ces mesures sont de nature physique, technologique et organisationnelle, et sont proportionnées à la sensibilité des renseignements.</p>
+
+            <p>Aucune mesure de sécurité ne peut toutefois garantir une protection absolue. Vous avez également un rôle à jouer en :</p>
+
+            <ul>
+                <li>Choisissant un mot de passe robuste et unique ;</li>
+                <li>Préservant la confidentialité de vos identifiants ;</li>
+                <li>Nous signalant rapidement tout accès non autorisé que vous suspectez.</li>
+            </ul>
+
+            <p><strong>Incidents de confidentialité :</strong> En cas d'incident de confidentialité présentant un risque qu'un préjudice sérieux soit causé, nous procéderons aux notifications requises par la loi applicable, notamment auprès de la Commission d'accès à l'information du Québec et des personnes concernées, dans les délais prescrits.</p>
+
+            <h2>13. Mineurs</h2>
+
+            <p>L'Application est destinée à un usage professionnel par des solopreneurs, freelances et entrepreneurs. <strong>Vous devez être âgé d'au moins 18 ans pour créer un compte et utiliser le Service.</strong> En créant un compte, vous déclarez avoir atteint l'âge de la majorité dans votre juridiction de résidence et avoir la capacité juridique de conclure le présent engagement.</p>
+
+            <p>Nous ne recueillons pas sciemment de renseignements personnels concernant des personnes de moins de 18 ans. Si vous constatez qu'un mineur nous a transmis des renseignements personnels, veuillez nous en aviser à <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a> afin que nous puissions procéder à leur suppression dans les meilleurs délais.</p>
+
+            <h2>14. Confidentialité par défaut</h2>
+
+            <p>Conformément à l'article 9.1 de la <em>Loi sur la protection des renseignements personnels dans le secteur privé</em>, les paramètres de l'Application qui disposent de réglages de confidentialité sont configurés par défaut au plus haut niveau de confidentialité, sans intervention de votre part. Vous pouvez par la suite ajuster ces paramètres selon vos préférences.</p>
+
+            <h2>15. Modifications à la présente politique</h2>
+
+            <p>Nous pouvons modifier cette politique de temps à autre afin de refléter l'évolution de nos pratiques, du Service, ou des exigences légales. Lorsque les modifications sont substantielles, nous vous en aviserons par un moyen approprié (par exemple, courriel, avis dans l'Application, ou avis bien visible sur notre site Internet) avant leur entrée en vigueur. La date d'entrée en vigueur en haut du document indique la version en vigueur. Les versions antérieures peuvent être obtenues sur demande.</p>
+
+            <h2>16. Loi applicable et juridiction</h2>
+
+            <p>La présente politique est régie par les lois en vigueur dans la province de Québec (Canada) et les lois fédérales canadiennes qui s'y appliquent. Tout différend lié à la présente politique est soumis à la compétence exclusive des tribunaux du district judiciaire de Bedford, sous réserve des droits impératifs reconnus par les lois de protection des renseignements personnels de votre lieu de résidence.</p>
+
+            <h2>17. Pour nous joindre</h2>
+
+            <p>Pour toute question, demande ou plainte relative à la présente politique :</p>
+
+            <div class="contact-block">
+                <p><strong>Responsable de la protection des renseignements personnels</strong></p>
+                <p>CapitalSoft inc. — division Vector</p>
+                <p>Courriel : <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a></p>
+                <p>Site Internet : <a href="https://vectorplanning.ai">vectorplanning.ai</a></p>
+            </div>
+
+            <p>Nous nous engageons à traiter votre demande avec diligence et à vous fournir une réponse dans les délais prescrits par la loi applicable.</p>
+
+            <hr>
+
+            <p style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">Cette politique est rédigée en français. Une version anglaise est disponible à des fins de commodité ; en cas de divergence, la version française prévaut pour les utilisateurs au Québec.</p>
+
+        </article>
+
+        <!-- ════════════════════════════════════════════════════ -->
+        <!-- ══════════════ ENGLISH VERSION ══════════════════════ -->
+        <!-- ════════════════════════════════════════════════════ -->
+
+        <article id="content-en" class="lang-content">
+
+            <h1>Privacy <span class="highlight">Policy</span></h1>
+
+            <p class="meta">
+                <strong>Vector — Anti-anxiety planning application for solopreneurs</strong><br>
+                <strong>Effective date:</strong> May 10, 2026<br>
+                <strong>Last updated:</strong> May 10, 2026 · <strong>Version:</strong> 1.0
+            </p>
+
+            <div class="summary-box">
+                <h2>🔒 At a glance</h2>
+                <p>Vector takes a <strong>"privacy-first"</strong> approach. Here's the essence:</p>
+                <ul>
+                    <li><strong>Marketing site</strong>: no tracking cookies, no advertising pixels, no third-party trackers. Audience measurement is fully anonymous.</li>
+                    <li><strong>Application</strong>: we collect only the information necessary to provide the Service.</li>
+                    <li><strong>Your data is yours</strong>: you can obtain a copy, correct it, transfer it, or delete it at any time.</li>
+                    <li><strong>Third-party AI</strong>: the content you enter is never used to train external artificial intelligence models (Anthropic Claude, etc.).</li>
+                    <li><strong>Internal learning</strong>: Vector learns from your task durations to personalize your estimates. In strictly anonymized and aggregated form, this data may contribute to improving the default estimates offered to all users.</li>
+                    <li><strong>No data sales</strong>: we never sell your personal information to anyone.</li>
+                </ul>
+                <p style="margin-top: 1rem; margin-bottom: 0; font-size: 0.9rem; color: var(--text-secondary);">This is a summary. The sections below provide the full details.</p>
+            </div>
+
+            <h2>1. Introduction</h2>
+
+            <p>This privacy policy describes how <strong>CapitalSoft inc.</strong>, operating the <strong>Vector</strong> division (hereinafter "<strong>Vector</strong>", "<strong>we</strong>", "<strong>our</strong>", or "<strong>us</strong>"), collects, uses, communicates, and protects your personal information when you use the Vector application accessible at <strong>vectorplanning.ai</strong> and its subdomains (hereinafter the "<strong>Application</strong>" or the "<strong>Service</strong>").</p>
+
+            <p>CapitalSoft inc. is a company established in Quebec (Canada). This policy is set within the framework of the <em>Act respecting the protection of personal information in the private sector</em> (CQLR, c. P-39.1), as amended by the <em>Act to modernize legislative provisions as regards the protection of personal information</em> (Law 25), the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) of Canada, as well as, when applicable, other foreign laws governing personal information protection, including the <em>General Data Protection Regulation</em> (GDPR) of the European Union.</p>
+
+            <p>By using the Application, you acknowledge that you have read this policy. If you do not agree with its contents, we invite you not to use the Service.</p>
+
+            <h2>2. Privacy Officer</h2>
+
+            <p>In accordance with Law 25, we have designated a Privacy Officer responsible for the protection of personal information within Vector. You may contact this person for any question related to this policy, to exercise your rights, or to file a complaint:</p>
+
+            <div class="contact-block">
+                <p><strong>Privacy Officer</strong></p>
+                <p>CapitalSoft inc. — Vector division</p>
+                <p>Email: <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a></p>
+            </div>
+
+            <p>For users located in the European Union or the United Kingdom, this same person also acts as the point of contact for GDPR and UK GDPR purposes. Vector has not appointed a representative within the meaning of Article 27 of the GDPR at this time, considering that its processing of data concerning EEA residents remains occasional and not on a large scale; this situation will be reassessed if it evolves.</p>
+
+            <h2>3. Personal Information We Collect</h2>
+
+            <p>We collect only the personal information necessary for the purposes described in Section 4. Depending on your use of the Service, this information may include:</p>
+
+            <h3>3.1 Information you provide directly</h3>
+
+            <ul>
+                <li><strong>Account information</strong>: display name, email address, password (in encrypted form — we never have access to your password in plain text), city and province or country (optional), industry or sector of activity (optional).</li>
+                <li><strong>Content created in the Application</strong>: projects, tasks, subtasks, deadlines, estimated durations, notes, brainstorming content ("brain dumps"), planning history, custom configurations (for example, the name given to your AI agents).</li>
+                <li><strong>Communications</strong>: content of exchanges you have with us (emails, contact forms, support requests, exchanges with our support agent Lina).</li>
+                <li><strong>Payment information</strong>: if you subscribe to a paid plan, your payment provider (Paddle) collects the required payment information. <strong>We do not collect or store your credit card numbers or other sensitive financial data.</strong> We only receive the information necessary to manage your subscription (subscription status, plan, renewal date, currency, billing country).</li>
+            </ul>
+
+            <h3>3.2 Information collected automatically</h3>
+
+            <ul>
+                <li><strong>Usage data</strong>: events related to your interaction with the Application (project creation, task completion, features used), to measure usage and improve the Service.</li>
+                <li><strong>Technical data</strong>: IP address (anonymized by our analytics provider), browser type, operating system, language, time zone, pages viewed on the marketing site.</li>
+                <li><strong>Cookies and similar technologies</strong>: see Section 6.</li>
+            </ul>
+
+            <h3>3.3 Information collected from third parties</h3>
+
+            <p>We do not collect your personal information from third parties, except to the extent that you choose to log into the Application using a third-party authentication provider (for example Google), in which case we receive the minimum information necessary to create your account (email address, name, unique identifier).</p>
+
+            <h3>3.4 Sensitive information</h3>
+
+            <p>We do not intentionally collect information considered sensitive under applicable laws (ethnic origin, political or religious opinions, health status, sexual orientation, biometric data, etc.). We ask that you <strong>do not enter</strong> such information in the content of your tasks or projects.</p>
+
+            <h2>4. Purposes of Collection and Legal Bases</h2>
+
+            <p>We use your personal information only for the following purposes:</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Purpose</th>
+                            <th>Legal basis (GDPR, when applicable)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Create and manage your account, authenticate you</td><td>Performance of contract</td></tr>
+                        <tr><td>Provide the features of the Application (planning, AI estimation, calendar)</td><td>Performance of contract</td></tr>
+                        <tr><td>Process payments and manage subscriptions</td><td>Performance of contract / Legal obligation</td></tr>
+                        <tr><td>Communicate with you (notifications, support, service updates)</td><td>Performance of contract / Legitimate interest</td></tr>
+                        <tr><td>Improve the Service, fix bugs, measure aggregate usage</td><td>Legitimate interest</td></tr>
+                        <tr><td>Learn from your usage data to improve the accuracy of duration estimates you receive personally</td><td>Performance of contract</td></tr>
+                        <tr><td>Improve the quality of default duration estimates offered to all users, based on aggregated and anonymized statistics</td><td>Legitimate interest</td></tr>
+                        <tr><td>Prevent fraud and abusive use, ensure the security of the Service</td><td>Legitimate interest / Legal obligation</td></tr>
+                        <tr><td>Send you marketing communications (only with your consent)</td><td>Consent</td></tr>
+                        <tr><td>Comply with our legal and regulatory obligations</td><td>Legal obligation</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>For users in Quebec and Canada, your consent to these purposes is expressed by your acceptance of this policy at the time of account creation. You may withdraw your consent at any time according to the modalities provided in Section 11.</p>
+
+            <h2>5. Artificial Intelligence and Automated Decisions</h2>
+
+            <p>The Application uses artificial intelligence to help you organize and plan your work. This includes notably:</p>
+
+            <ul>
+                <li>Extracting tasks from content you enter;</li>
+                <li>Automatic estimation of task duration;</li>
+                <li>Automated planning of your calendar;</li>
+                <li>Interaction with your AI agents (CPO and COO).</li>
+            </ul>
+
+            <p><strong>How it works:</strong> When you interact with these features, the relevant content (for example, the text of a task, your project parameters) is transmitted to our AI provider, <strong>Anthropic PBC</strong> (United States), via a secure connection. Anthropic processes this information to generate a response, which is then returned to you. According to Anthropic's commercial terms, this information <strong>is not used to train its models</strong>.</p>
+
+            <p><strong>Vector's learning from your data:</strong> In addition to the AI features provided by Anthropic, Vector maintains its own statistical learning mechanisms to improve the accuracy of duration estimates. These mechanisms operate at two levels:</p>
+
+            <ul>
+                <li><strong>Personal library.</strong> As you complete tasks, Vector records the actual time spent and uses it to progressively refine the future estimates suggested to you. This library is <strong>strictly reserved for you</strong>: it is not shared with other users, nor used to train third-party AI models.</li>
+                <li><strong>Community library (anonymized).</strong> To offer useful estimates to new users who do not yet have a personal history, Vector may use <strong>aggregated and anonymized statistics</strong> computed from the task durations of all users (for example: average duration for a given task category). These statistics <strong>contain no identifier</strong> and do not allow tracing back to any specific person. This default library is progressively replaced by your personal library as you use the Service.</li>
+            </ul>
+
+            <p><strong>Your rights regarding automated decisions:</strong> In accordance with Law 25 and the GDPR, when a decision concerning you is based exclusively on automated processing (for example, the automatic estimation of a task's duration, the automatic scheduling of a slot in your calendar), you have the right to:</p>
+
+            <ul>
+                <li>Be informed that this decision is automated;</li>
+                <li>Know the personal information that was used to make this decision;</li>
+                <li>Know the main factors and parameters that led to this decision;</li>
+                <li>Have the information used corrected if it is inaccurate;</li>
+                <li><strong>Submit your observations</strong> to a member of our team and have this decision reviewed.</li>
+            </ul>
+
+            <p>To exercise these rights, write to us at <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a>.</p>
+
+            <p><strong>Important:</strong> You retain at all times the ability to modify, refuse, replace, or ignore any suggestion or planning generated by AI. You remain the decision-maker.</p>
+
+            <h2>6. Cookies and Similar Technologies</h2>
+
+            <p>Vector takes a minimalist approach to cookies and similar technologies.</p>
+
+            <h3>6.1 Marketing site (vectorplanning.ai)</h3>
+
+            <p>Our marketing site <strong>does not use any tracking cookies, advertising pixels, or third-party tracking scripts</strong>. We also do not use Consent Management Platforms (CMPs), as none of the technologies deployed require them.</p>
+
+            <p>To measure interest in our content, we rely on two anonymous mechanisms:</p>
+
+            <ul>
+                <li><strong>Cloudflare Web Analytics</strong>: an audience measurement service that does not deposit any cookies and does not identify visitors individually. European data protection authorities (notably the CNIL and the EDPB) recognize this type of measurement as exempt from prior consent.</li>
+                <li><strong>Anonymous article reading counts</strong>: we count, in a strictly anonymous manner, article views exceeding 30 seconds. <strong>No user identifier is created, stored, or transmitted.</strong> This measurement serves solely to evaluate the editorial relevance of our content.</li>
+            </ul>
+
+            <h3>6.2 Vector Application</h3>
+
+            <p>The Application uses a few local storage mechanisms strictly necessary for its operation:</p>
+
+            <ul>
+                <li><strong>Session storage</strong>: necessary to keep you authenticated during your work session.</li>
+                <li><strong>Interface preferences</strong>: local storage of your display preferences (light or dark theme, language, etc.) to personalize your experience.</li>
+            </ul>
+
+            <p>These mechanisms serve no tracking, profiling, or audience measurement purpose. They are not shared with third parties and are exempt from prior consent under applicable rules, being strictly necessary for the provision of the Service you have explicitly requested.</p>
+
+            <p>You can configure your browser to block cookies and local storage, but this may prevent the Application from functioning properly (for example, the inability to remain authenticated).</p>
+
+            <h2>7. Profiling, Identification, and Geolocation</h2>
+
+            <p>In accordance with the requirements of Law 25, we inform you that:</p>
+
+            <ul>
+                <li>The Application <strong>does not perform profiling</strong> within the meaning of section 8.1 of the <em>Act respecting the protection of personal information in the private sector</em> (i.e., the evaluation of characteristics of a natural person for purposes including analysis of performance, economic situation, health, preferences, interests, or behavior).</li>
+                <li>The Application <strong>does not use geolocation features</strong> identifying you with a specific location.</li>
+                <li>The Application <strong>does not perform biometric identification</strong>.</li>
+            </ul>
+
+            <p>If we were to add such features, we would inform you in advance and offer you the possibility to enable them or not, in accordance with the law.</p>
+
+            <h2>8. Disclosure to Third Parties and Subprocessors</h2>
+
+            <p>We never sell your personal information.</p>
+
+            <p>We share certain information with <strong>third-party service providers</strong> (subprocessors, or <em>processors</em> within the meaning of the GDPR) who process it on our behalf, under our responsibility, and only for the purposes set out in this policy. These providers are bound by contractual confidentiality and security commitments.</p>
+
+            <p>The main categories of subprocessors at the time of writing this policy are:</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Main provider</th>
+                            <th>Main country of establishment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Hosting and infrastructure</td><td>Cloudflare, Inc.</td><td>United States</td></tr>
+                        <tr><td>Database and authentication</td><td>Supabase, Inc.</td><td>United States</td></tr>
+                        <tr><td>Artificial intelligence</td><td>Anthropic PBC</td><td>United States</td></tr>
+                        <tr><td>Payment processing</td><td>Paddle.com Market Ltd.</td><td>United Kingdom / United States</td></tr>
+                        <tr><td>Transactional emails</td><td>Resend, Inc.</td><td>United States</td></tr>
+                        <tr><td>Marketing site forms</td><td>Formspree, Inc.</td><td>United States</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>This list may evolve. An updated version is available upon request at <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a>.</p>
+
+            <p>We may also disclose your personal information:</p>
+
+            <ul>
+                <li>To any public authority, court, or regulatory body when required by law;</li>
+                <li>To assert our rights, prevent fraud, or protect the safety of persons or property;</li>
+                <li>In the context of a commercial transaction (merger, acquisition, sale of assets), in which case you will be informed in accordance with applicable law.</li>
+            </ul>
+
+            <h2>9. Disclosure of Information Outside Quebec</h2>
+
+            <p>Several of our subprocessors are established outside Quebec, primarily in the United States and the United Kingdom. In accordance with section 17 of the <em>Act respecting the protection of personal information in the private sector</em>, we conduct a <strong>privacy impact assessment (PIA)</strong> before any disclosure of personal information outside Quebec. This assessment takes into account, among other things:</p>
+
+            <ul>
+                <li>The sensitivity of the information;</li>
+                <li>The purpose of its use;</li>
+                <li>The protective measures in place, including contractual ones;</li>
+                <li>The legal regime applicable in the destination jurisdiction, particularly the principles of personal information protection that apply there.</li>
+            </ul>
+
+            <p>When information of persons located in the European Economic Area or the United Kingdom is transferred to a country that does not benefit from an adequacy decision, we rely on recognized transfer mechanisms, notably the standard contractual clauses adopted by the European Commission or equivalent mechanisms.</p>
+
+            <h2>10. Retention of Personal Information</h2>
+
+            <p>We retain your personal information for as long as necessary to fulfill the purposes described in Section 4, including to:</p>
+
+            <ul>
+                <li>Provide you with the Service as long as your account remains active;</li>
+                <li>Comply with our legal, accounting, tax, and contractual obligations;</li>
+                <li>Allow the exercise or defense of a right in court.</li>
+            </ul>
+
+            <p>When you delete your account, we proceed with the deletion or anonymization of your personal information within a reasonable time, subject to information we must retain to comply with a legal obligation or to manage disputes. Some backup information may remain in our systems for a limited period before being erased according to our backup cycles.</p>
+
+            <p>For billing information, the retention period corresponds to the deadlines imposed by applicable tax laws (generally 6 to 7 years in Canada).</p>
+
+            <h2>11. Your Rights</h2>
+
+            <p>Subject to the conditions and limits provided by applicable laws, you have the following rights regarding your personal information:</p>
+
+            <ul>
+                <li><strong>Right of access</strong>: obtain confirmation that we hold personal information about you and obtain a copy of it.</li>
+                <li><strong>Right to rectification</strong>: have inaccurate, incomplete, or ambiguous information corrected.</li>
+                <li><strong>Right to portability</strong>: obtain your computerized personal information that you have provided to us in a structured and commonly used technological format, or request its transmission to a third party of your choosing, when technically possible and not entailing serious practical difficulties.</li>
+                <li><strong>Right to cease dissemination, deindexation, or reindexation</strong> ("right to be forgotten"): request the cessation of the dissemination of your personal information or the deindexation of a hyperlink attached to your name, under the conditions provided by law.</li>
+                <li><strong>Right to withdraw your consent</strong> at any time, when processing is based on it, without affecting the lawfulness of prior processing.</li>
+                <li><strong>Right to erasure</strong> (GDPR): request the deletion of your personal information under the conditions provided by the GDPR.</li>
+                <li><strong>Right to restriction of processing</strong> and <strong>right to object</strong> (GDPR): under the conditions provided by the GDPR.</li>
+                <li><strong>Rights regarding automated decisions</strong>: see Section 5.</li>
+            </ul>
+
+            <p><strong>How to exercise your rights:</strong> send your request, accompanied by reasonable proof of your identity, to <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a>. We will respond within the time limit provided by applicable law (generally 30 days in Quebec and Canada, and one month under the GDPR), this period being extendable in accordance with the law in case of complex requests.</p>
+
+            <p>No fees apply to a reasonable request. Minimal fees may be charged for transcription, reproduction, or transmission, in accordance with the law, and their approximate amount will be communicated to you in advance.</p>
+
+            <p><strong>Right to file a complaint:</strong></p>
+
+            <ul>
+                <li>If you are in Quebec and are dissatisfied with the handling of your request, you may file a complaint with the <strong>Commission d'accès à l'information du Québec</strong> (<a href="https://cai.gouv.qc.ca" target="_blank" rel="noopener">cai.gouv.qc.ca</a>).</li>
+                <li>If you are elsewhere in Canada, you may contact the <strong>Office of the Privacy Commissioner of Canada</strong> (<a href="https://priv.gc.ca" target="_blank" rel="noopener">priv.gc.ca</a>).</li>
+                <li>If you are in the EEA or the United Kingdom, you may contact the data protection authority of your country of residence.</li>
+            </ul>
+
+            <h2>12. Security of Personal Information</h2>
+
+            <p>We implement reasonable security measures, in accordance with generally recognized industry practices, to protect your personal information against loss, theft, unauthorized access, use, modification, or disclosure. These measures are physical, technological, and organizational in nature, and are proportionate to the sensitivity of the information.</p>
+
+            <p>No security measure can guarantee absolute protection, however. You also have a role to play by:</p>
+
+            <ul>
+                <li>Choosing a strong and unique password;</li>
+                <li>Maintaining the confidentiality of your credentials;</li>
+                <li>Promptly reporting any unauthorized access you suspect.</li>
+            </ul>
+
+            <p><strong>Privacy incidents:</strong> In the event of a privacy incident presenting a risk that serious harm may be caused, we will proceed with the notifications required by applicable law, notably to the Commission d'accès à l'information du Québec and the persons concerned, within the prescribed deadlines.</p>
+
+            <h2>13. Minors</h2>
+
+            <p>The Application is intended for professional use by solopreneurs, freelancers, and entrepreneurs. <strong>You must be at least 18 years old to create an account and use the Service.</strong> By creating an account, you declare that you have reached the age of majority in your jurisdiction of residence and have the legal capacity to enter into this agreement.</p>
+
+            <p>We do not knowingly collect personal information concerning persons under 18 years of age. If you become aware that a minor has transmitted personal information to us, please notify us at <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a> so that we can proceed with its deletion as soon as possible.</p>
+
+            <h2>14. Privacy by Default</h2>
+
+            <p>In accordance with section 9.1 of the <em>Act respecting the protection of personal information in the private sector</em>, the Application's settings that have privacy controls are configured by default at the highest level of privacy, without intervention on your part. You may subsequently adjust these settings according to your preferences.</p>
+
+            <h2>15. Changes to This Policy</h2>
+
+            <p>We may modify this policy from time to time to reflect the evolution of our practices, the Service, or legal requirements. When changes are substantial, we will notify you by an appropriate means (for example, email, notice in the Application, or prominent notice on our website) before they take effect. The effective date at the top of the document indicates the version in force. Previous versions can be obtained upon request.</p>
+
+            <h2>16. Applicable Law and Jurisdiction</h2>
+
+            <p>This policy is governed by the laws in force in the province of Quebec (Canada) and the Canadian federal laws that apply thereto. Any dispute related to this policy is subject to the exclusive jurisdiction of the courts of the Bedford judicial district, subject to the imperative rights recognized by the personal information protection laws of your place of residence.</p>
+
+            <h2>17. Contact Us</h2>
+
+            <p>For any question, request, or complaint regarding this policy:</p>
+
+            <div class="contact-block">
+                <p><strong>Privacy Officer</strong></p>
+                <p>CapitalSoft inc. — Vector division</p>
+                <p>Email: <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a></p>
+                <p>Website: <a href="https://vectorplanning.ai">vectorplanning.ai</a></p>
+            </div>
+
+            <p>We are committed to processing your request with diligence and providing you with a response within the deadlines prescribed by applicable law.</p>
+
+            <hr>
+
+            <p style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">This policy is originally drafted in French. This English version is provided for convenience; in case of discrepancy, the French version prevails for users in Quebec.</p>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <p data-fr="© 2026 Vector — division de CapitalSoft inc." data-en="© 2026 Vector — a division of CapitalSoft inc.">© 2026 Vector — division de CapitalSoft inc.</p>
+        <p class="privacy-mention" data-fr="🔒 Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire" data-en="🔒 Privacy-first · No tracking cookies · No advertising pixels">🔒 Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire</p>
+        <p style="margin-top: 0.8rem;"><a href="/" data-fr="← Retour à l'accueil" data-en="← Back to home">← Retour à l'accueil</a></p>
+    </footer>
+
+    <script>
+        // ─── Détection initiale de la langue ───
+        // Priorité : 1) URL ?lang=xx, 2) localStorage, 3) navigateur, 4) FR par défaut
+        function detectInitialLang() {
+            const params = new URLSearchParams(window.location.search);
+            const fromUrl = params.get('lang');
+            if (fromUrl === 'fr' || fromUrl === 'en') return fromUrl;
+
+            const stored = localStorage.getItem('vector_lang');
+            if (stored === 'fr' || stored === 'en') return stored;
+
+            const browserLang = (navigator.language || 'fr').toLowerCase();
+            if (browserLang.startsWith('en')) return 'en';
+
+            return 'fr';
+        }
+
+        // ─── Application de la langue ───
+        function setLang(lang) {
+            // Mise à jour du contenu principal
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('content-' + lang);
+            if (target) target.classList.add('active');
+
+            // Mise à jour des boutons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Mise à jour des éléments avec data-fr / data-en (header, footer)
+            document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+                el.textContent = el.dataset[lang] || el.textContent;
+            });
+
+            // Mise à jour de l'attribut lang du <html> (accessibilité + SEO)
+            document.documentElement.lang = lang;
+
+            // Mise à jour du <title>
+            document.title = lang === 'en'
+                ? 'Privacy Policy — Vector'
+                : 'Politique de confidentialité — Vector';
+
+            // Persistance
+            localStorage.setItem('vector_lang', lang);
+
+            // Mise à jour de l'URL sans recharger
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+
+            // Remontée vers le haut pour faciliter la lecture après changement
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ─── Initialisation au chargement ───
+        document.addEventListener('DOMContentLoaded', function() {
+            setLang(detectInitialLang());
+        });
+    </script>
+
+</body>
+</html>
