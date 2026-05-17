@@ -522,6 +522,35 @@
         }
         .ebook-form-note a:hover { color: var(--accent-lime); }
 
+        .ebook-success-heading {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-lime);
+            margin-bottom: 1rem;
+        }
+        .ebook-download-btn {
+            display: inline-block;
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            padding: 0.9rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .ebook-download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 255, 60, 0.25);
+        }
+        .ebook-success-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.8rem;
+        }
+
         .ebook-form-success {
             font-size: 1.05rem;
             color: var(--accent-lime);
@@ -2048,6 +2077,7 @@
                 name: form.name.value.trim(),
                 email: form.email.value.trim(),
                 lang: lang,
+                source_form: 'ebook_anti_surprise',
                 consent_marketing: form.consent_marketing && form.consent_marketing.checked === true,
                 source_article: sourceArticle,
                 source_url: window.location.href
@@ -2061,11 +2091,25 @@
                 });
                 if (!res.ok) throw new Error('Request failed: ' + res.status);
 
-                const successMsg = lang === 'fr'
-                    ? '✓ C\'est envoyé. Vérifie ta boîte courriel dans les prochaines minutes (et le dossier indésirables si tu ne vois rien).'
-                    : '✓ Sent. Check your inbox in a few minutes (and your spam folder if you don\'t see it).';
+                const data = await res.json();
+                const downloadUrl = data.download_url;
+                const filename = data.filename || (lang === 'fr' ? 'Vector-Guide.pdf' : 'Vector-Guide.pdf');
 
-                form.outerHTML = '<p class="ebook-form-success">' + successMsg + '</p>';
+                // UI de succès avec bouton de téléchargement immédiat
+                const headingText = lang === 'fr' ? 'C\'est prêt !' : 'Ready to go!';
+                const buttonText = lang === 'fr' ? '📄 Télécharger le guide (PDF)' : '📄 Download the guide (PDF)';
+                const noteText = lang === 'fr'
+                    ? 'On t\'a aussi envoyé le lien par courriel — pratique pour le retrouver plus tard.'
+                    : 'We also emailed you the link — handy for finding it again later.';
+
+                const successHTML =
+                    '<div class="ebook-form-success">' +
+                        '<p class="ebook-success-heading">' + headingText + '</p>' +
+                        '<p><a href="' + downloadUrl + '" download="' + filename + '" class="ebook-download-btn" target="_blank" rel="noopener">' + buttonText + '</a></p>' +
+                        '<p class="ebook-success-note">' + noteText + '</p>' +
+                    '</div>';
+
+                form.outerHTML = successHTML;
             } catch (err) {
                 console.error('Ebook request failed:', err);
                 button.disabled = false;
