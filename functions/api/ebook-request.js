@@ -1,34 +1,67 @@
 /**
- * Cloudflare Pages Function — POST /api/ebook-request  (v2, Phase 1A)
+ * Cloudflare Pages Function — POST /api/ebook-request  (v3, Phase 1A)
  *
- * Reçoit { name, email, lang, consent_marketing, source_article, source_url }
- * depuis le formulaire d'article.
+ * Reçoit { name, email, lang, consent_marketing, source_form, source_article, source_url }
+ * depuis un formulaire de capture d'ebook.
  *
  * Pipeline :
- *   1. Validation des entrées
+ *   1. Validation des entrées + résolution du lead magnet demandé
  *   2. Hash IP + User-Agent (preuve de consentement LCAP)
- *   3. INSERT dans Supabase (table public.vw_marketing_leads)
- *   4. Envoi du courriel J+0 via Resend (livraison du PDF)
- *   5. UPDATE Supabase avec funnel_email_1_sent_at
- *   6. Retour 200 au client
+ *   3. INSERT dans Supabase (public.vw_marketing_leads)
+ *   4. Génération d'un token signé HMAC-SHA256 lié au lead + à la ressource
+ *   5. Envoi du courriel J+0 (en parallèle) + retour JSON avec download_url
  *
- * Variables d'environnement requises (Cloudflare Pages → Settings → Environment variables):
- *   - RESEND_API_KEY                (secret) — clé API Resend
- *   - SUPABASE_URL                  (texte)  — ex. https://abc.supabase.co
- *   - SUPABASE_SERVICE_ROLE_KEY     (secret) — service_role key (PAS l'anon key)
- *   - IP_HASH_SECRET                (secret) — sel pour SHA-256 IP (généré avec openssl rand -hex 32)
- *   - SITE_URL                      (texte)  — ex. https://vectorplanning.ai
+ * Architecture clé :
+ *   - Table LEAD_MAGNETS centralisée : pour ajouter un nouvel ebook, ajouter
+ *     une entrée ici + uploader les PDF. Aucune nouvelle Function nécessaire.
+ *   - Token signé HMAC : pas de stockage côté serveur, vérifiable par
+ *     /api/download sans appel base de données pour la signature.
+ *   - Double livraison : bouton de téléchargement immédiat (UX) + courriel
+ *     en parallèle (filet de sécurité + démarrage du mini-funnel).
  *
- * Optionnel :
- *   - EBOOK_FROM       — défaut: "Vector <support@mail.vectorplanning.ai>"
- *   - EBOOK_REPLY_TO   — défaut: "support@vectorplanning.ai"
+ * Variables d'environnement requises :
+ *   - RESEND_API_KEY                (secret)
+ *   - SUPABASE_URL                  (texte)
+ *   - SUPABASE_SERVICE_ROLE_KEY     (secret)
+ *   - IP_HASH_SECRET                (secret) — sert AUSSI à signer les tokens
+ *   - SITE_URL                      (texte)  — pour construire l'URL de téléchargement
  */
 
 const DEFAULT_FROM = 'Vector <support@mail.vectorplanning.ai>';
 const DEFAULT_REPLY_TO = 'support@vectorplanning.ai';
 
-const EBOOK_URL_FR = 'https://vectorplanning.ai/ebooks/vector-anti-surprise-fr.pdf';
-const EBOOK_URL_EN = 'https://vectorplanning.ai/ebooks/vector-anti-surprise-en.pdf';
+// Durée de validité du token de téléchargement
+const TOKEN_TTL_DAYS = 30;
+
+
+/**
+ * Table centralisée des lead magnets.
+ * Pour ajouter un nouvel ebook :
+ *   1. Uploader les PDF dans /ebooks/ (avec un nom contenant un hash aléatoire)
+ *   2. Ajouter une entrée ici (key = valeur de source_form envoyée par le formulaire)
+ *   3. Aucune autre modification nécessaire
+ *
+ * Note : Option B (PdC) — le lien pointe toujours vers la version courante.
+ * Pour publier v2 d'un ebook, remplacer simplement le filename dans cette table.
+ * Les anciens tokens continueront de fonctionner et pointeront vers la nouvelle version.
+ */
+const LEAD_MAGNETS = {
+    'ebook_anti_surprise': {
+        title_fr: 'Le système anti-surprise',
+        title_en: 'The anti-surprise system',
+        subtitle_fr: '5 étapes pour solopreneurs qui jonglent plusieurs projets',
+        subtitle_en: '5 steps for solopreneurs juggling multiple projects',
+        file_fr: 'anti-surprise-v1-fr-a8d3f2.pdf',
+        file_en: 'anti-surprise-v1-en-b9c4e1.pdf',
+        download_filename_fr: 'Vector-Systeme-anti-surprise.pdf',
+        download_filename_en: 'Vector-Anti-surprise-System.pdf'
+    }
+    // Futurs lead magnets ici. Exemple :
+    // 'checklist_delegation': {
+    //     title_fr: 'Checklist de délégation',
+    //     ...
+    // }
+};
 
 
 export async function onRequestPost(context) {
@@ -47,6 +80,9 @@ export async function onRequestPost(context) {
         const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
         const lang = data.lang === 'en' ? 'en' : 'fr';
         const consentMarketing = data.consent_marketing === true;
+        const sourceForm = typeof data.source_form === 'string'
+            ? data.source_form.trim()
+            : 'ebook_anti_surprise';  // défaut rétrocompatible
         const sourceArticle = typeof data.source_article === 'string'
             ? data.source_article.trim().slice(0, 200)
             : null;
@@ -56,6 +92,13 @@ export async function onRequestPost(context) {
 
         if (!name || name.length > 80) return jsonError('Invalid name', 400);
         if (!email || email.length > 180 || !isValidEmail(email)) return jsonError('Invalid email', 400);
+
+        // Résolution du lead magnet
+        const magnet = LEAD_MAGNETS[sourceForm];
+        if (!magnet) {
+            console.error(`Unknown lead magnet: ${sourceForm}`);
+            return jsonError('Unknown resource', 400);
+        }
 
         // ── 2. Vérification de la configuration ───────────────────────
         const requiredEnv = ['RESEND_API_KEY', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'IP_HASH_SECRET'];
@@ -87,14 +130,12 @@ export async function onRequestPost(context) {
             name: name,
             email: email,
             lang: lang,
-            source_form: 'ebook_anti_surprise',
+            source_form: sourceForm,
             source_article: sourceArticle,
             source_url: sourceUrl,
             consent_marketing: consentMarketing,
             consent_ip_hash: ipHash,
             consent_user_agent_hash: uaHash
-            // id, unsubscribe_token, consent_timestamp, status, created_at, updated_at
-            // → tous remplis par les defaults Postgres
         };
 
         const insertRes = await fetch(
@@ -109,10 +150,6 @@ export async function onRequestPost(context) {
         if (!insertRes.ok) {
             const errBody = await insertRes.text().catch(() => '');
             console.error('Supabase insert error:', insertRes.status, errBody);
-            // On continue quand même : la livraison du PDF prime sur le tracking
-            // (mais on ne pourra pas générer le lien d'unsubscribe correct)
-            // → décision : si Supabase tombe, on REFUSE pour ne pas envoyer un
-            //   courriel sans pouvoir gérer le désabonnement.
             return jsonError('Database error', 502);
         }
 
@@ -123,24 +160,72 @@ export async function onRequestPost(context) {
             return jsonError('Database error', 502);
         }
 
-        // ── 5. Envoi du courriel J+0 via Resend ──────────────────────
-        const safeName = escapeHtml(name);
-        const isEn = lang === 'en';
-        const ebookUrl = isEn ? EBOOK_URL_EN : EBOOK_URL_FR;
+        // ── 5. Génération du token de téléchargement signé ────────────
+        const downloadToken = await generateDownloadToken({
+            leadId: lead.id,
+            resourceKey: sourceForm,
+            lang: lang,
+            secret: env.IP_HASH_SECRET
+        });
+
         const siteUrl = env.SITE_URL || 'https://vectorplanning.ai';
+        const downloadUrl = `${siteUrl}/api/download?token=${encodeURIComponent(downloadToken)}`;
         const unsubUrl = `${siteUrl}/api/unsubscribe?token=${lead.unsubscribe_token}&lang=${lang}`;
 
-        const subject = isEn
-            ? 'Your free guide: The anti-surprise system'
-            : 'Ton guide gratuit : Le système anti-surprise';
+        // ── 6. Envoi du courriel J+0 en parallèle ────────────────────
+        const emailPromise = sendDeliveryEmail({
+            env,
+            lang,
+            name,
+            email,
+            magnet,
+            downloadUrl,
+            unsubUrl,
+            consentMarketing,
+            leadId: lead.id,
+            supabaseHeaders
+        });
 
-        const html = isEn
-            ? buildEmailEN(safeName, ebookUrl, unsubUrl, consentMarketing)
-            : buildEmailFR(safeName, ebookUrl, unsubUrl, consentMarketing);
-        const text = isEn
-            ? buildTextEN(name, ebookUrl, unsubUrl, consentMarketing)
-            : buildTextFR(name, ebookUrl, unsubUrl, consentMarketing);
+        context.waitUntil(emailPromise);
 
+        // ── 7. Réponse immédiate au client ────────────────────────────
+        return new Response(JSON.stringify({
+            success: true,
+            download_url: downloadUrl,
+            filename: lang === 'en' ? magnet.download_filename_en : magnet.download_filename_fr,
+            title: lang === 'en' ? magnet.title_en : magnet.title_fr
+        }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+    } catch (err) {
+        console.error('Unexpected error in ebook-request:', err);
+        return jsonError('Internal error', 500);
+    }
+}
+
+
+// ──────────────────────────────────────────────────────────────────────────
+// Envoi du courriel de livraison
+// ──────────────────────────────────────────────────────────────────────────
+
+async function sendDeliveryEmail({ env, lang, name, email, magnet, downloadUrl, unsubUrl, consentMarketing, leadId, supabaseHeaders }) {
+    const safeName = escapeHtml(name);
+    const isEn = lang === 'en';
+
+    const subject = isEn
+        ? `Your free guide: ${magnet.title_en}`
+        : `Ton guide gratuit : ${magnet.title_fr}`;
+
+    const html = isEn
+        ? buildEmailEN(safeName, magnet, downloadUrl, unsubUrl, consentMarketing)
+        : buildEmailFR(safeName, magnet, downloadUrl, unsubUrl, consentMarketing);
+    const text = isEn
+        ? buildTextEN(name, magnet, downloadUrl, unsubUrl, consentMarketing)
+        : buildTextFR(name, magnet, downloadUrl, unsubUrl, consentMarketing);
+
+    try {
         const resendRes = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
@@ -155,7 +240,6 @@ export async function onRequestPost(context) {
                 html: html,
                 text: text,
                 headers: {
-                    // En-tête RFC 8058 pour le désabonnement en un clic (Gmail/Yahoo l'exigent)
                     'List-Unsubscribe': `<${unsubUrl}>`,
                     'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
                 }
@@ -165,19 +249,12 @@ export async function onRequestPost(context) {
         if (!resendRes.ok) {
             const errBody = await resendRes.text().catch(() => '');
             console.error('Resend error:', resendRes.status, errBody);
-            // Le lead est en base mais le courriel n'a pas été envoyé.
-            // On laisse le lead en place : l'usager peut re-soumettre, ou on
-            // peut le retrouver et lui réenvoyer manuellement.
-            return jsonError('Email delivery failed', 502);
+            return;
         }
 
-        // ── 6. Marquer le courriel J+0 comme envoyé ──────────────────
-        // Non-bloquant : si ça échoue, on ne refuse pas la requête car le
-        // courriel est déjà parti. Au pire, le workflow n8n verra plus tard
-        // que funnel_email_1_sent_at est NULL et ne fera rien (cohérent).
         const nowIso = new Date().toISOString();
-        fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?id=eq.${lead.id}`,
+        await fetch(
+            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?id=eq.${leadId}`,
             {
                 method: 'PATCH',
                 headers: supabaseHeaders,
@@ -187,17 +264,31 @@ export async function onRequestPost(context) {
                     last_email_kind: 'ebook_delivery'
                 })
             }
-        ).catch(err => console.error('Supabase post-send update failed:', err));
-
-        return new Response(JSON.stringify({ success: true }), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' }
-        });
-
+        );
     } catch (err) {
-        console.error('Unexpected error in ebook-request:', err);
-        return jsonError('Internal error', 500);
+        console.error('Email sending failed (non-blocking):', err);
     }
+}
+
+
+// ──────────────────────────────────────────────────────────────────────────
+// Génération de token signé HMAC-SHA256
+// ──────────────────────────────────────────────────────────────────────────
+
+async function generateDownloadToken({ leadId, resourceKey, lang, secret }) {
+    const payload = {
+        l: leadId,
+        r: resourceKey,
+        lg: lang,
+        e: Math.floor(Date.now() / 1000) + (TOKEN_TTL_DAYS * 86400)
+    };
+    const payloadJson = JSON.stringify(payload);
+    const payloadB64 = base64urlEncode(payloadJson);
+
+    const sigBuf = await hmacSha256(payloadB64, secret);
+    const sigB64 = base64urlEncode(new Uint8Array(sigBuf));
+
+    return `${payloadB64}.${sigB64}`;
 }
 
 
@@ -222,13 +313,8 @@ function escapeHtml(s) {
     })[c]);
 }
 
-/**
- * SHA-256 salé. Le sel est composé du secret + date du jour (UTC YYYY-MM-DD).
- * Tronqué à 48 caractères hex (~192 bits) — suffisant pour preuve de
- * consentement LCAP, économe en stockage.
- */
 async function saltedSha256(input, secret) {
-    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD UTC
+    const today = new Date().toISOString().slice(0, 10);
     const data = new TextEncoder().encode(`${input}|${secret}|${today}`);
     const hashBuf = await crypto.subtle.digest('SHA-256', data);
     return Array.from(new Uint8Array(hashBuf))
@@ -237,12 +323,35 @@ async function saltedSha256(input, secret) {
         .slice(0, 48);
 }
 
+async function hmacSha256(message, secret) {
+    const key = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(secret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+    );
+    return crypto.subtle.sign('HMAC', key, new TextEncoder().encode(message));
+}
+
+function base64urlEncode(input) {
+    let bytes;
+    if (typeof input === 'string') {
+        bytes = new TextEncoder().encode(input);
+    } else {
+        bytes = input;
+    }
+    let bin = '';
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
 
 // ──────────────────────────────────────────────────────────────────────────
 // Templates email — FR
 // ──────────────────────────────────────────────────────────────────────────
 
-function buildEmailFR(name, url, unsubUrl, consentMarketing) {
+function buildEmailFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
     const closingNote = consentMarketing
         ? `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine). <a href="${unsubUrl}" style="color:#6b7290;">Se désinscrire en un clic</a>.</p>`
         : `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours. <a href="${unsubUrl}" style="color:#6b7290;">Se désinscrire en un clic</a>.</p>`;
@@ -256,9 +365,10 @@ function buildEmailFR(name, url, unsubUrl, consentMarketing) {
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;background:#ffffff;border-radius:12px;padding:2.5rem 2rem;color:#1a1f2e;line-height:1.65;font-size:16px;">
         <tr><td>
           <p style="margin:0 0 1.2rem;">Salut ${name},</p>
-          <p style="margin:0 0 1.2rem;">Voici le guide que tu as demandé : <strong>Le système anti-surprise — 5 étapes pour solopreneurs qui jonglent plusieurs projets</strong>.</p>
+          <p style="margin:0 0 1.2rem;">Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.</p>
+          <p style="margin:0 0 1.2rem;"><strong>${escapeHtml(magnet.title_fr)}</strong><br>${escapeHtml(magnet.subtitle_fr)}</p>
           <p style="margin:2rem 0;text-align:center;">
-            <a href="${url}" style="display:inline-block;background:#10131A;color:#8BFF3C;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Télécharger le guide (PDF)</a>
+            <a href="${downloadUrl}" style="display:inline-block;background:#10131A;color:#8BFF3C;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Télécharger le guide (PDF)</a>
           </p>
           <p style="margin:0 0 1.2rem;">Lis-le cette semaine — il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.</p>
           <p style="margin:0 0 1.2rem;">Si tu as une question ou un commentaire après l'avoir lu, réponds simplement à ce courriel. Je le lis.</p>
@@ -274,16 +384,19 @@ function buildEmailFR(name, url, unsubUrl, consentMarketing) {
 </html>`;
 }
 
-function buildTextFR(name, url, unsubUrl, consentMarketing) {
+function buildTextFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
     const note = consentMarketing
         ? `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine).\n\nSe désinscrire : ${unsubUrl}`
         : `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours.\n\nSe désinscrire : ${unsubUrl}`;
 
     return `Salut ${name},
 
-Voici le guide que tu as demandé : Le système anti-surprise — 5 étapes pour solopreneurs qui jonglent plusieurs projets.
+Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.
 
-Télécharger le guide (PDF) : ${url}
+${magnet.title_fr}
+${magnet.subtitle_fr}
+
+Télécharger le guide (PDF) : ${downloadUrl}
 
 Lis-le cette semaine — il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.
 
@@ -301,7 +414,7 @@ ${note}`;
 // Templates email — EN
 // ──────────────────────────────────────────────────────────────────────────
 
-function buildEmailEN(name, url, unsubUrl, consentMarketing) {
+function buildEmailEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
     const closingNote = consentMarketing
         ? `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week). <a href="${unsubUrl}" style="color:#6b7290;">Unsubscribe in one click</a>.</p>`
         : `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days. <a href="${unsubUrl}" style="color:#6b7290;">Unsubscribe in one click</a>.</p>`;
@@ -315,9 +428,10 @@ function buildEmailEN(name, url, unsubUrl, consentMarketing) {
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;background:#ffffff;border-radius:12px;padding:2.5rem 2rem;color:#1a1f2e;line-height:1.65;font-size:16px;">
         <tr><td>
           <p style="margin:0 0 1.2rem;">Hi ${name},</p>
-          <p style="margin:0 0 1.2rem;">Here's the guide you requested: <strong>The anti-surprise system — 5 steps for solopreneurs juggling multiple projects</strong>.</p>
+          <p style="margin:0 0 1.2rem;">You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.</p>
+          <p style="margin:0 0 1.2rem;"><strong>${escapeHtml(magnet.title_en)}</strong><br>${escapeHtml(magnet.subtitle_en)}</p>
           <p style="margin:2rem 0;text-align:center;">
-            <a href="${url}" style="display:inline-block;background:#10131A;color:#8BFF3C;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Download the guide (PDF)</a>
+            <a href="${downloadUrl}" style="display:inline-block;background:#10131A;color:#8BFF3C;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Download the guide (PDF)</a>
           </p>
           <p style="margin:0 0 1.2rem;">Read it this week — it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.</p>
           <p style="margin:0 0 1.2rem;">If you have any question or comment after reading it, just reply to this email. I read every one.</p>
@@ -333,16 +447,19 @@ function buildEmailEN(name, url, unsubUrl, consentMarketing) {
 </html>`;
 }
 
-function buildTextEN(name, url, unsubUrl, consentMarketing) {
+function buildTextEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
     const note = consentMarketing
         ? `You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week).\n\nUnsubscribe: ${unsubUrl}`
         : `You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days.\n\nUnsubscribe: ${unsubUrl}`;
 
     return `Hi ${name},
 
-Here's the guide you requested: The anti-surprise system — 5 steps for solopreneurs juggling multiple projects.
+You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.
 
-Download the guide (PDF): ${url}
+${magnet.title_en}
+${magnet.subtitle_en}
+
+Download the guide (PDF): ${downloadUrl}
 
 Read it this week — it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.
 
