@@ -1238,7 +1238,7 @@
                 <ul>
                     <li><a href="#" onclick="showPage('home'); return false;" data-i18n="navHome">Accueil</a></li>
                     <li><a href="#" onclick="showPage('blog'); return false;" data-i18n="navArticles">Articles</a></li>
-                    <li><a href="#early-access" onclick="document.getElementById('early-access').scrollIntoView();" data-i18n="navSignup">Inscription</a></li>
+                    <li><a href="#early-access" onclick="event.preventDefault(); goToSignup();" data-i18n="navSignup">Inscription</a></li>
                 </ul>
                 <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" aria-label="Switch language / Changer de langue">
                     <span class="lang-opt active" id="lang-fr">FR</span>
@@ -1256,7 +1256,7 @@
             <div class="hero-content">
                 <h1 data-i18n-html="heroH1">Tu sais ce que tu fais <span class="highlight">aujourd'hui.</span> <span class="highlight">Sans stress.</span></h1>
                 <p data-i18n="heroP">Vector est l'assistant qui transforme ton chaos en clarté — pour que tu arrêtes de gérer et que tu commences à avancer.</p>
-                <button class="cta-button" onclick="document.getElementById('early-access').scrollIntoView();" data-i18n="heroCTA">Rejoindre la beta</button>
+                <button class="cta-button" onclick="goToSignup();" data-i18n="heroCTA">Rejoindre la beta</button>
             </div>
         </section>
 
@@ -2163,8 +2163,8 @@
                     ? 'Une copie est aussi en route vers ta boîte courriel.'
                     : 'A copy is also on its way to your inbox.';
                 const teaserText = lang === 'fr'
-                    ? 'Ouvre-le maintenant si tu peux. Si tu le lis avant dimanche, tu peux appliquer la première version du système dès cette semaine. Lundi prochain ne sera pas comme les autres.'
-                    : 'Open it now if you can. If you read it before Sunday, you can apply the first version of the system this week. Next Monday won\'t be like the others.';
+                    ? 'Ouvre-le maintenant. Si tu le lis avant dimanche, tu peux appliquer le système dès cette semaine. Lundi prochain ne sera pas comme les autres.'
+                    : 'Open it now. If you read it before Sunday, you can apply the system this week. Next Monday won\'t be like the others.';
 
                 const successHTML =
                     '<div class="ebook-form-success">' +
