@@ -262,7 +262,7 @@ function emailShell(lang, bodyHtml, footerHtml) {
     <tr><td align="center" style="padding:32px 16px;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(16,19,26,0.06),0 12px 32px rgba(16,19,26,0.07);">
         <tr><td style="background:#10131A;padding:24px 32px 22px;text-align:center;">
-          <img src="https://vectorplanning.ai/vector-logo-email.png" alt="Vector — L'IA planifie. Toi tu accomplis." width="248" style="display:block;margin:0 auto;border:0;outline:none;width:248px;max-width:78%;height:auto;">
+          <img src="https://vectorplanning.ai/${lang === 'en' ? 'vector-logo-email-en.png' : 'vector-logo-email.png'}" alt="${lang === 'en' ? 'Vector — AI plans. You deliver.' : "Vector — L'IA planifie. Toi tu accomplis."}" width="248" style="display:block;margin:0 auto;border:0;outline:none;width:248px;max-width:78%;height:auto;">
         </td></tr>
         <tr><td style="padding:32px;color:#1a1f2e;font-size:16px;line-height:1.65;font-family:${sans};">
 ${bodyHtml}
