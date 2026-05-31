@@ -90,6 +90,9 @@ export async function onRequestPost(context) {
             ? data.source_url.trim().slice(0, 500)
             : null;
 
+        // Attribution UTM (premier-touch session, propagée depuis sessionStorage). Bloc 1.5.
+        const utm = pickUtm(data);
+
         if (!name || name.length > 80) return jsonError('Invalid name', 400);
         if (!email || email.length > 180 || !isValidEmail(email)) return jsonError('Invalid email', 400);
 
@@ -126,7 +129,7 @@ export async function onRequestPost(context) {
             'Prefer': 'return=representation'
         };
 
-        const insertPayload = {
+        const insertPayload = Object.assign({
             name: name,
             email: email,
             lang: lang,
@@ -136,7 +139,7 @@ export async function onRequestPost(context) {
             consent_marketing: consentMarketing,
             consent_ip_hash: ipHash,
             consent_user_agent_hash: uaHash
-        };
+        }, utm);
 
         const insertRes = await fetch(
             `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads`,
@@ -305,6 +308,17 @@ function jsonError(message, status) {
 
 function isValidEmail(s) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+}
+
+// Extrait utm_* + referer_url d'un corps de requête, en chaînes bornées. Bloc 1.5.
+function pickUtm(data) {
+    const out = {};
+    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'referer_url']) {
+        out[k] = typeof data[k] === 'string' && data[k].trim()
+            ? data[k].trim().slice(0, k === 'referer_url' ? 500 : 200)
+            : null;
+    }
+    return out;
 }
 
 function escapeHtml(s) {

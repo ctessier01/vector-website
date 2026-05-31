@@ -2021,6 +2021,7 @@
 
             if (page === 'home') {
                 document.getElementById('home-view').classList.add('active');
+                setTimeout(function () { trackPageView({ page_type: 'home', page_slug: 'home', lang: currentLang }); }, 0);
             } else if (page === 'blog') {
                 document.getElementById('blog-view').classList.add('active');
                 document.getElementById('articles-list').style.display = 'block';
@@ -2104,7 +2105,12 @@
             const article = getDisplayArticles().find(a => a.id === articleId);
             updateArticleSEO(article);
             window.scrollTo(0, 0);
-            vStartTracking(articleId);
+            const _slug = getArticleSlug(articleId); // slug LANGUE-SPÉCIFIQUE (= articles.slug)
+            // Différé d'un tick : showArticle peut être appelé par l'init (deep-link
+            // ?article=) AVANT l'initialisation des const analytics plus bas (TDZ).
+            setTimeout(function () {
+                trackPageView({ page_type: 'article', page_slug: _slug, article_id: _slug, lang: currentLang });
+            }, 0);
         }
 
         function backToArticles() {
@@ -2146,7 +2152,7 @@
                 sourceArticle = params.get('article');
             } catch (e) { /* noop */ }
 
-            const payload = {
+            const payload = Object.assign({
                 name: form.name.value.trim(),
                 email: form.email.value.trim(),
                 lang: lang,
@@ -2154,7 +2160,7 @@
                 consent_marketing: form.consent_marketing && form.consent_marketing.checked === true,
                 source_article: sourceArticle,
                 source_url: window.location.href
-            };
+            }, getAttribution());
 
             try {
                 const res = await fetch('/api/ebook-request', {
@@ -2201,6 +2207,9 @@
                 // Remplace toute la carte CTA, pas juste le formulaire
                 const ctaCard = form.closest('.ebook-cta') || form.parentElement;
                 ctaCard.innerHTML = successHTML;
+
+                // Conversion : téléchargement ebook démarré (anonyme + UTM)
+                trackEvent('download_started', { source_form: 'ebook_anti_surprise', article: sourceArticle || null });
             } catch (err) {
                 console.error('Ebook request failed:', err);
                 button.disabled = false;
@@ -2560,10 +2569,20 @@
             submitBtn.disabled = true;
 
             try {
-                const response = await fetch('https://formspree.io/f/mvzdqkqp', {
+                // Liste d'attente early adopter → Supabase (remplace Formspree).
+                // L'event signup_early_adopter est loggué CÔTÉ SERVEUR (a le lead_id + UTM).
+                const payload = Object.assign({
+                    name: name,
+                    email: email,
+                    lang: currentLang,
+                    domain: domain,
+                    stress: stress,
+                    source_url: window.location.href
+                }, getAttribution());
+                const response = await fetch('/api/early-adopter', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, domain, stress })
+                    body: JSON.stringify(payload)
                 });
 
                 if (response.ok) {
@@ -2640,76 +2659,190 @@
         });
 
         /* ══════════════════════════════════════════════════════
-           ── ANALYTICS — LECTURES ENGAGÉES ──
+           ── ANALYTICS — TRACKING MARKETING (Bloc 1.5) ──
 
-           Approche privacy-first : aucun cookie, aucun identifiant utilisateur.
+           Approche privacy-first : aucun cookie, aucun identifiant de session,
+           aucun fingerprint. Seuls des UTM (descripteurs de campagne, non
+           identifiants) transitent par sessionStorage (premier-touch).
 
-           Deux métriques distinctes :
-           1. Cloudflare Web Analytics (automatique — aucun snippet requis)
-              → Cloudflare Pages injecte le beacon automatiquement
-              → Toutes les visites sont visibles dans le dashboard Cloudflare
-              → Configuration : Analytics > Web Analytics dans ton dashboard
+           Trois flux côté client (clé anon Supabase, projet vector-website) :
+           1. page_view_events  — vue de page QUALIFIÉE (≥30 s d'engagement
+              actif, pause en arrière-plan). getAttribution() y joint les UTM.
+              Helper : trackPageView({ page_type, page_slug, article_id?, lang }).
+           2. marketing_events  — conversions (cta_click, download_started, …).
+              Helper : trackEvent(event_type, metadata, leadId?, leadKind?).
+           3. Formulaires (serveur, service_role) : ebook → vw_marketing_leads ;
+              early adopter → /api/early-adopter → vw_early_adopter_leads. Les UTM
+              de getAttribution() sont propagés dans le payload.
 
-           2. Supabase article_view_events (anonyme)
-              → Trace uniquement les lectures de 30 secondes ou plus
-              → Aucun identifiant de session, aucun lien entre les vues
-              → Metric utilisé par les agents IA pour sélectionner les articles
-              → Requête pour le scoring : vue article_views_36h
+           Métrique de scoring articles : vue vw_article_views_first_36h (vues
+           dans les 36 h SUIVANT la publication ; nécessite la table articles).
 
-           Exclusion de ton propre trafic :
-           → Tape UNE FOIS dans la console du navigateur :
-                localStorage.setItem('vector_no_track','1')
-           → À faire sur chaque navigateur/appareil que tu utilises
+           Cloudflare Web Analytics reste actif en parallèle (beacon auto).
 
-           Structure de la table (état actuel après migration cookieless) :
+           Exclusion de ton propre trafic (vues ET events) :
+           → console : localStorage.setItem('vector_no_track','1')  (par appareil)
 
-           create table public.article_view_events (
-               id        uuid primary key default gen_random_uuid(),
-               article_id text not null,
-               viewed_at  timestamptz not null default now()
-           );
-           alter table public.article_view_events enable row level security;
-           create policy "anon_insert" on public.article_view_events
-               for insert with check (true);
-           create policy "anon_select" on public.article_view_events
-               for select using (true);
-
-           create view public.article_views_36h as
-           select article_id, count(*) as views_36h
-           from public.article_view_events
-           where viewed_at > now() - interval '36 hours'
-           group by article_id;
+           Schéma : voir les migrations 20260530_0X_*.sql à la racine du dépôt.
         ══════════════════════════════════════════════════════ */
 
         const ANALYTICS_URL = 'https://zywdoslrrlnxhpoyauyp.supabase.co';
         const ANALYTICS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d2Rvc2xycmxueGhwb3lhdXlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0NDU1NjcsImV4cCI6MjA5NDAyMTU2N30.9PNTLQac7Z13k9mGVeqIqQFcYA_OwLOmpKYtNCq8WSU';
         const ENGAGE_MS = 30000;
 
+        /* ── Attribution (UTM premier-touch, cookieless) ──
+           Stocke les UTM de la 1re page de la session en sessionStorage.
+           Un UTM décrit la campagne, pas l'individu (conforme Loi 25). */
+        function _cleanReferer() {
+            try {
+                const r = document.referrer;
+                if (!r) return null;
+                const u = new URL(r);
+                if (u.host === location.host) return null; // navigation interne
+                return (u.host + u.pathname).slice(0, 300);
+            } catch (e) { return null; }
+        }
+
+        function getAttribution() {
+            const KEY = 'vector_attribution';
+            let stored = null;
+            try { stored = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
+            const p = new URLSearchParams(location.search);
+            const cur = {
+                utm_source:   p.get('utm_source'),
+                utm_medium:   p.get('utm_medium'),
+                utm_campaign: p.get('utm_campaign'),
+                utm_term:     p.get('utm_term'),
+                utm_content:  p.get('utm_content')
+            };
+            const hasUtm = Object.keys(cur).some(k => cur[k]);
+            if (!stored && hasUtm) {
+                stored = Object.assign({}, cur, {
+                    referer_url: _cleanReferer(),
+                    captured_at: new Date().toISOString()
+                });
+                try { sessionStorage.setItem(KEY, JSON.stringify(stored)); } catch (e) {}
+            }
+            const a = stored || cur;
+            return {
+                utm_source:   a.utm_source   || null,
+                utm_medium:   a.utm_medium   || null,
+                utm_campaign: a.utm_campaign || null,
+                utm_term:     a.utm_term     || null,
+                utm_content:  a.utm_content  || null,
+                referer_url:  (a.referer_url != null ? a.referer_url : _cleanReferer())
+            };
+        }
+
+        /* ── Vue de page qualifiée (≥30 s d'engagement ACTIF) ──
+           Le compteur se met en pause quand l'onglet passe en arrière-plan
+           et reprend là où il était au retour (visibilitychange). */
         let _engageTimer = null;
+        let _engageRemaining = ENGAGE_MS;
+        let _engageStartedAt = 0;
+        let _engagePending = null;
 
         function vStopTracking() {
-            clearTimeout(_engageTimer);
-            _engageTimer = null;
+            if (_engageTimer) { clearTimeout(_engageTimer); _engageTimer = null; }
+            _engagePending = null;
+            _engageRemaining = ENGAGE_MS;
         }
 
-        function vStartTracking(articleId) {
+        function _engageResume() {
+            if (!_engagePending || _engageTimer) return;
+            if (document.visibilityState !== 'visible') return;
+            _engageStartedAt = Date.now();
+            _engageTimer = setTimeout(function () {
+                const payload = _engagePending;
+                _engagePending = null;
+                _engageTimer = null;
+                _engageRemaining = ENGAGE_MS;
+                _insertPageView(payload);
+            }, _engageRemaining);
+        }
+
+        function _engagePause() {
+            if (!_engageTimer) return;
+            clearTimeout(_engageTimer);
+            _engageTimer = null;
+            _engageRemaining -= (Date.now() - _engageStartedAt);
+            if (_engageRemaining < 0) _engageRemaining = 0;
+        }
+
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'visible') _engageResume();
+            else _engagePause();
+        });
+
+        async function _insertPageView(payload) {
+            try {
+                const attr = getAttribution();
+                await fetch(ANALYTICS_URL + '/rest/v1/page_view_events', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ANALYTICS_KEY,
+                        'Authorization': 'Bearer ' + ANALYTICS_KEY,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(Object.assign({
+                        page_type:  payload.page_type,
+                        page_slug:  payload.page_slug || null,
+                        article_id: payload.article_id || null,
+                        lang:       payload.lang || null
+                    }, attr))
+                });
+            } catch (e) { /* silencieux */ }
+        }
+
+        // Arme une vue de page qualifiée. opts: { page_type, page_slug, article_id?, lang? }
+        function trackPageView(opts) {
             vStopTracking();
             if (localStorage.getItem('vector_no_track')) return;
-            _engageTimer = setTimeout(async function() {
-                try {
-                    await fetch(ANALYTICS_URL + '/rest/v1/article_view_events', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'apikey': ANALYTICS_KEY,
-                            'Authorization': 'Bearer ' + ANALYTICS_KEY,
-                            'Prefer': 'return=minimal'
-                        },
-                        body: JSON.stringify({ article_id: articleId })
-                    });
-                } catch (e) { /* silencieux */ }
-            }, ENGAGE_MS);
+            _engageRemaining = ENGAGE_MS;
+            _engagePending = {
+                page_type:  opts.page_type,
+                page_slug:  opts.page_slug || null,
+                article_id: opts.article_id || null,
+                lang:       opts.lang || currentLang || null
+            };
+            _engageResume();
         }
+
+        // Événement de conversion. metadata libre ; leadId/leadKind après soumission serveur.
+        async function trackEvent(eventType, metadata, leadId, leadKind) {
+            if (localStorage.getItem('vector_no_track')) return;
+            try {
+                const attr = getAttribution();
+                const slug = (currentState && currentState.articleId)
+                    ? getArticleSlug(currentState.articleId)
+                    : (currentState ? currentState.page : null);
+                await fetch(ANALYTICS_URL + '/rest/v1/marketing_events', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ANALYTICS_KEY,
+                        'Authorization': 'Bearer ' + ANALYTICS_KEY,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(Object.assign({
+                        event_type: eventType,
+                        lead_id:    leadId || null,
+                        lead_kind:  leadKind || null,
+                        page_slug:  slug,
+                        metadata:   metadata || {}
+                    }, attr))
+                });
+            } catch (e) { /* silencieux */ }
+        }
+
+        // Vue de page initiale (la home n'appelle showPage qu'à la navigation).
+        (function trackInitialView() {
+            const cs = currentState || {};
+            if (cs.articleId) return;          // un article déjà tracké par showArticle
+            if (cs.page === 'admin') return;
+            trackPageView({ page_type: 'home', page_slug: 'home', lang: currentLang });
+        })();
     </script>    <div id="share-toast">Lien copié !</div>
 
 </body>

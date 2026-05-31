@@ -1,7 +1,9 @@
 /**
  * Cloudflare Pages Function — /api/unsubscribe
  *
- * Désabonnement en un clic via le token unique de la table vw_marketing_leads.
+ * Désabonnement en un clic via le token unique. Couvre DEUX tables de leads :
+ * vw_marketing_leads (ebooks) et vw_early_adopter_leads (liste d'attente, Bloc 1.5).
+ * Le token est essayé dans chaque table jusqu'à correspondance.
  *
  * Deux modes :
  *   GET  /api/unsubscribe?token=...&lang=fr|en
@@ -85,6 +87,13 @@ export async function onRequestPost(context) {
  *         'not_found' (token inconnu),
  *         'error' (Supabase down ou autre).
  */
+// Tables porteuses d'un unsubscribe_token. `extra` = colonnes à mettre à jour
+// en plus de status/unsubscribed_at (vw_marketing_leads a consent_marketing).
+const LEAD_TABLES = [
+    { name: 'vw_marketing_leads',      extra: { consent_marketing: false } },
+    { name: 'vw_early_adopter_leads',  extra: {} }
+];
+
 async function unsubscribeByToken(env, token) {
     const headers = {
         'apikey': env.SUPABASE_SERVICE_ROLE_KEY,
@@ -93,45 +102,47 @@ async function unsubscribeByToken(env, token) {
         'Prefer': 'return=representation'
     };
 
+    let foundButInactive = false;
+
     try {
-        // PATCH conditionnel : ne change que si status='active'
-        // Sinon retourne 0 lignes, ce qui nous permet de distinguer
-        // "déjà désabonné" de "introuvable" via un GET de vérification.
-        const patchRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?unsubscribe_token=eq.${encodeURIComponent(token)}&status=eq.active`,
-            {
-                method: 'PATCH',
-                headers: headers,
-                body: JSON.stringify({
-                    status: 'unsubscribed',
-                    unsubscribed_at: new Date().toISOString(),
-                    consent_marketing: false
-                })
+        for (const tbl of LEAD_TABLES) {
+            // PATCH conditionnel : ne change que si status='active'.
+            const patchRes = await fetch(
+                `${env.SUPABASE_URL}/rest/v1/${tbl.name}?unsubscribe_token=eq.${encodeURIComponent(token)}&status=eq.active`,
+                {
+                    method: 'PATCH',
+                    headers: headers,
+                    body: JSON.stringify(Object.assign({
+                        status: 'unsubscribed',
+                        unsubscribed_at: new Date().toISOString()
+                    }, tbl.extra))
+                }
+            );
+
+            if (!patchRes.ok) {
+                const body = await patchRes.text().catch(() => '');
+                console.error('Supabase PATCH failed:', tbl.name, patchRes.status, body);
+                return 'error';
             }
-        );
 
-        if (!patchRes.ok) {
-            const body = await patchRes.text().catch(() => '');
-            console.error('Supabase PATCH failed:', patchRes.status, body);
-            return 'error';
+            const updated = await patchRes.json();
+            if (Array.isArray(updated) && updated.length > 0) {
+                return 'unsubscribed';
+            }
+
+            // Aucune ligne active : le token existe-t-il (déjà désabonné) dans cette table ?
+            const getRes = await fetch(
+                `${env.SUPABASE_URL}/rest/v1/${tbl.name}?unsubscribe_token=eq.${encodeURIComponent(token)}&select=status`,
+                { headers: headers }
+            );
+            if (!getRes.ok) return 'error';
+
+            const rows = await getRes.json();
+            if (Array.isArray(rows) && rows.length > 0) foundButInactive = true;
         }
 
-        const updated = await patchRes.json();
-        if (Array.isArray(updated) && updated.length > 0) {
-            return 'unsubscribed';
-        }
-
-        // Aucune ligne mise à jour : soit token inconnu, soit déjà désabonné.
-        // On vérifie avec un GET.
-        const getRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?unsubscribe_token=eq.${encodeURIComponent(token)}&select=status`,
-            { headers: headers }
-        );
-        if (!getRes.ok) return 'error';
-
-        const rows = await getRes.json();
-        if (!Array.isArray(rows) || rows.length === 0) return 'not_found';
-        return 'already';
+        // Parcours terminé sans PATCH actif.
+        return foundButInactive ? 'already' : 'not_found';
 
     } catch (err) {
         console.error('unsubscribeByToken exception:', err);
