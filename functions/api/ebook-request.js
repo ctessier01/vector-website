@@ -365,37 +365,64 @@ function base64urlEncode(input) {
 // Templates email — FR
 // ──────────────────────────────────────────────────────────────────────────
 
-function buildEmailFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
-    const closingNote = consentMarketing
-        ? `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine). <a href="${unsubUrl}" style="color:#6b7290;">Se désinscrire en un clic</a>.</p>`
-        : `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours. <a href="${unsubUrl}" style="color:#6b7290;">Se désinscrire en un clic</a>.</p>`;
+const EMAIL_SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
 
+// Gabarit de marque commun (en-tête logo + pied). Logo = image hébergée (Gmail ignore le SVG).
+function emailShell(lang, bodyHtml, footerHtml) {
     return `<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ton guide Vector</title></head>
-<body style="margin:0;padding:0;background:#f5f4ef;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5f4ef;padding:2.5rem 1rem;">
-    <tr><td align="center">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;background:#ffffff;border-radius:12px;padding:2.5rem 2rem;color:#1a1f2e;line-height:1.65;font-size:16px;">
-        <tr><td>
-          <p style="margin:0 0 1.2rem;">Salut ${name},</p>
-          <p style="margin:0 0 1.2rem;">Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.</p>
-          <p style="margin:0 0 1.2rem;"><strong>${escapeHtml(magnet.title_fr)}</strong><br>${escapeHtml(magnet.subtitle_fr)}</p>
-          <p style="margin:2rem 0;text-align:center;">
-            <a href="${downloadUrl}" style="display:inline-block;background:#10131A;color:#8BFF3C;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Télécharger le guide (PDF)</a>
-          </p>
-          <p style="margin:0 0 1.2rem;">Lis-le cette semaine — il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.</p>
-          <p style="margin:0 0 1.2rem;">Si tu as une question ou un commentaire après l'avoir lu, réponds simplement à ce courriel. Je le lis.</p>
-          <p style="margin:0 0 0.3rem;">Bonne lecture,</p>
-          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>
-          <hr style="margin:2.5rem 0 1.5rem;border:none;border-top:1px solid #e5e7eb;">
-          ${closingNote}
+<html lang="${lang}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Vector</title>
+</head>
+<body style="margin:0;padding:0;background:#F5F4EF;-webkit-text-size-adjust:100%;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F5F4EF;">
+    <tr><td align="center" style="padding:32px 16px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(16,19,26,0.06),0 12px 32px rgba(16,19,26,0.07);">
+        <tr><td style="background:#10131A;padding:24px 32px 22px;text-align:center;">
+          <img src="https://vectorplanning.ai/vector-logo-email.png" alt="Vector — L'IA planifie. Toi tu accomplis." width="248" style="display:block;margin:0 auto;border:0;outline:none;width:248px;max-width:78%;height:auto;">
+        </td></tr>
+        <tr><td style="padding:32px;color:#1a1f2e;font-size:16px;line-height:1.65;font-family:${EMAIL_SANS};">
+${bodyHtml}
+        </td></tr>
+        <tr><td style="padding:0 32px 28px;font-family:${EMAIL_SANS};">
+          <div style="border-top:1px solid #ececec;padding-top:16px;font-size:12px;color:#6b7290;line-height:1.55;">${footerHtml}</div>
         </td></tr>
       </table>
+      <div style="font-family:${EMAIL_SANS};font-size:11px;color:#9aa1b3;margin-top:16px;">Vector · vectorplanning.ai</div>
     </td></tr>
   </table>
 </body>
 </html>`;
+}
+
+// Bouton CTA lime
+function ctaButton(href, label) {
+    return `          <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:1.8rem auto;"><tr>
+            <td style="border-radius:10px;background:#8BFF3C;">
+              <a href="${href}" target="_blank" rel="noopener" style="display:inline-block;padding:15px 30px;font-family:${EMAIL_SANS};font-size:15px;font-weight:700;color:#10131A;text-decoration:none;border-radius:10px;">${label}</a>
+            </td>
+          </tr></table>`;
+}
+
+function buildEmailFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
+    const footer = consentMarketing
+        ? `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine). <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se désinscrire en un clic</a>.`
+        : `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se désinscrire en un clic</a>.`;
+    const body =
+`          <p style="margin:0 0 1.2rem;">Bonjour ${name},</p>
+          <p style="margin:0 0 1.2rem;">Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.</p>
+          <p style="margin:0 0 0.3rem;"><strong>${escapeHtml(magnet.title_fr)}</strong></p>
+          <p style="margin:0;color:#6b7290;">${escapeHtml(magnet.subtitle_fr)}</p>
+${ctaButton(downloadUrl, 'Télécharger le guide (PDF)')}
+          <p style="margin:0 0 1.2rem;">Lis-le cette semaine — il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.</p>
+          <p style="margin:0 0 1.2rem;">Si tu as une question ou un commentaire après l'avoir lu, réponds simplement à ce courriel. Je le lis.</p>
+          <p style="margin:0 0 0.3rem;">Bonne lecture,</p>
+          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
+    return emailShell('fr', body, footer);
 }
 
 function buildTextFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
@@ -403,7 +430,7 @@ function buildTextFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
         ? `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine).\n\nSe désinscrire : ${unsubUrl}`
         : `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours.\n\nSe désinscrire : ${unsubUrl}`;
 
-    return `Salut ${name},
+    return `Bonjour ${name},
 
 Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.
 
@@ -429,36 +456,20 @@ ${note}`;
 // ──────────────────────────────────────────────────────────────────────────
 
 function buildEmailEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
-    const closingNote = consentMarketing
-        ? `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week). <a href="${unsubUrl}" style="color:#6b7290;">Unsubscribe in one click</a>.</p>`
-        : `<p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days. <a href="${unsubUrl}" style="color:#6b7290;">Unsubscribe in one click</a>.</p>`;
-
-    return `<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Your Vector guide</title></head>
-<body style="margin:0;padding:0;background:#f5f4ef;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5f4ef;padding:2.5rem 1rem;">
-    <tr><td align="center">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;background:#ffffff;border-radius:12px;padding:2.5rem 2rem;color:#1a1f2e;line-height:1.65;font-size:16px;">
-        <tr><td>
-          <p style="margin:0 0 1.2rem;">Hi ${name},</p>
+    const footer = consentMarketing
+        ? `You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week). <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Unsubscribe in one click</a>.`
+        : `You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Unsubscribe in one click</a>.`;
+    const body =
+`          <p style="margin:0 0 1.2rem;">Hello ${name},</p>
           <p style="margin:0 0 1.2rem;">You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.</p>
-          <p style="margin:0 0 1.2rem;"><strong>${escapeHtml(magnet.title_en)}</strong><br>${escapeHtml(magnet.subtitle_en)}</p>
-          <p style="margin:2rem 0;text-align:center;">
-            <a href="${downloadUrl}" style="display:inline-block;background:#10131A;color:#8BFF3C;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Download the guide (PDF)</a>
-          </p>
+          <p style="margin:0 0 0.3rem;"><strong>${escapeHtml(magnet.title_en)}</strong></p>
+          <p style="margin:0;color:#6b7290;">${escapeHtml(magnet.subtitle_en)}</p>
+${ctaButton(downloadUrl, 'Download the guide (PDF)')}
           <p style="margin:0 0 1.2rem;">Read it this week — it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.</p>
           <p style="margin:0 0 1.2rem;">If you have any question or comment after reading it, just reply to this email. I read every one.</p>
           <p style="margin:0 0 0.3rem;">Happy reading,</p>
-          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>
-          <hr style="margin:2.5rem 0 1.5rem;border:none;border-top:1px solid #e5e7eb;">
-          ${closingNote}
-        </td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
+          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
+    return emailShell('en', body, footer);
 }
 
 function buildTextEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
@@ -466,7 +477,7 @@ function buildTextEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
         ? `You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week).\n\nUnsubscribe: ${unsubUrl}`
         : `You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days.\n\nUnsubscribe: ${unsubUrl}`;
 
-    return `Hi ${name},
+    return `Hello ${name},
 
 You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.
 

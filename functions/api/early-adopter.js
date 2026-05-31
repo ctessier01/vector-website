@@ -246,7 +246,7 @@ async function saltedSha256(input, secret) {
 
 // Gabarit de marque commun (en-tête sombre + wordmark Vector + pied).
 // Pas de police web (Gmail les ignore) : Red Hat Display avec repli sans-serif.
-function emailShell(lang, tagline, bodyHtml, footerHtml) {
+function emailShell(lang, bodyHtml, footerHtml) {
     const sans = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
     return `<!DOCTYPE html>
 <html lang="${lang}">
@@ -261,9 +261,8 @@ function emailShell(lang, tagline, bodyHtml, footerHtml) {
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F5F4EF;">
     <tr><td align="center" style="padding:32px 16px;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(16,19,26,0.06),0 12px 32px rgba(16,19,26,0.07);">
-        <tr><td style="background:#10131A;padding:26px 32px;text-align:center;">
-          <div style="font-family:'Red Hat Display',Helvetica,Arial,sans-serif;font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1;color:#ffffff;"><span style="color:#8BFF3C;">V</span>ector</div>
-          <div style="font-family:${sans};font-size:12px;color:#9aa1b3;margin-top:6px;letter-spacing:.2px;">${tagline}</div>
+        <tr><td style="background:#10131A;padding:24px 32px 22px;text-align:center;">
+          <img src="https://vectorplanning.ai/vector-logo-email.png" alt="Vector — L'IA planifie. Toi tu accomplis." width="248" style="display:block;margin:0 auto;border:0;outline:none;width:248px;max-width:78%;height:auto;">
         </td></tr>
         <tr><td style="padding:32px;color:#1a1f2e;font-size:16px;line-height:1.65;font-family:${sans};">
 ${bodyHtml}
@@ -296,7 +295,7 @@ ${offerBox('<strong>Les 25 premiers testeurs</strong> reçoivent <strong>3 mois 
           <p style="margin:0 0 0.3rem;">À très bientôt,</p>
           <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
     const footer = `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente sur vectorplanning.ai. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se retirer de la liste en un clic</a>.`;
-    return emailShell('fr', `L'IA planifie, <span style="color:#8BFF3C;">toi tu accomplis.</span>`, body, footer);
+    return emailShell('fr', body, footer);
 }
 
 function buildTextFR(name, unsubUrl) {
@@ -326,7 +325,7 @@ ${offerBox('<strong>The first 25 testers</strong> get <strong>3 months of the Ac
           <p style="margin:0 0 0.3rem;">Talk soon,</p>
           <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
     const footer = `You're receiving this email because you joined the waitlist on vectorplanning.ai. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Remove yourself from the list in one click</a>.`;
-    return emailShell('en', `AI plans. <span style="color:#8BFF3C;">You accomplish.</span>`, body, footer);
+    return emailShell('en', body, footer);
 }
 
 function buildTextEN(name, unsubUrl) {
