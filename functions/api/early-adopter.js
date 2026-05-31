@@ -244,37 +244,67 @@ async function saltedSha256(input, secret) {
 // Templates email — FR / EN
 // ──────────────────────────────────────────────────────────────────────────
 
-function buildEmailFR(name, unsubUrl) {
+// Gabarit de marque commun (en-tête sombre + wordmark Vector + pied).
+// Pas de police web (Gmail les ignore) : Red Hat Display avec repli sans-serif.
+function emailShell(lang, tagline, bodyHtml, footerHtml) {
+    const sans = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
     return `<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tu es sur la liste — Vector</title></head>
-<body style="margin:0;padding:0;background:#f5f4ef;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5f4ef;padding:2.5rem 1rem;">
-    <tr><td align="center">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;background:#ffffff;border-radius:12px;padding:2.5rem 2rem;color:#1a1f2e;line-height:1.65;font-size:16px;">
-        <tr><td>
-          <p style="margin:0 0 1.2rem;">Salut ${name},</p>
-          <p style="margin:0 0 1.2rem;">C'est noté : tu es sur la liste des early adopters de Vector. Merci de ton intérêt — ça compte beaucoup à ce stade-ci.</p>
-          <p style="margin:0 0 1.2rem;">Je t'écrirai dès que la bêta sera prête à t'accueillir, avec ton accès et les détails. Les 25 premiers testeurs reçoivent 3 mois Pro gratuits + accès prioritaire au plan Fondateur.</p>
-          <p style="margin:0 0 1.2rem;">D'ici là, si tu as une question, réponds simplement à ce courriel. Je le lis.</p>
-          <p style="margin:0 0 0.3rem;">À très bientôt,</p>
-          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>
-          <hr style="margin:2.5rem 0 1.5rem;border:none;border-top:1px solid #e5e7eb;">
-          <p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente sur vectorplanning.ai. <a href="${unsubUrl}" style="color:#6b7290;">Se retirer de la liste en un clic</a>.</p>
+<html lang="${lang}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Vector</title>
+</head>
+<body style="margin:0;padding:0;background:#F5F4EF;-webkit-text-size-adjust:100%;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F5F4EF;">
+    <tr><td align="center" style="padding:32px 16px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(16,19,26,0.06),0 12px 32px rgba(16,19,26,0.07);">
+        <tr><td style="background:#10131A;padding:26px 32px;text-align:center;">
+          <div style="font-family:'Red Hat Display',Helvetica,Arial,sans-serif;font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1;color:#ffffff;"><span style="color:#8BFF3C;">V</span>ector</div>
+          <div style="font-family:${sans};font-size:12px;color:#9aa1b3;margin-top:6px;letter-spacing:.2px;">${tagline}</div>
+        </td></tr>
+        <tr><td style="padding:32px;color:#1a1f2e;font-size:16px;line-height:1.65;font-family:${sans};">
+${bodyHtml}
+        </td></tr>
+        <tr><td style="padding:0 32px 28px;font-family:${sans};">
+          <div style="border-top:1px solid #ececec;padding-top:16px;font-size:12px;color:#6b7290;line-height:1.55;">${footerHtml}</div>
         </td></tr>
       </table>
+      <div style="font-family:${sans};font-size:11px;color:#9aa1b3;margin-top:16px;">Vector · vectorplanning.ai</div>
     </td></tr>
   </table>
 </body>
 </html>`;
 }
 
+// Encadré « offre » avec barre lime à gauche.
+function offerBox(html) {
+    return `          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 1.3rem;"><tr>
+            <td style="background:#F5F4EF;border-left:3px solid #8BFF3C;border-radius:8px;padding:14px 18px;font-size:14.5px;color:#10131A;line-height:1.55;">${html}</td>
+          </tr></table>`;
+}
+
+function buildEmailFR(name, unsubUrl) {
+    const body =
+`          <p style="margin:0 0 1.2rem;">Bonjour ${name},</p>
+          <p style="margin:0 0 1.2rem;">C'est noté : tu es sur la liste des early adopters de Vector. Merci de ton intérêt — ça compte beaucoup à ce stade-ci.</p>
+          <p style="margin:0 0 1.2rem;">Je t'écrirai dès que la bêta sera prête à t'accueillir, avec ton accès et les détails.</p>
+${offerBox('<strong>Les 25 premiers testeurs</strong> reçoivent <strong>3 mois du plan Accélération gratuits</strong> + un accès prioritaire au plan <strong>Délégation</strong>.')}
+          <p style="margin:0 0 1.2rem;">D'ici là, si tu as une question, réponds simplement à ce courriel. Je le lis.</p>
+          <p style="margin:0 0 0.3rem;">À très bientôt,</p>
+          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
+    const footer = `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente sur vectorplanning.ai. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se retirer de la liste en un clic</a>.`;
+    return emailShell('fr', `L'IA planifie, <span style="color:#8BFF3C;">toi tu accomplis.</span>`, body, footer);
+}
+
 function buildTextFR(name, unsubUrl) {
-    return `Salut ${name},
+    return `Bonjour ${name},
 
 C'est noté : tu es sur la liste des early adopters de Vector. Merci de ton intérêt — ça compte beaucoup à ce stade-ci.
 
-Je t'écrirai dès que la bêta sera prête à t'accueillir, avec ton accès et les détails. Les 25 premiers testeurs reçoivent 3 mois Pro gratuits + accès prioritaire au plan Fondateur.
+Je t'écrirai dès que la bêta sera prête à t'accueillir, avec ton accès et les détails. Les 25 premiers testeurs reçoivent 3 mois du plan Accélération gratuits + un accès prioritaire au plan Délégation.
 
 D'ici là, si tu as une question, réponds simplement à ce courriel. Je le lis.
 
@@ -287,36 +317,24 @@ Se retirer de la liste : ${unsubUrl}`;
 }
 
 function buildEmailEN(name, unsubUrl) {
-    return `<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>You're on the list — Vector</title></head>
-<body style="margin:0;padding:0;background:#f5f4ef;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f5f4ef;padding:2.5rem 1rem;">
-    <tr><td align="center">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;background:#ffffff;border-radius:12px;padding:2.5rem 2rem;color:#1a1f2e;line-height:1.65;font-size:16px;">
-        <tr><td>
-          <p style="margin:0 0 1.2rem;">Hi ${name},</p>
+    const body =
+`          <p style="margin:0 0 1.2rem;">Hello ${name},</p>
           <p style="margin:0 0 1.2rem;">You're on the list — you're now an early adopter of Vector. Thanks for your interest; it means a lot at this stage.</p>
-          <p style="margin:0 0 1.2rem;">I'll write as soon as the beta is ready for you, with your access and the details. The first 25 testers get 3 months of Pro free + priority access to the Founder plan.</p>
+          <p style="margin:0 0 1.2rem;">I'll write as soon as the beta is ready for you, with your access and the details.</p>
+${offerBox('<strong>The first 25 testers</strong> get <strong>3 months of the Acceleration plan free</strong> + priority access to the <strong>Delegation</strong> plan.')}
           <p style="margin:0 0 1.2rem;">In the meantime, if you have a question, just reply to this email. I read every one.</p>
           <p style="margin:0 0 0.3rem;">Talk soon,</p>
-          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>
-          <hr style="margin:2.5rem 0 1.5rem;border:none;border-top:1px solid #e5e7eb;">
-          <p style="margin:0;font-size:12px;color:#6b7290;line-height:1.5;">You're receiving this email because you joined the waitlist on vectorplanning.ai. <a href="${unsubUrl}" style="color:#6b7290;">Remove yourself from the list in one click</a>.</p>
-        </td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
+          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
+    const footer = `You're receiving this email because you joined the waitlist on vectorplanning.ai. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Remove yourself from the list in one click</a>.`;
+    return emailShell('en', `AI plans. <span style="color:#8BFF3C;">You accomplish.</span>`, body, footer);
 }
 
 function buildTextEN(name, unsubUrl) {
-    return `Hi ${name},
+    return `Hello ${name},
 
 You're on the list — you're now an early adopter of Vector. Thanks for your interest; it means a lot at this stage.
 
-I'll write as soon as the beta is ready for you, with your access and the details. The first 25 testers get 3 months of Pro free + priority access to the Founder plan.
+I'll write as soon as the beta is ready for you, with your access and the details. The first 25 testers get 3 months of the Acceleration plan free + priority access to the Delegation plan.
 
 In the meantime, if you have a question, just reply to this email. I read every one.
 
