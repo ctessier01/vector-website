@@ -41,7 +41,7 @@
             --bg-secondary: #1C2030;
             --accent-lime: #8BFF3C;
             --text-primary: #F5F4EF;
-            --text-secondary: #6B7290;
+            --text-secondary: #B0B6CE;
             --border: rgba(139, 255, 60, 0.2);
         }
 
@@ -1238,6 +1238,7 @@
                 <ul>
                     <li><a href="#" onclick="showPage('home'); return false;" data-i18n="navHome">Accueil</a></li>
                     <li><a href="#" onclick="showPage('blog'); return false;" data-i18n="navArticles">Articles</a></li>
+                    <li><a href="/pricing" data-i18n="navPricing">Tarifs</a></li>
                     <li><a href="#early-access" onclick="event.preventDefault(); goToSignup();" data-i18n="navSignup">Inscription</a></li>
                 </ul>
                 <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" aria-label="Switch language / Changer de langue">
@@ -1427,8 +1428,12 @@
         <p style="margin-top: 0.8rem; font-size: 0.85rem; opacity: 0.75;">
             🔒 <span data-i18n="footerPrivacyMention">Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire</span>
         </p>
-        <p style="margin-top: 1rem; font-size: 0.85rem;">
-            <a href="/privacy.html" data-i18n="footerPrivacyLink" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Politique de confidentialité</a>
+        <p style="margin-top: 1rem; font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; justify-content: center;">
+            <a href="/pricing" data-i18n="footerPricing" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Tarifs</a>
+            <a href="/terms" data-i18n="footerTerms" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Conditions d'utilisation</a>
+            <a href="/privacy" data-i18n="footerPrivacyLink" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Politique de confidentialité</a>
+            <a href="/refunds" data-i18n="footerRefunds" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Remboursement</a>
+            <a href="/ambassador" data-i18n="footerAmbassador" style="color: var(--text-secondary); text-decoration: underline; opacity: 0.8;">Programme Ambassadeur</a>
         </p>
         <p style="margin-top: 1.2rem;">
             <a href="#" onclick="showPage('admin'); return false;" style="color: var(--text-secondary); font-size: 0.78rem; opacity: 0.4; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.4'">Admin</a>
@@ -1697,6 +1702,7 @@
             fr: {
                 navHome: 'Accueil',
                 navArticles: 'Articles',
+                navPricing: 'Tarifs',
                 navSignup: 'Inscription',
                 logoTagline: 'L\'IA planifie, <span>toi tu accomplis.</span>',
                 heroH1: 'Tu sais ce que tu fais <span class="highlight">aujourd\'hui.</span> <span class="highlight">Sans stress.</span>',
@@ -1745,6 +1751,10 @@
                 footerCopy: '© 2026 Vector. Construit pour les solopreneurs qui ont mieux à faire que de gérer leurs tâches.',
                 footerPrivacyMention: 'Privacy-first · Aucun cookie de suivi · Aucun pixel publicitaire',
                 footerPrivacyLink: 'Politique de confidentialité',
+                footerPricing: 'Tarifs',
+                footerTerms: "Conditions d'utilisation",
+                footerRefunds: 'Remboursement',
+                footerAmbassador: 'Programme Ambassadeur',
                 formRequired: 'Prénom et email requis.',
                 formSuccess: '✓ Merci ! Tu recevras un email de confirmation bientôt.',
                 formError: 'Une erreur est survenue. Réessaie dans quelques instants.',
@@ -1758,6 +1768,7 @@
             en: {
                 navHome: 'Home',
                 navArticles: 'Articles',
+                navPricing: 'Pricing',
                 navSignup: 'Sign Up',
                 logoTagline: 'AI plans, <span>you deliver.</span>',
                 heroH1: 'You know what you\'re doing <span class="highlight">today.</span> <span class="highlight">Stress-free.</span>',
@@ -1806,6 +1817,10 @@
                 footerCopy: '© 2026 Vector. Built for solopreneurs who have better things to do than manage their tasks.',
                 footerPrivacyMention: 'Privacy-first · No tracking cookies · No advertising pixels',
                 footerPrivacyLink: 'Privacy Policy',
+                footerPricing: 'Pricing',
+                footerTerms: 'Terms of Use',
+                footerRefunds: 'Refunds',
+                footerAmbassador: 'Ambassador Program',
                 formRequired: 'First name and email are required.',
                 formSuccess: '✓ Thank you! You\'ll receive a confirmation email soon.',
                 formError: 'Something went wrong. Please try again in a moment.',
