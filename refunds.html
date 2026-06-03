@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de remboursement de Vector : remboursement proportionnel dans les 14 jours suivant l'achat initial. Facturation par Paddle.">
+    <meta name="robots" content="index, follow">
+
+    <title>Politique de remboursement — Vector</title>
+
+    <link rel="canonical" href="https://vectorplanning.ai/refunds">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #10131A;
+            --bg-secondary: #1C2030;
+            --accent-lime: #8BFF3C;
+            --text-primary: #F5F4EF;
+            --text-secondary: #B0B6CE;
+            --border: rgba(139, 255, 60, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(16, 19, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--accent-lime); }
+        .back-link .arrow { transition: transform 0.2s; }
+        .back-link:hover .arrow { transform: translateX(-3px); }
+
+        .lang-toggle {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .lang-btn.active { background: var(--accent-lime); color: var(--bg-primary); font-weight: 600; }
+        .lang-btn:not(.active):hover { color: var(--text-primary); }
+
+        main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+        h1 .highlight { color: var(--accent-lime); }
+
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .meta strong { color: var(--text-primary); font-weight: 600; }
+
+        h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-lime);
+            margin-top: 3rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+        h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        p { margin-bottom: 1.1rem; color: var(--text-primary); }
+        ul, ol { margin: 0 0 1.3rem 1.5rem; color: var(--text-primary); }
+        li { margin-bottom: 0.5rem; line-height: 1.7; }
+        strong { color: var(--text-primary); font-weight: 600; }
+        em { color: var(--text-secondary); font-style: italic; }
+
+        a {
+            color: var(--accent-lime);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+        a:hover { opacity: 0.8; }
+
+        .summary-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 3rem;
+        }
+        .summary-box h2 { margin-top: 0; margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.6rem; }
+        .summary-box ul { margin-left: 1.2rem; margin-bottom: 0; }
+        .summary-box li { margin-bottom: 0.7rem; }
+        .summary-box li:last-child { margin-bottom: 0; }
+
+        .table-wrapper { margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+        th, td { padding: 0.85rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(139, 255, 60, 0.1); }
+        th { background: var(--bg-secondary); color: var(--accent-lime); font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.3px; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: rgba(28, 32, 48, 0.3); }
+
+        .contact-block {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-lime);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        .contact-block p { margin-bottom: 0.4rem; }
+        .contact-block p:last-child { margin-bottom: 0; }
+
+        hr { border: none; height: 1px; background: var(--border); margin: 3rem 0; }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        footer p { margin-bottom: 0.6rem; color: var(--text-secondary); }
+        footer .privacy-mention { font-size: 0.85rem; opacity: 0.85; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; justify-content: center; margin-bottom: 1.2rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: underline; }
+        .footer-links a:hover { color: var(--accent-lime); opacity: 1; }
+
+        @media (max-width: 600px) {
+            .header-inner { padding: 1rem 1.2rem; flex-wrap: wrap; }
+            main { padding: 2rem 1.2rem 3rem; }
+            .summary-box { padding: 1.4rem 1.3rem; }
+            h2 { font-size: 1.3rem; margin-top: 2.2rem; }
+            th, td { padding: 0.7rem 0.8rem; font-size: 0.85rem; }
+            .lang-btn { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="/" id="back-link-header" class="back-link">
+                <span class="arrow">&larr;</span>
+                <span data-fr="Vector" data-en="Vector">Vector</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Language selector">
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="content-fr" class="lang-content active">
+
+            <h1>Politique de <span class="highlight">remboursement</span></h1>
+            <p class="meta"><strong>Vector</strong> &mdash; Application de planification anti-anxi&eacute;t&eacute; pour solopreneurs<br>
+            <strong>Entr&eacute;e en vigueur :</strong> 16 mai 2026 &middot; <strong>Derni&egrave;re mise &agrave; jour :</strong> 16 mai 2026 &middot; <strong>Version :</strong> 1.0</p>
+
+            <h2>&Agrave; propos du pr&eacute;sent document</h2>
+            <p>Le pr&eacute;sent document reprend int&eacute;gralement l'<strong>article 8 des <a href="/terms">Conditions d'utilisation de Vector</a></strong>. Il est mis &agrave; la disposition des Utilisateurs sous forme distincte afin d'en faciliter la consultation, notamment dans le cadre d'un &eacute;change avec le service &agrave; la client&egrave;le.</p>
+            <p>En cas de divergence entre le pr&eacute;sent document et les Conditions d'utilisation, <strong>les Conditions d'utilisation pr&eacute;valent</strong>.</p>
+            <p>Les termes en majuscule (Plan, Compte, Service, Utilisateur, Paddle, etc.) ont le sens qui leur est attribu&eacute; &agrave; l'article 1 des Conditions d'utilisation.</p>
+
+            <div class="summary-box">
+                <h2>Synth&egrave;se</h2>
+                <ul>
+                    <li>Tu disposes d'un d&eacute;lai de <strong>14 jours</strong> &agrave; compter de ton achat initial pour pr&eacute;senter une demande de remboursement.</li>
+                    <li>Le remboursement est <strong>proportionnel</strong> aux jours non utilis&eacute;s de la p&eacute;riode pay&eacute;e.</li>
+                    <li>L'admissibilit&eacute; repose sur deux crit&egrave;res objectifs : la <strong>date de l'achat</strong> (dans les 14 jours) et le <strong>caract&egrave;re initial</strong> de cet achat (les renouvellements et les changements de Plan ne sont pas admissibles).</li>
+                    <li>Un <strong>questionnaire de r&eacute;troaction</strong> doit &ecirc;tre compl&eacute;t&eacute;, mais ses r&eacute;ponses n'ont aucune incidence sur l'admissibilit&eacute; au remboursement.</li>
+                    <li>La demande est transmise &agrave; <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a> depuis l'adresse courriel associ&eacute;e au Compte.</li>
+                    <li>Le remboursement est effectu&eacute; sur le mode de paiement utilis&eacute;, dans un d&eacute;lai habituel de <strong>5 &agrave; 10 jours ouvrables</strong>.</li>
+                </ul>
+            </div>
+            <p><em>La pr&eacute;sente synth&egrave;se ne se substitue pas aux dispositions d&eacute;taill&eacute;es qui suivent, lesquelles pr&eacute;valent en cas de divergence.</em></p>
+
+            <h2>8. Politique de remboursement</h2>
+            <h3>8.1 Remboursement proportionnel</h3>
+            <p>Tu peux demander un remboursement proportionnel de ton premier paiement dans un d&eacute;lai de <strong>14 jours suivant la date de ton achat initial</strong>. Le montant rembours&eacute; correspond au montant pay&eacute; multipli&eacute; par le ratio des jours non utilis&eacute;s sur la dur&eacute;e totale de la p&eacute;riode pay&eacute;e.</p>
+            <h3>8.2 Exclusions</h3>
+            <p>Le droit au remboursement pr&eacute;vu &agrave; l'article 8.1 ne s'applique pas :</p>
+            <ul>
+                <li>aux renouvellements automatiques, mensuels ou annuels, post&eacute;rieurs &agrave; l'achat initial ;</li>
+                <li>aux changements de Plan effectu&eacute;s apr&egrave;s l'achat initial ;</li>
+                <li>aux r&eacute;compenses, aux Cr&eacute;dits Ambassadeur ou aux mois gratuits obtenus dans le cadre du Programme Ambassadeur ou de toute promotion.</li>
+            </ul>
+            <h3>8.3 Modalit&eacute;s de la demande</h3>
+            <p>Pour exercer ton droit au remboursement, tu transmets ta demande &agrave; <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a> depuis l'adresse courriel associ&eacute;e &agrave; ton Compte. Le remboursement est effectu&eacute; sur le m&ecirc;me mode de paiement que celui utilis&eacute; pour l'achat, dans un d&eacute;lai raisonnable, g&eacute;n&eacute;ralement de 5 &agrave; 10 jours ouvrables, sous r&eacute;serve des d&eacute;lais propres &agrave; Paddle et &agrave; ton &eacute;tablissement bancaire.</p>
+            <h3>8.4 Questionnaire de r&eacute;troaction obligatoire</h3>
+            <p>Un questionnaire de r&eacute;troaction doit &ecirc;tre compl&eacute;t&eacute; dans le cadre de ta demande de remboursement et constitue une &eacute;tape obligatoire de la proc&eacute;dure. <strong>L'&eacute;valuation de l'admissibilit&eacute; au remboursement repose toutefois exclusivement sur les crit&egrave;res objectifs &eacute;nonc&eacute;s aux articles 8.1 et 8.2</strong> &mdash; &agrave; savoir la date de l'achat et son caract&egrave;re initial &mdash; et n'est aucunement conditionn&eacute;e aux r&eacute;ponses fournies dans le questionnaire.</p>
+            <h3>8.5 Disposition particuli&egrave;re pour les r&eacute;sidents de l'Espace &eacute;conomique europ&eacute;en et du Royaume-Uni</h3>
+            <p>Le droit au remboursement pr&eacute;vu &agrave; l'article 8.1 est plus g&eacute;n&eacute;reux que le droit de r&eacute;tractation l&eacute;gal de 14 jours pr&eacute;vu par la directive 2011/83/UE. En souscrivant &agrave; un Plan payant et en commen&ccedil;ant &agrave; utiliser le Service imm&eacute;diatement, tu consens &agrave; ce que l'ex&eacute;cution du contrat d&eacute;bute avant l'expiration du d&eacute;lai l&eacute;gal de r&eacute;tractation. La pr&eacute;sente politique de remboursement de Vector demeure n&eacute;anmoins applicable.</p>
+
+            <h2>Proc&eacute;dure de demande de remboursement</h2>
+            <ol>
+                <li><strong>V&eacute;rification de l'admissibilit&eacute;.</strong> La demande doit &ecirc;tre pr&eacute;sent&eacute;e dans les <strong>14 jours</strong> suivant l'<strong>achat initial</strong>. Les renouvellements et les changements de Plan ne sont pas admissibles.</li>
+                <li><strong>Transmission de la demande.</strong> Tu adresses un courriel &agrave; <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a> depuis l'adresse courriel associ&eacute;e &agrave; ton Compte Vector, en indiquant : ton identifiant de Compte ou l'adresse courriel utilis&eacute;e &agrave; l'inscription ; la date approximative de l'achat ; l'objet de la demande. Aucune justification de la d&eacute;cision n'est requise.</li>
+                <li><strong>Questionnaire de r&eacute;troaction.</strong> Un court questionnaire de r&eacute;troaction t'est transmis dans le cadre du traitement de ta demande. Son ach&egrave;vement est obligatoire pour conclure la proc&eacute;dure. Les r&eacute;ponses fournies sont utilis&eacute;es &agrave; des fins d'am&eacute;lioration du Service et n'ont aucune incidence sur l'admissibilit&eacute; au remboursement.</li>
+                <li><strong>Versement du remboursement.</strong> Le remboursement est port&eacute; au cr&eacute;dit du mode de paiement utilis&eacute; lors de l'achat, dans un d&eacute;lai habituel de <strong>5 &agrave; 10 jours ouvrables</strong>, en fonction des d&eacute;lais de traitement de notre processeur de paiement (Paddle) et de ton &eacute;tablissement bancaire.</li>
+            </ol>
+
+            <h2>Pour nous joindre</h2>
+            <div class="contact-block">
+                <p><strong>CapitalSoft inc.</strong> &mdash; division Vector</p>
+                <p>371 Couture, Granby (Qu&eacute;bec), J2H 0R1, Canada</p>
+                <p>Demandes de remboursement et soutien : <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a></p>
+                <p>Protection des renseignements personnels : <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a></p>
+            </div>
+
+            <hr>
+            <p><em>Le pr&eacute;sent document est un extrait fid&egrave;le de l'article 8 des <a href="/terms">Conditions d'utilisation de Vector</a>. En cas de divergence, les Conditions d'utilisation pr&eacute;valent.</em></p>
+
+        </article>
+
+        <article id="content-en" class="lang-content">
+
+            <h1>Refund <span class="highlight">Policy</span></h1>
+            <p class="meta"><strong>Vector</strong> &mdash; Anti-anxiety planning app for solopreneurs<br>
+            <strong>Effective date:</strong> May 16, 2026 &middot; <strong>Last updated:</strong> May 16, 2026 &middot; <strong>Version:</strong> 1.0</p>
+
+            <h2>About this document</h2>
+            <p>This document reproduces in full <strong>Section 8 of the <a href="/terms">Vector Terms of Use</a></strong>. It is made available separately to make it easier to consult, particularly in the course of an exchange with customer support.</p>
+            <p>In the event of any discrepancy between this document and the Terms of Use, <strong>the Terms of Use prevail</strong>.</p>
+            <p>Capitalized terms (Plan, Account, Service, User, Paddle, etc.) have the meaning assigned to them in Section 1 of the Terms of Use.</p>
+
+            <div class="summary-box">
+                <h2>Summary</h2>
+                <ul>
+                    <li>You have <strong>14 days</strong> from your initial purchase to request a refund.</li>
+                    <li>The refund is <strong>pro-rated</strong> to the unused days of the paid period.</li>
+                    <li>Eligibility rests on two objective criteria: the <strong>date of purchase</strong> (within 14 days) and the <strong>initial nature</strong> of that purchase (renewals and Plan changes are not eligible).</li>
+                    <li>A <strong>feedback questionnaire</strong> must be completed, but its answers have no bearing on refund eligibility.</li>
+                    <li>The request is sent to <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a> from the email address associated with the Account.</li>
+                    <li>The refund is issued to the payment method used, typically within <strong>5 to 10 business days</strong>.</li>
+                </ul>
+            </div>
+            <p><em>This summary does not replace the detailed provisions that follow, which prevail in the event of any discrepancy.</em></p>
+
+            <h2>8. Refund policy</h2>
+            <h3>8.1 Pro-rated refund</h3>
+            <p>You may request a pro-rated refund of your first payment within <strong>14 days following the date of your initial purchase</strong>. The amount refunded equals the amount paid multiplied by the ratio of unused days to the total length of the paid period.</p>
+            <h3>8.2 Exclusions</h3>
+            <p>The refund right set out in Section 8.1 does not apply to:</p>
+            <ul>
+                <li>automatic renewals, monthly or annual, occurring after the initial purchase;</li>
+                <li>Plan changes made after the initial purchase;</li>
+                <li>rewards, Ambassador Credits or free months obtained through the Ambassador Program or any promotion.</li>
+            </ul>
+            <h3>8.3 How to request a refund</h3>
+            <p>To exercise your refund right, you send your request to <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a> from the email address associated with your Account. The refund is issued to the same payment method used for the purchase, within a reasonable time, generally 5 to 10 business days, subject to the processing times of Paddle and of your financial institution.</p>
+            <h3>8.4 Mandatory feedback questionnaire</h3>
+            <p>A feedback questionnaire must be completed as part of your refund request and is a mandatory step of the procedure. <strong>Refund eligibility is nonetheless assessed exclusively on the objective criteria set out in Sections 8.1 and 8.2</strong> &mdash; namely the date of purchase and its initial nature &mdash; and is in no way conditioned on the answers provided in the questionnaire.</p>
+            <h3>8.5 Special provision for residents of the European Economic Area and the United Kingdom</h3>
+            <p>The refund right set out in Section 8.1 is more generous than the 14-day statutory right of withdrawal under Directive 2011/83/EU. By subscribing to a paid Plan and beginning to use the Service immediately, you consent to the performance of the contract starting before the statutory withdrawal period expires. Vector's refund policy nonetheless remains applicable.</p>
+
+            <h2>How to request a refund &mdash; step by step</h2>
+            <ol>
+                <li><strong>Check eligibility.</strong> The request must be made within <strong>14 days</strong> of the <strong>initial purchase</strong>. Renewals and Plan changes are not eligible.</li>
+                <li><strong>Send your request.</strong> Email <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a> from the email address associated with your Vector Account, stating: your Account identifier or the email used at signup; the approximate date of purchase; and the subject of the request. No justification of the decision is required.</li>
+                <li><strong>Feedback questionnaire.</strong> A short feedback questionnaire is sent to you as part of processing your request. Completing it is mandatory to conclude the procedure. The answers are used to improve the Service and have no bearing on refund eligibility.</li>
+                <li><strong>Refund payment.</strong> The refund is credited to the payment method used for the purchase, typically within <strong>5 to 10 business days</strong>, depending on the processing times of our payment processor (Paddle) and of your financial institution.</li>
+            </ol>
+
+            <h2>Contact us</h2>
+            <div class="contact-block">
+                <p><strong>CapitalSoft inc.</strong> &mdash; Vector division</p>
+                <p>371 Couture, Granby (Quebec), J2H 0R1, Canada</p>
+                <p>Refund requests and support: <a href="mailto:support@vectorplanning.ai">support@vectorplanning.ai</a></p>
+                <p>Privacy: <a href="mailto:confidentialite@vectorplanning.ai">confidentialite@vectorplanning.ai</a></p>
+            </div>
+
+            <hr>
+            <p><em>This document is a faithful excerpt of Section 8 of the <a href="/terms">Vector Terms of Use</a>. In the event of any discrepancy, the Terms of Use prevail. The French version prevails for users residing in Quebec.</em></p>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/" id="back-link-footer" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="/pricing" data-fr="Tarifs" data-en="Pricing">Tarifs</a>
+            <a href="/terms" data-fr="Conditions d'utilisation" data-en="Terms of use">Conditions d'utilisation</a>
+            <a href="/privacy" data-fr="Confidentialit&eacute;" data-en="Privacy">Confidentialit&eacute;</a>
+            <a href="/refunds" data-fr="Remboursement" data-en="Refunds">Remboursement</a>
+            <a href="/ambassador" data-fr="Programme Ambassadeur" data-en="Ambassador Program">Programme Ambassadeur</a>
+        </div>
+        <p data-fr="&copy; 2026 Vector &mdash; division de CapitalSoft inc." data-en="&copy; 2026 Vector &mdash; a division of CapitalSoft inc.">&copy; 2026 Vector &mdash; division de CapitalSoft inc.</p>
+        <p class="privacy-mention" data-fr="Remboursement proportionnel &middot; 14 jours &middot; Facturation par Paddle" data-en="Pro-rated refund &middot; 14 days &middot; Billing by Paddle">Remboursement proportionnel &middot; 14 jours &middot; Facturation par Paddle</p>
+    </footer>
+
+    <script>
+        var TITLE_FR = "Politique de remboursement — Vector";
+        var TITLE_EN = "Refund Policy — Vector";
+
+        function detectInitialLang() {
+            var params = new URLSearchParams(window.location.search);
+            var fromUrl = params.get('lang');
+            if (fromUrl === 'fr' || fromUrl === 'en') return fromUrl;
+            var stored = localStorage.getItem('vector_lang');
+            if (stored === 'fr' || stored === 'en') return stored;
+            var browserLang = (navigator.language || 'fr').toLowerCase();
+            if (browserLang.startsWith('en')) return 'en';
+            return 'fr';
+        }
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(function (el) { el.classList.remove('active'); });
+            var target = document.getElementById('content-' + lang);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            document.querySelectorAll('[data-fr][data-en]').forEach(function (el) {
+                el.textContent = el.dataset[lang] || el.textContent;
+            });
+
+            document.documentElement.lang = lang;
+
+            var homeHref = lang === 'fr' ? '/' : '/?lang=en';
+            var bh = document.getElementById('back-link-header');
+            var bf = document.getElementById('back-link-footer');
+            if (bh) bh.setAttribute('href', homeHref);
+            if (bf) bf.setAttribute('href', homeHref);
+
+            document.title = lang === 'en' ? TITLE_EN : TITLE_FR;
+
+            localStorage.setItem('vector_lang', lang);
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () { setLang(detectInitialLang()); });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conditions du Programme Ambassadeur de Vector : crédits Ambassadeur, mois Accélération offerts, catalogue d'échange et garde-fous anti-fraude.">
+    <meta name="robots" content="index, follow">
+
+    <title>Programme Ambassadeur — Vector</title>
+
+    <link rel="canonical" href="https://vectorplanning.ai/ambassador">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #10131A;
+            --bg-secondary: #1C2030;
+            --accent-lime: #8BFF3C;
+            --text-primary: #F5F4EF;
+            --text-secondary: #B0B6CE;
+            --border: rgba(139, 255, 60, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(16, 19, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--accent-lime); }
+        .back-link .arrow { transition: transform 0.2s; }
+        .back-link:hover .arrow { transform: translateX(-3px); }
+
+        .lang-toggle {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .lang-btn.active { background: var(--accent-lime); color: var(--bg-primary); font-weight: 600; }
+        .lang-btn:not(.active):hover { color: var(--text-primary); }
+
+        main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+        h1 .highlight { color: var(--accent-lime); }
+
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .meta strong { color: var(--text-primary); font-weight: 600; }
+
+        h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-lime);
+            margin-top: 3rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+        h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        p { margin-bottom: 1.1rem; color: var(--text-primary); }
+        ul, ol { margin: 0 0 1.3rem 1.5rem; color: var(--text-primary); }
+        li { margin-bottom: 0.5rem; line-height: 1.7; }
+        strong { color: var(--text-primary); font-weight: 600; }
+        em { color: var(--text-secondary); font-style: italic; }
+
+        a {
+            color: var(--accent-lime);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+        a:hover { opacity: 0.8; }
+
+        .summary-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 3rem;
+        }
+        .summary-box h2 { margin-top: 0; margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.6rem; }
+        .summary-box ul { margin-left: 1.2rem; margin-bottom: 0; }
+        .summary-box li { margin-bottom: 0.7rem; }
+        .summary-box li:last-child { margin-bottom: 0; }
+
+        .table-wrapper { margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+        th, td { padding: 0.85rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(139, 255, 60, 0.1); }
+        th { background: var(--bg-secondary); color: var(--accent-lime); font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.3px; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: rgba(28, 32, 48, 0.3); }
+
+        .contact-block {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-lime);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        .contact-block p { margin-bottom: 0.4rem; }
+        .contact-block p:last-child { margin-bottom: 0; }
+
+        hr { border: none; height: 1px; background: var(--border); margin: 3rem 0; }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        footer p { margin-bottom: 0.6rem; color: var(--text-secondary); }
+        footer .privacy-mention { font-size: 0.85rem; opacity: 0.85; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; justify-content: center; margin-bottom: 1.2rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: underline; }
+        .footer-links a:hover { color: var(--accent-lime); opacity: 1; }
+
+        @media (max-width: 600px) {
+            .header-inner { padding: 1rem 1.2rem; flex-wrap: wrap; }
+            main { padding: 2rem 1.2rem 3rem; }
+            .summary-box { padding: 1.4rem 1.3rem; }
+            h2 { font-size: 1.3rem; margin-top: 2.2rem; }
+            th, td { padding: 0.7rem 0.8rem; font-size: 0.85rem; }
+            .lang-btn { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="/" id="back-link-header" class="back-link">
+                <span class="arrow">&larr;</span>
+                <span data-fr="Vector" data-en="Vector">Vector</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Language selector">
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <article id="content-fr" class="lang-content active">
+
+            <h1>Conditions du <span class="highlight">Programme Ambassadeur</span></h1>
+            <p class="meta"><strong>Vector</strong> &mdash; &eacute;dit&eacute; par CapitalSoft inc.<br>
+            <strong>Version :</strong> 1.1 &middot; <strong>Entr&eacute;e en vigueur :</strong> 16 mai 2026 &middot; District judiciaire de Bedford, Qu&eacute;bec, Canada</p>
+
+            <div class="summary-box">
+                <h2>En bref</h2>
+                <ul>
+                    <li>Le Programme Ambassadeur te permet d'obtenir des r&eacute;compenses en invitant d'autres personnes &agrave; d&eacute;couvrir Vector.</li>
+                    <li>Chaque inscription valid&eacute;e par activit&eacute; r&eacute;elle te donne des <strong>Cr&eacute;dits Ambassadeur</strong> dans une banque secondaire qui n'expire pas tant que ton Compte est actif.</li>
+                    <li>Ces cr&eacute;dits servent de deux fa&ccedil;ons : (i) comme cr&eacute;dits IA standards, d&eacute;duits automatiquement lorsque ton quota mensuel est &eacute;puis&eacute; ; ou (ii) accumul&eacute;s pour une r&eacute;compense du catalogue d'&eacute;change (skins, mois gratuit d'un plan sup&eacute;rieur, employ&eacute; IA suppl&eacute;mentaire).</li>
+                    <li>Si ton Filleul souscrit ensuite &agrave; un plan payant et le conserve au-del&agrave; de 14 jours, tu re&ccedil;ois en plus un <strong>mois gratuit du plan Acc&eacute;l&eacute;ration</strong>, appliqu&eacute; automatiquement &agrave; ton prochain cycle.</li>
+                    <li>Tes Filleuls profitent d'une p&eacute;riode d'essai prolong&eacute;e de <strong>21 jours</strong> au plan Acc&eacute;l&eacute;ration (au lieu de 14), et re&ccedil;oivent 200 Cr&eacute;dits Ambassadeur s'ils souscrivent &agrave; un plan payant durant cette p&eacute;riode.</li>
+                </ul>
+            </div>
+            <p>Le pr&eacute;sent document d&eacute;crit en d&eacute;tail les r&egrave;gles du Programme. Il fait partie int&eacute;grante des <a href="/terms">Conditions d'utilisation de Vector</a> (article 9).</p>
+
+            <h2>1. D&eacute;finitions</h2>
+            <p>Les termes d&eacute;finis dans les Conditions d'utilisation conservent leur sens. Les termes suivants ont le sens qui leur est attribu&eacute; ci-apr&egrave;s :</p>
+            <ul>
+                <li><strong>&laquo; Ambassadeur &raquo;</strong> : un Utilisateur de Vector qui invite d'autres personnes &agrave; d&eacute;couvrir le Service via son lien personnel ou son code unique de r&eacute;f&eacute;rence.</li>
+                <li><strong>&laquo; Filleul &raquo;</strong> : une personne qui s'inscrit &agrave; Vector via le lien ou le code d'un Ambassadeur.</li>
+                <li><strong>&laquo; Cr&eacute;dits Ambassadeur &raquo;</strong> : des cr&eacute;dits IA accord&eacute;s &agrave; l'Ambassadeur ou au Filleul &agrave; titre de r&eacute;compense, conserv&eacute;s dans la banque secondaire pr&eacute;vue aux Conditions d'utilisation.</li>
+                <li><strong>&laquo; Activation &raquo;</strong> : la validation par Vector que le Filleul utilise r&eacute;ellement le Service, selon les crit&egrave;res de l'article 4.</li>
+                <li><strong>&laquo; Conversion &raquo;</strong> : la souscription par le Filleul &agrave; un Plan payant, accompagn&eacute;e du d&eacute;passement du d&eacute;lai de remboursement de 14 jours pr&eacute;vu &agrave; l'article 8 des Conditions d'utilisation.</li>
+            </ul>
+
+            <h2>2. Admissibilit&eacute;</h2>
+            <p><strong>2.1</strong> Tout Utilisateur disposant d'un Compte actif peut participer au Programme Ambassadeur, peu importe son Plan (Fondation, Acc&eacute;l&eacute;ration, D&eacute;l&eacute;gation ou Propulsion).</p>
+            <p><strong>2.2</strong> Un code de r&eacute;f&eacute;rence personnel et un lien unique sont automatiquement g&eacute;n&eacute;r&eacute;s &agrave; la cr&eacute;ation de chaque Compte et accessibles dans le Dashboard Ambassadeur depuis l'Application.</p>
+            <p><strong>2.3</strong> Un Utilisateur ne peut pas se r&eacute;f&eacute;rer lui-m&ecirc;me, ni utiliser un code de r&eacute;f&eacute;rence pour b&eacute;n&eacute;ficier d'un avantage sur un Compte qu'il contr&ocirc;le directement ou indirectement.</p>
+
+            <h2>3. R&eacute;compenses pour le Filleul</h2>
+            <p><strong>3.1 P&eacute;riode d'essai prolong&eacute;e.</strong> Tout Filleul qui s'inscrit via le lien d'un Ambassadeur b&eacute;n&eacute;ficie de 21 jours d'acc&egrave;s gratuit au plan Acc&eacute;l&eacute;ration, au lieu des 14 jours standard (article 6 des Conditions d'utilisation). Aucun mode de paiement n'est requis pour cet essai prolong&eacute;.</p>
+            <p><strong>3.2 Bonus &agrave; la souscription imm&eacute;diate.</strong> Si le Filleul ajoute un mode de paiement et souscrit &agrave; un Plan payant pendant ses 21 jours d'essai, il re&ccedil;oit &eacute;galement 200 Cr&eacute;dits Ambassadeur vers&eacute;s directement dans sa banque secondaire au moment de la souscription.</p>
+            <p><strong>3.3 Cons&eacute;quences &agrave; l'issue de la p&eacute;riode d'essai.</strong> Si le Filleul n'a pas souscrit &agrave; un Plan payant au bout de 21 jours, son Compte bascule au plan Fondation (article 6 des Conditions d'utilisation). Les Cr&eacute;dits Ambassadeur qu'il aurait re&ccedil;us &agrave; l'activation (s'il &eacute;tait lui-m&ecirc;me Ambassadeur) demeurent dans sa banque secondaire.</p>
+
+            <h2>4. R&eacute;compenses pour l'Ambassadeur</h2>
+            <p>L'Ambassadeur re&ccedil;oit ses r&eacute;compenses en deux &eacute;tapes successives, &agrave; des moments diff&eacute;rents et selon des conditions distinctes.</p>
+
+            <h3>4.1 Premi&egrave;re &eacute;tape &mdash; Activation du Filleul</h3>
+            <p><strong>4.1.1 D&eacute;finition de l'Activation.</strong> Le Filleul est consid&eacute;r&eacute; comme &laquo; activ&eacute; &raquo; lorsqu'il satisfait &agrave; l'un des deux crit&egrave;res suivants, le premier atteint d&eacute;clenchant la r&eacute;compense :</p>
+            <ul>
+                <li><strong>Crit&egrave;re a (souscription imm&eacute;diate)</strong> : le Filleul met un mode de paiement et souscrit &agrave; un Plan payant &agrave; tout moment pendant ses 21 jours d'essai. L'Activation est confirm&eacute;e imm&eacute;diatement.</li>
+                <li><strong>Crit&egrave;re b (activit&eacute; r&eacute;elle)</strong> : pendant les 21 jours d'essai, le Filleul accumule au moins 7 jours d'activit&eacute; significative sur une fen&ecirc;tre glissante de 14 jours. Un cron quotidien &eacute;value ce crit&egrave;re ; au premier jour o&ugrave; il est satisfait, l'Activation est confirm&eacute;e.</li>
+            </ul>
+            <p><strong>4.1.2 Jour d'activit&eacute; significative.</strong> Un jour compte comme jour d'activit&eacute; significative si le Filleul s'est connect&eacute; ce jour-l&agrave; et a effectu&eacute; au moins une action de planification (cr&eacute;ation ou &eacute;dition d'une t&acirc;che, conversation avec un Agent IA, d&eacute;placement sur le calendrier, compl&eacute;tion d'une t&acirc;che, ou autre action de gestion document&eacute;e). La simple connexion sans action ne compte pas.</p>
+            <p><strong>4.1.3 R&eacute;compense &agrave; l'Activation.</strong> Au moment de l'Activation, Vector verse &agrave; l'Ambassadeur un montant de Cr&eacute;dits Ambassadeur d&eacute;termin&eacute; par son propre Plan au moment du versement :</p>
+            <div class="table-wrapper"><table>
+                <thead><tr><th>Plan de l'Ambassadeur</th><th>Cr&eacute;dits Ambassadeur vers&eacute;s</th></tr></thead>
+                <tbody>
+                    <tr><td>Fondation</td><td>200</td></tr>
+                    <tr><td>Acc&eacute;l&eacute;ration</td><td>300</td></tr>
+                    <tr><td>D&eacute;l&eacute;gation</td><td>500</td></tr>
+                    <tr><td>Propulsion</td><td>750</td></tr>
+                </tbody>
+            </table></div>
+            <p>Ces Cr&eacute;dits Ambassadeur sont vers&eacute;s dans la banque secondaire de l'Ambassadeur et ob&eacute;issent aux r&egrave;gles des articles 6 et 7.</p>
+            <p><strong>4.1.4 Limite de la fen&ecirc;tre d'Activation.</strong> Si aucune Activation n'est constat&eacute;e &agrave; la fin des 21 jours d'essai du Filleul, la r&eacute;f&eacute;rence est ferm&eacute;e sans cr&eacute;dit &agrave; l'Ambassadeur. Aucune notification d'absence d'activation n'est envoy&eacute;e.</p>
+
+            <h3>4.2 Seconde &eacute;tape &mdash; Conversion du Filleul</h3>
+            <p><strong>4.2.1 D&eacute;finition de la Conversion.</strong> La Conversion est valid&eacute;e lorsque les deux conditions suivantes sont simultan&eacute;ment r&eacute;unies : le Filleul a souscrit &agrave; un Plan payant ; et le d&eacute;lai de 14 jours suivant la date d'achat initial (article 8 des Conditions d'utilisation) est expir&eacute; sans demande de remboursement.</p>
+            <p><strong>4.2.2 Fen&ecirc;tre de r&eacute;compense.</strong> Pour ouvrir droit &agrave; la r&eacute;compense de Conversion, la souscription du Filleul doit avoir lieu dans les 90 jours suivant sa date d'Activation. Au-del&agrave;, une &eacute;ventuelle Conversion ne g&eacute;n&egrave;re plus de r&eacute;compense pour l'Ambassadeur, mais celui-ci conserve les Cr&eacute;dits Ambassadeur d&eacute;j&agrave; re&ccedil;us &agrave; l'Activation.</p>
+            <p><strong>4.2.3 R&eacute;compense &agrave; la Conversion.</strong> &Agrave; la confirmation de la Conversion dans la fen&ecirc;tre pr&eacute;vue, Vector attribue &agrave; l'Ambassadeur un (1) mois d'acc&egrave;s au plan Acc&eacute;l&eacute;ration sans frais, appliqu&eacute; automatiquement &agrave; son prochain cycle de facturation (article 7.3).</p>
+            <p><strong>4.2.4 Cumul avec la premi&egrave;re &eacute;tape.</strong> La r&eacute;compense de Conversion s'ajoute aux Cr&eacute;dits Ambassadeur d&eacute;j&agrave; re&ccedil;us &agrave; l'Activation. Pour un Filleul converti, l'Ambassadeur re&ccedil;oit donc &agrave; la fois les Cr&eacute;dits Ambassadeur (&eacute;tape 1) et le mois Acc&eacute;l&eacute;ration (&eacute;tape 2).</p>
+
+            <h2>5. Plafonds</h2>
+            <p><strong>5.1</strong> Le Programme ne pr&eacute;voit pas, dans sa version actuelle, de plafond annuel sur le nombre de r&eacute;f&eacute;rences admissibles, de mois Acc&eacute;l&eacute;ration obtenus ou de Cr&eacute;dits Ambassadeur accumul&eacute;s.</p>
+            <p><strong>5.2</strong> Vector se r&eacute;serve le droit d'introduire des plafonds, paliers ou modulations de r&eacute;compenses si des patterns d'usage abusif ou des contraintes &eacute;conomiques le justifient. Toute introduction d'un plafond fait l'objet d'un pr&eacute;avis raisonnable et ne s'applique qu'aux r&eacute;f&eacute;rences post&eacute;rieures &agrave; son entr&eacute;e en vigueur.</p>
+
+            <h2>6. Cr&eacute;dits Ambassadeur &mdash; r&egrave;gles d'utilisation</h2>
+            <p><strong>6.1 Double utilit&eacute;.</strong> Les Cr&eacute;dits Ambassadeur ont une double utilit&eacute; : <strong>(i) comme cr&eacute;dits IA standards</strong>, utilisables exactement comme les cr&eacute;dits mensuels inclus dans ton Plan, pour prolonger l'usage de Vector au-del&agrave; de ton quota sans achat ; <strong>(ii) comme monnaie d'&eacute;change du catalogue</strong> (article 8). C'est toi qui choisis : consommer au fil de l'eau, ou conserver pour viser une r&eacute;compense.</p>
+            <p><strong>6.2 Banque secondaire.</strong> Les Cr&eacute;dits Ambassadeur sont stock&eacute;s dans une banque secondaire distincte du quota mensuel ; ils ne sont pas r&eacute;initialis&eacute;s &agrave; chaque cycle.</p>
+            <p><strong>6.3 Ordre de consommation par d&eacute;faut.</strong> Lorsque tu utilises une fonctionnalit&eacute; IA, les cr&eacute;dits sont d&eacute;compt&eacute;s dans l'ordre suivant : (i) le quota mensuel de ton Plan ; (ii) les cr&eacute;dits de promotions ; (iii) les cr&eacute;dits d'achats ; (iv) les Cr&eacute;dits Ambassadeur en dernier. Tant que ton quota mensuel n'est pas &eacute;puis&eacute;, tes Cr&eacute;dits Ambassadeur ne sont jamais entam&eacute;s.</p>
+            <p><strong>6.4 Option d'accumulation stricte.</strong> Tu peux activer dans le Dashboard Ambassadeur une option qui bloque la consommation de tes Cr&eacute;dits Ambassadeur, m&ecirc;me lorsque tous les autres cr&eacute;dits sont &eacute;puis&eacute;s, jusqu'&agrave; ce que tu la d&eacute;bloques ou jusqu'&agrave; ton prochain cycle.</p>
+            <p><strong>6.5 Non-convertibilit&eacute;.</strong> Les Cr&eacute;dits Ambassadeur ne sont pas convertibles en argent, ni transf&eacute;rables &agrave; un autre Compte, ni remboursables.</p>
+
+            <h2>7. Expiration et conservation</h2>
+            <p><strong>7.1 Pas d'expiration tant que ton Compte est actif.</strong> Tes Cr&eacute;dits Ambassadeur n'expirent pas tant que ton Compte demeure actif.</p>
+            <p><strong>7.2 Expiration &agrave; la r&eacute;siliation.</strong> En cas de r&eacute;siliation de ton Compte (&agrave; ton initiative ou conform&eacute;ment aux articles 13 et 13.4 des Conditions d'utilisation), les Cr&eacute;dits Ambassadeur non utilis&eacute;s sont d&eacute;finitivement perdus.</p>
+            <p><strong>7.3 Mois Acc&eacute;l&eacute;ration offerts &mdash; application automatique.</strong> Le mois Acc&eacute;l&eacute;ration obtenu &agrave; la Conversion d'un Filleul s'applique automatiquement &agrave; ton prochain cycle de facturation, sans action de ta part :</p>
+            <ul>
+                <li><strong>Plan Fondation</strong> : ton prochain cycle devient un cycle Acc&eacute;l&eacute;ration gratuit (quota et fonctionnalit&eacute;s Acc&eacute;l&eacute;ration). Au cycle suivant, retour automatique &agrave; Fondation.</li>
+                <li><strong>Plan Acc&eacute;l&eacute;ration payant</strong> : ton prochain cycle n'est pas factur&eacute; (aucun pr&eacute;l&egrave;vement Paddle). Au cycle suivant, la facturation normale reprend.</li>
+                <li><strong>Plan sup&eacute;rieur (D&eacute;l&eacute;gation, Propulsion)</strong> : le mois offert est appliqu&eacute; comme une r&eacute;duction &eacute;quivalente au tarif mensuel d'Acc&eacute;l&eacute;ration sur ton prochain cycle. Tu conserves ton Plan sup&eacute;rieur.</li>
+            </ul>
+            <p><strong>7.4 Plusieurs mois en attente.</strong> S'ils sont plusieurs, les mois Acc&eacute;l&eacute;ration s'appliquent s&eacute;quentiellement, un par cycle, dans l'ordre o&ugrave; ils ont &eacute;t&eacute; obtenus.</p>
+            <p><strong>7.5 Conservation.</strong> Les mois Acc&eacute;l&eacute;ration obtenus restent attach&eacute;s &agrave; ton Compte tant qu'il est actif et sont perdus en cas de r&eacute;siliation avant leur application automatique.</p>
+
+            <h2>8. Catalogue d'&eacute;change Ambassadeur</h2>
+            <p><strong>8.1 Principe.</strong> Tu peux &eacute;changer tes Cr&eacute;dits Ambassadeur accumul&eacute;s contre des r&eacute;compenses du catalogue, accessible depuis le Dashboard Ambassadeur.</p>
+            <p><strong>8.2 Catalogue actuel.</strong></p>
+            <div class="table-wrapper"><table>
+                <thead><tr><th>R&eacute;compense</th><th>Co&ucirc;t (Cr&eacute;dits Ambassadeur)</th><th>Disponibilit&eacute;</th></tr></thead>
+                <tbody>
+                    <tr><td>1 mois Acc&eacute;l&eacute;ration offert</td><td>700</td><td>Ambassadeurs sur le plan Fondation uniquement</td></tr>
+                    <tr><td>1 mois D&eacute;l&eacute;gation offert</td><td>&Agrave; d&eacute;terminer au lancement de D&eacute;l&eacute;gation</td><td>Ambassadeurs sur le plan Acc&eacute;l&eacute;ration uniquement</td></tr>
+                    <tr><td>1 mois Propulsion offert</td><td>&Agrave; d&eacute;terminer au lancement de Propulsion</td><td>Ambassadeurs sur le plan D&eacute;l&eacute;gation uniquement</td></tr>
+                    <tr><td>1 employ&eacute; IA suppl&eacute;mentaire &agrave; vie (3<sup>e</sup> slot)</td><td>3 000</td><td>Plan D&eacute;l&eacute;gation uniquement, 1 fois &agrave; vie max par Compte</td></tr>
+                    <tr><td>1 skin du Marketplace, cat&eacute;gorie standard</td><td>100</td><td>Tous les Ambassadeurs</td></tr>
+                    <tr><td>1 skin du Marketplace, cat&eacute;gorie premium</td><td>300</td><td>Tous les Ambassadeurs</td></tr>
+                </tbody>
+            </table></div>
+            <p><strong>8.3 R&egrave;gle des mois gratuits &mdash; d&eacute;couverte du plan sup&eacute;rieur.</strong> Les mois gratuits du catalogue ne peuvent &ecirc;tre &eacute;chang&eacute;s que vers un Plan sup&eacute;rieur au Plan courant de l'Ambassadeur, afin d'encourager la d&eacute;couverte des plans sup&eacute;rieurs.</p>
+            <p><strong>8.4 Application automatique des mois obtenus par &eacute;change.</strong> Un mois gratuit &eacute;chang&eacute; s'applique automatiquement au prochain cycle, selon les modalit&eacute;s de l'article 7.3. Les &eacute;changes successifs s'appliquent s&eacute;quentiellement, un par cycle.</p>
+            <p><strong>8.5 Employ&eacute; IA suppl&eacute;mentaire &mdash; modalit&eacute;s.</strong> L'employ&eacute; IA suppl&eacute;mentaire porte &agrave; 3 le nombre maximum d'employ&eacute;s IA actifs simultan&eacute;ment (au lieu de 2 sur D&eacute;l&eacute;gation). Cet avantage est accord&eacute; &agrave; vie tant que ton abonnement D&eacute;l&eacute;gation demeure actif. En cas de passage &agrave; Propulsion (employ&eacute;s illimit&eacute;s), il n'a plus d'effet pratique mais reste rattach&eacute; &agrave; ton Compte ; en cas de r&eacute;trogradation sous D&eacute;l&eacute;gation, il est suspendu jusqu'au retour &agrave; D&eacute;l&eacute;gation ou sup&eacute;rieur. L'usage IA de ce 3<sup>e</sup> employ&eacute; est factur&eacute; normalement contre le quota de cr&eacute;dits de ton Plan.</p>
+            <p><strong>8.6 &Eacute;volution du catalogue.</strong> Vector peut modifier le catalogue (ajout, retrait, ajustement des co&ucirc;ts) sous r&eacute;serve de la pr&eacute;servation des r&eacute;compenses d&eacute;j&agrave; obtenues. Tout retrait d'une r&eacute;compense fait l'objet d'un pr&eacute;avis de 30 jours pendant lequel les Cr&eacute;dits accumul&eacute;s peuvent encore &ecirc;tre &eacute;chang&eacute;s contre cette r&eacute;compense.</p>
+
+            <h2>9. Dashboard Ambassadeur</h2>
+            <p><strong>9.1 Acc&egrave;s.</strong> Un Dashboard Ambassadeur d&eacute;di&eacute; est accessible depuis l'Application pour visualiser et g&eacute;rer ta participation.</p>
+            <p><strong>9.2 Fonctionnalit&eacute;s.</strong> Le Dashboard offre minimalement : ton code et ton lien de r&eacute;f&eacute;rence ; la liste de tes invitations avec leur statut (lien cliqu&eacute;, inscription, essai, activ&eacute;e, convertie, termin&eacute;e sans suite) ; ton solde de Cr&eacute;dits Ambassadeur ; ton solde de mois Acc&eacute;l&eacute;ration en attente ; l'historique de tes gains et consommations ; le catalogue filtr&eacute; selon ton solde et ton Plan ; l'option d'accumulation stricte (article 6.4).</p>
+
+            <h2>10. Garde-fous anti-fraude</h2>
+            <p><strong>10.1 Empilement de m&eacute;canismes.</strong> Vector applique plusieurs garde-fous cumulatifs : l'unicit&eacute; du courriel par Compte ; le d&eacute;lai d'Activation par fen&ecirc;tre glissante de 14 jours (article 4.1.1) ; un plafond de deux (2) Comptes r&eacute;f&eacute;r&eacute;s depuis la m&ecirc;me adresse IP sur une fen&ecirc;tre glissante de 30 jours (au-del&agrave;, le code est ignor&eacute; et le Filleul b&eacute;n&eacute;ficie d'un essai standard de 14 jours sans participation au Programme) ; la condition de Conversion au-del&agrave; du d&eacute;lai de remboursement de 14 jours, qui rend la fraude par faux Comptes payants &eacute;conomiquement non rentable. Pour appliquer le plafond IP sans conserver les adresses en clair, Vector utilise un hachage sal&eacute; rotatif : seul un hach&eacute; de l'adresse IP combin&eacute;e &agrave; un sel quotidien est stock&eacute;, les sels au-del&agrave; de 30 jours sont supprim&eacute;s, rendant les hach&eacute;s irr&eacute;versibles (article 7.3 de la <a href="/privacy">Politique de confidentialit&eacute;</a>).</p>
+            <p><strong>10.2 Mesures en cas de fraude.</strong> En cas de fraude av&eacute;r&eacute;e ou de tentative : les r&eacute;f&eacute;rences concern&eacute;es sont annul&eacute;es sans pr&eacute;avis ; les Cr&eacute;dits ou mois obtenus frauduleusement sont retir&eacute;s ; le Compte peut &ecirc;tre suspendu ou r&eacute;sili&eacute; (article 13 des Conditions d'utilisation).</p>
+            <p><strong>10.3 Recours.</strong> Si tu estimes qu'une d&eacute;cision a &eacute;t&eacute; prise &agrave; tort &agrave; ton &eacute;gard, &eacute;cris-nous &agrave; <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a> depuis l'adresse associ&eacute;e &agrave; ton Compte. Une revue manuelle est effectu&eacute;e dans un d&eacute;lai raisonnable.</p>
+
+            <h2>11. Modifications du Programme</h2>
+            <p><strong>11.1</strong> Vector peut faire &eacute;voluer les modalit&eacute;s du Programme (r&eacute;compenses, plafonds, m&eacute;canique d'Activation, catalogue) &agrave; tout moment ; tout changement entre en vigueur &agrave; la date du pr&eacute;avis et ne touche pas aux r&eacute;compenses d&eacute;j&agrave; accord&eacute;es.</p>
+            <p><strong>11.2 Pr&eacute;avis.</strong> Tout changement substantiel d&eacute;favorable fait l'objet d'un pr&eacute;avis d'au moins 30 jours par courriel ou notification dans l'Application ; les r&egrave;gles ant&eacute;rieures s'appliquent pendant ce pr&eacute;avis.</p>
+            <p><strong>11.3 Suspension ou cessation.</strong> Vector peut suspendre ou cesser le Programme &agrave; tout moment, sous r&eacute;serve de la pr&eacute;servation des Cr&eacute;dits Ambassadeur et des mois Acc&eacute;l&eacute;ration d&eacute;j&agrave; accord&eacute;s, utilisables jusqu'&agrave; leur consommation compl&egrave;te ou la r&eacute;siliation du Compte.</p>
+
+            <h2>12. Communication des r&eacute;f&eacute;rences</h2>
+            <p><strong>12.1 Bonnes pratiques.</strong> Tu acceptes de communiquer ton lien de mani&egrave;re honn&ecirc;te, non trompeuse et conforme aux lois applicables. Tu ne dois pas : envoyer ton lien &agrave; des personnes n'ayant exprim&eacute; aucun int&eacute;r&ecirc;t pr&eacute;alable (pas de spam) ; te pr&eacute;senter faussement comme un repr&eacute;sentant ou employ&eacute; de Vector ; promettre des avantages non pr&eacute;vus par le Programme.</p>
+            <p><strong>12.2 Conformit&eacute; publicitaire.</strong> Si tu fais la promotion de Vector dans un contexte commercial ou r&eacute;mun&eacute;r&eacute; (blogue, vid&eacute;o sponsoris&eacute;e, courriel marketing), tu dois respecter les obligations de divulgation pr&eacute;vues par les lois applicables.</p>
+
+            <h2>13. Loi applicable</h2>
+            <p>Le pr&eacute;sent document est r&eacute;gi par les lois en vigueur dans la province de Qu&eacute;bec et les lois f&eacute;d&eacute;rales du Canada qui s'y appliquent, conform&eacute;ment &agrave; l'article 24 des Conditions d'utilisation.</p>
+
+            <h2>14. Pour nous joindre</h2>
+            <div class="contact-block">
+                <p>Pour toute question relative au Programme Ambassadeur :</p>
+                <p><strong>CapitalSoft inc.</strong></p>
+                <p>Courriel : <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a></p>
+                <p>Adresse postale : 371 Couture, Granby (Qu&eacute;bec), J2H 0R1, Canada</p>
+            </div>
+
+            <hr>
+            <p><em>Le pr&eacute;sent document fait partie int&eacute;grante des <a href="/terms">Conditions d'utilisation de Vector</a> et s'applique conjointement &agrave; celles-ci pour tout Utilisateur participant au Programme Ambassadeur. En cas de divergence, les Conditions d'utilisation pr&eacute;valent.</em></p>
+
+        </article>
+
+        <article id="content-en" class="lang-content">
+
+            <h1>Ambassador Program <span class="highlight">Terms</span></h1>
+            <p class="meta"><strong>Vector</strong> &mdash; published by CapitalSoft inc.<br>
+            <strong>Version:</strong> 1.1 &middot; <strong>Effective date:</strong> May 16, 2026 &middot; Judicial District of Bedford, Quebec, Canada</p>
+
+            <div class="summary-box">
+                <h2>In short</h2>
+                <ul>
+                    <li>The Ambassador Program lets you earn rewards by inviting others to discover Vector.</li>
+                    <li>Each signup validated by real activity gives you <strong>Ambassador Credits</strong> in a secondary balance that does not expire while your Account is active.</li>
+                    <li>These credits serve two purposes: (i) as standard AI credits, deducted automatically once your monthly allowance is used up; or (ii) saved toward a reward from the exchange catalogue (skins, a free month of a higher plan, an extra AI employee).</li>
+                    <li>If your Referee then subscribes to a paid plan and keeps it beyond 14 days, you also receive a <strong>free month of the Acc&eacute;l&eacute;ration plan</strong>, applied automatically to your next cycle.</li>
+                    <li>Your Referees enjoy an extended trial of <strong>21 days</strong> on the Acc&eacute;l&eacute;ration plan (instead of 14) and receive 200 Ambassador Credits if they subscribe to a paid plan during that period.</li>
+                </ul>
+            </div>
+            <p>This document sets out the Program rules in detail. It forms an integral part of the <a href="/terms">Vector Terms of Use</a> (Section 9).</p>
+
+            <h2>1. Definitions</h2>
+            <p>Terms defined in the Terms of Use keep their meaning. The following terms have the meaning assigned below:</p>
+            <ul>
+                <li><strong>&ldquo;Ambassador&rdquo;</strong>: a Vector User who invites others to discover the Service via their personal link or unique referral code.</li>
+                <li><strong>&ldquo;Referee&rdquo;</strong>: a person who signs up to Vector via an Ambassador's link or code.</li>
+                <li><strong>&ldquo;Ambassador Credits&rdquo;</strong>: AI credits granted to the Ambassador or Referee as a reward, held in the secondary balance provided for in the Terms of Use.</li>
+                <li><strong>&ldquo;Activation&rdquo;</strong>: Vector's confirmation that the Referee is genuinely using the Service, per the criteria in Section 4.</li>
+                <li><strong>&ldquo;Conversion&rdquo;</strong>: the Referee's subscription to a paid Plan, together with the lapse of the 14-day refund period under Section 8 of the Terms of Use.</li>
+            </ul>
+
+            <h2>2. Eligibility</h2>
+            <p><strong>2.1</strong> Any User with an active Account may take part in the Ambassador Program, regardless of Plan (Fondation, Acc&eacute;l&eacute;ration, D&eacute;l&eacute;gation or Propulsion).</p>
+            <p><strong>2.2</strong> A personal referral code and a unique link are generated automatically when each Account is created and are available in the Ambassador Dashboard within the Application.</p>
+            <p><strong>2.3</strong> A User may not refer themselves, nor use a referral code to obtain a benefit on an Account they control directly or indirectly.</p>
+
+            <h2>3. Rewards for the Referee</h2>
+            <p><strong>3.1 Extended trial.</strong> Any Referee who signs up via an Ambassador's link gets 21 days of free access to the Acc&eacute;l&eacute;ration plan, instead of the standard 14 days (Section 6 of the Terms of Use). No payment method is required for this extended trial.</p>
+            <p><strong>3.2 Immediate-subscription bonus.</strong> If the Referee adds a payment method and subscribes to a paid Plan during their 21-day trial, they also receive 200 Ambassador Credits deposited directly into their secondary balance at the time of subscription.</p>
+            <p><strong>3.3 End of the trial.</strong> If the Referee has not subscribed to a paid Plan after 21 days, their Account switches to the Fondation plan (Section 6 of the Terms of Use). Any Ambassador Credits they may have received on activation (if they were themselves an Ambassador) remain in their secondary balance.</p>
+
+            <h2>4. Rewards for the Ambassador</h2>
+            <p>The Ambassador receives rewards in two successive stages, at different times and under distinct conditions.</p>
+
+            <h3>4.1 First stage &mdash; Activation of the Referee</h3>
+            <p><strong>4.1.1 Definition of Activation.</strong> The Referee is deemed &ldquo;activated&rdquo; when they meet either of the following two criteria, the first one reached triggering the reward:</p>
+            <ul>
+                <li><strong>Criterion a (immediate subscription)</strong>: the Referee adds a payment method and subscribes to a paid Plan at any time during their 21-day trial. Activation is confirmed immediately.</li>
+                <li><strong>Criterion b (real activity)</strong>: during the 21-day trial, the Referee accumulates at least 7 days of significant activity over a rolling 14-day window. A daily cron evaluates this criterion; on the first day it is met, Activation is confirmed.</li>
+            </ul>
+            <p><strong>4.1.2 Day of significant activity.</strong> A day counts as significant activity if the Referee logged in that day and performed at least one planning action (creating or editing a task, conversing with an AI Agent, moving an item on the calendar, completing a task, or another documented management action). A login with no action does not count.</p>
+            <p><strong>4.1.3 Activation reward.</strong> Upon Activation, Vector grants the Ambassador an amount of Ambassador Credits determined by the Ambassador's own Plan at the time of grant:</p>
+            <div class="table-wrapper"><table>
+                <thead><tr><th>Ambassador's Plan</th><th>Ambassador Credits granted</th></tr></thead>
+                <tbody>
+                    <tr><td>Fondation</td><td>200</td></tr>
+                    <tr><td>Acc&eacute;l&eacute;ration</td><td>300</td></tr>
+                    <tr><td>D&eacute;l&eacute;gation</td><td>500</td></tr>
+                    <tr><td>Propulsion</td><td>750</td></tr>
+                </tbody>
+            </table></div>
+            <p>These Ambassador Credits are deposited into the Ambassador's secondary balance and follow the rules in Sections 6 and 7.</p>
+            <p><strong>4.1.4 Activation window limit.</strong> If no Activation is observed by the end of the Referee's 21-day trial, the referral is closed with no credit to the Ambassador. No notice of non-activation is sent.</p>
+
+            <h3>4.2 Second stage &mdash; Conversion of the Referee</h3>
+            <p><strong>4.2.1 Definition of Conversion.</strong> Conversion is validated when both of the following are met at once: the Referee has subscribed to a paid Plan; and the 14-day period following the initial purchase date (Section 8 of the Terms of Use) has lapsed with no refund request.</p>
+            <p><strong>4.2.2 Reward window.</strong> To qualify for the Conversion reward, the Referee's subscription must occur within 90 days of their Activation date. Beyond that, any Conversion no longer generates a reward for the Ambassador, who nonetheless keeps the Ambassador Credits already received on Activation.</p>
+            <p><strong>4.2.3 Conversion reward.</strong> Upon confirmation of Conversion within the window, Vector grants the Ambassador one (1) free month of Acc&eacute;l&eacute;ration access, applied automatically to their next billing cycle (Section 7.3).</p>
+            <p><strong>4.2.4 Combination with the first stage.</strong> The Conversion reward is added to the Ambassador Credits already received on Activation. For a converted Referee, the Ambassador therefore receives both the Ambassador Credits (stage 1) and the Acc&eacute;l&eacute;ration month (stage 2).</p>
+
+            <h2>5. Caps</h2>
+            <p><strong>5.1</strong> In its current version, the Program has no annual cap on the number of eligible referrals, Acc&eacute;l&eacute;ration months earned or Ambassador Credits accumulated.</p>
+            <p><strong>5.2</strong> Vector reserves the right to introduce caps, tiers or reward modulations where abusive usage patterns or economic constraints warrant it. Any cap is introduced with reasonable notice and applies only to referrals made after it takes effect.</p>
+
+            <h2>6. Ambassador Credits &mdash; rules of use</h2>
+            <p><strong>6.1 Dual use.</strong> Ambassador Credits serve two purposes: <strong>(i) as standard AI credits</strong>, usable exactly like the monthly credits included in your Plan, to extend your use of Vector beyond your allowance without buying more; <strong>(ii) as catalogue exchange currency</strong> (Section 8). You choose: spend them as you go, or keep them to aim for a reward.</p>
+            <p><strong>6.2 Secondary balance.</strong> Ambassador Credits are stored in a secondary balance separate from your monthly allowance; they are not reset each cycle.</p>
+            <p><strong>6.3 Default consumption order.</strong> When you use an AI feature, credits are drawn in this order: (i) your Plan's monthly allowance; (ii) promotional credits; (iii) purchased credits; (iv) Ambassador Credits last. As long as your monthly allowance is not exhausted, your Ambassador Credits are never touched.</p>
+            <p><strong>6.4 Strict-accumulation option.</strong> In the Ambassador Dashboard you can enable an option that blocks the use of your Ambassador Credits, even once all other credits are exhausted, until you disable it or until your next cycle.</p>
+            <p><strong>6.5 Non-convertibility.</strong> Ambassador Credits are not convertible to cash, not transferable to another Account, and not refundable.</p>
+
+            <h2>7. Expiry and retention</h2>
+            <p><strong>7.1 No expiry while your Account is active.</strong> Your Ambassador Credits do not expire while your Account remains active.</p>
+            <p><strong>7.2 Expiry on termination.</strong> If your Account is terminated (by you or under Sections 13 and 13.4 of the Terms of Use), unused Ambassador Credits are permanently lost.</p>
+            <p><strong>7.3 Free Acc&eacute;l&eacute;ration months &mdash; automatic application.</strong> The Acc&eacute;l&eacute;ration month earned on a Referee's Conversion applies automatically to your next billing cycle, with no action on your part:</p>
+            <ul>
+                <li><strong>Fondation plan</strong>: your next cycle becomes a free Acc&eacute;l&eacute;ration cycle (Acc&eacute;l&eacute;ration allowance and features). The following cycle, you automatically return to Fondation.</li>
+                <li><strong>Paid Acc&eacute;l&eacute;ration plan</strong>: your next cycle is not charged (no Paddle debit). The following cycle, normal billing resumes.</li>
+                <li><strong>Higher plan (D&eacute;l&eacute;gation, Propulsion)</strong>: the free month is applied as a discount equal to the Acc&eacute;l&eacute;ration monthly price on your next cycle. You keep your higher plan.</li>
+            </ul>
+            <p><strong>7.4 Several months pending.</strong> If several apply, the Acc&eacute;l&eacute;ration months are applied sequentially, one per cycle, in the order earned.</p>
+            <p><strong>7.5 Retention.</strong> Earned Acc&eacute;l&eacute;ration months stay attached to your Account while it is active and are lost if the Account is terminated before their automatic application.</p>
+
+            <h2>8. Ambassador exchange catalogue</h2>
+            <p><strong>8.1 Principle.</strong> You can exchange your accumulated Ambassador Credits for rewards from the catalogue, available in the Ambassador Dashboard.</p>
+            <p><strong>8.2 Current catalogue.</strong></p>
+            <div class="table-wrapper"><table>
+                <thead><tr><th>Reward</th><th>Cost (Ambassador Credits)</th><th>Availability</th></tr></thead>
+                <tbody>
+                    <tr><td>1 free Acc&eacute;l&eacute;ration month</td><td>700</td><td>Ambassadors on the Fondation plan only</td></tr>
+                    <tr><td>1 free D&eacute;l&eacute;gation month</td><td>To be set at D&eacute;l&eacute;gation launch</td><td>Ambassadors on the Acc&eacute;l&eacute;ration plan only</td></tr>
+                    <tr><td>1 free Propulsion month</td><td>To be set at Propulsion launch</td><td>Ambassadors on the D&eacute;l&eacute;gation plan only</td></tr>
+                    <tr><td>1 extra lifetime AI employee (3<sup>rd</sup> slot)</td><td>3,000</td><td>D&eacute;l&eacute;gation plan only, once per Account max</td></tr>
+                    <tr><td>1 Marketplace skin, standard tier</td><td>100</td><td>All Ambassadors</td></tr>
+                    <tr><td>1 Marketplace skin, premium tier</td><td>300</td><td>All Ambassadors</td></tr>
+                </tbody>
+            </table></div>
+            <p><strong>8.3 Free-month rule &mdash; higher-plan discovery.</strong> Catalogue free months may be exchanged only toward a Plan higher than the Ambassador's current Plan, to encourage discovery of the higher plans.</p>
+            <p><strong>8.4 Automatic application of exchanged months.</strong> An exchanged free month applies automatically to your next cycle, per Section 7.3. Successive exchanges apply sequentially, one per cycle.</p>
+            <p><strong>8.5 Extra AI employee &mdash; terms.</strong> The extra AI employee raises the maximum number of simultaneously active AI employees to 3 (instead of 2 on D&eacute;l&eacute;gation). It is granted for life while your D&eacute;l&eacute;gation subscription remains active. On a move to Propulsion (unlimited employees) it has no practical effect but stays attached to your Account; on a downgrade below D&eacute;l&eacute;gation it is suspended until you return to D&eacute;l&eacute;gation or higher. AI usage by this 3<sup>rd</sup> employee is billed normally against your Plan's credit allowance.</p>
+            <p><strong>8.6 Catalogue changes.</strong> Vector may change the catalogue (adding or removing rewards, adjusting costs), subject to preserving rewards already obtained. Any removal of a reward is preceded by 30 days' notice during which accumulated Credits may still be exchanged for that reward.</p>
+
+            <h2>9. Ambassador Dashboard</h2>
+            <p><strong>9.1 Access.</strong> A dedicated Ambassador Dashboard is available in the Application to view and manage your participation.</p>
+            <p><strong>9.2 Features.</strong> The Dashboard offers at minimum: your referral code and unique link; the list of your invitations with their status (link clicked, signed up, trial, activated, converted, ended without follow-through); your Ambassador Credits balance; your balance of pending Acc&eacute;l&eacute;ration months; the history of your earnings and consumption; the catalogue filtered by your balance and Plan; the strict-accumulation option (Section 6.4).</p>
+
+            <h2>10. Anti-fraud safeguards</h2>
+            <p><strong>10.1 Layered mechanisms.</strong> Vector applies several cumulative safeguards: one email per Account; the rolling 14-day Activation window (Section 4.1.1); a cap of two (2) Accounts referred from the same IP address over a rolling 30-day window (beyond which the code is ignored and the Referee gets a standard 14-day trial with no Program participation); and the Conversion condition beyond the 14-day refund period, which makes fraud through fake paid Accounts economically unprofitable. To enforce the IP cap without keeping addresses in clear text, Vector uses rotating salted hashing: only a hash of the IP address combined with a daily salt is stored, salts older than 30 days are deleted, making the hashes irreversible (Section 7.3 of the <a href="/privacy">Privacy Policy</a>).</p>
+            <p><strong>10.2 Measures on detected fraud.</strong> In case of proven or attempted fraud: the referrals concerned are cancelled without notice; Credits or months obtained fraudulently are withdrawn; the Account may be suspended or terminated (Section 13 of the Terms of Use).</p>
+            <p><strong>10.3 Appeal.</strong> If you believe a decision was made wrongly about you, write to <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a> from the email associated with your Account. A manual review is carried out within a reasonable time.</p>
+
+            <h2>11. Program changes</h2>
+            <p><strong>11.1</strong> Vector may evolve the Program terms (rewards, caps, Activation mechanics, catalogue) at any time; any change takes effect on the date stated in the notice and does not affect rewards already granted.</p>
+            <p><strong>11.2 Notice.</strong> Any substantial change unfavourable to Ambassadors is preceded by at least 30 days' notice by email or in-app notification; prior rules apply during that notice.</p>
+            <p><strong>11.3 Suspension or termination.</strong> Vector may suspend or end the Program at any time, subject to preserving Ambassador Credits and Acc&eacute;l&eacute;ration months already granted, which remain usable until fully consumed or until the Account is terminated.</p>
+
+            <h2>12. Sharing referrals</h2>
+            <p><strong>12.1 Good practices.</strong> You agree to share your link honestly, without deception and in line with applicable laws. You must not: send your link to people who have shown no prior interest (no spam); falsely present yourself as a representative or employee of Vector; or promise benefits the Program does not actually provide.</p>
+            <p><strong>12.2 Advertising compliance.</strong> If you promote Vector in a commercial or paid context (blog, sponsored video, marketing email), you must comply with the disclosure obligations under applicable advertising laws.</p>
+
+            <h2>13. Governing law</h2>
+            <p>This document is governed by the laws in force in the Province of Quebec and the applicable federal laws of Canada, in accordance with Section 24 of the Terms of Use.</p>
+
+            <h2>14. Contact us</h2>
+            <div class="contact-block">
+                <p>For any question about the Ambassador Program:</p>
+                <p><strong>CapitalSoft inc.</strong></p>
+                <p>Email: <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a></p>
+                <p>Mailing address: 371 Couture, Granby (Quebec), J2H 0R1, Canada</p>
+            </div>
+
+            <hr>
+            <p><em>This document forms an integral part of the <a href="/terms">Vector Terms of Use</a> and applies together with them for any User participating in the Ambassador Program. In the event of any discrepancy, the Terms of Use prevail. The French version prevails for users residing in Quebec.</em></p>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/" id="back-link-footer" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="/pricing" data-fr="Tarifs" data-en="Pricing">Tarifs</a>
+            <a href="/terms" data-fr="Conditions d'utilisation" data-en="Terms of use">Conditions d'utilisation</a>
+            <a href="/privacy" data-fr="Confidentialit&eacute;" data-en="Privacy">Confidentialit&eacute;</a>
+            <a href="/refunds" data-fr="Remboursement" data-en="Refunds">Remboursement</a>
+            <a href="/ambassador" data-fr="Programme Ambassadeur" data-en="Ambassador Program">Programme Ambassadeur</a>
+        </div>
+        <p data-fr="&copy; 2026 Vector &mdash; division de CapitalSoft inc." data-en="&copy; 2026 Vector &mdash; a division of CapitalSoft inc.">&copy; 2026 Vector &mdash; division de CapitalSoft inc.</p>
+        <p class="privacy-mention" data-fr="Cr&eacute;dits Ambassadeur &middot; Mois Acc&eacute;l&eacute;ration offerts &middot; Catalogue d'&eacute;change" data-en="Ambassador Credits &middot; Free Acc&eacute;l&eacute;ration months &middot; Exchange catalogue">Cr&eacute;dits Ambassadeur &middot; Mois Acc&eacute;l&eacute;ration offerts &middot; Catalogue d'&eacute;change</p>
+    </footer>
+
+    <script>
+        var TITLE_FR = "Programme Ambassadeur — Vector";
+        var TITLE_EN = "Ambassador Program — Vector";
+
+        function detectInitialLang() {
+            var params = new URLSearchParams(window.location.search);
+            var fromUrl = params.get('lang');
+            if (fromUrl === 'fr' || fromUrl === 'en') return fromUrl;
+            var stored = localStorage.getItem('vector_lang');
+            if (stored === 'fr' || stored === 'en') return stored;
+            var browserLang = (navigator.language || 'fr').toLowerCase();
+            if (browserLang.startsWith('en')) return 'en';
+            return 'fr';
+        }
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(function (el) { el.classList.remove('active'); });
+            var target = document.getElementById('content-' + lang);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            document.querySelectorAll('[data-fr][data-en]').forEach(function (el) {
+                el.textContent = el.dataset[lang] || el.textContent;
+            });
+
+            document.documentElement.lang = lang;
+
+            var homeHref = lang === 'fr' ? '/' : '/?lang=en';
+            var bh = document.getElementById('back-link-header');
+            var bf = document.getElementById('back-link-footer');
+            if (bh) bh.setAttribute('href', homeHref);
+            if (bf) bf.setAttribute('href', homeHref);
+
+            document.title = lang === 'en' ? TITLE_EN : TITLE_FR;
+
+            localStorage.setItem('vector_lang', lang);
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () { setLang(detectInitialLang()); });
+    </script>
+
+</body>
+</html>

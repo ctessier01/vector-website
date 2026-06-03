@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tarifs de Vector — application de planification anti-anxiété pour solopreneurs. Plan gratuit Fondation avec essai Accélération de 14 jours, plan Accélération, et plans Délégation et Propulsion à venir. Facturation par Paddle.">
+    <meta name="robots" content="index, follow">
+
+    <title>Tarifs — Vector</title>
+
+    <link rel="canonical" href="https://vectorplanning.ai/pricing">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #10131A;
+            --bg-secondary: #1C2030;
+            --accent-lime: #8BFF3C;
+            --text-primary: #F5F4EF;
+            --text-secondary: #B0B6CE;
+            --border: rgba(139, 255, 60, 0.2);
+            --border-soft: rgba(245, 244, 239, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Header ── */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(16, 19, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--accent-lime); }
+        .back-link .arrow { transition: transform 0.2s; }
+        .back-link:hover .arrow { transform: translateX(-3px); }
+
+        .lang-toggle {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lang-btn.active { background: var(--accent-lime); color: var(--bg-primary); }
+
+        /* ── Main layout ── */
+        main { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem 4rem; }
+
+        .page-head { text-align: center; max-width: 720px; margin: 0 auto 2.4rem; }
+        h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 2.7rem;
+            letter-spacing: -1px;
+            line-height: 1.08;
+            margin-bottom: 1rem;
+        }
+        h1 .highlight { color: var(--accent-lime); }
+        .page-head p { color: var(--text-secondary); font-size: 1.1rem; }
+
+        /* ── Parité CAD ── */
+        .parity-banner {
+            max-width: 760px;
+            margin: 0 auto 2.6rem;
+            background: linear-gradient(180deg, rgba(139,255,60,0.07), rgba(139,255,60,0.02));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem 1.4rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .parity-banner strong { color: var(--accent-lime); }
+
+        /* ── Billing toggle ── */
+        .billing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-bottom: 2.6rem;
+            flex-wrap: wrap;
+        }
+        .billing-switch {
+            display: inline-flex;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .billing-btn {
+            padding: 0.6rem 1.3rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .billing-btn.active { background: var(--accent-lime); color: var(--bg-primary); }
+        .billing-hint {
+            font-size: 0.82rem;
+            color: var(--accent-lime);
+            background: rgba(139,255,60,0.1);
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        /* ── Plans grid ── */
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.1rem;
+            align-items: stretch;
+        }
+        .plan {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-soft);
+            border-radius: 18px;
+            padding: 1.7rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .plan.featured {
+            border-color: var(--accent-lime);
+            box-shadow: 0 0 0 1px var(--accent-lime), 0 18px 40px -20px rgba(139,255,60,0.4);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -11px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 0.28rem 0.8rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .plan-badge.muted { background: var(--text-secondary); color: var(--bg-primary); }
+
+        .plan-name {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.3rem;
+        }
+        .plan-tagline {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            min-height: 2.4em;
+            margin-bottom: 1.1rem;
+        }
+
+        .plan-price { margin-bottom: 0.3rem; }
+        .price-amount {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 2.3rem;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        .price-cur { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; }
+        .price-per { font-size: 0.85rem; color: var(--text-secondary); }
+        .price-strike {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-right: 0.4rem;
+            font-family: 'Red Hat Display', sans-serif;
+        }
+        .price-save {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-lime);
+            background: rgba(139,255,60,0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+        }
+        .price-annual-note { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem; }
+
+        .plans[data-billing="monthly"] .show-annual { display: none; }
+        .plans[data-billing="annual"] .show-monthly { display: none; }
+
+        /* ── Essai inclus (Fondation) ── */
+        .plan-trial-note {
+            margin: 0.5rem 0 0.2rem;
+            background: rgba(139,255,60,0.1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            line-height: 1.45;
+        }
+
+        /* ── Features ── */
+        .plan-body { display: flex; flex-direction: column; flex-grow: 1; }
+        .plan-features {
+            list-style: none;
+            margin: 1.2rem 0 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .plan-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            line-height: 1.45;
+        }
+        .plan-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-lime);
+            font-weight: 700;
+        }
+        .plan-features li.muted { color: var(--text-secondary); }
+        .plan-features li.muted::before { content: "–"; color: var(--text-secondary); }
+
+        .feat-sub {
+            margin-top: 0.7rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--border-soft);
+        }
+        .feat-group-label {
+            font-size: 0.71rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 0.65rem;
+        }
+        .feat-sub-list { list-style: none; display: flex; flex-direction: column; gap: 0.42rem; }
+        .feat-sub-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            font-size: 0.81rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .feat-sub-list.included li::before {
+            content: "✓"; position: absolute; left: 0; color: var(--accent-lime); font-weight: 700;
+        }
+        .feat-sub-list.acarte li::before {
+            content: "+"; position: absolute; left: 0; color: var(--text-secondary); font-weight: 700;
+        }
+
+        .plan-cta {
+            display: block;
+            text-align: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-primary);
+            transition: all 0.2s;
+            width: 100%;
+            margin-top: 1.3rem;
+        }
+        .plan-cta:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+        .plan-cta.primary { background: var(--accent-lime); color: var(--bg-primary); border-color: var(--accent-lime); }
+        .plan-cta.primary:hover { background: #7CE82F; color: var(--bg-primary); }
+
+        /* ── Waitlist form ── */
+        .waitlist { margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .waitlist input[type="text"],
+        .waitlist input[type="email"] {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border-radius: 9px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+        }
+        .waitlist input:focus { outline: none; border-color: var(--accent-lime); }
+        .waitlist .plan-cta { margin-top: 0.2rem; }
+        .waitlist-consent {
+            display: flex;
+            gap: 0.45rem;
+            align-items: flex-start;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            cursor: pointer;
+        }
+        .waitlist-consent input { margin-top: 0.15rem; flex-shrink: 0; }
+        .waitlist-msg { font-size: 0.78rem; margin-top: 0.2rem; min-height: 1em; }
+
+        /* ── Sections ── */
+        .section {
+            margin-top: 3.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-soft);
+            border-radius: 18px;
+            padding: 2rem;
+        }
+        .section h2 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .section .lead { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+        .packs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; }
+        .pack {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-soft);
+            border-radius: 13px;
+            padding: 1.1rem 1rem;
+            text-align: center;
+        }
+        .pack-credits { font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 1.35rem; color: var(--accent-lime); }
+        .pack-price { font-size: 1.05rem; font-weight: 600; margin-top: 0.2rem; }
+        .pack-unit { font-size: 0.74rem; color: var(--text-secondary); margin-top: 0.3rem; }
+        .packs-note { font-size: 0.82rem; color: var(--text-secondary); margin-top: 1.2rem; line-height: 1.6; }
+
+        /* ── Add-on Arthur Proactif ── */
+        .addon {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-soft);
+            border-radius: 13px;
+            padding: 1.4rem 1.5rem;
+            margin-top: 1.6rem;
+        }
+        .addon-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; }
+        .addon-title { font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 1.15rem; }
+        .addon-desc { font-size: 0.86rem; color: var(--text-secondary); margin-top: 0.4rem; max-width: 640px; line-height: 1.55; }
+        .addon-price { font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--accent-lime); white-space: nowrap; }
+        .addon-incl { list-style: none; margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .addon-incl li { position: relative; padding-left: 1.5rem; font-size: 0.86rem; color: var(--text-primary); line-height: 1.5; }
+        .addon-incl li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-lime); font-weight: 700; }
+
+        /* ── Fine print ── */
+        .fineprint { margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+        .fineprint-item h3 { font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+        .fineprint-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .fineprint-item a { color: var(--accent-lime); text-decoration: none; }
+        .fineprint-item a:hover { text-decoration: underline; }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border-soft);
+            margin-top: 3.5rem;
+            padding: 2.4rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        footer .links { margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; justify-content: center; }
+        footer a { color: var(--text-secondary); text-decoration: underline; opacity: 0.9; }
+        footer a:hover { color: var(--accent-lime); }
+        footer .legal { margin-top: 0.8rem; opacity: 0.8; }
+
+        @media (max-width: 940px) {
+            .plans { grid-template-columns: repeat(2, 1fr); }
+            .packs { grid-template-columns: repeat(2, 1fr); }
+            .fineprint { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            main { padding: 2.4rem 1.2rem 3rem; }
+            .header-inner { padding: 1rem 1.2rem; }
+            h1 { font-size: 2.1rem; }
+            .plans { grid-template-columns: 1fr; }
+            .packs { grid-template-columns: 1fr; }
+            .section { padding: 1.5rem 1.3rem; }
+            .addon-price { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="/" id="back-link-header" class="back-link">
+                <span class="arrow">←</span>
+                <span>Vector</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Language selector">
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="page-head">
+            <h1>
+                <span data-fr="L'IA planifie. " data-en="AI plans. ">L'IA planifie. </span><span class="highlight" data-fr="Toi, tu accomplis." data-en="You deliver.">Toi, tu accomplis.</span>
+            </h1>
+            <p data-fr="Gratuit pour ne plus rien échapper. Upgrade le jour où tu veux qu'Arthur planifie ta semaine à ta place — et emporte la charge mentale avec. Sans carte de crédit pour l'essayer."
+               data-en="Free so nothing slips through the cracks. Upgrade the day you want Arthur to plan your week for you — and carry the mental load with it. No credit card to try it.">Gratuit pour ne plus rien échapper. Upgrade le jour où tu veux qu'Arthur planifie ta semaine à ta place — et emporte la charge mentale avec. Sans carte de crédit pour l'essayer.</p>
+        </div>
+
+        <div class="parity-banner">
+            <span data-fr="Vector est fièrement canadienne. Nos prix sont en dollars américains, mais en promotion de lancement, "
+                  data-en="Vector is proudly Canadian. Our prices are in U.S. dollars, but as a launch promotion, ">Vector est fièrement canadienne. Nos prix sont en dollars américains, mais en promotion de lancement, </span><strong data-fr="les Canadiens paient le même montant en dollars canadiens" data-en="Canadians pay the same amount in Canadian dollars">les Canadiens paient le même montant en dollars canadiens</strong><span data-fr=" — parité 1:1, malgré nos coûts en USD." data-en=" — 1:1 parity, despite our costs being in USD."> — parité 1:1, malgré nos coûts en USD.</span>
+        </div>
+
+        <div class="billing-toggle">
+            <div class="billing-switch" role="group" aria-label="Billing period">
+                <button class="billing-btn active" data-period="monthly" onclick="setBilling('monthly')" data-fr="Mensuel" data-en="Monthly">Mensuel</button>
+                <button class="billing-btn" data-period="annual" onclick="setBilling('annual')" data-fr="Annuel" data-en="Annual">Annuel</button>
+            </div>
+            <span class="billing-hint" data-fr="Économise ~20 % en annuel" data-en="Save ~20% annually">Économise ~20 % en annuel</span>
+        </div>
+
+        <div class="plans" data-billing="monthly">
+
+            <!-- FONDATION -->
+            <div class="plan">
+                <div class="plan-name">Fondation</div>
+                <div class="plan-tagline" data-fr="Pour que tu t'organises pour de vrai." data-en="So you finally get organized for real.">Pour que tu t'organises pour de vrai.</div>
+                <div class="plan-price">
+                    <span class="price-amount" data-fr="Gratuit" data-en="Free">Gratuit</span>
+                    <div class="price-annual-note" data-fr="Pour toujours. Aucune carte de crédit requise." data-en="Forever. No credit card required.">Pour toujours. Aucune carte de crédit requise.</div>
+                </div>
+                <div class="plan-body">
+                    <ul class="plan-features">
+                        <li data-fr="Briefing hebdomadaire (aperçu de ta semaine)" data-en="Weekly briefing (overview of your week)">Briefing hebdomadaire (aperçu de ta semaine)</li>
+                        <li data-fr="Alertes : deadlines compromis et surcharge sur 3 semaines" data-en="Alerts: at-risk deadlines and overload across 3 weeks">Alertes : deadlines compromis et surcharge sur 3 semaines</li>
+                        <li data-fr="Planification automatique du calendrier" data-en="Automatic calendar scheduling">Planification automatique du calendrier</li>
+                        <li data-fr="Prévision de la durée des tâches" data-en="Task duration prediction">Prévision de la durée des tâches</li>
+                        <li data-fr="Catégories, tâches et sous-tâches de niveau 2 et 3 illimitées" data-en="Unlimited categories, tasks and level-2 and level-3 subtasks">Catégories, tâches et sous-tâches de niveau 2 et 3 illimitées</li>
+                        <li data-fr="Vues Liste, Calendrier et Gantt" data-en="List, Calendar and Gantt views">Vues Liste, Calendrier et Gantt</li>
+                        <li data-fr="Indicateur de santé et barre de stats" data-en="Health indicator and stats bar">Indicateur de santé et barre de stats</li>
+                        <li data-fr="Mode focus" data-en="Focus mode">Mode focus</li>
+                        <li data-fr="Jusqu'à 2 projets actifs" data-en="Up to 2 active projects">Jusqu'à 2 projets actifs</li>
+                    </ul>
+                    <div class="feat-sub">
+                        <p class="feat-group-label" data-fr="Fonctionnalités IA à la carte · via packs de crédits" data-en="Pay-as-you-go AI features · via credit packs">Fonctionnalités IA à la carte · via packs de crédits</p>
+                        <ul class="feat-sub-list acarte">
+                            <li data-fr="Conversation libre avec Arthur" data-en="Free-form conversation with Arthur">Conversation libre avec Arthur</li>
+                            <li data-fr="Planification d'un segment de projet" data-en="Planning a project segment">Planification d'un segment de projet</li>
+                            <li data-fr="Décomposition des tâches trop imposantes en étapes plus réalistes" data-en="Breaking oversized tasks into more realistic steps">Décomposition des tâches trop imposantes en étapes plus réalistes</li>
+                            <li data-fr="Extraction de tâches depuis un courriel ou un texte" data-en="Extracting tasks from an email or text">Extraction de tâches depuis un courriel ou un texte</li>
+                            <li data-fr="Vérification de faisabilité d'un échéancier" data-en="Checking a schedule's feasibility">Vérification de faisabilité d'un échéancier</li>
+                            <li data-fr="Intégration d'une nouvelle contrainte" data-en="Integrating a new constraint">Intégration d'une nouvelle contrainte</li>
+                            <li data-fr="Rééquilibrage de la charge de travail" data-en="Workload rebalancing">Rééquilibrage de la charge de travail</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="plan-trial-note" data-fr="✨ Inclut 14 jours du plan Accélération à l'inscription — sans carte de crédit." data-en="✨ Includes 14 days of the Accélération plan at signup — no credit card.">✨ Inclut 14 jours du plan Accélération à l'inscription — sans carte de crédit.</div>
+                <a href="/#early-access" class="plan-cta" data-fr="Commencer gratuitement" data-en="Start for free">Commencer gratuitement</a>
+            </div>
+
+            <!-- ACCÉLÉRATION -->
+            <div class="plan featured">
+                <div class="plan-badge" data-fr="Le plus populaire" data-en="Most popular">Le plus populaire</div>
+                <div class="plan-name">Accélération</div>
+                <div class="plan-tagline" data-fr="Pour que tu exécutes à plein régime." data-en="So you execute at full speed.">Pour que tu exécutes à plein régime.</div>
+                <div class="plan-price">
+                    <div class="show-monthly">
+                        <span class="price-amount">35</span> <span class="price-cur">$</span><span class="price-per" data-fr=" / mois" data-en=" / mo"> / mois</span>
+                    </div>
+                    <div class="show-annual">
+                        <span class="price-strike">35</span><span class="price-amount">28</span> <span class="price-cur">$</span><span class="price-per" data-fr=" / mois" data-en=" / mo"> / mois</span>
+                        <span class="price-save">−20 %</span>
+                        <div class="price-annual-note" data-fr="Facturé 336 $ / an" data-en="Billed $336 / year">Facturé 336 $ / an</div>
+                    </div>
+                </div>
+                <div class="plan-body">
+                    <ul class="plan-features">
+                        <li data-fr="Tout Fondation, sans les limites" data-en="Everything in Fondation, without the limits">Tout Fondation, sans les limites</li>
+                        <li data-fr="Planification stratégique d'Arthur, ton Chief Planning Officer" data-en="Arthur's strategic planning, your Chief Planning Officer">Planification stratégique d'Arthur, ton Chief Planning Officer</li>
+                        <li data-fr="Projets illimités" data-en="Unlimited projects">Projets illimités</li>
+                        <li data-fr="100 crédits IA inclus chaque mois" data-en="100 AI credits included every month">100 crédits IA inclus chaque mois</li>
+                        <li data-fr="100 crédits bienvenue au 1er abonnement payant" data-en="100 welcome credits on first paid subscription">100 crédits bienvenue au 1er abonnement payant</li>
+                        <li data-fr="Briefing hebdomadaire enrichi d'une analyse stratégique" data-en="Enriched weekly briefing with strategic analysis">Briefing hebdomadaire enrichi d'une analyse stratégique</li>
+                        <li data-fr="Rapports" data-en="Reports">Rapports</li>
+                        <li data-fr="Intégration des calendriers Outlook et Gmail" data-en="Outlook and Gmail calendar integration">Intégration des calendriers Outlook et Gmail</li>
+                        <li data-fr="Résolution des alertes en un clic" data-en="One-click alert resolution">Résolution des alertes en un clic</li>
+                        <li data-fr="Dashboard" data-en="Dashboard">Dashboard</li>
+                    </ul>
+                    <div class="feat-sub">
+                        <p class="feat-group-label" data-fr="Toutes les fonctionnalités IA, incluses" data-en="All AI features, included">Toutes les fonctionnalités IA, incluses</p>
+                        <ul class="feat-sub-list included">
+                            <li data-fr="Brain dump : tes idées en vrac, structurées en plan" data-en="Brain dump: your raw ideas, structured into a plan">Brain dump : tes idées en vrac, structurées en plan</li>
+                            <li data-fr="Création d'un projet complet" data-en="Building a complete project">Création d'un projet complet</li>
+                            <li data-fr="Conversation libre avec Arthur" data-en="Free-form conversation with Arthur">Conversation libre avec Arthur</li>
+                            <li data-fr="Planification d'un segment de projet" data-en="Planning a project segment">Planification d'un segment de projet</li>
+                            <li data-fr="Révision d'un plan existant" data-en="Revising an existing plan">Révision d'un plan existant</li>
+                            <li data-fr="Gestion des urgences" data-en="Handling urgent changes">Gestion des urgences</li>
+                            <li data-fr="Décomposition des tâches trop imposantes en étapes plus réalistes" data-en="Breaking oversized tasks into more realistic steps">Décomposition des tâches trop imposantes en étapes plus réalistes</li>
+                            <li data-fr="Extraction de tâches depuis un courriel ou un texte" data-en="Extracting tasks from an email or text">Extraction de tâches depuis un courriel ou un texte</li>
+                            <li data-fr="Planification proactive de la semaine" data-en="Proactive weekly planning">Planification proactive de la semaine</li>
+                            <li data-fr="Vérification de faisabilité d'un échéancier" data-en="Checking a schedule's feasibility">Vérification de faisabilité d'un échéancier</li>
+                            <li data-fr="Intégration d'une nouvelle contrainte" data-en="Integrating a new constraint">Intégration d'une nouvelle contrainte</li>
+                            <li data-fr="Rééquilibrage de la charge de travail" data-en="Workload rebalancing">Rééquilibrage de la charge de travail</li>
+                            <li data-fr="Meeting proactif de l'équipe IA" data-en="Proactive AI-team meeting">Meeting proactif de l'équipe IA</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/#early-access" class="plan-cta primary" data-fr="S'abonner à Accélération" data-en="Subscribe to Accélération">S'abonner à Accélération</a>
+            </div>
+
+            <!-- DÉLÉGATION -->
+            <div class="plan">
+                <div class="plan-badge muted" data-fr="À venir" data-en="Coming soon">À venir</div>
+                <div class="plan-name">Délégation</div>
+                <div class="plan-tagline" data-fr="Pour que tu opères à une autre échelle." data-en="So you operate at another scale.">Pour que tu opères à une autre échelle.</div>
+                <div class="plan-price">
+                    <div class="show-monthly">
+                        <span class="price-amount">79</span> <span class="price-cur">$</span><span class="price-per" data-fr=" / mois" data-en=" / mo"> / mois</span>
+                    </div>
+                    <div class="show-annual">
+                        <span class="price-strike">79</span><span class="price-amount">63</span> <span class="price-cur">$</span><span class="price-per" data-fr=" / mois" data-en=" / mo"> / mois</span>
+                        <span class="price-save">−20 %</span>
+                        <div class="price-annual-note" data-fr="Facturé 756 $ / an" data-en="Billed $756 / year">Facturé 756 $ / an</div>
+                    </div>
+                    <div class="price-annual-note" data-fr="Prix indicatif" data-en="Indicative price">Prix indicatif</div>
+                </div>
+                <div class="plan-body">
+                    <ul class="plan-features">
+                        <li data-fr="Tout Accélération" data-en="Everything in Accélération">Tout Accélération</li>
+                        <li data-fr="Alfred, ton Chief Operating Officer" data-en="Alfred, your Chief Operating Officer">Alfred, ton Chief Operating Officer</li>
+                        <li data-fr="Jusqu'à 2 employés IA qui effectuent pour toi les tâches fastidieuses ou récurrentes" data-en="Up to 2 AI employees that handle your tedious or recurring tasks for you">Jusqu'à 2 employés IA qui effectuent pour toi les tâches fastidieuses ou récurrentes</li>
+                        <li data-fr="Vue Gantt multi-projets globale" data-en="Global multi-project Gantt view">Vue Gantt multi-projets globale</li>
+                        <li class="muted" data-fr="Détails finalisés au lancement" data-en="Details finalized at launch">Détails finalisés au lancement</li>
+                    </ul>
+                </div>
+                <form class="waitlist" onsubmit="return joinWaitlist(event, 'delegation')">
+                    <input type="text" name="name" data-fr-ph="Ton prénom" data-en-ph="Your first name" autocomplete="given-name" maxlength="80" required>
+                    <input type="email" name="email" data-fr-ph="Ton courriel" data-en-ph="Your email" autocomplete="email" maxlength="180" required>
+                    <label class="waitlist-consent">
+                        <input type="checkbox" name="consent_marketing" value="1">
+                        <span data-fr="Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic." data-en="Also keep me posted on Vector news. One-click unsubscribe.">Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.</span>
+                    </label>
+                    <button type="submit" class="plan-cta" data-fr="M'aviser au lancement" data-en="Notify me at launch">M'aviser au lancement</button>
+                    <p class="waitlist-msg" data-plan="delegation"></p>
+                </form>
+            </div>
+
+            <!-- PROPULSION -->
+            <div class="plan">
+                <div class="plan-badge muted" data-fr="À venir" data-en="Coming soon">À venir</div>
+                <div class="plan-name">Propulsion</div>
+                <div class="plan-tagline" data-fr="Pour que plus rien ne t'arrête." data-en="So nothing stops you anymore.">Pour que plus rien ne t'arrête.</div>
+                <div class="plan-price">
+                    <div class="show-monthly">
+                        <span class="price-amount">119</span> <span class="price-cur">$</span><span class="price-per" data-fr=" / mois" data-en=" / mo"> / mois</span>
+                    </div>
+                    <div class="show-annual">
+                        <span class="price-strike">119</span><span class="price-amount">95</span> <span class="price-cur">$</span><span class="price-per" data-fr=" / mois" data-en=" / mo"> / mois</span>
+                        <span class="price-save">−20 %</span>
+                        <div class="price-annual-note" data-fr="Facturé 1 140 $ / an" data-en="Billed $1,140 / year">Facturé 1 140 $ / an</div>
+                    </div>
+                    <div class="price-annual-note" data-fr="Prix indicatif" data-en="Indicative price">Prix indicatif</div>
+                </div>
+                <div class="plan-body">
+                    <ul class="plan-features">
+                        <li data-fr="Tout Délégation" data-en="Everything in Délégation">Tout Délégation</li>
+                        <li data-fr="Employés IA illimités" data-en="Unlimited AI employees">Employés IA illimités</li>
+                        <li data-fr="Rapports avec image de marque personnalisée" data-en="Reports with custom branding">Rapports avec image de marque personnalisée</li>
+                        <li class="muted" data-fr="Détails finalisés au lancement" data-en="Details finalized at launch">Détails finalisés au lancement</li>
+                    </ul>
+                </div>
+                <form class="waitlist" onsubmit="return joinWaitlist(event, 'propulsion')">
+                    <input type="text" name="name" data-fr-ph="Ton prénom" data-en-ph="Your first name" autocomplete="given-name" maxlength="80" required>
+                    <input type="email" name="email" data-fr-ph="Ton courriel" data-en-ph="Your email" autocomplete="email" maxlength="180" required>
+                    <label class="waitlist-consent">
+                        <input type="checkbox" name="consent_marketing" value="1">
+                        <span data-fr="Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic." data-en="Also keep me posted on Vector news. One-click unsubscribe.">Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.</span>
+                    </label>
+                    <button type="submit" class="plan-cta" data-fr="M'aviser au lancement" data-en="Notify me at launch">M'aviser au lancement</button>
+                    <p class="waitlist-msg" data-plan="propulsion"></p>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- ── CRÉDITS IA ── -->
+        <div class="section">
+            <h2 data-fr="Crédits IA" data-en="AI credits">Crédits IA</h2>
+            <p class="lead" data-fr="Les crédits alimentent les fonctionnalités d'IA. Chaque plan payant inclut une allocation mensuelle ; tu peux ajouter des packs au besoin — sur n'importe quel plan, y compris Fondation."
+               data-en="Credits power the AI features. Every paid plan includes a monthly allowance; you can add packs as needed — on any plan, including Fondation.">Les crédits alimentent les fonctionnalités d'IA. Chaque plan payant inclut une allocation mensuelle ; tu peux ajouter des packs au besoin — sur n'importe quel plan, y compris Fondation.</p>
+            <div class="packs">
+                <div class="pack">
+                    <div class="pack-credits">50</div>
+                    <div class="pack-price">1,29 $</div>
+                    <div class="pack-unit" data-fr="0,026 $ / crédit" data-en="$0.026 / credit">0,026 $ / crédit</div>
+                </div>
+                <div class="pack">
+                    <div class="pack-credits">150</div>
+                    <div class="pack-price">2,79 $</div>
+                    <div class="pack-unit" data-fr="0,019 $ / crédit · −28 %" data-en="$0.019 / credit · −28%">0,019 $ / crédit · −28 %</div>
+                </div>
+                <div class="pack">
+                    <div class="pack-credits">300</div>
+                    <div class="pack-price">4,99 $</div>
+                    <div class="pack-unit" data-fr="0,017 $ / crédit · −36 %" data-en="$0.017 / credit · −36%">0,017 $ / crédit · −36 %</div>
+                </div>
+                <div class="pack">
+                    <div class="pack-credits">650</div>
+                    <div class="pack-price">9,99 $</div>
+                    <div class="pack-unit" data-fr="0,015 $ / crédit · −42 %" data-en="$0.015 / credit · −42%">0,015 $ / crédit · −42 %</div>
+                </div>
+            </div>
+            <p class="packs-note" data-fr="Les packs de crédits sont offerts sur tous les plans, y compris Fondation. Les crédits achetés n'expirent pas tant que ton abonnement reste actif — contrairement aux crédits mensuels inclus, qui se renouvellent à chaque cycle. Recharge automatique optionnelle à partir du pack de 150 crédits, jamais activée par défaut."
+               data-en="Credit packs are available on every plan, including Fondation. Purchased credits don't expire as long as your subscription stays active — unlike the included monthly credits, which renew each cycle. Optional auto top-up from the 150-credit pack onward, never enabled by default.">Les packs de crédits sont offerts sur tous les plans, y compris Fondation. Les crédits achetés n'expirent pas tant que ton abonnement reste actif — contrairement aux crédits mensuels inclus, qui se renouvellent à chaque cycle. Recharge automatique optionnelle à partir du pack de 150 crédits, jamais activée par défaut.</p>
+
+            <div class="addon">
+                <div class="addon-head">
+                    <div>
+                        <div class="addon-title" data-fr="Pack Arthur Proactif" data-en="Proactive Arthur Pack">Pack Arthur Proactif</div>
+                        <div class="addon-desc" data-fr="Module complémentaire au plan Fondation : Arthur surveille tes projets et te propose des actions utiles, exécutées sans consommer de crédits. Idéal pour ceux qui veulent récupérer le « cerveau » d'Arthur sans payer le plan Accélération complet."
+                             data-en="Add-on for the free Fondation plan: Arthur watches your projects and suggests useful actions, executed without consuming credits. Ideal for those who want Arthur's “brain” back without paying for the full Accélération plan.">Module complémentaire au plan Fondation : Arthur surveille tes projets et te propose des actions utiles, exécutées sans consommer de crédits. Idéal pour ceux qui veulent récupérer le « cerveau » d'Arthur sans payer le plan Accélération complet.</div>
+                    </div>
+                    <div class="addon-price">19 $<span style="font-size:0.8rem;color:var(--text-secondary);font-weight:500;" data-fr=" / mois" data-en=" / mo"> / mois</span></div>
+                </div>
+                <ul class="addon-incl">
+                    <li data-fr="Briefing matinal quotidien" data-en="Daily morning briefing">Briefing matinal quotidien</li>
+                    <li data-fr="Briefing hebdomadaire stratégique" data-en="Strategic weekly briefing">Briefing hebdomadaire stratégique</li>
+                    <li data-fr="Meeting proactif et actions stratégiques ciblées — quand Arthur identifie une action utile lors du briefing et que tu cliques pour l'appliquer, l'exécution est incluse dans le pack. Aucune consommation de crédits pour les actions qu'Arthur a lui-même proposées."
+                              data-en="Proactive meeting and targeted strategic actions — when Arthur spots a useful action during the briefing and you click to apply it, the execution is included in the pack. No credit consumption for actions Arthur suggested himself.">Meeting proactif et actions stratégiques ciblées — quand Arthur identifie une action utile lors du briefing et que tu cliques pour l'appliquer, l'exécution est incluse dans le pack. Aucune consommation de crédits pour les actions qu'Arthur a lui-même proposées.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ── PETITS CARACTÈRES ── -->
+        <div class="fineprint">
+            <div class="fineprint-item">
+                <h3 data-fr="Essai sans risque" data-en="Risk-free trial">Essai sans risque</h3>
+                <p data-fr="14 jours d'accès complet au plan Accélération, sans carte de crédit (21 jours via une invitation Ambassadeur). Retour automatique au plan Fondation à la fin si ça ne te convient pas."
+                   data-en="14 days of full Accélération access, no credit card (21 days via an Ambassador invite). Automatic return to the Fondation plan at the end if it's not a fit for you.">14 jours d'accès complet au plan Accélération, sans carte de crédit (21 jours via une invitation Ambassadeur). Retour automatique au plan Fondation à la fin si ça ne te convient pas.</p>
+            </div>
+            <div class="fineprint-item">
+                <h3 data-fr="Remboursement" data-en="Refund">Remboursement</h3>
+                <p data-fr="Remboursement proportionnel dans les 14 jours suivant ton achat initial. " data-en="Pro-rated refund within 14 days of your initial purchase. ">Remboursement proportionnel dans les 14 jours suivant ton achat initial. </p>
+                <p style="margin-top:0.4rem;"><a href="/refunds" data-fr="Politique de remboursement" data-en="Refund policy">Politique de remboursement</a></p>
+            </div>
+            <div class="fineprint-item">
+                <h3 data-fr="Facturation et taxes" data-en="Billing and taxes">Facturation et taxes</h3>
+                <p data-fr="La facturation est assurée par Paddle (Merchant of Record), qui calcule et perçoit les taxes applicables selon ta localisation. Annulation en tout temps."
+                   data-en="Billing is handled by Paddle (Merchant of Record), which calculates and collects applicable taxes based on your location. Cancel anytime.">La facturation est assurée par Paddle (Merchant of Record), qui calcule et perçoit les taxes applicables selon ta localisation. Annulation en tout temps.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="links">
+            <a href="/" id="back-link-footer" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="/pricing" data-fr="Tarifs" data-en="Pricing">Tarifs</a>
+            <a href="/terms" data-fr="Conditions d'utilisation" data-en="Terms of use">Conditions d'utilisation</a>
+            <a href="/privacy" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a>
+            <a href="/refunds" data-fr="Remboursement" data-en="Refunds">Remboursement</a>
+            <a href="/ambassador" data-fr="Programme Ambassadeur" data-en="Ambassador Program">Programme Ambassadeur</a>
+        </div>
+        <p data-fr="© 2026 Vector — division de CapitalSoft inc." data-en="© 2026 Vector — a division of CapitalSoft inc.">© 2026 Vector — division de CapitalSoft inc.</p>
+        <p class="legal" data-fr="Prix en dollars américains. Parité CAD offerte en promotion de lancement pour les résidents canadiens." data-en="Prices in U.S. dollars. CAD parity offered as a launch promotion for Canadian residents.">Prix en dollars américains. Parité CAD offerte en promotion de lancement pour les résidents canadiens.</p>
+    </footer>
+
+    <script>
+        var T = {
+            fr: {
+                required: "Indique ton prénom et ton courriel.",
+                sending: "Envoi…",
+                success: "C'est noté — on t'écrit dès le lancement.",
+                error: "Une erreur est survenue. Réessaie dans un instant.",
+                network: "Connexion impossible. Vérifie ton réseau et réessaie."
+            },
+            en: {
+                required: "Please enter your first name and email.",
+                sending: "Sending…",
+                success: "You're on the list — we'll email you at launch.",
+                error: "Something went wrong. Please try again shortly.",
+                network: "Couldn't connect. Check your network and try again."
+            }
+        };
+
+        var currentLang = 'fr';
+
+        function detectInitialLang() {
+            var params = new URLSearchParams(window.location.search);
+            var fromUrl = params.get('lang');
+            if (fromUrl === 'fr' || fromUrl === 'en') return fromUrl;
+            var stored = localStorage.getItem('vector_lang');
+            if (stored === 'fr' || stored === 'en') return stored;
+            var browserLang = (navigator.language || 'fr').toLowerCase();
+            if (browserLang.startsWith('en')) return 'en';
+            return 'fr';
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            document.querySelectorAll('[data-fr][data-en]').forEach(function (el) {
+                if (el.dataset[lang] != null) el.textContent = el.dataset[lang];
+            });
+            document.querySelectorAll('[data-fr-ph][data-en-ph]').forEach(function (el) {
+                var v = lang === 'en' ? el.dataset.enPh : el.dataset.frPh;
+                if (v != null) el.setAttribute('placeholder', v);
+            });
+            document.documentElement.lang = lang;
+            var homeHref = lang === 'fr' ? '/' : '/?lang=en';
+            var bh = document.getElementById('back-link-header');
+            var bf = document.getElementById('back-link-footer');
+            if (bh) bh.setAttribute('href', homeHref);
+            if (bf) bf.setAttribute('href', homeHref);
+            document.title = lang === 'en' ? 'Pricing — Vector' : 'Tarifs — Vector';
+            localStorage.setItem('vector_lang', lang);
+            var url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+        }
+
+        function setBilling(period) {
+            var plans = document.querySelector('.plans');
+            if (plans) plans.dataset.billing = period;
+            document.querySelectorAll('.billing-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.dataset.period === period);
+            });
+        }
+
+        // Liste d'attente Délégation / Propulsion — soumission directe vers vector-website.
+        // Dépendance : endpoint /api/waitlist + table waitlist_signups + Resend (brief Lina 2026-06-01).
+        async function joinWaitlist(event, plan) {
+            event.preventDefault();
+            var form = event.target;
+            var msgEl = form.querySelector('.waitlist-msg');
+            var btn = form.querySelector('button[type="submit"]');
+            var name = form.querySelector('input[name="name"]').value.trim();
+            var email = form.querySelector('input[name="email"]').value.trim();
+            var consent = form.querySelector('input[name="consent_marketing"]').checked;
+
+            if (!name || !email) {
+                msgEl.textContent = T[currentLang].required;
+                msgEl.style.color = 'var(--accent-lime)';
+                return false;
+            }
+
+            var label = btn.dataset[currentLang] || btn.textContent;
+            btn.textContent = T[currentLang].sending;
+            btn.disabled = true;
+
+            try {
+                var response = await fetch('/api/waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        plan: plan,
+                        lang: currentLang,
+                        consent_marketing: consent,
+                        source_url: window.location.href
+                    })
+                });
+                if (response.ok) {
+                    msgEl.textContent = T[currentLang].success;
+                    msgEl.style.color = 'var(--accent-lime)';
+                    form.querySelector('input[name="name"]').value = '';
+                    form.querySelector('input[name="email"]').value = '';
+                    form.querySelector('input[name="consent_marketing"]').checked = false;
+                } else {
+                    msgEl.textContent = T[currentLang].error;
+                    msgEl.style.color = '#ff6b6b';
+                }
+            } catch (err) {
+                msgEl.textContent = T[currentLang].network;
+                msgEl.style.color = '#ff6b6b';
+            }
+
+            btn.textContent = label;
+            btn.disabled = false;
+            return false;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setLang(detectInitialLang());
+            setBilling('monthly');
+        });
+    </script>
+
+</body>
+</html>
