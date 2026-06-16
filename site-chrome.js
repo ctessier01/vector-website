@@ -114,7 +114,7 @@
     }
     return '<div class="vc-fwrap"><div class="vc-footgrid">'
       + '<div>' + lockup() + '</div>'
-      + col("f_product", [["f_features", lk("/#features")], ["f_mobile", lk("/#features")], ["f_alfred", lk("/arthur")]])
+      + col("f_product", [["f_features", lk("/#features")], ["f_mobile", lk("/#features")]])
       + col("f_arthur", [["f_arthur_can", lk("/arthur")], ["f_arthur_how", lk("/arthur")]])
       + col("f_plans", [["f_pricing", lk("/pricing")], ["f_trial", lk("/#early-access")], ["f_credits", lk("/pricing#credits")]])
       + col("f_company", [["f_terms", lk("/terms")], ["f_ambassador", lk("/ambassador")], ["f_refunds", lk("/refunds")], ["f_privacy", lk("/privacy")], ["f_contact", "mailto:info@vectorplanning.ai"]])
