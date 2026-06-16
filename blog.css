@@ -1,0 +1,487 @@
+/* ============================================================
+   VECTOR — blog.css · styles partagés du blogue (liste + articles)
+   Chargé via <link href="/blog.css">. Tokens locaux ; le header/footer
+   gardent leurs propres variables --vc-* (aucun conflit).
+   ============================================================ */
+:root{
+  --bg-primary:#10131A; --bg-secondary:#1C2030; --accent-lime:#8BFF3C;
+  --text-primary:#F5F4EF; --text-secondary:#B0B6CE;
+  --border:rgba(139,255,60,0.2); --border-soft:rgba(245,244,239,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;cursor:pointer;color:var(--text-secondary);font-family:'DM Sans',sans-serif;font-size:.95rem;text-decoration:none;margin-bottom:2rem;transition:color .15s}
+.back-link:hover{color:var(--accent-lime)}
+.share-buttons{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem}
+#share-toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border);padding:12px 20px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:9999}
+#share-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── CSS article extrait de l'ancienne SPA (verbatim, brand-validé) ── */
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(139, 255, 60, 0.2);
+        }
+
+        .article-view {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .article-view.active { display: block; }
+
+        .article-view h1 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .article-meta { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
+        .article-view article { color: var(--text-primary); }
+        .article-view p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; }
+
+        .article-view h2 {
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-lime);
+        }
+
+        .article-view ul { margin-left: 2rem; margin-bottom: 1.5rem; }
+        .article-view li { margin-bottom: 0.7rem; line-height: 1.7; }
+
+        .article-view h3 {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 1.8rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .article-cta {
+            margin-top: 3.5rem;
+            padding: 2.5rem 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-lime);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .ebook-cta .article-cta-title {
+            color: var(--accent-lime) !important;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+        }
+        @media (max-width: 600px) {
+            .ebook-cta .article-cta-title { font-size: 1.35rem; }
+        }
+
+        .article-cta-title {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-lime);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        .article-cta p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-highlight {
+            background: rgba(139, 255, 60, 0.07);
+            border-left: 3px solid var(--accent-lime);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+
+        /* ── Formulaire ebook (CTA article) ── */
+        .ebook-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin: 1.6rem auto 0;
+            max-width: 420px;
+        }
+        .ebook-form input {
+            padding: 0.9rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+        }
+        .ebook-form input::placeholder { color: var(--text-secondary); }
+        .ebook-form input:focus {
+            outline: none;
+            border-color: var(--accent-lime);
+        }
+        .ebook-form button[type="submit"] {
+            width: 100%;
+            margin-top: 0.3rem;
+        }
+        .ebook-form button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .ebook-form-note {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .ebook-form-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin: 0.3rem 0 0.2rem;
+            padding: 0.7rem 0.9rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            text-align: left;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .ebook-form-consent:hover { color: var(--text-primary); }
+        .ebook-form-consent input[type="checkbox"] {
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-lime);
+            cursor: pointer;
+        }
+        .ebook-form-consent span { flex: 1; }
+        .ebook-form-note a {
+            color: var(--text-secondary);
+            text-decoration: underline;
+            text-decoration-color: rgba(107, 114, 144, 0.4);
+        }
+        .ebook-form-note a:hover { color: var(--accent-lime); }
+
+        .ebook-form-success {
+            text-align: center;
+            padding: 0.5rem 0 0.5rem 0;
+        }
+        .ebook-success-check {
+            display: block;
+            margin: 0 auto 1.2rem auto;
+        }
+        .ebook-success-heading {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--accent-lime);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+        .ebook-success-subhead {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        .ebook-success-cta {
+            margin: 1.5rem 0 0.6rem 0;
+        }
+        .ebook-download-btn {
+            display: inline-block;
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            padding: 1rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .ebook-download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(139, 255, 60, 0.3);
+        }
+        .ebook-success-email-note {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 0.6rem;
+        }
+        .ebook-success-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(139, 255, 60, 0.25);
+            margin: 1.8rem auto 1.5rem auto;
+        }
+        .ebook-success-teaser {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto;
+            font-style: italic;
+            opacity: 0.92;
+        }
+        @media (max-width: 600px) {
+            .ebook-success-heading { font-size: 1.4rem; }
+            .ebook-success-subhead { font-size: 1.05rem; }
+            .ebook-download-btn { font-size: 0.98rem; padding: 0.9rem 1.4rem; }
+        }
+
+        .ebook-form-success {
+            font-size: 1.05rem;
+            color: var(--accent-lime);
+            font-weight: 500;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .ebook-form-error {
+            font-size: 0.9rem;
+            color: #ff7a7a;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+
+        /* ── Stat blocks ── */
+        .stat-block { margin: 2.5rem 0; }
+
+        .stat-single {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--accent-lime);
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .stat-unit { font-size: 1.6rem; letter-spacing: -0.5px; }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-top: 0.6rem;
+            line-height: 1.5;
+        }
+
+        .stat-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .stat-icon svg { width: 36px; height: 36px; display: block; margin: 0 auto; }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .stat-item {
+            background: var(--bg-secondary);
+            padding: 1.4rem 0.8rem;
+            text-align: center;
+        }
+
+        .stat-item .stat-number { font-size: 2rem; letter-spacing: -1px; }
+
+        .stat-comparison {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr;
+            align-items: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .stat-compare-item { padding: 1.8rem 1rem; text-align: center; }
+
+        .stat-compare-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+        }
+
+        .stat-compare-label.highlight { color: var(--accent-lime); }
+
+        .stat-compare-number {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent-lime);
+            line-height: 1;
+            letter-spacing: -1.5px;
+        }
+
+        .stat-compare-number.muted {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            text-decoration-color: rgba(107,114,144,0.4);
+        }
+
+        .stat-compare-sub { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.35rem; }
+
+        .stat-compare-divider {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--accent-lime);
+            font-weight: 700;
+            background: var(--bg-secondary);
+            padding: 1.8rem 0;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+
+        @media (max-width: 500px) {
+            .stat-comparison { grid-template-columns: 1fr; }
+            .stat-compare-divider { padding: 0.5rem; border: none; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ── Share buttons ── */
+        .article-share {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-share-label {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.83rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .share-btn:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+        .share-btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+        /* ── Toast notification ── */
+        #share-toast {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            z-index: 999;
+            pointer-events: none;
+            animation: fadeInUp 0.2s ease-out;
+        }
+
+        .article-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-nav-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.65rem 1.25rem;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .article-nav-btn:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+        .article-nav-btn.invisible { visibility: hidden; }
+
+/* ── Pages liste du blogue (index FR + EN) ── */
+.blog-index{max-width:1120px;margin:0 auto;padding:4rem 2rem}
+.blog-hero{max-width:720px;margin-bottom:3rem}
+.blog-eyebrow{font-family:'Red Hat Display',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.8rem}
+.blog-hero h1{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:2.6rem;letter-spacing:-1px;margin-bottom:.8rem;color:var(--text-primary)}
+.blog-intro{color:var(--text-secondary);font-size:1.1rem;line-height:1.6}
+.blog-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.8rem}
+.blog-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--bg-secondary);border:1px solid var(--border-soft);border-radius:14px;overflow:hidden;transition:transform .15s,border-color .15s,box-shadow .15s}
+.blog-card:hover{transform:translateY(-3px);border-color:var(--border);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.blog-card-media{display:block;aspect-ratio:1200/630;background:var(--bg-primary)}
+.blog-card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.blog-card-body{display:flex;flex-direction:column;gap:.55rem;padding:1.3rem 1.4rem 1.5rem}
+.blog-card-meta{font-family:'DM Mono',ui-monospace,monospace;font-size:.72rem;letter-spacing:.02em;color:var(--text-secondary)}
+.blog-card-title{font-family:'Red Hat Display',sans-serif;font-weight:800;font-size:1.16rem;line-height:1.3;letter-spacing:-.3px;color:var(--text-primary)}
+.blog-card-excerpt{font-size:.92rem;line-height:1.55;color:var(--text-secondary);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:520px){.blog-index{padding:2.5rem 1.2rem}.blog-hero h1{font-size:2rem}.blog-list{grid-template-columns:1fr}}

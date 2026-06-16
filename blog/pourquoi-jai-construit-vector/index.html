@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Ce n&#x27;est pas une histoire de technologie. C&#x27;est une histoire d&#x27;un mardi soir à 22h, d&#x27;une liste de 40 tâches éparpillées partout, et d&#x27;une décision de ne plus jamais gérer une entreprise avec sa mémoire." name="description"/>
+<meta content="index, follow" name="robots"/>
+<title>Pourquoi j&#x27;ai construit Vector — Vector</title>
+<link href="https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/" rel="canonical"/>
+<link href="https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/" hreflang="x-default" rel="alternate"/>
+<link href="https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/" hreflang="fr" rel="alternate"/>
+<link href="https://vectorplanning.ai/en/blog/why-i-built-vector/" hreflang="en" rel="alternate"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="Vector"/>
+<meta property="og:locale" content="fr_CA"/>
+<meta property="og:title" content="Pourquoi j&#x27;ai construit Vector"/>
+<meta property="og:description" content="Ce n&#x27;est pas une histoire de technologie. C&#x27;est une histoire d&#x27;un mardi soir à 22h, d&#x27;une liste de 40 tâches éparpillées partout, et d&#x27;une décision de ne plus jamais gérer une entreprise avec sa mémoire."/>
+<meta property="og:url" content="https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/"/>
+<meta property="og:image" content="https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/og.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Pourquoi j&#x27;ai construit Vector"/>
+<meta name="twitter:description" content="Ce n&#x27;est pas une histoire de technologie. C&#x27;est une histoire d&#x27;un mardi soir à 22h, d&#x27;une liste de 40 tâches éparpillées partout, et d&#x27;une décision de ne plus jamais gérer une entreprise avec sa mémoire."/>
+<meta name="twitter:image" content="https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/og.png"/>
+<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<link href="/blog.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pourquoi j'ai construit Vector",
+  "description": "Ce n'est pas une histoire de technologie. C'est une histoire d'un mardi soir à 22h, d'une liste de 40 tâches éparpillées partout, et d'une décision de ne plus jamais gérer une entreprise avec sa mémoire.",
+  "image": "https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/og.png",
+  "datePublished": "2026-04-24",
+  "dateModified": "2026-04-24",
+  "inLanguage": "fr-CA",
+  "author": {
+    "@type": "Organization",
+    "name": "Vector",
+    "url": "https://vectorplanning.ai"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vector",
+    "url": "https://vectorplanning.ai"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/"
+  },
+  "url": "https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/"
+}
+</script>
+</head>
+<body>
+<script>
+window.VECTOR_PAGE = {"page_type": "article", "page_slug": "pourquoi-jai-construit-vector", "lang": "fr"};
+window.VECTOR_ARTICLE = {"slug": "pourquoi-jai-construit-vector", "url": "https://vectorplanning.ai/blog/pourquoi-jai-construit-vector/", "title": "Pourquoi j'ai construit Vector", "excerpt": "Ce n'est pas une histoire de technologie. C'est une histoire d'un mardi soir à 22h, d'une liste de 40 tâches éparpillées partout, et d'une décision de ne plus jamais gérer une entreprise avec sa mémoire.", "lang": "fr"};
+</script>
+<main>
+<div class="article-view active" id="article-4">
+<a class="back-link" href="/blog">← Tous les articles</a>
+<h1>Pourquoi j&#x27;ai construit Vector</h1>
+<div class="article-meta">24 avril 2026 · 5 min de lecture</div>
+<article><p>Il y a un moment que je n'oublierai pas.</p>
+<p>C'était un mardi soir, vers 22h. J'avais une liste de 40+ tâches réparties entre Notion, mon application de notes, un fil de messages avec un client et une feuille quelque part sur mon bureau. J'avais travaillé toute la journée. Et pourtant, je ne savais pas vraiment si j'avais avancé sur les bonnes choses.</p>
+<p>Ce n'était pas une mauvaise journée exceptionnelle. C'était une journée normale.</p>
+<p>Et c'est là que j'ai compris que le problème, ce n'était pas moi. C'était le système — ou plutôt, l'absence de système qui travaille <em>pour</em> moi.</p>
+
+<h2>La réalité du travail en solo que personne ne te prépare</h2>
+<p>Quand tu lances ton activité en solo, tout le monde te parle de la liberté. De l'autonomie. De choisir tes projets, tes clients, tes horaires.</p>
+<p>Ce dont personne ne parle, c'est de la charge mentale permanente.</p>
+<p>Parce qu'en solo, tu n'es pas seulement le producteur. Tu es aussi le chef de projet, le gestionnaire de priorités, le coordinateur de suivis, le responsable de la planification. Et tu dois faire tout ça en plus du travail lui-même, souvent en dehors des heures normales, souvent dans les coins de la journée.</p>
+<p>J'ai vécu ça. Pendant longtemps, j'ai cru que c'était normal. Que c'était le prix de la liberté. Que les gens qui semblaient maîtriser leur charge avaient une discipline que je n'avais pas encore.</p>
+<p>Ce n'était pas une question de discipline. C'était une question de design.</p>
+
+<h2>Les outils que j'ai essayés (et pourquoi ils n'ont pas tenu)</h2>
+<p>Comme la plupart des solopreneurs, j'ai cherché la solution dans les outils.</p>
+<p>Notion d'abord — avec ses bases de données, ses vues Kanban, ses templates élaborés. Ça fonctionnait bien pendant quelques semaines, puis le système devenait trop lourd à maintenir. Je passais plus de temps à organiser Notion qu'à travailler dedans.</p>
+<p>Todoist ensuite. Plus simple, plus rapide à saisir. Mais sans vision d'ensemble, sans lien entre les projets, sans estimation réaliste de ce qui était faisable dans une semaine.</p>
+<p>J'ai testé des méthodes aussi — GTD, time blocking, la règle des deux minutes. Certaines étaient pertinentes sur le fond. Mais elles avaient toutes le même point faible : elles reposaient entièrement sur <strong>moi</strong> pour les alimenter, les maintenir et les respecter.</p>
+<div class="article-highlight">Le problème avec tous ces outils, c'est qu'ils me demandaient d'être parfait pour fonctionner. Et personne ne l'est, surtout pas en solo.</div>
+
+<div class="stat-grid stat-block">
+  <div class="stat-item"><div class="stat-number" style="font-size:1.35rem;letter-spacing:-0.5px">Notion</div><div class="stat-label">trop lourd à maintenir</div></div>
+  <div class="stat-item"><div class="stat-number" style="font-size:1.35rem;letter-spacing:-0.5px">Todoist</div><div class="stat-label">pas de vision globale</div></div>
+  <div class="stat-item"><div class="stat-number" style="font-size:1.35rem;letter-spacing:-0.5px">GTD</div><div class="stat-label">demande trop de moi</div></div>
+</div>
+
+<h2>Le moment où j'ai changé de question</h2>
+<p>Pendant longtemps, je me suis posé la mauvaise question : <em>Comment puis-je mieux m'organiser ?</em></p>
+<p>Un jour, j'ai changé la question : <em>Pourquoi est-ce que c'est encore moi qui fait tout ce travail d'organisation ?</em></p>
+<p>C'est un changement qui paraît subtil. Il ne l'est pas.</p>
+<p>La première question cherche à m'améliorer. La deuxième cherche à éliminer une tâche entière de mon assiette.</p>
+<p>Et à ce moment-là, l'IA venait justement d'atteindre un niveau où cette deuxième question avait une réponse concrète. Pas l'IA des chatbots génériques — l'IA capable de lire un contexte, de comprendre des priorités implicites, d'estimer des durées, de détecter des dépendances. L'IA qui peut prendre un chaos en entrée et rendre un plan en sortie.</p>
+<p>J'ai commencé à construire Vector à partir de là.</p>
+
+<h2>Ce que je voulais créer (et ce que je ne voulais pas)</h2>
+<p>Dès le départ, j'avais une idée très claire de ce que Vector ne serait <em>pas</em>.</p>
+<p>Pas un autre tableau de bord avec des métriques de productivité. Pas une application qui t'envoie des notifications pour te rappeler que tu as du retard. Pas un outil qui te juge ou qui maximise ton engagement par l'anxiété.</p>
+<p>Ce que je voulais construire, c'était presque l'opposé : <strong>un outil qui parle le moins possible.</strong> Qui ne t'interrompt que quand c'est vraiment utile. Qui fait le travail lourd en silence et te présente un résultat clair. Qui te fait confiance pour exécuter une fois que le plan est là.</p>
+<p>L'idée centrale : tu arrives devant Vector avec le chaos de ta semaine — les projets, les idées, les emails, les urgences. Tu dumps tout. Vector analyse, structure, planifie. Et toi, tu n'as plus qu'à exécuter.</p>
+<p><em>Dumps in, plan out.</em></p>
+
+<h2>Pour qui je construis Vector</h2>
+<p>Je construis Vector pour la personne que j'étais ce mardi soir à 22h.</p>
+<p>Le solopreneur qui travaille fort mais qui doute parfois de travailler sur les bonnes choses. Qui oublie des tâches non pas par négligence, mais parce que son cerveau est à capacité. Qui a essayé plusieurs outils et qui a abandonné chacun d'eux, pas par manque de volonté, mais parce qu'ils lui demandaient trop en retour.</p>
+<p>Je construis Vector pour les indépendants, les consultants, les créateurs, les entrepreneurs qui gèrent seuls une activité complète — et qui méritent un système à la hauteur de cette réalité.</p>
+<p>Pas un système parfait. Mais un système <strong>fiable</strong>. Un système qui ne repose pas uniquement sur leur mémoire et leur discipline pour fonctionner.</p>
+
+<div class="stat-single stat-block">
+  <div class="stat-number">25<span class="stat-unit"> places</span></div>
+  <div class="stat-label">bêta testeurs · 3 mois Accélération offerts · accès prioritaire au plan Délégation · feedback dans les 14 premiers jours</div>
+</div>
+
+<h2>Où en est Vector aujourd'hui</h2>
+<p>Vector est encore en construction. Nous sommes en phase bêta — les premières fonctionnalités sont là, le moteur d'IA est en place, et nous travaillons activement sur les prochaines itérations en collaboration avec les testeurs.</p>
+<p>Ce que nous construisons en ce moment :</p>
+<ul>
+  <li>le <em>brain dump</em> intelligent — coller n'importe quoi, obtenir un plan structuré</li>
+  <li>la planification par horizon glissant — ce qui est faisable cette semaine, réalistement</li>
+  <li>l'apprentissage des durées — Vector apprend combien de temps <em>toi</em> tu prends pour chaque type de tâche</li>
+  <li>le mode COO — pour ceux qui veulent que Vector anticipe les problèmes avant qu'ils arrivent</li>
+</ul>
+<p>Il y a encore beaucoup à faire. Mais la direction est claire, et chaque fonctionnalité répond à la même question : est-ce que ça réduit la charge mentale du solopreneur, ou est-ce que ça l'augmente ?</p>
+<p>Si ça l'augmente, ça ne rentre pas dans Vector.</p>
+
+<h2>Une invitation</h2>
+<p>Si tu te reconnais dans ce que j'ai décrit — la liste qui déborde, le système qui tient sur ta mémoire, la fatigue de planifier avant même de commencer — alors Vector est fait pour toi.</p>
+<p>Pas parce que c'est l'outil parfait. Parce que c'est l'outil construit par quelqu'un qui a vécu exactement ce que tu vis.</p>
+
+<div class="article-cta">
+  <p class="article-cta-title">Rejoins les premiers testeurs de Vector.</p>
+  <p>Les 25 premières personnes à s'inscrire reçoivent 3 mois Accélération gratuits et un accès prioritaire au plan Délégation. En contrepartie : du feedback dans les 14 premiers jours.</p>
+  <a class="cta-button" href="/#early-access">Rejoindre la bêta →</a>
+</div></article>
+<div class="article-share">
+<p class="article-share-label">Partage cet article</p>
+<div class="share-buttons"><button class="share-btn" onclick="shareArticle('facebook')"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</button><button class="share-btn" onclick="shareArticle('x')"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</button><button class="share-btn" onclick="shareArticle('linkedin')"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</button><button class="share-btn" onclick="shareArticle('copy')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;flex-shrink:0;fill:none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Copier le lien</button><button class="share-btn" onclick="shareArticle('instagram')"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.69.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</button></div>
+</div>
+<div class="article-nav"><a class="article-nav-btn" href="/blog/combien-de-temps-devrait-prendre-la-gestion-de-projet/">← Article précédent</a><a class="article-nav-btn" href="/blog/ai-fatigue-12-outils-ia/">Article suivant →</a></div>
+</div>
+</main>
+<script src="/analytics.js"></script>
+<script src="/site-chrome.js"></script>
+</body>
+</html>

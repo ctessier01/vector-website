@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html data-accent="lime" data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arthur — your Chief Planning Officer · Vector</title>
+<meta content="Arthur, Vector’s Chief Planning Officer: the AI agent that estimates, prioritizes and slots your week into your calendar. Empty your head — he plans, you deliver. Private beta for solopreneurs." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://vectorplanning.ai/en/arthur" rel="canonical"/><link href="https://vectorplanning.ai/arthur" hreflang="x-default" rel="alternate"/><link href="https://vectorplanning.ai/en/arthur" hreflang="en" rel="alternate"/><link href="https://vectorplanning.ai/arthur" hreflang="fr" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="https://vectorplanning.ai/en/arthur" property="og:url"/>
+<meta content="Arthur — your Chief Planning Officer" property="og:title"/>
+<meta content="The AI agent that turns “I have a task” into “I know when I’ll do it.” He plans, you deliver." property="og:description"/>
+<meta content="https://vectorplanning.ai/og-image_3.png" property="og:image"/>
+<meta content="en_CA" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Arthur — your Chief Planning Officer" name="twitter:title"/>
+<meta content="https://vectorplanning.ai/og-image_3.png" name="twitter:image"/>
+<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  /* ============================================================
+     VECTOR — Page d'accueil (Dense produit). Sombre verrouillé.
+     Tokens + composants repris de l'export Claude Design (theme.css
+     + hero.css), portés en statique.
+     ============================================================ */
+  :root, :root[data-accent="lime"] {
+    --accent:#8BFF3C; --accent-press:#6FE61F; --accent-ink:#10131A;
+    --accent-dim:rgba(139,255,60,0.12); --accent-mid:rgba(139,255,60,0.28); --accent-glow:rgba(139,255,60,0.45);
+  }
+  :root, :root[data-theme="dark"] {
+    --bg:#10131A; --bg-2:#0C0F15; --surface:#1C2030; --surface-2:#232840;
+    --ivoire:#F5F4EF; --ardoise:#B0B6CE;
+    --fg1:#F5F4EF; --fg2:rgba(245,244,239,0.66); --fg3:rgba(245,244,239,0.42);
+    --border:rgba(107,114,144,0.18); --border-2:rgba(107,114,144,0.32); --hair:rgba(107,114,144,0.16);
+    --shadow-md:0 4px 20px rgba(0,0,0,0.40); --shadow-lg:0 24px 70px rgba(0,0,0,0.55);
+    color-scheme: dark;
+  }
+  /* ============================================================
+     THÈME CLAIR — GELÉ (décision 2026-06 : site en sombre seulement).
+     Tokens conservés pour dégel ultérieur (p. ex. mode lecture blogue).
+     Réactiver = décommenter. NE PAS rétablir @media (prefers-color-scheme:
+     light) sans le vouloir : il servirait le thème clair automatiquement.
+     ------------------------------------------------------------
+  :root[data-theme="light"] {
+    --bg:#F5F4EF; --bg-2:#EDEBE3; --surface:#FFFFFF; --surface-2:#F1EFE8;
+    --fg1:#161A23; --fg2:rgba(22,26,35,0.66); --fg3:rgba(22,26,35,0.45); --ardoise:#5A6178;
+    --border:rgba(22,26,35,0.12); --border-2:rgba(22,26,35,0.22); --hair:rgba(22,26,35,0.10);
+    color-scheme: light;
+  }
+     ============================================================ */
+  :root {
+    --font-display:'Red Hat Display', system-ui, sans-serif;
+    --font-body:'DM Sans', system-ui, sans-serif;
+    --font-mono:'DM Mono', ui-monospace, monospace;
+    --ease:cubic-bezier(0.4,0,0.2,1); --ease-out:cubic-bezier(0.16,1,0.3,1);
+    --maxw:1200px; --sec:104px;
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:22px; --r-pill:999px;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg1); font-family:var(--font-body); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+
+  /* type */
+  .display { font-family:var(--font-display); font-weight:900; letter-spacing:-0.028em; line-height:1.02; margin:0; color:var(--fg1); }
+  .h1 { font-family:var(--font-display); font-weight:800; letter-spacing:-0.02em; line-height:1.08; margin:0; color:var(--fg1); font-size:clamp(28px,3.6vw,42px); }
+  .h2 { font-family:var(--font-display); font-weight:800; letter-spacing:-0.015em; line-height:1.15; margin:0; color:var(--fg1); font-size:clamp(20px,1.8vw,24px); }
+  .lead { font-family:var(--font-body); color:var(--fg2); font-size:clamp(15px,1.4vw,18px); line-height:1.55; margin:0; }
+  .body { color:var(--fg2); font-size:15px; line-height:1.7; margin:0; }
+  .small { font-size:13px; color:var(--fg2); }
+  .eyebrow { font-family:var(--font-display); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); }
+  .kicker { font-family:var(--font-display); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ardoise); }
+  .mono { font-family:var(--font-mono); font-size:12px; letter-spacing:0.02em; color:var(--accent); }
+
+  /* layout */
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  .section { padding:var(--sec) 0; position:relative; }
+  .section--alt { background:var(--bg-2); }
+  .hairline { height:1px; background:var(--hair); border:0; margin:0; }
+  .thread { height:1px; background:linear-gradient(90deg,transparent,var(--accent-glow),transparent); opacity:.5; }
+  .row { display:flex; gap:14px; align-items:center; }
+  .wrapf { flex-wrap:wrap; }
+  .between { justify-content:space-between; }
+  .col { display:flex; flex-direction:column; }
+  .grid { display:grid; gap:22px; }
+  .center { text-align:center; }
+  .mx { margin-left:auto; margin-right:auto; }
+
+  /* buttons / links */
+  .btn { display:inline-flex; align-items:center; gap:9px; font-family:var(--font-body); font-weight:600; font-size:14.5px; padding:12px 22px; border-radius:var(--r-pill); cursor:pointer; border:none; text-decoration:none; transition:transform .12s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease), color .18s var(--ease); white-space:nowrap; }
+  .btn:active { transform:scale(0.98); }
+  .btn-primary { background:var(--accent); color:var(--accent-ink); box-shadow:0 0 28px var(--accent-glow); }
+  .btn-primary:hover { background:var(--accent-press); }
+  .btn-ghost { background:transparent; color:var(--fg1); box-shadow:inset 0 0 0 1px var(--border-2); }
+  .btn-ghost:hover { box-shadow:inset 0 0 0 1px var(--accent-mid); color:var(--accent); }
+  .btn-sm { padding:9px 16px; font-size:13px; }
+  .link { color:var(--accent); font-weight:600; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+  .link:hover { color:var(--accent-press); }
+
+  /* chips */
+  .chip { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:500; color:var(--fg2); padding:6px 13px; border-radius:var(--r-pill); box-shadow:inset 0 0 0 1px var(--border); background:var(--surface); }
+  .chip .dot { width:6px; height:6px; border-radius:999px; background:var(--accent); box-shadow:0 0 8px var(--accent-glow); }
+  .chip-accent { color:var(--accent); background:var(--accent-dim); box-shadow:inset 0 0 0 1px var(--accent-mid); }
+
+  /* cards */
+  .card { background:var(--surface); border-radius:var(--r-lg); box-shadow:inset 0 0 0 1px var(--border); position:relative; transition:box-shadow .2s var(--ease), transform .2s var(--ease); }
+  .card:hover { box-shadow:inset 0 0 0 1px var(--border-2); }
+  .card-accent { box-shadow:inset 0 0 0 1px var(--accent-mid); background:linear-gradient(180deg,var(--accent-dim),transparent 60%), var(--surface); }
+  .num { font-family:var(--font-display); font-weight:900; font-size:13px; color:var(--accent-ink); width:30px; height:30px; border-radius:999px; background:var(--accent); display:inline-flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 18px var(--accent-glow); }
+  .featicon { width:38px; height:38px; border-radius:10px; background:var(--accent-dim); box-shadow:inset 0 0 0 1px var(--accent-mid); position:relative; flex:none; }
+  .featicon::after { content:""; position:absolute; inset:11px; border-radius:5px; border:1.5px solid var(--accent); opacity:.85; }
+  .mono-avatar { width:40px; height:40px; border-radius:999px; flex:none; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:13px; color:var(--fg1); background:var(--surface-2); box-shadow:inset 0 0 0 1px var(--border-2); }
+  .article { transition:transform .2s var(--ease), box-shadow .2s var(--ease); }
+  .article:hover { transform:translateY(-3px); box-shadow:inset 0 0 0 1px var(--accent-mid), var(--shadow-md); }
+  .imgslot { width:100%; height:168px; display:block; background:linear-gradient(135deg,var(--surface-2),var(--surface)); box-shadow:inset 0 -1px 0 var(--hair); }
+
+  /* fields */
+  .field { width:100%; background:var(--surface-2); color:var(--fg1); border:none; box-shadow:inset 0 0 0 1px var(--border); border-radius:10px; padding:13px 15px; font-family:var(--font-body); font-size:14.5px; outline:none; transition:box-shadow .15s var(--ease); }
+  .field::placeholder { color:var(--fg3); }
+  .field:focus { box-shadow:inset 0 0 0 1px var(--accent), 0 0 0 3px var(--accent-dim); }
+  textarea.field { resize:vertical; min-height:84px; line-height:1.5; }
+
+  /* reveal */
+  .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+  .reveal.in { opacity:1; transform:none; }
+
+  /* lockup + chrome */
+  .lockup { display:flex; align-items:center; gap:16px; text-decoration:none; }
+  .lockup .mark { height:74px; width:auto; display:block; }
+  .lockup .wordmark { font-family:var(--font-display); font-weight:900; font-size:31px; letter-spacing:-0.02em; line-height:1; color:var(--fg1); }
+  .lockup .wordmark .v { color:var(--accent); }
+  .lockup .tag { margin-top:5px; font-family:var(--font-display); font-weight:700; font-size:14.5px; line-height:1.3; letter-spacing:-0.005em; }
+  .lockup .tag .t1 { color:var(--ardoise); }
+  .lockup .tag .t2 { color:var(--accent); }
+  .navlink { font-size:14px; color:var(--fg2); text-decoration:none; transition:color .15s var(--ease); }
+  .navlink:hover { color:var(--fg1); }
+  .navbar { position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-bottom:1px solid var(--hair); }
+  .langtoggle { display:inline-flex; align-items:center; padding:3px; border-radius:999px; background:var(--surface-2); box-shadow:inset 0 0 0 1px var(--border); }
+  .langtoggle button { border:none; background:transparent; cursor:pointer; font-family:var(--font-body); font-weight:700; font-size:12px; letter-spacing:.02em; color:var(--fg2); padding:6px 13px; border-radius:999px; transition:all .15s var(--ease); }
+  .langtoggle button:hover { color:var(--fg1); }
+  .langtoggle button.on { background:var(--accent); color:var(--accent-ink); box-shadow:0 0 14px var(--accent-glow); }
+  .footer { border-top:1px solid var(--hair); background:var(--bg-2); }
+  .footgrid { display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:30px; align-items:start; }
+  .footer .colhead { font-family:var(--font-display); font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; color:var(--fg3); }
+
+  /* hero */
+  .hero { padding-top:clamp(40px,6vw,84px); padding-bottom:var(--sec); position:relative; overflow:hidden; }
+  .hero-grid { display:grid; grid-template-columns:0.82fr 1.18fr; align-items:center; gap:clamp(28px,4vw,56px); }
+  .hero-bg { position:absolute; inset:0; pointer-events:none; background:radial-gradient(680px 420px at 78% 18%, var(--accent-dim), transparent 70%); opacity:.7; }
+  .statline { display:flex; gap:26px; flex-wrap:wrap; margin-top:30px; }
+  .statline .s b { font-family:var(--font-display); font-weight:800; font-size:19px; color:var(--fg1); display:block; line-height:1.1; }
+  .statline .s span { font-size:12px; color:var(--fg3); }
+
+  /* product window (Séquence) */
+  .appwin { width:100%; border-radius:var(--r-xl); overflow:hidden; background:var(--surface); box-shadow:var(--shadow-lg), inset 0 0 0 1px var(--border); position:relative; }
+  .appbar { display:flex; align-items:center; gap:8px; padding:12px 16px; background:var(--surface-2); border-bottom:1px solid var(--hair); }
+  .appbar .tl { width:10px; height:10px; border-radius:999px; background:var(--border-2); }
+  .apptitle { font-family:var(--font-mono); font-size:11.5px; color:var(--fg3); margin-left:8px; }
+  .appbar .live { margin-left:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:10.5px; color:var(--accent); }
+  .appbar .live i { width:7px; height:7px; border-radius:999px; background:var(--accent); box-shadow:0 0 8px var(--accent-glow); animation:pulseDot 2.4s var(--ease) infinite; }
+  @keyframes pulseDot { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .appbody { display:flex; min-height:360px; }
+  .appside { width:52px; border-right:1px solid var(--hair); padding:16px 0; display:flex; flex-direction:column; align-items:center; gap:13px; }
+  .appside i { width:20px; height:20px; border-radius:6px; background:var(--surface-2); box-shadow:inset 0 0 0 1px var(--border); }
+  .appside i.on { background:var(--accent-dim); box-shadow:inset 0 0 0 1px var(--accent-mid); }
+  .appmain { flex:1; padding:16px 18px; position:relative; }
+  .abanner { display:flex; align-items:center; gap:12px; padding:11px 13px; border-radius:12px; background:linear-gradient(100deg,var(--accent-dim),transparent 70%), var(--surface-2); box-shadow:inset 0 0 0 1px var(--border); margin-bottom:14px; }
+  .abanner .av { width:34px; height:34px; border-radius:999px; overflow:hidden; flex:none; box-shadow:0 0 0 1px var(--accent-mid); background:var(--surface); }
+  .abanner .av img { width:150%; height:150%; object-fit:cover; object-position:50% 12%; transform:translate(-16%,-5%); display:block; }
+  .abanner .bt { flex:1; min-width:0; }
+  .abanner .bt b { font-family:var(--font-display); font-weight:700; font-size:12.5px; color:var(--fg1); display:block; line-height:1.3; }
+  .abanner .bt span { font-size:11px; color:var(--fg2); }
+  .ring { width:36px; height:36px; flex:none; transform:rotate(-90deg); }
+  .ring circle { fill:none; stroke-width:4; }
+  .ring .bgc { stroke:var(--border); }
+  .ring .fgc { stroke:var(--accent); stroke-linecap:round; stroke-dasharray:100; transition:stroke-dashoffset 1.1s var(--ease); filter:drop-shadow(0 0 4px var(--accent-glow)); }
+  .sched { display:flex; flex-direction:column; gap:8px; }
+  .period { font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--fg3); margin:6px 0 2px 2px; opacity:0; transition:opacity .5s var(--ease); }
+  .phase-cale .period, .phase-accompli .period { opacity:.9; }
+  .trow { display:grid; grid-template-columns:34px 20px 1fr auto; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; background:var(--surface-2); box-shadow:inset 0 0 0 1px var(--border); position:relative; opacity:0; animation:rowSettle 1.3s var(--ease-out) both; animation-delay:var(--d,0s); }
+  @keyframes rowSettle { 0%{ opacity:0; transform:translate(var(--sx,0),var(--sy,0)) rotate(var(--sr,0deg)); } 60%{ opacity:1; } 100%{ opacity:1; transform:none; } }
+  .trow .time { font-family:var(--font-mono); font-size:10.5px; color:var(--fg3); opacity:0; transition:opacity .5s var(--ease); }
+  .phase-cale .trow .time, .phase-accompli .trow .time { opacity:1; }
+  .trow .box { width:18px; height:18px; border-radius:6px; box-shadow:inset 0 0 0 1.5px var(--border-2); display:flex; align-items:center; justify-content:center; transition:background .3s var(--ease), box-shadow .3s var(--ease); transition-delay:var(--cd,0s); }
+  .trow .box b { color:var(--accent-ink); font-size:11px; font-weight:900; line-height:1; opacity:0; transform:scale(.5); transition:all .3s var(--ease-out); transition-delay:var(--cd,0s); }
+  .phase-accompli .trow .box { background:var(--accent); box-shadow:inset 0 0 0 1.5px var(--accent); }
+  .phase-accompli .trow .box b { opacity:1; transform:scale(1); }
+  .trow .ttl { font-size:13px; color:var(--fg1); font-weight:500; transition:color .3s; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .phase-accompli .trow .ttl { color:var(--fg2); }
+  .trow .dur { font-family:var(--font-mono); font-size:10px; color:var(--fg3); }
+  .trow .abar { position:absolute; left:0; top:9px; bottom:9px; width:3px; border-radius:3px; background:var(--accent); opacity:0; transition:opacity .4s; }
+  .phase-cale .trow.key .abar, .phase-accompli .trow.key .abar { opacity:1; }
+  .donepill { position:absolute; right:18px; bottom:14px; display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:10.5px; color:var(--accent); background:var(--accent-dim); padding:6px 11px; border-radius:999px; box-shadow:inset 0 0 0 1px var(--accent-mid); opacity:0; transform:translateY(6px); transition:opacity .5s var(--ease), transform .5s var(--ease-out); }
+  .phase-accompli .donepill { opacity:1; transform:none; }
+
+  /* grids */
+  .arthur-grid { grid-template-columns:1fr 1fr; }
+  .bento { grid-template-columns:repeat(4,1fr); gap:16px; }
+
+  /* responsive */
+  @media (max-width:980px){ .bento { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:880px){ .hero-grid { grid-template-columns:1fr; } }
+  @media (max-width:860px){ [data-nav]{ display:none !important; } }
+  @media (max-width:820px){ .arthur-grid { grid-template-columns:1fr; } }
+  @media (max-width:720px){ :root { --sec:60px; } }
+  @media (max-width:560px){ .bento { grid-template-columns:1fr; } .bento .card { grid-column:span 1 !important; } }
+  @media (max-width:520px){ .footgrid { grid-template-columns:1fr; } [data-login]{ display:none !important; } .lockup .tag { display:none; } .navbar .lockup .mark{ height:50px; } .navbar .lockup .wordmark{ font-size:26px; } }
+  @media (max-width:900px) and (min-width:521px){ .footgrid { grid-template-columns:1fr 1fr; row-gap:34px; } }
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1!important;transform:none!important;} .trow,.appbar .live i{animation:none!important;opacity:1!important;transform:none!important;} .ring .fgc{transition:none!important;} }
+.post-card{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border-radius:var(--r-lg);box-shadow:inset 0 0 0 1px var(--border);overflow:hidden;transition:box-shadow .2s var(--ease),transform .2s var(--ease);}.post-card:hover{box-shadow:inset 0 0 0 1px var(--border-2);transform:translateY(-3px);}.post-media{display:block;width:100%;aspect-ratio:1200/630;background:var(--surface-2);}.post-media img{width:100%;height:100%;object-fit:cover;display:block;}.post-body{display:flex;flex-direction:column;gap:9px;padding:18px 20px 20px;}.post-meta{font-family:var(--font-mono);font-size:12px;letter-spacing:.02em;color:var(--fg3);}.post-title{font-family:var(--font-display);font-weight:800;font-size:18px;line-height:1.28;letter-spacing:-.2px;color:var(--fg1);margin:0;}.post-excerpt{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--fg2);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}</style>
+</head>
+<body>
+<main>
+
+<!-- 1 · HERO -->
+<section class="section hero" style="padding-top:clamp(40px,6vw,84px);">
+<div class="hero-bg"></div>
+<div class="wrap">
+<div class="grid arthur-grid" style="align-items:center;gap:clamp(32px,5vw,64px);">
+<div class="reveal">
+<div class="eyebrow" style="margin-bottom:14px;">The agent that sets you apart</div>
+<h1 class="display" style="font-size:clamp(34px,5vw,54px);">Arthur, your Chief&nbsp;Planning&nbsp;Officer.</h1>
+<p class="lead" style="margin-top:18px;max-width:480px;">Not one more chatbot. A calm, capable right hand that turns “I have a task” into “I know exactly when I’ll do it” — while you do your real work.</p>
+<div class="row wrapf" style="gap:12px;margin-top:30px;">
+<a class="btn btn-primary" href="/en/#early-access">Join the private beta</a>
+<a class="btn btn-ghost" href="#cycle">See how he plans →</a>
+</div>
+<div class="row wrapf" style="gap:10px;margin-top:24px;">
+<span class="chip chip-accent"><span class="dot"></span>Arthur · CPO — online</span>
+<span class="chip" style="opacity:.7;">Alfred · COO — soon</span>
+</div>
+</div>
+<div class="reveal">
+<div class="card card-accent" style="padding:16px;border-radius:var(--r-xl);">
+<img src="/agent-arthur.png" alt="Arthur, Vector’s Chief Planning Officer" style="width:100%;display:block;border-radius:var(--r-lg);"/>
+<div class="row between" style="margin-top:14px;padding:0 4px;"><span class="mono">Arthur · CPO</span><span class="mono" style="color:var(--fg3);">online</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<hr class="hairline"/>
+
+<!-- 2 · CYCLE AUTOMATIQUE -->
+<section class="section section--alt" id="cycle">
+<div class="wrap">
+<div class="reveal center mx" style="max-width:680px;">
+<div class="eyebrow" style="margin-bottom:12px;">The automatic cycle</div>
+<h2 class="h1">If Arthur says nothing, everything’s fine.</h2>
+<p class="lead" style="margin-top:16px;">Every day, without you lifting a finger, Arthur reworks your plan: he estimates, prioritizes, and slots your week into your calendar. You don’t manage him — he manages the plan.</p>
+</div>
+<div class="grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(238px,1fr));margin-top:52px;">
+<div class="card" style="padding:24px;"><div class="featicon"></div><h3 class="h2" style="font-size:18px;margin-top:16px;">Estimates real durations</h3><p class="body" style="margin-top:8px;">Every task gets a realistic duration based on your own pace — not an optimistic guess.</p></div><div class="card" style="padding:24px;"><div class="featicon"></div><h3 class="h2" style="font-size:18px;margin-top:16px;">Prioritizes what matters</h3><p class="body" style="margin-top:8px;">Your deadlines and deliverables set the order. Urgent stops eating important.</p></div><div class="card" style="padding:24px;"><div class="featicon"></div><h3 class="h2" style="font-size:18px;margin-top:16px;">Slots your week</h3><p class="body" style="margin-top:8px;">Tasks find their place in the calendar, automatically, around what’s already there.</p></div><div class="card" style="padding:24px;"><div class="featicon"></div><h3 class="h2" style="font-size:18px;margin-top:16px;">Briefs you each morning</h3><p class="body" style="margin-top:8px;">You start the day already clear: what to do, in what order, and why.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 3 · À LA DEMANDE -->
+<section class="section">
+<div class="wrap">
+<div class="grid arthur-grid" style="align-items:center;gap:clamp(32px,5vw,60px);">
+<div class="reveal">
+<div class="eyebrow" style="margin-bottom:12px;">On demand</div>
+<h2 class="h1">Talk to him like a real CPO.</h2>
+<p class="lead" style="margin-top:16px;max-width:460px;">A client moves a deadline? Something blows up your day? You don’t open ten windows — you tell Arthur, in one sentence. He replays your plan in seconds, shows you the new shape of your week, and waits for your go before moving anything.</p>
+</div>
+<div class="reveal">
+<div class="card" style="padding:20px;">
+<div class="row" style="gap:11px;align-items:flex-start;">
+<span class="mono-avatar">You</span>
+<div class="body" style="color:var(--fg1);background:var(--surface-2);padding:11px 14px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--border);">Push everything for the Boréal project to next week.</div>
+</div>
+<div class="row" style="gap:11px;align-items:flex-start;margin-top:14px;">
+<span class="mono-avatar" style="color:var(--accent);background:var(--accent-dim);box-shadow:inset 0 0 0 1px var(--accent-mid);">A</span>
+<div class="body" style="color:var(--fg1);background:linear-gradient(180deg,var(--accent-dim),transparent),var(--surface-2);padding:11px 14px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--accent-mid);">Done — 4 tasks moved. Your Tuesday opens up, and nothing slips past Friday. Confirm?</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4 · VIDER MA TÊTE -->
+<section class="section section--alt">
+<div class="wrap">
+<div class="reveal center mx" style="max-width:680px;">
+<div class="eyebrow" style="margin-bottom:12px;">Empty your head</div>
+<h2 class="h1">When your head is full is exactly when Arthur helps most.</h2>
+<p class="lead" style="margin-top:16px;">Everything looping in your mind — the “I need to remember to…”, the half-tasks, the 3 a.m. worries — you pour it all out at once. Arthur catches everything, separates signal from noise, estimates, orders, and places each piece where it belongs. Then he shows you. And nothing moves until you say yes.</p>
+</div>
+<div class="grid reveal" style="grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,32px);margin-top:48px;align-items:start;">
+<div class="card" style="padding:20px;">
+<div class="mono" style="color:var(--fg3);margin-bottom:12px;">// you dump</div>
+<div class="body" style="color:var(--fg2);line-height:1.9;">finish Boréal quote · call the accountant · pricing page idea · book the train · review the contract · invoice #214 overdue · mom’s birthday</div>
+</div>
+<div class="card card-accent" style="padding:20px;">
+<div class="mono" style="margin-bottom:12px;">// Arthur organizes</div>
+<div class="col" style="gap:8px;">
+<div class="row between" style="gap:12px;padding:11px 13px;border-radius:10px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);"><span class="row" style="gap:10px;min-width:0;"><span class="mono" style="color:var(--fg3);">Tue 9:00</span><span class="body" style="color:var(--fg1);">Finish Boréal quote</span></span><span class="mono" style="color:var(--fg3);">45 min</span></div><div class="row between" style="gap:12px;padding:11px 13px;border-radius:10px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);"><span class="row" style="gap:10px;min-width:0;"><span class="mono" style="color:var(--fg3);">Tue 11:00</span><span class="body" style="color:var(--fg1);">Review the contract</span></span><span class="mono" style="color:var(--fg3);">30 min</span></div><div class="row between" style="gap:12px;padding:11px 13px;border-radius:10px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);"><span class="row" style="gap:10px;min-width:0;"><span class="mono" style="color:var(--fg3);">Wed 9:30</span><span class="body" style="color:var(--fg1);">Call the accountant</span></span><span class="mono" style="color:var(--fg3);">15 min</span></div><div class="row between" style="gap:12px;padding:11px 13px;border-radius:10px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);"><span class="row" style="gap:10px;min-width:0;"><span class="mono" style="color:var(--fg3);">Thu 2:00</span><span class="body" style="color:var(--fg1);">Invoice #214 — follow up</span></span><span class="mono" style="color:var(--fg3);">10 min</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5 · PRÉCISION QUI COMPOSE -->
+<section class="section">
+<div class="wrap">
+<div class="reveal center mx" style="max-width:680px;">
+<div class="eyebrow" style="margin-bottom:12px;">Precision that compounds</div>
+<h2 class="h1">The more you use him, the sharper he gets.</h2>
+<p class="lead" style="margin-top:16px;">Arthur remembers. Every task you actually finish teaches him your real rhythms — how long that “quick little email” really takes for you. His estimates stop being generic and become yours. Time finally works in your favor.</p>
+</div>
+</div>
+</section>
+
+<!-- 6 · QUAND ÇA DÉBORDE -->
+<section class="section section--alt">
+<div class="wrap">
+<div class="reveal mx" style="max-width:740px;text-align:center;">
+<div class="eyebrow" style="margin-bottom:12px;">When it overflows</div>
+<h2 class="display" style="font-size:clamp(26px,3vw,38px);">Especially on the days when everything overflows.</h2>
+<p class="lead" style="margin-top:18px;font-size:clamp(16px,1.5vw,19px);">The days when it’s too much, when everyone wants a piece of you — that’s when most tools abandon you to an even longer list. Arthur does the opposite. He absorbs the overflow, protects what truly matters, tells you honestly what won’t fit today, and hands you back a day you can face. Calm. Doable.</p>
+</div>
+</div>
+</section>
+
+<!-- 7 · CTA -->
+<section class="section">
+<div class="wrap">
+<div class="card card-accent reveal center" style="max-width:760px;margin:0 auto;padding:clamp(30px,4vw,54px);">
+<h2 class="h1">Ready to hand planning to your CPO?</h2>
+<p class="lead mx" style="margin-top:14px;max-width:520px;">Arthur comes with Vector — in private beta for solopreneurs who want to move forward without the mental load.</p>
+<div class="row wrapf" style="gap:12px;margin-top:28px;justify-content:center;">
+<a class="btn btn-primary" href="/en/#early-access">Join the private beta →</a>
+</div>
+<div class="row" style="gap:8px;margin-top:20px;justify-content:center;">
+<span class="chip" style="opacity:.7;">Alfred · COO — soon</span>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<script>window.VECTOR_PAGE={page_type:'arthur',page_slug:'arthur',lang:'en'};</script>
+<script>(function(){var els=[].slice.call(document.querySelectorAll('.reveal'));if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});return;}var io=new IntersectionObserver(function(ents){ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});els.forEach(function(el){io.observe(el);});})();</script>
+<script src="/analytics.js"></script>
+<script src="/site-chrome.js"></script>
+</body>
+</html>
