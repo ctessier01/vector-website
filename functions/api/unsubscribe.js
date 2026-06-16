@@ -92,7 +92,8 @@ export async function onRequestPost(context) {
 const LEAD_TABLES = [
     { name: 'vw_marketing_leads',      extra: { consent_marketing: false } },
     { name: 'vw_early_adopter_leads',  extra: {} },
-    { name: 'coo_waitlist_leads',       extra: { consent_marketing: false } }
+    { name: 'coo_waitlist_leads',       extra: { consent_marketing: false } },
+    { name: 'vw_waitlist_leads',        extra: { consent_marketing: false } }
 ];
 
 async function unsubscribeByToken(env, token) {

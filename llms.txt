@@ -1,0 +1,15 @@
+# Vector
+
+> Vector est une application de planification propulsee par l'IA, pensee pour les solopreneurs. Arthur, ton Chief Planning Officer (CPO), transforme tes taches eparpillees en un plan de journee clair - quoi faire, dans quel ordre, combien de temps. L'IA planifie, toi tu accomplis. Positionnement anti-anxiete, ton humain et francophone.
+
+## Pages (FR)
+- [Accueil](https://vectorplanning.ai/): planification anti-anxiete pour solopreneurs.
+- [Arthur, CPO](https://vectorplanning.ai/arthur): l'agent IA qui estime, priorise et cale ta semaine.
+- [Tarifs](https://vectorplanning.ai/pricing): Fondation gratuit, Acceleration des 35 $ US (essai 14 jours).
+- [Blogue](https://vectorplanning.ai/blog): articles pour solopreneurs (charge mentale, productivite calme).
+
+## Pages (EN)
+- [Home](https://vectorplanning.ai/en/)
+- [Arthur, CPO](https://vectorplanning.ai/en/arthur)
+- [Pricing](https://vectorplanning.ai/en/pricing)
+- [Blog](https://vectorplanning.ai/en/blog)
