@@ -108,7 +108,7 @@
   /* cards */
   .card { background:var(--surface); border-radius:var(--r-lg); box-shadow:inset 0 0 0 1px var(--border); position:relative; transition:box-shadow .2s var(--ease), transform .2s var(--ease); }
   .card:hover { box-shadow:inset 0 0 0 1px var(--border-2); }
-  .card-accent { box-shadow:inset 0 0 0 1px var(--accent-mid); background:linear-gradient(180deg,var(--accent-dim),transparent 60%), var(--surface); }
+  .card-accent { box-shadow:inset 0 0 0 1px var(--accent-mid); background:linear-gradient(180deg,rgba(139,255,60,0.07),rgba(139,255,60,0.02)), var(--surface); }
   .num { font-family:var(--font-display); font-weight:900; font-size:13px; color:var(--accent-ink); width:30px; height:30px; border-radius:999px; background:var(--accent); display:inline-flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 18px var(--accent-glow); }
   .featicon { width:38px; height:38px; border-radius:10px; background:var(--accent-dim); box-shadow:inset 0 0 0 1px var(--accent-mid); position:relative; flex:none; }
   .featicon::after { content:""; position:absolute; inset:11px; border-radius:5px; border:1.5px solid var(--accent); opacity:.85; }
@@ -229,7 +229,7 @@
 <p class="lead" data-i18n="hero_lead" style="margin-top:20px;max-width:440px;">AI plans, you deliver. Your scattered tasks become a clear daily plan, slotted right into your calendar.</p>
 <div class="row wrapf" style="margin-top:30px;">
 <a class="btn btn-primary" data-i18n="hero_cta1" href="#early-access">Join the beta</a>
-<a class="btn btn-ghost" data-i18n="hero_cta2" href="#early-access">See Acceleration · 14-day trial</a>
+<a class="btn btn-ghost" data-i18n="hero_cta2" href="/en/essai">See Acceleration · 14-day trial</a>
 </div>
 <p class="mono" data-i18n="hero_note" style="margin-top:18px;color:var(--fg3);">Private beta · 25 spots · no credit card required</p>
 <div class="statline">
@@ -386,7 +386,7 @@
 <div class="card card-accent reveal" style="max-width:760px;margin:0 auto;padding:clamp(28px,4vw,52px);">
 <div class="center"><span class="chip chip-accent"><span class="dot"></span><span data-i18n="cta_chip">Private beta · 25 spots</span></span></div>
 <h2 class="display center" style="font-size:clamp(25px,3.2vw,38px);max-width:620px;margin:18px auto 0;">
-<span data-i18n="cta_h1">The first 25 testers get</span><br/><span data-i18n="cta_h2" style="color:var(--accent)">3 free months of the Acceleration plan</span>
+<span data-i18n="cta_h1">The first 25 testers get</span><br/><span data-i18n="cta_h2" style="color:var(--accent)">3 free months of the Acceleration plan</span><br/><span data-i18n="cta_h3" style="font-size:0.6em;color:var(--fg2);font-weight:600;">+ priority access to the Delegation plan</span>
 </h2>
 <p class="lead center" data-i18n="cta_sub" style="margin:18px auto 0;max-width:560px;">Join the beta. Try Vector. Help us improve it. In exchange for your feedback in the first 14 days, you’ll get to directly shape the product before launch. And you get Vector completely free for 3 months.</p>
 <form class="col" id="beta-form" style="gap:12px;max-width:460px;margin:30px auto 0;">
@@ -420,7 +420,7 @@
       hero_chip:"Planification assistée par Arthur, ton CPO",
       hero_l1:"Tu sais ce que tu fais aujourd'hui.", hero_l2:"Sans stress.",
       hero_lead:"L'IA planifie, toi tu accomplis. Tes tâches éparpillées deviennent un plan de journée clair, calé dans ton agenda.",
-      hero_cta1:"Rejoindre la bêta", hero_cta2:"Voir Accélération · essai 14 j",
+      hero_cta1:"Rejoindre la bêta", hero_cta2:"Voir Accélération · essai 14 jours",
       hero_note:"Beta privée · 25 places · aucune carte de crédit requise",
       hero_s1b:"14 jours", hero_s1s:"d'essai Accélération", hero_s2b:"0 $", hero_s2s:"plan Fondation", hero_s3b:"2 min", hero_s3s:"pour démarrer",
       app_today:"Vector — Aujourd'hui", app_live:"en direct", donepill:"Journée accomplie",
@@ -465,7 +465,7 @@
       art_2c:"Productivité", art_2t:"Le time-blocking s'effondre au premier imprévu — quoi faire à la place",
       art_3c:"Arthur", art_3t:"Déléguer à une IA sans jamais perdre le contrôle",
       art_read:"Lire →", art_read2:"Lire →", art_read3:"Lire →",
-      cta_chip:"Beta privée · 25 places", cta_h1:"Les 25 premiers testeurs reçoivent", cta_h2:"3 mois gratuits au plan Accélération",
+      cta_chip:"Beta privée · 25 places", cta_h1:"Les 25 premiers testeurs reçoivent", cta_h2:"3 mois gratuits au plan Accélération", cta_h3:"+ accès prioritaire au plan Délégation",
       cta_sub:"Rejoins la beta. Teste Vector. Aide-nous à l’améliorer. En contrepartie de ton feedback dans les 14 premiers jours, tu auras la chance d’influencer directement le produit avant son lancement. Et tu obtiens Vector complètement gratuitement pendant 3 mois.",
       ea_name:"Ton prénom", ea_email:"Ton courriel", ea_domain:"Ton domaine (freelance, consultant, etc.)", ea_stress:"En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?",
       ea_submit:"Envoyer", ea_sending:"Envoi…", cta_note:"Aucune carte de crédit requise · désinscription en un clic",
@@ -529,7 +529,7 @@
       art_2c:"Productivity", art_2t:"Time-blocking collapses at the first surprise — what to do instead",
       art_3c:"Arthur", art_3t:"Delegating to an AI without ever losing control",
       art_read:"Read →", art_read2:"Read →", art_read3:"Read →",
-      cta_chip:"Private beta · 25 spots", cta_h1:"The first 25 testers get", cta_h2:"3 free months of the Acceleration plan",
+      cta_chip:"Private beta · 25 spots", cta_h1:"The first 25 testers get", cta_h2:"3 free months of the Acceleration plan", cta_h3:"+ priority access to the Delegation plan",
       cta_sub:"Join the beta. Try Vector. Help us improve it. In exchange for your feedback in the first 14 days, you’ll get to directly shape the product before launch. And you get Vector completely free for 3 months.",
       ea_name:"Your first name", ea_email:"Your email", ea_domain:"Your field (freelance, consultant, etc.)", ea_stress:"In 1 sentence: what's your biggest solopreneur stress?",
       ea_submit:"Send", ea_sending:"Sending…", cta_note:"No credit card required · unsubscribe in one click",
