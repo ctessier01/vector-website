@@ -680,7 +680,7 @@
     });
   }
 
-  // Liste d'attente Delegation / Propulsion -> POST /api/waitlist (pipeline dedie).
+  // Liste d'attente Delegation / Propulsion -> POST /api/coo-waitlist (pipeline dedie).
   async function joinWaitlist(event, plan) {
     event.preventDefault();
     var form = event.target;
@@ -709,7 +709,7 @@
         consent_marketing: consent,
         source_url: window.location.href
       }, getAttribution());
-      var response = await fetch('/api/waitlist', {
+      var response = await fetch('/api/coo-waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

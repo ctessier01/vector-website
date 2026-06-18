@@ -18,7 +18,7 @@
  *   1. Validation des entrées (dont plan)
  *   2. Hash IP + User-Agent (preuve de soumission / anti-abus — aucune IP en clair)
  *   3. INSERT dans public.coo_waitlist_leads
- *   4. Log signup_waitlist dans marketing_events (CÔTÉ SERVEUR : a le lead_id + UTM)
+ *   4. Log signup_coo_waitlist dans marketing_events (CÔTÉ SERVEUR : a le lead_id + UTM)
  *   5. Courriel de confirmation J+0 (Resend, en parallèle) + retour JSON
  *
  * Variables d'environnement requises (déjà configurées pour early-adopter / ebook) :
