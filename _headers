@@ -1,0 +1,8 @@
+# Scripts partagés chargés sur toutes les pages (menu/pied + analytics).
+# Revalidation rapide (5 min) pour que les déploiements apparaissent vite,
+# au lieu du défaut Cloudflare de 4 h (max-age=14400) sur les fichiers non-HTML.
+/site-chrome.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/analytics.js
+  Cache-Control: public, max-age=300, must-revalidate
