@@ -80,7 +80,22 @@
     ".vc-botrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}",
     ".vc-small{font-size:13px;color:var(--vc-fg3);}",
     ".vc-mono{font-family:var(--vc-mono);font-size:12px;letter-spacing:.02em;color:var(--vc-fg3);}",
-    "@media(max-width:860px){.vc-nav{display:none;}}",
+    ".vc-burger{display:none;align-items:center;justify-content:center;width:42px;height:42px;flex:0 0 auto;padding:0;border:none;border-radius:12px;background:var(--vc-surf2);box-shadow:inset 0 0 0 1px var(--vc-border);cursor:pointer;}",
+    ".vc-burger:hover{background:#2a3050;}",
+    ".vc-burger i{position:relative;display:block;width:18px;height:2px;background:var(--vc-fg1);border-radius:2px;transition:background .2s;}",
+    ".vc-burger i::before,.vc-burger i::after{content:'';position:absolute;left:0;width:18px;height:2px;background:var(--vc-fg1);border-radius:2px;transition:transform .2s;}",
+    ".vc-burger i::before{top:-6px;} .vc-burger i::after{top:6px;}",
+    "#vc-header.vc-open .vc-burger i{background:transparent;}",
+    "#vc-header.vc-open .vc-burger i::before{transform:translateY(6px) rotate(45deg);}",
+    "#vc-header.vc-open .vc-burger i::after{transform:translateY(-6px) rotate(-45deg);}",
+    ".vc-mobnav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;background:var(--vc-bg2);border-top:1px solid var(--vc-hair);border-bottom:1px solid var(--vc-border);box-shadow:0 20px 44px rgba(0,0,0,.42);padding:6px clamp(20px,5vw,56px) 16px;}",
+    ".vc-mobnav a{font-family:var(--vc-body);font-size:15.5px;color:var(--vc-fg1);text-decoration:none;padding:14px 2px;border-bottom:1px solid var(--vc-hair);}",
+    ".vc-mobnav a:last-of-type{border-bottom:none;}",
+    ".vc-mobnav a:hover{color:var(--vc-accent);}",
+    ".vc-mobnav .vc-lang{align-self:flex-start;margin:12px 0 4px;}",
+    ".vc-mobnav .vc-btn{justify-content:center;margin:14px 0 2px;padding:13px 16px;font-size:14px;color:var(--vc-ink);border-bottom:none;}",
+    ".vc-mobnav .vc-btn:hover{color:var(--vc-ink);}",
+    "@media(max-width:860px){.vc-nav{display:none;}.vc-burger{display:inline-flex;}.vc-right .vc-lang,.vc-right .vc-login,.vc-right .vc-btn{display:none;}#vc-header.vc-open .vc-mobnav{display:flex;}}",
     "@media(max-width:900px) and (min-width:521px){.vc-footgrid{grid-template-columns:1fr 1fr;row-gap:34px;}}",
     "@media(max-width:520px){.vc-footgrid{grid-template-columns:1fr;}.vc-login{display:none;}.vc-tag{display:none;}#vc-header .vc-mark{height:50px;}#vc-header .vc-word{font-size:26px;}}"
   ].join("");
@@ -91,19 +106,31 @@
       + '<div class="vc-tag"><div class="t1">' + d.tag1 + '</div><div class="t2">' + d.tag2 + '</div></div></div></a>';
   }
 
-  function headerHTML() {
-    return '<div class="vc-wrap">' + lockup()
-      + '<nav class="vc-nav">'
-      + '<a class="vc-link" href="' + lk("/#features") + '">' + d.features + '</a>'
+  function navLinks() {
+    return '<a class="vc-link" href="' + lk("/#features") + '">' + d.features + '</a>'
       + '<a class="vc-link" href="' + lk("/arthur") + '">' + d.arthur + '</a>'
       + '<a class="vc-link" href="' + lk("/blog") + '">' + d.articles + '</a>'
-      + '<a class="vc-link" href="' + lk("/pricing") + '">' + d.pricing + '</a>'
-      + '</nav>'
+      + '<a class="vc-link" href="' + lk("/pricing") + '">' + d.pricing + '</a>';
+  }
+
+  function langToggle() {
+    return '<div class="vc-lang" role="group" aria-label="Langue"><button type="button" data-vclang="fr">FR</button><button type="button" data-vclang="en">EN</button></div>';
+  }
+
+  function headerHTML() {
+    return '<div class="vc-wrap">' + lockup()
+      + '<nav class="vc-nav">' + navLinks() + '</nav>'
       + '<div class="vc-right">'
       + '<a class="vc-link vc-login" href="https://app.vectorplanning.ai">' + d.login + '</a>'
       + '<a class="vc-btn" href="' + lk("/#early-access") + '">' + d.cta + '</a>'
-      + '<div class="vc-lang" role="group" aria-label="Langue"><button type="button" data-vclang="fr">FR</button><button type="button" data-vclang="en">EN</button></div>'
-      + '</div></div>';
+      + langToggle()
+      + '<button type="button" class="vc-burger" aria-label="Menu" aria-expanded="false" aria-controls="vc-mobnav"><i></i></button>'
+      + '</div></div>'
+      + '<nav class="vc-mobnav" id="vc-mobnav">' + navLinks()
+      + '<a class="vc-link" href="https://app.vectorplanning.ai">' + d.login + '</a>'
+      + langToggle()
+      + '<a class="vc-btn" href="' + lk("/#early-access") + '">' + d.cta + '</a>'
+      + '</nav>';
   }
 
   function footerHTML() {
@@ -157,6 +184,28 @@
       if (t === LANG) b.classList.add("on");
       b.addEventListener("click", function () { if (t !== LANG) location.href = siblingURL(); });
     });
+
+    // menu mobile (hamburger)
+    var burger = h.querySelector(".vc-burger");
+    var mobnav = h.querySelector(".vc-mobnav");
+    if (burger && mobnav) {
+      burger.addEventListener("click", function () {
+        var open = h.classList.toggle("vc-open");
+        burger.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      mobnav.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          h.classList.remove("vc-open");
+          burger.setAttribute("aria-expanded", "false");
+        });
+      });
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 860 && h.classList.contains("vc-open")) {
+          h.classList.remove("vc-open");
+          burger.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
 
     document.documentElement.lang = LANG;
   }

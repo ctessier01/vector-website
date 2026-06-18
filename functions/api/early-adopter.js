@@ -122,13 +122,15 @@ export async function onRequestPost(context) {
         const unsubUrl = `${siteUrl}/api/unsubscribe?token=${lead.unsubscribe_token}&lang=${lang}`;
 
         let emailPromise = Promise.resolve();
+        let notifyPromise = Promise.resolve();
         if (env.RESEND_API_KEY) {
             emailPromise = sendConfirmationEmail({ env, lang, name, email, unsubUrl, leadId: lead.id, supabaseHeaders });
+            notifyPromise = sendOwnerNotification({ env, name, email, lang, domain, stress });
         } else {
             console.warn('RESEND_API_KEY absent : confirmation early adopter non envoyée.');
         }
 
-        context.waitUntil(Promise.allSettled([eventPromise, emailPromise]));
+        context.waitUntil(Promise.allSettled([eventPromise, emailPromise, notifyPromise]));
 
         // ── 7. Réponse ────────────────────────────────────────────────
         return new Response(JSON.stringify({ success: true }), {
@@ -194,6 +196,57 @@ async function sendConfirmationEmail({ env, lang, name, email, unsubUrl, leadId,
         });
     } catch (err) {
         console.error('Confirmation email failed (non-blocking):', err);
+    }
+}
+
+
+// ──────────────────────────────────────────────────────────────────────────
+// Notification interne — alerte le propriétaire à chaque inscription
+// ──────────────────────────────────────────────────────────────────────────
+
+async function sendOwnerNotification({ env, name, email, lang, domain, stress }) {
+    const to = env.OWNER_NOTIFY_EMAIL || 'info@vectorplanning.ai';
+    const rows = [
+        ['Nom', name],
+        ['Courriel', email],
+        ['Langue', lang],
+        ['Domaine', domain || '—'],
+        ['Sa plus grande friction', stress || '—']
+    ];
+    const sans = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+    const html = `<div style="font-family:${sans};font-size:15px;color:#1a1f2e;line-height:1.6;">`
+        + `<h2 style="margin:0 0 14px;font-size:18px;">🎉 Nouvelle inscription bêta</h2>`
+        + `<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;">`
+        + rows.map(([k, v]) => `<tr><td style="padding:5px 16px 5px 0;color:#6b7290;vertical-align:top;white-space:nowrap;">${escapeHtml(k)}</td><td style="padding:5px 0;"><strong>${escapeHtml(String(v))}</strong></td></tr>`).join('')
+        + `</table>`
+        + `<p style="margin:16px 0 0;font-size:13px;color:#6b7290;">Réponds directement à ce courriel pour écrire à la personne (le « répondre à » est son adresse).</p>`
+        + `</div>`;
+    const text = `Nouvelle inscription bêta\n\n`
+        + rows.map(([k, v]) => `${k} : ${v}`).join('\n')
+        + `\n\nRéponds à ce courriel pour écrire directement à la personne.`;
+
+    try {
+        const res = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                from: env.EBOOK_FROM || DEFAULT_FROM,
+                to: [to],
+                reply_to: email,
+                subject: `🎉 Nouvelle inscription bêta : ${name}`,
+                html: html,
+                text: text
+            })
+        });
+        if (!res.ok) {
+            const errBody = await res.text().catch(() => '');
+            console.error('Owner notification error:', res.status, errBody);
+        }
+    } catch (err) {
+        console.error('Owner notification failed (non-blocking):', err);
     }
 }
 
