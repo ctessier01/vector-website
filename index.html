@@ -386,6 +386,10 @@
 <input autocomplete="email" class="field" data-ph="ea_email" id="ea-email" placeholder="Ton courriel" type="email"/>
 <input class="field" data-ph="ea_domain" id="ea-domain" placeholder="Ton domaine (freelance, consultant, etc.)" type="text"/>
 <textarea class="field" data-ph="ea_stress" id="ea-stress" placeholder="En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?"></textarea>
+<label style="display:flex;align-items:flex-start;gap:8px;margin-top:2px;font-size:13px;line-height:1.45;color:var(--fg2);text-align:left;cursor:pointer;">
+<input id="ea-consent" type="checkbox" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--accent);cursor:pointer;"/>
+<span data-i18n="ea_consent">Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.</span>
+</label>
 <button class="btn btn-primary" data-i18n="ea_submit" id="ea-submit" style="width:100%;justify-content:center;margin-top:4px;" type="submit">Envoyer</button>
 <p class="small center" id="ea-msg" style="min-height:18px;margin:4px 0 0;"></p>
 </form>
@@ -460,7 +464,7 @@
       cta_chip:"Beta privée · 25 places", cta_h1:"Les 25 premiers testeurs reçoivent", cta_h2:"3 mois gratuits au plan Accélération", cta_h3:"+ accès prioritaire au plan Délégation",
       cta_sub:"Rejoins la beta. Teste Vector. Aide-nous à l’améliorer. En contrepartie de ton feedback dans les 14 premiers jours, tu auras la chance d’influencer directement le produit avant son lancement. Et tu obtiens Vector complètement gratuitement pendant 3 mois.",
       ea_name:"Ton prénom", ea_email:"Ton courriel", ea_domain:"Ton domaine (freelance, consultant, etc.)", ea_stress:"En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?",
-      ea_submit:"Envoyer", ea_sending:"Envoi…", cta_note:"Aucune carte de crédit requise · désinscription en un clic",
+      ea_submit:"Envoyer", ea_sending:"Envoi…", cta_note:"Aucune carte de crédit requise · désinscription en un clic", ea_consent:"Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.",
       msg_success:"Merci ! Tu es sur la liste. On te revient bientôt.", msg_error:"Oups, un souci est survenu. Réessaie.", msg_net:"Problème de connexion. Réessaie.", msg_required:"Indique au moins ton prénom et ton courriel.",
       f_product:"Produit", f_features:"Fonctionnalités", f_mobile:"Application mobile", f_alfred:"Bientôt : Alfred, COO",
       f_arthur:"Arthur, CPO", f_arthur_can:"Ce qu'il peut faire pour toi", f_arthur_how:"Comment il planifie",
@@ -524,7 +528,7 @@
       cta_chip:"Private beta · 25 spots", cta_h1:"The first 25 testers get", cta_h2:"3 free months of the Acceleration plan", cta_h3:"+ priority access to the Delegation plan",
       cta_sub:"Join the beta. Try Vector. Help us improve it. In exchange for your feedback in the first 14 days, you’ll get to directly shape the product before launch. And you get Vector completely free for 3 months.",
       ea_name:"Your first name", ea_email:"Your email", ea_domain:"Your field (freelance, consultant, etc.)", ea_stress:"In 1 sentence: what's your biggest solopreneur stress?",
-      ea_submit:"Send", ea_sending:"Sending…", cta_note:"No credit card required · unsubscribe in one click",
+      ea_submit:"Send", ea_sending:"Sending…", cta_note:"No credit card required · unsubscribe in one click", ea_consent:"Also keep me posted on Vector news. One-click unsubscribe.",
       msg_success:"Thanks! You're on the list. We'll be in touch soon.", msg_error:"Oops, something went wrong. Try again.", msg_net:"Connection problem. Try again.", msg_required:"Please enter at least your first name and email.",
       f_product:"Product", f_features:"Features", f_mobile:"Mobile app", f_alfred:"Coming soon: Alfred, COO",
       f_arthur:"Arthur, CPO", f_arthur_can:"What he can do for you", f_arthur_how:"How he plans",
@@ -638,13 +642,14 @@
     var email=document.getElementById('ea-email').value.trim();
     var domain=document.getElementById('ea-domain').value.trim();
     var stress=document.getElementById('ea-stress').value.trim();
+    var consent=document.getElementById('ea-consent').checked;
     var msg=document.getElementById('ea-msg'); var btn=document.getElementById('ea-submit');
     if(!name || !email){ msg.textContent=d.msg_required; msg.style.color='#ff6b6b'; return; }
     btn.textContent=d.ea_sending; btn.disabled=true;
     try {
-      var payload=Object.assign({ name:name, email:email, lang:currentLang, domain:domain, stress:stress, source_url:location.href }, getAttribution());
+      var payload=Object.assign({ name:name, email:email, lang:currentLang, domain:domain, stress:stress, consent_marketing:consent, source_url:location.href }, getAttribution());
       var res=await fetch('/api/early-adopter',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
-      if(res.ok){ msg.textContent=d.msg_success; msg.style.color='var(--accent)'; trackEvent('signup_early_adopter',{domain:domain}); ['ea-name','ea-email','ea-domain','ea-stress'].forEach(function(id){document.getElementById(id).value='';}); }
+      if(res.ok){ msg.textContent=d.msg_success; msg.style.color='var(--accent)'; trackEvent('signup_early_adopter',{domain:domain}); ['ea-name','ea-email','ea-domain','ea-stress'].forEach(function(id){document.getElementById(id).value='';}); document.getElementById('ea-consent').checked=false; }
       else { msg.textContent=d.msg_error; msg.style.color='#ff6b6b'; }
     } catch(err){ msg.textContent=d.msg_net; msg.style.color='#ff6b6b'; }
     btn.textContent=d.ea_submit; btn.disabled=false;

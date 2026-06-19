@@ -43,6 +43,7 @@ export async function onRequestPost(context) {
         const domain = typeof data.domain === 'string' ? data.domain.trim().slice(0, 120) : null;
         const stress = typeof data.stress === 'string' ? data.stress.trim().slice(0, 500) : null;
         const sourceUrl = typeof data.source_url === 'string' ? data.source_url.trim().slice(0, 500) : null;
+        const consentMarketing = data.consent_marketing === true;
         const utm = pickUtm(data);
 
         if (!name || name.length > 80) return jsonError('Invalid name', 400);
@@ -80,6 +81,7 @@ export async function onRequestPost(context) {
             domain: domain,
             stress: stress,
             source_url: sourceUrl,
+            consent_marketing: consentMarketing,
             consent_ip_hash: ipHash,
             consent_user_agent_hash: uaHash
         }, utm);
