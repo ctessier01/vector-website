@@ -5,11 +5,13 @@
 ## Pages (FR)
 - [Accueil](https://vectorplanning.ai/): planification anti-anxiete pour solopreneurs.
 - [Arthur, CPO](https://vectorplanning.ai/arthur): l'agent IA qui estime, priorise et cale ta semaine.
+- [Fonctionnalites](https://vectorplanning.ai/fonctionnalites): le moteur de planification automatique gratuit (Fondation), et l'IA d'Arthur qui planifie, decompose et veille sur tes projets (Acceleration). Comparatif Fondation vs Acceleration.
 - [Tarifs](https://vectorplanning.ai/pricing): Fondation gratuit, Acceleration des 35 $ US (essai 14 jours).
 - [Blogue](https://vectorplanning.ai/blog): articles pour solopreneurs (charge mentale, productivite calme).
 
 ## Pages (EN)
 - [Home](https://vectorplanning.ai/en/)
 - [Arthur, CPO](https://vectorplanning.ai/en/arthur)
+- [Features](https://vectorplanning.ai/en/features)
 - [Pricing](https://vectorplanning.ai/en/pricing)
 - [Blog](https://vectorplanning.ai/en/blog)

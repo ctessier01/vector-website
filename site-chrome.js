@@ -26,23 +26,23 @@
   var L = {
     fr: {
       tag1: "L'IA planifie.", tag2: "Toi tu accomplis.",
-      features: "Fonctionnalités", arthur: "Arthur", articles: "Articles", pricing: "Tarifs",
+      features: "Fonctionnalités", featuresPath: "/fonctionnalites", arthur: "Arthur", articles: "Articles", pricing: "Tarifs",
       login: "Connexion", cta: "Rejoindre la bêta",
-      f_product: "Produit", f_features: "Fonctionnalités", f_mobile: "Application mobile", f_alfred: "Bientôt : Alfred, COO",
+      f_product: "Produit", f_features: "Fonctionnalités", f_faq: "FAQ", f_mobile: "Application mobile", f_alfred: "Bientôt : Alfred, COO",
       f_arthur: "Arthur, CPO", f_arthur_can: "Ce qu'il peut faire pour toi", f_arthur_how: "Comment il planifie",
       f_plans: "Abonnements", f_pricing: "Tarifs", f_trial: "Essai gratuit", f_credits: "Crédits IA",
-      f_company: "Entreprise", f_terms: "Conditions générales d'utilisation", f_ambassador: "Programme Ambassadeur",
+      f_company: "Entreprise", f_legal: "Légal", f_terms: "Conditions générales d'utilisation", f_ambassador: "Programme Ambassadeur",
       f_refunds: "Remboursement", f_privacy: "Confidentialité", f_contact: "Contact",
       copyright: "© 2026 Vector · Fait au Québec", footmono: "anti-stress · anti-charge mentale"
     },
     en: {
       tag1: "AI plans.", tag2: "You deliver.",
-      features: "Features", arthur: "Arthur", articles: "Articles", pricing: "Pricing",
+      features: "Features", featuresPath: "/features", arthur: "Arthur", articles: "Articles", pricing: "Pricing",
       login: "Log in", cta: "Join the beta",
-      f_product: "Product", f_features: "Features", f_mobile: "Mobile app", f_alfred: "Coming soon: Alfred, COO",
+      f_product: "Product", f_features: "Features", f_faq: "FAQ", f_mobile: "Mobile app", f_alfred: "Coming soon: Alfred, COO",
       f_arthur: "Arthur, CPO", f_arthur_can: "What he can do for you", f_arthur_how: "How he plans",
       f_plans: "Plans", f_pricing: "Pricing", f_trial: "Free trial", f_credits: "AI credits",
-      f_company: "Company", f_terms: "Terms of Service", f_ambassador: "Ambassador Program",
+      f_company: "Company", f_legal: "Legal", f_terms: "Terms of Service", f_ambassador: "Ambassador Program",
       f_refunds: "Refunds", f_privacy: "Privacy", f_contact: "Contact",
       copyright: "© 2026 Vector · Made in Québec", footmono: "anti-stress · anti-mental-load"
     }
@@ -75,6 +75,8 @@
     ".vc-footgrid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:30px;align-items:start;}",
     ".vc-colhead{font-family:var(--vc-disp);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;color:var(--vc-fg3);}",
     ".vc-col{display:flex;flex-direction:column;gap:11px;}",
+    ".vc-subhead{font-family:var(--vc-disp);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--vc-fg3);margin-top:8px;}",
+    ".vc-subgroup{display:flex;flex-direction:column;gap:11px;padding-left:12px;border-left:1px solid var(--vc-hair);margin-top:2px;}",
     "#vc-footer .vc-link{font-size:13px;}",
     ".vc-hair{height:1px;background:var(--vc-hair);border:0;margin:40px 0 22px;}",
     ".vc-botrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}",
@@ -107,7 +109,7 @@
   }
 
   function navLinks() {
-    return '<a class="vc-link" href="' + lk("/#features") + '">' + d.features + '</a>'
+    return '<a class="vc-link" href="' + lk(d.featuresPath) + '">' + d.features + '</a>'
       + '<a class="vc-link" href="' + lk("/arthur") + '">' + d.arthur + '</a>'
       + '<a class="vc-link" href="' + lk("/blog") + '">' + d.articles + '</a>'
       + '<a class="vc-link" href="' + lk("/pricing") + '">' + d.pricing + '</a>';
@@ -141,10 +143,16 @@
     }
     return '<div class="vc-fwrap"><div class="vc-footgrid">'
       + '<div>' + lockup() + '</div>'
-      + col("f_product", [["f_features", lk("/#features")], ["f_mobile", lk("/#features")]])
-      + col("f_arthur", [["f_arthur_can", lk("/arthur")], ["f_arthur_how", lk("/arthur#cycle")]])
+      + '<div><div class="vc-colhead">' + d.f_product + '</div><div class="vc-col">'
+      + '<a class="vc-link" href="' + lk(d.featuresPath) + '">' + d.f_features + '</a>'
+      + '<div class="vc-subhead">' + d.f_arthur + '</div>'
+      + '<div class="vc-subgroup">'
+      + '<a class="vc-link" href="' + lk("/arthur") + '">' + d.f_arthur_can + '</a>'
+      + '<a class="vc-link" href="' + lk("/arthur#cycle") + '">' + d.f_arthur_how + '</a>'
+      + '</div></div></div>'
       + col("f_plans", [["f_pricing", lk("/pricing")], ["f_trial", lk("/essai")], ["f_credits", lk("/pricing#credits")]])
-      + col("f_company", [["f_terms", lk("/terms")], ["f_ambassador", lk("/ambassador")], ["f_refunds", lk("/refunds")], ["f_privacy", lk("/privacy")], ["f_contact", "mailto:info@vectorplanning.ai"]])
+      + col("f_company", [["f_ambassador", lk("/ambassador")], ["f_faq", lk("/#faq")], ["f_contact", "mailto:info@vectorplanning.ai"]])
+      + col("f_legal", [["f_terms", lk("/terms")], ["f_privacy", lk("/privacy")], ["f_refunds", lk("/refunds")]])
       + '</div><hr class="vc-hair" /><div class="vc-botrow">'
       + '<span class="vc-small">' + d.copyright + '</span><span class="vc-mono">' + d.footmono + '</span></div></div>';
   }
