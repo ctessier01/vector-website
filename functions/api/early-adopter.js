@@ -38,6 +38,7 @@ export async function onRequestPost(context) {
         }
 
         const name = typeof data.name === 'string' ? data.name.trim() : '';
+        const lastName = typeof data.last_name === 'string' ? data.last_name.trim().slice(0, 80) : null;
         const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
         const lang = data.lang === 'en' ? 'en' : 'fr';
         const domain = typeof data.domain === 'string' ? data.domain.trim().slice(0, 120) : null;
@@ -76,6 +77,7 @@ export async function onRequestPost(context) {
         // ── 4. INSERT du lead ─────────────────────────────────────────
         const insertPayload = Object.assign({
             name: name,
+            last_name: lastName,
             email: email,
             lang: lang,
             domain: domain,
