@@ -7,7 +7,7 @@
  * Pipeline :
  *   1. Validation des entrées + résolution du lead magnet demandé
  *   2. Hash IP + User-Agent (preuve de consentement LCAP)
- *   3. INSERT dans Supabase (public.vw_marketing_leads)
+ *   3. INSERT dans Supabase (public.marketing_leads)
  *   4. Génération d'un token signé HMAC-SHA256 lié au lead + à la ressource
  *   5. Envoi du courriel J+0 (en parallèle) + retour JSON avec download_url
  *
@@ -142,7 +142,7 @@ export async function onRequestPost(context) {
         }, utm);
 
         const insertRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads`,
+            `${env.SUPABASE_URL}/rest/v1/marketing_leads`,
             {
                 method: 'POST',
                 headers: supabaseHeaders,
@@ -257,7 +257,7 @@ async function sendDeliveryEmail({ env, lang, name, email, magnet, downloadUrl, 
 
         const nowIso = new Date().toISOString();
         await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?id=eq.${leadId}`,
+            `${env.SUPABASE_URL}/rest/v1/marketing_leads?id=eq.${leadId}`,
             {
                 method: 'PATCH',
                 headers: supabaseHeaders,

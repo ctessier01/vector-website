@@ -5,7 +5,7 @@
  * depuis le formulaire « M'aviser au lancement » de la page tarifs.
  *
  * Pipeline distinct d'/api/early-adopter (bêta) et d'/api/ebook-request (lead magnets).
- * Écrit dans sa propre table : public.vw_waitlist_leads.
+ * Écrit dans sa propre table : public.waitlist_leads.
  *
  * Reçoit { name, email, plan, lang, consent_marketing, source_url,
  *          utm_source, utm_medium, utm_campaign, utm_term, utm_content, referer_url }
@@ -17,7 +17,7 @@
  * Pipeline :
  *   1. Validation des entrées (dont plan)
  *   2. Hash IP + User-Agent (preuve de soumission / anti-abus — aucune IP en clair)
- *   3. INSERT dans public.vw_waitlist_leads
+ *   3. INSERT dans public.waitlist_leads
  *   4. Log signup_waitlist dans marketing_events (CÔTÉ SERVEUR : a le lead_id + UTM)
  *   5. Courriel de confirmation J+0 (Resend, en parallèle) + retour JSON
  *
@@ -95,7 +95,7 @@ export async function onRequestPost(context) {
         }, utm);
 
         const insertRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_waitlist_leads`,
+            `${env.SUPABASE_URL}/rest/v1/waitlist_leads`,
             { method: 'POST', headers: supabaseHeaders, body: JSON.stringify(insertPayload) }
         );
 
@@ -200,7 +200,7 @@ async function sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, c
         }
 
         const nowIso = new Date().toISOString();
-        await fetch(`${env.SUPABASE_URL}/rest/v1/vw_waitlist_leads?id=eq.${leadId}`, {
+        await fetch(`${env.SUPABASE_URL}/rest/v1/waitlist_leads?id=eq.${leadId}`, {
             method: 'PATCH',
             headers: supabaseHeaders,
             body: JSON.stringify({

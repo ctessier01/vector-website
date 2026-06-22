@@ -227,7 +227,7 @@ async function incrementDownloadCount({ env, leadId }) {
 
         // Récupérer le compteur actuel
         const getRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?id=eq.${leadId}&select=download_count`,
+            `${env.SUPABASE_URL}/rest/v1/marketing_leads?id=eq.${leadId}&select=download_count`,
             { headers: supabaseHeaders }
         );
 
@@ -246,7 +246,7 @@ async function incrementDownloadCount({ env, leadId }) {
 
         // Incrémenter
         const patchRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_marketing_leads?id=eq.${leadId}`,
+            `${env.SUPABASE_URL}/rest/v1/marketing_leads?id=eq.${leadId}`,
             {
                 method: 'PATCH',
                 headers: supabaseHeaders,

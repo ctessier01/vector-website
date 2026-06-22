@@ -2,7 +2,7 @@
  * Cloudflare Pages Function — /api/unsubscribe
  *
  * Désabonnement en un clic via le token unique. Couvre DEUX tables de leads :
- * vw_marketing_leads (ebooks) et vw_early_adopter_leads (liste d'attente, Bloc 1.5).
+ * marketing_leads (ebooks) et early_adopter_leads (liste d'attente, Bloc 1.5).
  * Le token est essayé dans chaque table jusqu'à correspondance.
  *
  * Deux modes :
@@ -88,12 +88,12 @@ export async function onRequestPost(context) {
  *         'error' (Supabase down ou autre).
  */
 // Tables porteuses d'un unsubscribe_token. `extra` = colonnes à mettre à jour
-// en plus de status/unsubscribed_at (vw_marketing_leads a consent_marketing).
+// en plus de status/unsubscribed_at (marketing_leads a consent_marketing).
 const LEAD_TABLES = [
-    { name: 'vw_marketing_leads',      extra: { consent_marketing: false } },
-    { name: 'vw_early_adopter_leads',  extra: {} },
+    { name: 'marketing_leads',      extra: { consent_marketing: false } },
+    { name: 'early_adopter_leads',  extra: {} },
     { name: 'coo_waitlist_leads',       extra: { consent_marketing: false } },
-    { name: 'vw_waitlist_leads',        extra: { consent_marketing: false } }
+    { name: 'waitlist_leads',        extra: { consent_marketing: false } }
 ];
 
 async function unsubscribeByToken(env, token) {
