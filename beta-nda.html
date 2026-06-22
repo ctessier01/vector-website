@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="referrer" content="no-referrer"/>
+<title>Entente de confidentialité — Bêta Vector</title>
+<style>
+  :root{
+    --ink:#10131A; --ink-2:#1a1f2e; --muted:#5b6172; --line:#e6e4dd;
+    --bg:#F5F4EF; --card:#ffffff; --lime:#8BFF3C; --lime-ink:#0d1f00;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink-2);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+  header{background:var(--ink);text-align:center;padding:22px 16px}
+  header .wm{color:#fff;font-weight:800;letter-spacing:.04em;font-size:20px}
+  header .wm span{color:var(--lime)}
+  main{max-width:680px;margin:0 auto;padding:28px 18px 64px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:0 1px 3px rgba(16,19,26,.05),0 12px 30px rgba(16,19,26,.05)}
+  h1{font-size:24px;line-height:1.25;margin:0 0 8px;color:var(--ink)}
+  .intro{color:var(--muted);margin:0 0 22px}
+  ol.summary{margin:0 0 22px;padding-left:0;list-style:none;counter-reset:s}
+  ol.summary li{position:relative;padding:0 0 14px 40px;counter-increment:s}
+  ol.summary li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  ol.summary li b{color:var(--ink)}
+  details.full{border:1px solid var(--line);border-radius:12px;margin:0 0 22px;background:#fcfbf8}
+  details.full>summary{cursor:pointer;padding:14px 18px;font-weight:600;color:var(--ink);list-style:none;display:flex;align-items:center;gap:8px}
+  details.full>summary::-webkit-details-marker{display:none}
+  details.full>summary::before{content:'📄'}
+  details.full[open]>summary{border-bottom:1px solid var(--line)}
+  .agreement{max-height:46vh;overflow:auto;padding:18px 20px;font-size:14.5px}
+  .agreement h1{font-size:18px;margin:0 0 4px}
+  .agreement h2{font-size:15px;margin:18px 0 6px;color:var(--ink)}
+  .agreement .doc-meta{color:var(--muted);font-size:13px;margin:0 0 2px}
+  .agreement p{margin:0 0 9px}
+  .agreement ul{margin:0 0 10px;padding-left:20px}
+  .accept{display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fcfbf8;margin:0 0 18px;cursor:pointer}
+  .accept input{margin-top:3px;width:20px;height:20px;flex:0 0 auto;accent-color:var(--ink);cursor:pointer}
+  .accept label{cursor:pointer}
+  .actions{display:flex;flex-direction:column;gap:14px;align-items:stretch}
+  button.primary{appearance:none;border:0;border-radius:12px;background:var(--lime);color:var(--lime-ink);font-weight:800;font-size:16px;padding:15px 22px;cursor:pointer;transition:opacity .15s,transform .05s}
+  button.primary:disabled{opacity:.4;cursor:not-allowed}
+  button.primary:not(:disabled):active{transform:translateY(1px)}
+  .lang{display:flex;justify-content:center}
+  .lang a{color:var(--muted);text-decoration:underline;font-size:14px;cursor:pointer}
+  .center-msg{text-align:center;color:var(--muted);padding:40px 10px}
+  .err h1{color:var(--ink)}
+  .err p{color:var(--muted)}
+  /* Modal Loi 96 */
+  .overlay{position:fixed;inset:0;background:rgba(16,19,26,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}
+  .overlay.show{display:flex}
+  .modal{background:#fff;border-radius:16px;max-width:480px;width:100%;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+  .modal h2{margin:0 0 14px;font-size:17px;color:var(--ink)}
+  .modal p{font-size:14px;margin:0 0 12px;color:var(--ink-2)}
+  .modal p.en{color:var(--muted)}
+  .modal .row{display:flex;gap:10px;margin-top:18px}
+  .modal button{flex:1;border-radius:10px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink)}
+  .modal button.go{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .foot{text-align:center;color:#9aa1b3;font-size:12px;margin-top:22px}
+  .foot a{color:#9aa1b3}
+</style>
+</head>
+<body>
+<header><div class="wm"><span>V</span>ECTOR</div></header>
+<main>
+  <div id="loading" class="card center-msg">Chargement…</div>
+
+  <div id="error" class="card err" hidden>
+    <h1 id="err-title">Ce lien n'est plus valide</h1>
+    <p id="err-msg">Le lien d'invitation est invalide ou a expiré. Écris-nous à <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a> et on te dépanne.</p>
+  </div>
+
+  <div id="content" class="card" hidden>
+    <h1 id="greeting">Bienvenue dans la bêta de Vector</h1>
+    <p class="intro" id="intro">Avant de commencer, voici les engagements clés de notre entente. Ils sont simples, mais importants.</p>
+    <ol class="summary" id="summary"></ol>
+
+    <details class="full">
+      <summary id="read-full">Lire l'entente complète</summary>
+      <div class="agreement" id="agreement">…</div>
+    </details>
+
+    <label class="accept">
+      <input type="checkbox" id="box"/>
+      <span id="accept-label">J'ai lu et j'accepte l'entente de confidentialité bêta de Vector (v1.3).</span>
+    </label>
+
+    <div class="actions">
+      <button class="primary" id="continue" disabled>Continuer</button>
+      <div class="lang"><a id="lang-switch">English version →</a></div>
+    </div>
+  </div>
+
+  <div class="foot">Vector · vectorplanning.ai</div>
+</main>
+
+<!-- Modal de consentement EN (Loi 96) -->
+<div class="overlay" id="modal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h2>Confirmer le choix de la langue / Language confirmation</h2>
+    <p>En cliquant sur « Continuer en anglais », vous confirmez avoir reçu la version française de l'entente et choisissez expressément d'être lié par la version anglaise. Tous les documents qui se rattachent à cette entente (courriels, factures) pourront alors vous être transmis en anglais.</p>
+    <p class="en">By clicking "Continue in English", you confirm having received the French version of the agreement and expressly choose to be bound by the English version. All documents related to this agreement (emails, invoices) may then be sent to you in English.</p>
+    <div class="row">
+      <button id="modal-cancel">Annuler / Cancel</button>
+      <button id="modal-go" class="go">Continuer en anglais / Continue in English</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var API = '/api/beta-nda';
+  var FRAG = function(l){ return '/legal/beta-nda/v1.3/' + l + '.html'; };
+
+  // État en MÉMOIRE uniquement — aucune persistance (localStorage/sessionStorage/cookie).
+  var token = null, lang = 'fr', englishConsent = false, version = 'v1.3', firstName = null;
+  var expectedHash = { fr:null, en:null }, hashOk = true;
+
+  var T = {
+    fr:{
+      title:'Entente de confidentialité — Bêta Vector',
+      greet:function(n){ return n ? ('Bonjour ' + n + ' — bienvenue dans la bêta de Vector') : 'Bienvenue dans la bêta de Vector'; },
+      intro:'Avant de commencer, voici les engagements clés de notre entente. Ils sont simples, mais importants.',
+      readFull:'Lire l’entente complète',
+      accept:function(v){ return 'J’ai lu et j’accepte l’entente de confidentialité bêta de Vector (' + v + ').'; },
+      cont:'Continuer',
+      switch:'English version →',
+      points:[
+        ['Confidentialité','Vous gardez pour vous les fonctionnalités, l’interface, les bugs, les benchmarks et la feuille de route de Vector. Vous pouvez en parler avec votre comptable, conjoint, associé ou conseiller, à condition qu’ils soient aussi tenus à la confidentialité. Pas de captures publiques, pas de comparatifs détaillés, pas de détails techniques.'],
+        ['Vector reste propriétaire de Vector','Le code, les agents IA, les prompts et l’architecture appartiennent à Vector. Vous obtenez un droit d’utilisation limité durant la bêta, rien de plus.'],
+        ['Vos suggestions nous appartiennent','Toute idée ou rétroaction que vous nous transmettez peut être intégrée à Vector sans compensation ni attribution.'],
+        ['Un produit encore en rodage','Comme toute version bêta, Vector continue de s’améliorer : un ralentissement ou un bug peut arriver à l’occasion. Une perte de données reste peu probable, sans être totalement exclue — par prudence, gardez une copie de l’essentiel ailleurs et évitez d’en faire, pour l’instant, votre seul outil pour vos tâches les plus critiques.'],
+        ['Vos données vous appartiennent','Si vous quittez la bêta, écrivez-nous pour obtenir une copie de vos données puis leur suppression.'],
+        ['En cas de problème, vous nous prévenez','Compte compromis, capture partagée par erreur, demande légale de divulgation : 72 heures pour nous aviser.'],
+        ['Durée des engagements','18 mois après la fin de votre participation pour l’information générale ; sans limite pour les éléments techniques sensibles (code, prompts, algorithmes), tant qu’ils ne sont pas publics.']
+      ]
+    },
+    en:{
+      title:'Confidentiality Agreement — Vector Beta',
+      greet:function(n){ return n ? ('Hello ' + n + ' — welcome to the Vector beta') : 'Welcome to the Vector beta'; },
+      intro:'Before you start, here are the key commitments of our agreement. They are simple but important.',
+      readFull:'Read the full agreement',
+      accept:function(v){ return 'I have read and accept the Vector beta Confidentiality Agreement (' + v + ').'; },
+      cont:'Continue',
+      switch:'← Version française',
+      points:[
+        ['Confidentiality','You keep Vector’s features, interface, bugs, benchmarks and roadmap to yourself. You may discuss them with your accountant, spouse, partner or advisor, provided they are also bound to confidentiality. No public screenshots, no detailed comparisons, no technical details.'],
+        ['Vector remains the owner of Vector','The code, AI agents, prompts and architecture belong to Vector. You get a limited right of use during the beta, nothing more.'],
+        ['Your suggestions belong to us','Any idea or feedback you send us may be integrated into Vector without compensation or attribution.'],
+        ['Still improving','Like any beta, Vector is still getting better: a slowdown or a bug can happen now and then. Data loss is unlikely, though not entirely impossible — to be safe, keep a copy of the essentials elsewhere and, for now, avoid making Vector your only tool for your most critical tasks.'],
+        ['Your data belongs to you','If you leave the beta, write to us to obtain a copy of your data and then its deletion.'],
+        ['If there is a problem, you tell us','Compromised account, screenshot shared by mistake, legal disclosure request: 72 hours to notify us.'],
+        ['Duration of commitments','18 months after the end of your participation for general information; without time limit for sensitive technical elements (code, prompts, algorithms), as long as they are not public.']
+      ]
+    }
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  function show(el){ el.hidden = false; } function hide(el){ el.hidden = true; }
+
+  function showError(title, msg){
+    hide($('loading')); hide($('content'));
+    if(title) $('err-title').textContent = title;
+    if(msg) $('err-msg').innerHTML = msg;
+    show($('error'));
+  }
+
+  async function sha256Hex(buf){
+    var h = await crypto.subtle.digest('SHA-256', buf);
+    return Array.prototype.map.call(new Uint8Array(h), function(b){ return ('0'+b.toString(16)).slice(-2); }).join('');
+  }
+
+  async function loadAgreement(l){
+    var box = $('agreement');
+    try{
+      var res = await fetch(FRAG(l), { cache:'no-store' });
+      var bytes = await res.arrayBuffer();
+      // Contrôle d'intégrité : le texte affiché doit correspondre au hash figé.
+      if(expectedHash[l]){
+        var got = await sha256Hex(bytes);
+        if(got !== expectedHash[l]){
+          hashOk = false;
+          showError('Erreur d’intégrité du document',
+            'Le document affiché ne correspond pas à la version certifiée. Par précaution, la signature est bloquée. Écris-nous à <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a>.');
+          return;
+        }
+      }
+      box.innerHTML = new TextDecoder('utf-8').decode(bytes);
+    }catch(e){
+      box.textContent = (l === 'en' ? 'Unable to load the full text.' : 'Impossible de charger le texte complet.');
+    }
+  }
+
+  function render(l){
+    lang = l;
+    var t = T[l];
+    document.documentElement.lang = l;
+    document.title = t.title;
+    $('greeting').textContent = t.greet(firstName);
+    $('intro').textContent = t.intro;
+    $('read-full').textContent = t.readFull;
+    $('accept-label').textContent = t.accept(version);
+    $('continue').textContent = t.cont;
+    $('lang-switch').textContent = t.switch;
+    var ol = $('summary'); ol.innerHTML = '';
+    t.points.forEach(function(p){
+      var li = document.createElement('li');
+      var b = document.createElement('b'); b.textContent = p[0] + '. ';
+      li.appendChild(b); li.appendChild(document.createTextNode(p[1]));
+      ol.appendChild(li);
+    });
+    // Tout changement de langue ré-arme le consentement (nouvelle version acceptée).
+    $('box').checked = false; $('continue').disabled = true;
+    loadAgreement(l);
+  }
+
+  async function api(action, extra){
+    var res = await fetch(API, {
+      method:'POST', cache:'no-store',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify(Object.assign({ action:action, token:token }, extra || {}))
+    });
+    return res.json();
+  }
+
+  async function start(){
+    var qs = new URLSearchParams(location.search);
+    token = qs.get('token');
+    if(!token){ showError(null, 'Lien d’invitation manquant. Écris-nous à <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a>.'); return; }
+    // Retire le jeton de l’URL visible (réduit la persistance ; il reste en mémoire).
+    try{ history.replaceState(null, '', location.pathname); }catch(e){}
+
+    var data = null;
+    try{ data = await api('resolve'); }
+    catch(e){ data = null; } // backend absent (validation locale) → mode démo plus bas
+
+    if(data && data.ok === false){
+      if(data.error === 'INVALID_TOKEN' || data.error === 'REVOKED' || data.error === 'EXPIRED'){ showError(null, null); return; }
+      showError('Oups', 'Une erreur est survenue. Réessaie, ou écris-nous à <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a>.'); return;
+    }
+    if(data && data.ok){
+      firstName = data.first_name || null;
+      if(data.versions){
+        if(data.versions.fr){ expectedHash.fr = data.versions.fr.content_hash; version = 'v' + data.versions.fr.version; }
+        if(data.versions.en){ expectedHash.en = data.versions.en.content_hash; }
+      }
+    }
+    // Loi 96 : on affiche TOUJOURS le français en premier, peu importe la langue d’invitation.
+    hide($('loading')); show($('content'));
+    render('fr');
+  }
+
+  // Événements
+  document.addEventListener('change', function(e){
+    if(e.target && e.target.id === 'box'){ $('continue').disabled = !(e.target.checked && hashOk); }
+  });
+  $('continue').addEventListener('click', async function(){
+    if($('continue').disabled) return;
+    $('continue').disabled = true; $('continue').textContent = (lang==='en'?'Please wait…':'Un instant…');
+    try{
+      var data = await api('accept', { language_chosen: lang, english_consent: (lang==='en' && englishConsent) });
+      if(data && data.ok && data.redirect_url){ location.href = data.redirect_url; return; }
+      showError('Oups', 'Impossible d’enregistrer ton acceptation. Réessaie, ou écris-nous à <a href="mailto:info@vectorplanning.ai">info@vectorplanning.ai</a>.');
+    }catch(e){
+      $('continue').disabled = false; $('continue').textContent = T[lang].cont;
+      alert(lang==='en' ? 'Network error. Please try again.' : 'Erreur réseau. Réessaie.');
+    }
+  });
+  // Bascule de langue
+  $('lang-switch').addEventListener('click', function(){
+    if(lang === 'en'){ englishConsent = false; render('fr'); return; }
+    $('modal').classList.add('show');
+  });
+  $('modal-cancel').addEventListener('click', function(){ $('modal').classList.remove('show'); });
+  $('modal-go').addEventListener('click', function(){
+    englishConsent = true; $('modal').classList.remove('show'); render('en');
+  });
+
+  start();
+})();
+</script>
+</body>
+</html>

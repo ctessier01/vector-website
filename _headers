@@ -6,3 +6,9 @@
 
 /analytics.js
   Cache-Control: public, max-age=300, must-revalidate
+
+# Page de signature du NDA bêta : jamais mise en cache (posture no-store, zéro persistance).
+/beta-nda
+  Cache-Control: no-store, must-revalidate
+/beta-nda.html
+  Cache-Control: no-store, must-revalidate

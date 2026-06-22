@@ -2,7 +2,7 @@
  * Cloudflare Pages Function — POST /api/early-adopter  (Bloc 1.5)
  *
  * Inscription à la LISTE D'ATTENTE early adopter (bêta). Remplace l'ancien
- * envoi Formspree. Distinct du flux ebook (vw_marketing_leads).
+ * envoi Formspree. Distinct du flux ebook (marketing_leads).
  *
  * Reçoit { name, email, lang, domain, stress, source_url,
  *          utm_source, utm_medium, utm_campaign, utm_term, utm_content, referer_url }
@@ -10,7 +10,7 @@
  * Pipeline :
  *   1. Validation des entrées
  *   2. Hash IP + User-Agent (preuve de soumission / anti-abus — aucune IP en clair)
- *   3. INSERT dans Supabase (public.vw_early_adopter_leads)
+ *   3. INSERT dans Supabase (public.early_adopter_leads)
  *   4. Log signup_early_adopter dans marketing_events (CÔTÉ SERVEUR : a le lead_id + UTM)
  *   5. Courriel de confirmation J+0 (Resend, en parallèle) + retour JSON
  *
@@ -89,7 +89,7 @@ export async function onRequestPost(context) {
         }, utm);
 
         const insertRes = await fetch(
-            `${env.SUPABASE_URL}/rest/v1/vw_early_adopter_leads`,
+            `${env.SUPABASE_URL}/rest/v1/early_adopter_leads`,
             { method: 'POST', headers: supabaseHeaders, body: JSON.stringify(insertPayload) }
         );
 
@@ -189,7 +189,7 @@ async function sendConfirmationEmail({ env, lang, name, email, unsubUrl, leadId,
         }
 
         const nowIso = new Date().toISOString();
-        await fetch(`${env.SUPABASE_URL}/rest/v1/vw_early_adopter_leads?id=eq.${leadId}`, {
+        await fetch(`${env.SUPABASE_URL}/rest/v1/early_adopter_leads?id=eq.${leadId}`, {
             method: 'PATCH',
             headers: supabaseHeaders,
             body: JSON.stringify({
