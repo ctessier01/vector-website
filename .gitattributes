@@ -1,4 +1,5 @@
-# Textes legaux figes : aucune conversion de fins de ligne.
-# Le hash SHA-256 de preuve d'acceptation (NDA, et futurs CGU/Politique) est
-# calcule sur des octets LF — une bascule CRLF casserait l'integrite du document.
-legal/**/*.html -text
+# Textes legaux figes : aucune conversion de fins de ligne (toute extension).
+# Le hash SHA-256 de preuve d'acceptation (NDA en .html, CGU/Politique en .md,
+# et tout futur format) est calcule sur des octets LF — une bascule CRLF
+# casserait l'integrite du document.
+legal/** -text

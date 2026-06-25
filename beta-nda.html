@@ -40,6 +40,7 @@
   .accept{display:flex;gap:12px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fcfbf8;margin:0 0 18px;cursor:pointer}
   .accept input{margin-top:3px;width:20px;height:20px;flex:0 0 auto;accent-color:var(--ink);cursor:pointer}
   .accept label{cursor:pointer}
+  .accept.locked{opacity:.55;cursor:default}
   .actions{display:flex;flex-direction:column;gap:14px;align-items:stretch}
   button.primary{appearance:none;border:0;border-radius:12px;background:var(--lime);color:var(--lime-ink);font-weight:800;font-size:16px;padding:15px 22px;cursor:pointer;transition:opacity .15s,transform .05s}
   button.primary:disabled{opacity:.4;cursor:not-allowed}
@@ -80,12 +81,12 @@
 
     <details class="full">
       <summary id="read-full">Lire l'entente complète</summary>
-      <div class="agreement" id="agreement">…</div>
+      <div class="agreement" id="agreement" tabindex="0">…</div>
     </details>
 
     <label class="accept">
-      <input type="checkbox" id="box"/>
-      <span id="accept-label">J'ai lu et j'accepte l'entente de confidentialité bêta de Vector (v1.3).</span>
+      <input type="checkbox" id="box" disabled/>
+      <span id="accept-label">J'ai lu et j'accepte l'entente de confidentialité bêta de Vector (v1.4).</span>
     </label>
 
     <div class="actions">
@@ -101,8 +102,8 @@
 <div class="overlay" id="modal">
   <div class="modal" role="dialog" aria-modal="true">
     <h2>Confirmer le choix de la langue / Language confirmation</h2>
-    <p>En cliquant sur « Continuer en anglais », vous confirmez avoir reçu la version française de l'entente et choisissez expressément d'être lié par la version anglaise. Tous les documents qui se rattachent à cette entente (courriels, factures) pourront alors vous être transmis en anglais.</p>
-    <p class="en">By clicking "Continue in English", you confirm having received the French version of the agreement and expressly choose to be bound by the English version. All documents related to this agreement (emails, invoices) may then be sent to you in English.</p>
+    <p>En cliquant sur « Continuer en anglais », vous confirmez avoir reçu la version française et choisissez expressément d'être lié par la <strong>version anglaise</strong> de la présente entente de confidentialité, ainsi que des <strong>Conditions d'utilisation</strong> et de la <strong>Politique de confidentialité</strong> de Vector, que vous accepterez lors de la création de votre compte. Les communications et documents qui s'y rattachent (courriels, factures) pourront alors vous être transmis en anglais.</p>
+    <p class="en">By clicking "Continue in English", you confirm having received the French version and expressly choose to be bound by the <strong>English version</strong> of this confidentiality agreement, as well as Vector's <strong>Terms of Use</strong> and <strong>Privacy Policy</strong>, which you will accept when creating your account. Related communications and documents (emails, invoices) may then be sent to you in English.</p>
     <div class="row">
       <button id="modal-cancel">Annuler / Cancel</button>
       <button id="modal-go" class="go">Continuer en anglais / Continue in English</button>
@@ -114,11 +115,14 @@
 (function(){
   "use strict";
   var API = '/api/beta-nda';
-  var FRAG = function(l){ return '/legal/beta-nda/v1.3/' + l + '.html'; };
+  var FRAG = function(l){ return '/legal/beta-nda/v1.4/' + l + '.html'; };
 
   // État en MÉMOIRE uniquement — aucune persistance (localStorage/sessionStorage/cookie).
-  var token = null, lang = 'fr', englishConsent = false, version = 'v1.3', firstName = null;
+  var token = null, lang = 'fr', englishConsent = false, version = 'v1.4', firstName = null;
   var expectedHash = { fr:null, en:null }, hashOk = true;
+  // La case d'acceptation reste verrouillée tant que l'entente n'a pas été dépliée ET parcourue jusqu'au bas.
+  var agreementRead = false, agreementLoaded = false;
+  var detailsEl = document.querySelector('details.full');
 
   var T = {
     fr:{
@@ -130,12 +134,12 @@
       cont:'Continuer',
       switch:'English version →',
       points:[
-        ['Confidentialité','Vous gardez pour vous les fonctionnalités, l’interface, les bugs, les benchmarks et la feuille de route de Vector. Vous pouvez en parler avec votre comptable, conjoint, associé ou conseiller, à condition qu’ils soient aussi tenus à la confidentialité. Pas de captures publiques, pas de comparatifs détaillés, pas de détails techniques.'],
+        ['Confidentialité','Vous gardez les fonctionnalités, l’interface, les bugs, les benchmarks et la roadmap de Vector strictement pour vous. Vous ne les partagez, ne les montrez et n’en parlez à personne d’autre — ni démonstration privée, ni captures, ni détails techniques. Vous pouvez seulement dire que vous participez à la bêta de Vector, sans en révéler le contenu.'],
         ['Vector reste propriétaire de Vector','Le code, les agents IA, les prompts et l’architecture appartiennent à Vector. Vous obtenez un droit d’utilisation limité durant la bêta, rien de plus.'],
         ['Vos suggestions nous appartiennent','Toute idée ou rétroaction que vous nous transmettez peut être intégrée à Vector sans compensation ni attribution.'],
         ['Un produit encore en rodage','Comme toute version bêta, Vector continue de s’améliorer : un ralentissement ou un bug peut arriver à l’occasion. Une perte de données reste peu probable, sans être totalement exclue — par prudence, gardez une copie de l’essentiel ailleurs et évitez d’en faire, pour l’instant, votre seul outil pour vos tâches les plus critiques.'],
         ['Vos données vous appartiennent','Si vous quittez la bêta, écrivez-nous pour obtenir une copie de vos données puis leur suppression.'],
-        ['En cas de problème, vous nous prévenez','Compte compromis, capture partagée par erreur, demande légale de divulgation : 72 heures pour nous aviser.'],
+        ['En cas de problème, vous nous prévenez','Compte compromis, capture partagée par erreur, demande légale de divulgation : avisez-nous immédiatement, sans attendre, et au plus tard dans les 24 heures.'],
         ['Durée des engagements','18 mois après la fin de votre participation pour l’information générale ; sans limite pour les éléments techniques sensibles (code, prompts, algorithmes), tant qu’ils ne sont pas publics.']
       ]
     },
@@ -148,12 +152,12 @@
       cont:'Continue',
       switch:'← Version française',
       points:[
-        ['Confidentiality','You keep Vector’s features, interface, bugs, benchmarks and roadmap to yourself. You may discuss them with your accountant, spouse, partner or advisor, provided they are also bound to confidentiality. No public screenshots, no detailed comparisons, no technical details.'],
+        ['Confidentiality','You keep Vector’s features, interface, bugs, benchmarks and roadmap strictly to yourself. You do not share, show or talk about them to anyone else — no private demonstration, no screenshots, no technical details. You may only say that you take part in the Vector beta, without revealing its content.'],
         ['Vector remains the owner of Vector','The code, AI agents, prompts and architecture belong to Vector. You get a limited right of use during the beta, nothing more.'],
         ['Your suggestions belong to us','Any idea or feedback you send us may be integrated into Vector without compensation or attribution.'],
         ['Still improving','Like any beta, Vector is still getting better: a slowdown or a bug can happen now and then. Data loss is unlikely, though not entirely impossible — to be safe, keep a copy of the essentials elsewhere and, for now, avoid making Vector your only tool for your most critical tasks.'],
         ['Your data belongs to you','If you leave the beta, write to us to obtain a copy of your data and then its deletion.'],
-        ['If there is a problem, you tell us','Compromised account, screenshot shared by mistake, legal disclosure request: 72 hours to notify us.'],
+        ['If there is a problem, you tell us','Compromised account, screenshot shared by mistake, legal disclosure request: notify us immediately, without waiting, and within 24 hours at the latest.'],
         ['Duration of commitments','18 months after the end of your participation for general information; without time limit for sensitive technical elements (code, prompts, algorithms), as long as they are not public.']
       ]
     }
@@ -174,6 +178,25 @@
     return Array.prototype.map.call(new Uint8Array(h), function(b){ return ('0'+b.toString(16)).slice(-2); }).join('');
   }
 
+  function lockAccept(){
+    var b = $('box'); if(b){ b.checked = false; b.disabled = true; }
+    var a = document.querySelector('.accept'); if(a) a.classList.add('locked');
+    $('continue').disabled = true;
+  }
+  function unlockAccept(){
+    var b = $('box'); if(b) b.disabled = false;
+    var a = document.querySelector('.accept'); if(a) a.classList.remove('locked');
+  }
+  // Déverrouille la case une fois l'entente dépliée et parcourue jusqu'au bas
+  // (ou entièrement visible sans défilement, p. ex. très grand écran).
+  function evalAgreementRead(){
+    if(agreementRead || !agreementLoaded || !detailsEl || !detailsEl.open) return;
+    var box = $('agreement');
+    if(box && (box.scrollTop + box.clientHeight >= box.scrollHeight - 4)){
+      agreementRead = true; unlockAccept();
+    }
+  }
+
   async function loadAgreement(l){
     var box = $('agreement');
     try{
@@ -190,7 +213,9 @@
         }
       }
       box.innerHTML = new TextDecoder('utf-8').decode(bytes);
+      agreementLoaded = true; box.scrollTop = 0; evalAgreementRead();
     }catch(e){
+      agreementLoaded = false;
       box.textContent = (l === 'en' ? 'Unable to load the full text.' : 'Impossible de charger le texte complet.');
     }
   }
@@ -213,8 +238,9 @@
       li.appendChild(b); li.appendChild(document.createTextNode(p[1]));
       ol.appendChild(li);
     });
-    // Tout changement de langue ré-arme le consentement (nouvelle version acceptée).
-    $('box').checked = false; $('continue').disabled = true;
+    // Tout changement de langue ré-arme le consentement (nouvelle version acceptée) :
+    // la case redevient grisée tant que la nouvelle version n'est pas dépliée et lue.
+    agreementRead = false; agreementLoaded = false; lockAccept();
     loadAgreement(l);
   }
 
@@ -258,6 +284,10 @@
   document.addEventListener('change', function(e){
     if(e.target && e.target.id === 'box'){ $('continue').disabled = !(e.target.checked && hashOk); }
   });
+  // Déverrouillage de la case : avoir déplié l'entente ET l'avoir parcourue jusqu'au bas.
+  var agreementBox = $('agreement');
+  if(agreementBox) agreementBox.addEventListener('scroll', evalAgreementRead);
+  if(detailsEl) detailsEl.addEventListener('toggle', function(){ if(detailsEl.open) evalAgreementRead(); });
   $('continue').addEventListener('click', async function(){
     if($('continue').disabled) return;
     $('continue').disabled = true; $('continue').textContent = (lang==='en'?'Please wait…':'Un instant…');
