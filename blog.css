@@ -125,6 +125,28 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);col
             color: var(--text-primary);
         }
 
+        /* ── Encadré « À retenir » (note de synthèse) ── */
+        .article-note {
+            background: rgba(139, 255, 60, 0.06);
+            border: 1px solid rgba(139, 255, 60, 0.22);
+            border-radius: 10px;
+            padding: 1.1rem 1.5rem 1.2rem;
+            margin: 2rem 0;
+        }
+        .note-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--accent-lime);
+            margin-bottom: 0.4rem;
+        }
+        .article-note p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
 
         /* ── Formulaire ebook (CTA article) ── */
         .ebook-form {
