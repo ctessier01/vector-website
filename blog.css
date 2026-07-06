@@ -58,6 +58,15 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);col
         .article-view article { color: var(--text-primary); }
         .article-view p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; }
 
+        /* Liens internes du contenu en vert lime (le bouton CTA est exclu). Pas de glow. */
+        .article-view article a:not(.cta-button) {
+            color: var(--accent-lime);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: opacity 0.15s;
+        }
+        .article-view article a:not(.cta-button):hover { opacity: 0.75; }
+
         .article-view h2 {
             text-align: left;
             margin-top: 2rem;
