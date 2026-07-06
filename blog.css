@@ -134,6 +134,45 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);col
             color: var(--text-primary);
         }
 
+        /* ── Étapes numérotées (procédure) ── */
+        .article-steps {
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        .article-step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem 1.3rem;
+        }
+        .step-num {
+            flex: 0 0 auto;
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-lime);
+            line-height: 1.55;
+            letter-spacing: -0.5px;
+        }
+        .step-body {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .step-body strong {
+            display: block;
+            color: var(--text-primary);
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.02rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.2px;
+        }
+
         /* ── Encadré « À retenir » (note de synthèse) ── */
         .article-note {
             background: rgba(139, 255, 60, 0.06);
