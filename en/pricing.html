@@ -543,8 +543,9 @@
 </ul>
 </div>
 <form class="waitlist" onsubmit="return joinWaitlist(event, 'delegation')">
-<input autocomplete="given-name" maxlength="80" name="name" placeholder="Your first name" required="" type="text"/>
-<input autocomplete="email" maxlength="180" name="email" placeholder="Your email" required="" type="email"/>
+<input autocomplete="given-name" maxlength="80" name="name" placeholder="Your first name *" required="" type="text"/>
+<input autocomplete="family-name" maxlength="80" name="last_name" placeholder="Your last name *" required="" type="text"/>
+<input autocomplete="email" maxlength="180" name="email" placeholder="Your email *" required="" type="email"/>
 <label class="waitlist-consent">
 <input name="consent_marketing" type="checkbox" value="1"/>
 <span>Also keep me posted on Vector news. One-click unsubscribe.</span>
@@ -578,8 +579,9 @@
 </ul>
 </div>
 <form class="waitlist" onsubmit="return joinWaitlist(event, 'propulsion')">
-<input autocomplete="given-name" maxlength="80" name="name" placeholder="Your first name" required="" type="text"/>
-<input autocomplete="email" maxlength="180" name="email" placeholder="Your email" required="" type="email"/>
+<input autocomplete="given-name" maxlength="80" name="name" placeholder="Your first name *" required="" type="text"/>
+<input autocomplete="family-name" maxlength="80" name="last_name" placeholder="Your last name *" required="" type="text"/>
+<input autocomplete="email" maxlength="180" name="email" placeholder="Your email *" required="" type="email"/>
 <label class="waitlist-consent">
 <input name="consent_marketing" type="checkbox" value="1"/>
 <span>Also keep me posted on Vector news. One-click unsubscribe.</span>
@@ -663,7 +665,7 @@
 
   var PAGE_LANG = 'en';
   var WL = {
-    required: "Please enter your first name and email.",
+    required: "Please enter your first name, last name and email.",
     sending:  "Sending…",
     success:  "You're on the list, we'll email you at launch.",
     error:    "Something went wrong. Please try again shortly.",
@@ -685,10 +687,11 @@
     var msgEl = form.querySelector('.waitlist-msg');
     var btn = form.querySelector('button[type="submit"]');
     var name = form.querySelector('input[name="name"]').value.trim();
+    var lastName = form.querySelector('input[name="last_name"]').value.trim();
     var email = form.querySelector('input[name="email"]').value.trim();
     var consent = form.querySelector('input[name="consent_marketing"]').checked;
 
-    if (!name || !email) {
+    if (!name || !lastName || !email) {
       msgEl.textContent = WL.required;
       msgEl.style.color = 'var(--accent-lime)';
       return false;
@@ -701,6 +704,7 @@
     try {
       var payload = Object.assign({
         name: name,
+        last_name: lastName,
         email: email,
         plan: plan,
         lang: PAGE_LANG,

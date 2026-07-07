@@ -106,8 +106,9 @@ window.VECTOR_ARTICLE = {"slug": "cerveau-qui-ne-s-eteint-pas-travailleur-autono
   <p class="article-cta-title">Reçois le guide gratuit : « Le système anti-surprise »</p>
   <p>Ton cerveau ne décroche pas tant qu'il n'a pas la preuve que rien ne va tomber entre les craques. Ce guide en cinq étapes t'aide à refermer tes journées, à rendre tes engagements visibles et tes semaines fiables, pour éteindre la lumière sans rouvrir la liste dans ta tête. 15 minutes de lecture, applicable dès ce soir.</p>
   <form class="ebook-form" onsubmit="return requestEbook(event, 'fr')">
-    <input type="text" name="name" placeholder="Ton prénom" required autocomplete="given-name" maxlength="80">
-    <input type="email" name="email" placeholder="Ton courriel" required autocomplete="email" maxlength="180">
+    <input type="text" name="name" placeholder="Ton prénom *" required autocomplete="given-name" maxlength="80">
+    <input type="text" name="last_name" placeholder="Ton nom de famille *" required autocomplete="family-name" maxlength="80">
+    <input type="email" name="email" placeholder="Ton courriel *" required autocomplete="email" maxlength="180">
     <label class="ebook-form-consent">
       <input type="checkbox" name="consent_marketing" value="1">
       <span>J'aimerais aussi recevoir tes courriels, articles sur la réalité d'être travailleur autonome, nouveautés Vector, et conseils pour avancer sans s'épuiser. Désinscription en un clic à tout moment.</span>

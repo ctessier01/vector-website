@@ -118,6 +118,7 @@
     var sourceArticle = (window.VECTOR_ARTICLE && window.VECTOR_ARTICLE.slug) || null;
     var payload = Object.assign({
       name: form.name.value.trim(),
+      last_name: form.last_name ? form.last_name.value.trim() : null,
       email: form.email.value.trim(),
       lang: lng,
       source_form: 'ebook_anti_surprise',

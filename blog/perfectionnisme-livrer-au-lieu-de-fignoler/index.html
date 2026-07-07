@@ -109,8 +109,9 @@ window.VECTOR_ARTICLE = {"slug": "perfectionnisme-livrer-au-lieu-de-fignoler", "
   <p class="article-cta-title">Reçois le guide gratuit : « Le système anti-surprise »</p>
   <p>Le fignolage est souvent une façon de garder le contrôle quand tout le reste déborde. Ce guide en cinq étapes t'aide à alléger ta charge et à rendre tes semaines plus prévisibles, pour livrer sans te sentir obligé de tout tenir parfait. 15 minutes de lecture, applicable cette semaine.</p>
   <form class="ebook-form" onsubmit="return requestEbook(event, 'fr')">
-    <input type="text" name="name" placeholder="Ton prénom" required autocomplete="given-name" maxlength="80">
-    <input type="email" name="email" placeholder="Ton courriel" required autocomplete="email" maxlength="180">
+    <input type="text" name="name" placeholder="Ton prénom *" required autocomplete="given-name" maxlength="80">
+    <input type="text" name="last_name" placeholder="Ton nom de famille *" required autocomplete="family-name" maxlength="80">
+    <input type="email" name="email" placeholder="Ton courriel *" required autocomplete="email" maxlength="180">
     <label class="ebook-form-consent">
       <input type="checkbox" name="consent_marketing" value="1">
       <span>J'aimerais aussi recevoir tes courriels, articles sur la réalité d'être travailleur autonome, nouveautés Vector, et conseils pour avancer sans s'épuiser. Désinscription en un clic à tout moment.</span>

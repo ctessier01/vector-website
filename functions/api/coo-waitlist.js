@@ -7,7 +7,7 @@
  * Pipeline distinct d'/api/early-adopter (bêta) et d'/api/ebook-request (lead magnets).
  * Écrit dans sa propre table : public.coo_waitlist_leads.
  *
- * Reçoit { name, email, plan, lang, consent_marketing, source_url,
+ * Reçoit { name, last_name, email, plan, lang, consent_marketing, source_url,
  *          utm_source, utm_medium, utm_campaign, utm_term, utm_content, referer_url }
  *   - plan : 'delegation' | 'propulsion' (obligatoire)
  *   - consent_marketing : booléen (case décochée par défaut). N'est PAS requis pour
@@ -47,6 +47,8 @@ export async function onRequestPost(context) {
         }
 
         const name = typeof data.name === 'string' ? data.name.trim() : '';
+        // Nullable : tolère les pages/JS en cache d'avant l'ajout du champ
+        const lastName = typeof data.last_name === 'string' ? (data.last_name.trim().slice(0, 80) || null) : null;
         const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
         const lang = data.lang === 'en' ? 'en' : 'fr';
         const plan = typeof data.plan === 'string' ? data.plan.trim().toLowerCase() : '';
@@ -85,6 +87,7 @@ export async function onRequestPost(context) {
         // ── 4. INSERT du lead ─────────────────────────────────────────
         const insertPayload = Object.assign({
             name: name,
+            last_name: lastName,
             email: email,
             lang: lang,
             plan: plan,
@@ -135,7 +138,7 @@ export async function onRequestPost(context) {
         let notifyPromise = Promise.resolve();
         if (env.RESEND_API_KEY) {
             emailPromise = sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, consentMarketing, leadId: lead.id, supabaseHeaders });
-            notifyPromise = sendOwnerNotification({ env, name, email, lang, plan });
+            notifyPromise = sendOwnerNotification({ env, name, lastName, email, lang, plan });
         } else {
             console.warn('RESEND_API_KEY absent : confirmation liste d\'attente non envoyée.');
         }
@@ -221,10 +224,11 @@ async function sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, c
 // Notification interne — alerte le propriétaire à chaque inscription
 // ──────────────────────────────────────────────────────────────────────────
 
-async function sendOwnerNotification({ env, name, email, lang, plan }) {
+async function sendOwnerNotification({ env, name, lastName, email, lang, plan }) {
     const to = env.OWNER_NOTIFY_EMAIL || 'info@vectorplanning.ai';
+    const fullName = lastName ? `${name} ${lastName}` : name;
     const rows = [
-        ['Nom', name],
+        ['Nom', fullName],
         ['Courriel', email],
         ['Langue', lang],
         ['Plan visé', plan || '—']
@@ -252,7 +256,7 @@ async function sendOwnerNotification({ env, name, email, lang, plan }) {
                 from: env.EBOOK_FROM || DEFAULT_FROM,
                 to: [to],
                 reply_to: email,
-                subject: `🎉 Liste d'attente COO : ${name}`,
+                subject: `🎉 Liste d'attente COO : ${fullName}`,
                 html: html,
                 text: text
             })

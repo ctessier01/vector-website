@@ -404,8 +404,8 @@
 </h2>
 <p class="lead center" data-i18n="cta_sub" style="margin:18px auto 0;max-width:560px;">Rejoins la beta. Teste Vector. Aide-nous à l’améliorer. Grâce à ton feedback, tu auras la chance d’influencer directement le produit avant son lancement. Et tu obtiens Vector complètement gratuitement pendant 3 mois.</p>
 <form class="col" id="beta-form" style="gap:12px;max-width:460px;margin:30px auto 0;">
-<div style="display:flex;gap:12px;"><input autocomplete="given-name" class="field" data-ph="ea_name" id="ea-name" placeholder="Ton prénom" type="text" style="flex:1;min-width:0;"/><input autocomplete="family-name" class="field" data-ph="ea_lastname" id="ea-lastname" placeholder="Ton nom de famille" type="text" style="flex:1;min-width:0;"/></div>
-<input autocomplete="email" class="field" data-ph="ea_email" id="ea-email" placeholder="Ton courriel" type="email"/>
+<div style="display:flex;gap:12px;"><input autocomplete="given-name" class="field" data-ph="ea_name" id="ea-name" placeholder="Ton prénom *" required type="text" style="flex:1;min-width:0;"/><input autocomplete="family-name" class="field" data-ph="ea_lastname" id="ea-lastname" placeholder="Ton nom de famille *" required type="text" style="flex:1;min-width:0;"/></div>
+<input autocomplete="email" class="field" data-ph="ea_email" id="ea-email" placeholder="Ton courriel *" required type="email"/>
 <input class="field" data-ph="ea_domain" id="ea-domain" placeholder="Ton domaine (freelance, consultant, etc.)" type="text"/>
 <textarea class="field" data-ph="ea_stress" id="ea-stress" placeholder="En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?"></textarea>
 <label style="display:flex;align-items:flex-start;gap:8px;margin-top:2px;font-size:13px;line-height:1.45;color:var(--fg2);text-align:left;cursor:pointer;">
@@ -479,9 +479,9 @@
       art_read:"Lire →", art_read2:"Lire →", art_read3:"Lire →",
       cta_chip:"Beta privée · 25 places", cta_h1:"Les 25 premiers testeurs reçoivent", cta_h2:"3 mois gratuits au plan Accélération", cta_h3:"+ accès prioritaire au plan Délégation",
       cta_sub:"Rejoins la beta. Teste Vector. Aide-nous à l’améliorer. Grâce à ton feedback, tu auras la chance d’influencer directement le produit avant son lancement. Et tu obtiens Vector complètement gratuitement pendant 3 mois.",
-      ea_name:"Ton prénom", ea_lastname:"Ton nom de famille", ea_email:"Ton courriel", ea_domain:"Ton domaine (freelance, consultant, etc.)", ea_stress:"En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?",
+      ea_name:"Ton prénom *", ea_lastname:"Ton nom de famille *", ea_email:"Ton courriel *", ea_domain:"Ton domaine (freelance, consultant, etc.)", ea_stress:"En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?",
       ea_submit:"Envoyer", ea_sending:"Envoi…", cta_note:"Aucune carte de crédit requise · désinscription en un clic", ea_consent:"Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.",
-      msg_success:"Merci ! Tu es sur la liste. On te revient bientôt.", msg_error:"Oups, un souci est survenu. Réessaie.", msg_net:"Problème de connexion. Réessaie.", msg_required:"Indique au moins ton prénom et ton courriel.",
+      msg_success:"Merci ! Tu es sur la liste. On te revient bientôt.", msg_error:"Oups, un souci est survenu. Réessaie.", msg_net:"Problème de connexion. Réessaie.", msg_required:"Indique ton prénom, ton nom et ton courriel.",
       f_product:"Produit", f_features:"Fonctionnalités", f_mobile:"Application mobile", f_alfred:"Bientôt : Alfred, COO",
       f_arthur:"Arthur, CPO", f_arthur_can:"Ce qu'il peut faire pour toi", f_arthur_how:"Comment il planifie",
       f_plans:"Abonnements", f_pricing:"Tarifs", f_trial:"Essai gratuit", f_credits:"Crédits IA",
@@ -537,9 +537,9 @@
       art_read:"Read →", art_read2:"Read →", art_read3:"Read →",
       cta_chip:"Private beta · 25 spots", cta_h1:"The first 25 testers get", cta_h2:"3 free months of the Acceleration plan", cta_h3:"+ priority access to the Delegation plan",
       cta_sub:"Join the beta. Try Vector. Help us improve it. Thanks to your feedback, you’ll get to directly shape the product before launch. And you get Vector completely free for 3 months.",
-      ea_name:"Your first name", ea_lastname:"Your last name", ea_email:"Your email", ea_domain:"Your field (freelance, consultant, etc.)", ea_stress:"In 1 sentence: what's your biggest solopreneur stress?",
+      ea_name:"Your first name *", ea_lastname:"Your last name *", ea_email:"Your email *", ea_domain:"Your field (freelance, consultant, etc.)", ea_stress:"In 1 sentence: what's your biggest solopreneur stress?",
       ea_submit:"Send", ea_sending:"Sending…", cta_note:"No credit card required · unsubscribe in one click", ea_consent:"Also keep me posted on Vector news. One-click unsubscribe.",
-      msg_success:"Thanks! You're on the list. We'll be in touch soon.", msg_error:"Oops, something went wrong. Try again.", msg_net:"Connection problem. Try again.", msg_required:"Please enter at least your first name and email.",
+      msg_success:"Thanks! You're on the list. We'll be in touch soon.", msg_error:"Oops, something went wrong. Try again.", msg_net:"Connection problem. Try again.", msg_required:"Please enter your first name, last name and email.",
       f_product:"Product", f_features:"Features", f_mobile:"Mobile app", f_alfred:"Coming soon: Alfred, COO",
       f_arthur:"Arthur, CPO", f_arthur_can:"What he can do for you", f_arthur_how:"How he plans",
       f_plans:"Plans", f_pricing:"Pricing", f_trial:"Free trial", f_credits:"AI credits",
@@ -655,7 +655,7 @@
     var stress=document.getElementById('ea-stress').value.trim();
     var consent=document.getElementById('ea-consent').checked;
     var msg=document.getElementById('ea-msg'); var btn=document.getElementById('ea-submit');
-    if(!name || !email){ msg.textContent=d.msg_required; msg.style.color='#ff6b6b'; return; }
+    if(!name || !lastname || !email){ msg.textContent=d.msg_required; msg.style.color='#ff6b6b'; return; }
     btn.textContent=d.ea_sending; btn.disabled=true;
     try {
       var payload=Object.assign({ name:name, last_name:lastname, email:email, lang:currentLang, domain:domain, stress:stress, consent_marketing:consent, source_url:location.href }, getAttribution());

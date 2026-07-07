@@ -1,7 +1,7 @@
 /**
  * Cloudflare Pages Function — POST /api/ebook-request  (v3, Phase 1A)
  *
- * Reçoit { name, email, lang, consent_marketing, source_form, source_article, source_url }
+ * Reçoit { name, last_name, email, lang, consent_marketing, source_form, source_article, source_url }
  * depuis un formulaire de capture d'ebook.
  *
  * Pipeline :
@@ -77,6 +77,8 @@ export async function onRequestPost(context) {
         }
 
         const name = typeof data.name === 'string' ? data.name.trim() : '';
+        // Nullable : tolère les pages/JS en cache d'avant l'ajout du champ
+        const lastName = typeof data.last_name === 'string' ? (data.last_name.trim().slice(0, 80) || null) : null;
         const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
         const lang = data.lang === 'en' ? 'en' : 'fr';
         const consentMarketing = data.consent_marketing === true;
@@ -131,6 +133,7 @@ export async function onRequestPost(context) {
 
         const insertPayload = Object.assign({
             name: name,
+            last_name: lastName,
             email: email,
             lang: lang,
             source_form: sourceForm,
