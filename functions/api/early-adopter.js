@@ -74,6 +74,28 @@ export async function onRequestPost(context) {
             'Prefer': 'return=representation'
         };
 
+        // ── 3b. Anti-doublon : courriel déjà sur la liste → court-circuit ──
+        // Évite une 2e ligne, un 2e courriel de confirmation et un 2e event
+        // de conversion quand une personne resoumet le formulaire (ex. pas
+        // certaine que l'envoi a fonctionné). Si la vérif échoue, on laisse
+        // passer : mieux vaut une inscription qu'un blocage.
+        try {
+            const existingRes = await fetch(
+                `${env.SUPABASE_URL}/rest/v1/early_adopter_leads?select=id&email=eq.${encodeURIComponent(email)}&status=neq.deleted&limit=1`,
+                { headers: { 'apikey': env.SUPABASE_SERVICE_ROLE_KEY, 'Authorization': `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}` } }
+            );
+            if (existingRes.ok) {
+                const existing = await existingRes.json().catch(() => []);
+                if (Array.isArray(existing) && existing.length > 0) {
+                    return new Response(JSON.stringify({ success: true, already: true }), {
+                        status: 200, headers: { 'Content-Type': 'application/json' }
+                    });
+                }
+            }
+        } catch (err) {
+            console.error('Dedup pre-check failed (non-blocking):', err);
+        }
+
         // ── 4. INSERT du lead ─────────────────────────────────────────
         const insertPayload = Object.assign({
             name: name,
@@ -94,6 +116,13 @@ export async function onRequestPost(context) {
         );
 
         if (!insertRes.ok) {
+            // 409 = violation d'unicité (doublon attrapé par une contrainte en
+            // base, si elle existe) : on répond comme « déjà inscrit », sans erreur.
+            if (insertRes.status === 409) {
+                return new Response(JSON.stringify({ success: true, already: true }), {
+                    status: 200, headers: { 'Content-Type': 'application/json' }
+                });
+            }
             const errBody = await insertRes.text().catch(() => '');
             console.error('Supabase insert error:', insertRes.status, errBody);
             return jsonError('Database error', 502);

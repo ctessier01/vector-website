@@ -481,7 +481,7 @@
       cta_sub:"Rejoins la beta. Teste Vector. Aide-nous à l’améliorer. Grâce à ton feedback, tu auras la chance d’influencer directement le produit avant son lancement. Et tu obtiens Vector complètement gratuitement pendant 3 mois.",
       ea_name:"Ton prénom *", ea_lastname:"Ton nom de famille *", ea_email:"Ton courriel *", ea_domain:"Ton domaine (freelance, consultant, etc.)", ea_stress:"En 1 phrase : c'est quoi ton plus gros stress de solopreneur ?",
       ea_submit:"Envoyer", ea_sending:"Envoi…", cta_note:"Aucune carte de crédit requise · désinscription en un clic", ea_consent:"Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.",
-      msg_success:"Merci ! Tu es sur la liste. On te revient bientôt.", msg_error:"Oups, un souci est survenu. Réessaie.", msg_net:"Problème de connexion. Réessaie.", msg_required:"Indique ton prénom, ton nom et ton courriel.",
+      msg_success:"Merci ! Tu es sur la liste. On te revient bientôt.", msg_already:"Tu es déjà sur la liste. On te revient bientôt.", ea_done:"Inscrit ✓", msg_error:"Oups, un souci est survenu. Réessaie.", msg_net:"Problème de connexion. Réessaie.", msg_required:"Indique ton prénom, ton nom et ton courriel.",
       f_product:"Produit", f_features:"Fonctionnalités", f_mobile:"Application mobile", f_alfred:"Bientôt : Alfred, COO",
       f_arthur:"Arthur, CPO", f_arthur_can:"Ce qu'il peut faire pour toi", f_arthur_how:"Comment il planifie",
       f_plans:"Abonnements", f_pricing:"Tarifs", f_trial:"Essai gratuit", f_credits:"Crédits IA",
@@ -539,7 +539,7 @@
       cta_sub:"Join the beta. Try Vector. Help us improve it. Thanks to your feedback, you’ll get to directly shape the product before launch. And you get Vector completely free for 3 months.",
       ea_name:"Your first name *", ea_lastname:"Your last name *", ea_email:"Your email *", ea_domain:"Your field (freelance, consultant, etc.)", ea_stress:"In 1 sentence: what's your biggest solopreneur stress?",
       ea_submit:"Send", ea_sending:"Sending…", cta_note:"No credit card required · unsubscribe in one click", ea_consent:"Also keep me posted on Vector news. One-click unsubscribe.",
-      msg_success:"Thanks! You're on the list. We'll be in touch soon.", msg_error:"Oops, something went wrong. Try again.", msg_net:"Connection problem. Try again.", msg_required:"Please enter your first name, last name and email.",
+      msg_success:"Thanks! You're on the list. We'll be in touch soon.", msg_already:"You're already on the list. We'll be in touch soon.", ea_done:"You're in ✓", msg_error:"Oops, something went wrong. Try again.", msg_net:"Connection problem. Try again.", msg_required:"Please enter your first name, last name and email.",
       f_product:"Product", f_features:"Features", f_mobile:"Mobile app", f_alfred:"Coming soon: Alfred, COO",
       f_arthur:"Arthur, CPO", f_arthur_can:"What he can do for you", f_arthur_how:"How he plans",
       f_plans:"Plans", f_pricing:"Pricing", f_trial:"Free trial", f_credits:"AI credits",
@@ -660,8 +660,14 @@
     try {
       var payload=Object.assign({ name:name, last_name:lastname, email:email, lang:currentLang, domain:domain, stress:stress, consent_marketing:consent, source_url:location.href }, getAttribution());
       var res=await fetch('/api/early-adopter',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
-      if(res.ok){ msg.textContent=d.msg_success; msg.style.color='var(--accent)'; ['ea-name','ea-lastname','ea-email','ea-domain','ea-stress'].forEach(function(id){document.getElementById(id).value='';}); document.getElementById('ea-consent').checked=false; }
-      else { msg.textContent=d.msg_error; msg.style.color='#ff6b6b'; }
+      if(res.ok){
+        var body={}; try { body=await res.json(); } catch(e){}
+        msg.textContent = body.already ? d.msg_already : d.msg_success; msg.style.color='var(--accent)';
+        ['ea-name','ea-lastname','ea-email','ea-domain','ea-stress'].forEach(function(id){document.getElementById(id).value='';}); document.getElementById('ea-consent').checked=false;
+        btn.textContent=d.ea_done; btn.disabled=true;   /* reste désactivé : empêche une resoumission accidentelle */
+        return;
+      }
+      msg.textContent=d.msg_error; msg.style.color='#ff6b6b';
     } catch(err){ msg.textContent=d.msg_net; msg.style.color='#ff6b6b'; }
     btn.textContent=d.ea_submit; btn.disabled=false;
   });
