@@ -632,7 +632,7 @@
     var p = new URLSearchParams(location.search);
     var cur = { utm_source:p.get('utm_source'), utm_medium:p.get('utm_medium'), utm_campaign:p.get('utm_campaign'), utm_term:p.get('utm_term'), utm_content:p.get('utm_content'), referer_url:_cleanReferer() };
     var stored = null;
-    try { var MAXAGE=60*24*60*60*1000; var raw = localStorage.getItem('vector_attr'); if (raw) { var o=JSON.parse(raw); if (o && o.ts && (Date.now()-o.ts)<MAXAGE) stored=o; } if (!stored && (cur.utm_source || cur.utm_medium || cur.utm_campaign)) { localStorage.setItem('vector_attr', JSON.stringify(Object.assign({}, cur, {ts:Date.now()}))); } } catch(e){}
+    try { var raw = sessionStorage.getItem('vector_attr'); if (raw) stored = JSON.parse(raw); else if (cur.utm_source || cur.utm_medium || cur.utm_campaign) { sessionStorage.setItem('vector_attr', JSON.stringify(cur)); } } catch(e){}
     var a = stored || cur;
     return { utm_source:a.utm_source||null, utm_medium:a.utm_medium||null, utm_campaign:a.utm_campaign||null, utm_term:a.utm_term||null, utm_content:a.utm_content||null, referer_url:(a.referer_url!=null?a.referer_url:_cleanReferer()) };
   }
