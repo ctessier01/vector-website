@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Gérer plusieurs clients en parallèle sans rien échapper : pourquoi ta mémoire déborde avec trois clients, et comment sortir de ta tête qui attend quoi." name="description"/>
+<meta content="index, follow" name="robots"/>
+<title>Pourquoi tu échappes des balles dès que tu as trois clients — Vector</title>
+<link href="https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/" rel="canonical"/>
+<link href="https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/" hreflang="x-default" rel="alternate"/>
+<link href="https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/" hreflang="fr" rel="alternate"/>
+<link href="https://vectorplanning.ai/en/blog/why-you-drop-balls-with-three-clients/" hreflang="en" rel="alternate"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="Vector"/>
+<meta property="og:locale" content="fr_CA"/>
+<meta property="og:title" content="Pourquoi tu échappes des balles avec trois clients"/>
+<meta property="og:description" content="Trois clients, des dizaines de fils ouverts. Le débordement est mécanique, pas un défaut de sérieux. Voici comment sortir le tableau de ta tête."/>
+<meta property="og:url" content="https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/"/>
+<meta property="og:image" content="https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/og.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:alt" content="Pourquoi tu échappes des balles avec trois clients"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Pourquoi tu échappes des balles avec trois clients"/>
+<meta name="twitter:description" content="Trois clients, des dizaines de fils ouverts. Le débordement est mécanique, pas un défaut de sérieux. Voici comment sortir le tableau de ta tête."/>
+<meta name="twitter:image" content="https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/og.png"/>
+<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<link href="/blog.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pourquoi tu échappes des balles dès que tu as trois clients",
+  "description": "Gérer plusieurs clients en parallèle sans rien échapper : pourquoi ta mémoire déborde avec trois clients, et comment sortir de ta tête qui attend quoi.",
+  "image": "https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/og.png",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "inLanguage": "fr-CA",
+  "author": {
+    "@type": "Organization",
+    "name": "Vector",
+    "url": "https://vectorplanning.ai"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vector",
+    "url": "https://vectorplanning.ai"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/"
+  },
+  "url": "https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/"
+}
+</script>
+</head>
+<body>
+<script>
+window.VECTOR_PAGE = {"page_type": "article", "page_slug": "pourquoi-tu-echappes-des-balles-avec-trois-clients", "lang": "fr"};
+window.VECTOR_ARTICLE = {"slug": "pourquoi-tu-echappes-des-balles-avec-trois-clients", "url": "https://vectorplanning.ai/blog/pourquoi-tu-echappes-des-balles-avec-trois-clients/", "title": "Pourquoi tu échappes des balles dès que tu as trois clients", "excerpt": "Ce n'est pas que tu as trop de clients. C'est que tu gardes en tête qui attend quoi, et ta mémoire n'a jamais été conçue pour ce tableau de bord.", "lang": "fr"};
+</script>
+<main>
+<div class="article-view active" id="article-44">
+<a class="back-link" href="/blog">← Tous les articles</a>
+<h1>Pourquoi tu échappes des balles dès que tu as trois clients</h1>
+<div class="article-meta">6 min de lecture</div>
+<article><p>Sous la douche, la pensée te frappe d'un coup : le client B attendait ta réponse depuis mardi. On est vendredi.</p>
+<p>Tu n'as rien oublié par négligence. Tu as trois clients actifs, chacun avec ses fils ouverts, et ta tête essaie de tenir le tableau au complet. À un moment, une balle passe entre deux mains. Toujours au pire moment.</p>
+<p>Ce n'est pas un problème de sérieux. C'est un problème de format : tu demandes à ta mémoire un travail pour lequel elle n'a jamais été conçue.</p>
+
+<h2>La balle qui tombe entre deux clients</h2>
+<p>Avec un seul client, tout tient dans ta tête sans effort. Tu sais où en est le projet, ce que tu dois livrer, ce que tu attends de lui. Rien ne te échappe, parce qu'il n'y a qu'un fil à suivre.</p>
+<p>Ajoute un deuxième client. Puis un troisième. Le nombre de fils ne fait pas qu'additionner, il se croise. Le client A attend ton devis, tu attends une validation du client B, le client C t'a envoyé des commentaires que tu n'as pas encore traités. Chaque relation a son propre état, et cet état change sans te prévenir.</p>
+<p>Prends un mardi normal. Le matin, tu es à fond sur le projet du client A. En sortant, tu te rappelles que le client C attend un fichier, tu l'envoies vite. Le client B, lui, t'avait posé une question jeudi dernier. Personne ne te l'a rappelée. Elle existe seulement dans ta tête, et ta tête, ce matin-là, était pleine du client A.</p>
+<p>La balle qui tombe n'est presque jamais la grosse tâche évidente. C'est le petit fil discret : le courriel à renvoyer, la question restée sans réponse, la relance promise « en début de semaine ». C'est exactement le genre de chose que <a href="/blog/pourquoi-les-solopreneurs-oublient-des-taches/">les travailleurs autonomes oublient</a>, non par manque de rigueur, mais parce que le fil s'est perdu dans le bruit des deux autres.</p>
+
+<h2>La charge du suivi croisé</h2>
+<p>Voilà ce qu'on sous-estime : tu ne suis pas trois projets. Tu suis qui attend quoi, de qui, et depuis quand. C'est un tout autre travail.</p>
+<p>Une to-do list classique note tes tâches à toi. Mais elle ne capte pas la moitié invisible : les balles qui sont dans le camp des autres, celles que tu dois surveiller sans pouvoir agir tout de suite. « Le client B doit revenir vers moi » n'est pas une tâche. C'est un fil en attente, et pourtant c'est souvent là que ça déraille.</p>
+<p>Et il y a un enjeu que la liste ne voit pas : la relation. Chaque fil laissé en plan n'est pas juste une tâche en retard, c'est un client qui se demande si tu l'as oublié. Le coût d'une balle échappée n'est pas seulement le travail à rattraper, c'est la confiance à reconstruire.</p>
+<div class="article-highlight">Tu ne suis pas trois projets. Tu suis qui attend quoi, de qui, et depuis quand. Ça, c'est un tableau de bord, pas une simple liste.</div>
+<p>Ce suivi croisé tourne en permanence en arrière-plan de ta tête. Même sous la douche. Même le soir. C'est une charge mentale qui ne s'arrête pas, parce que tu es le seul point où toutes ces relations se rejoignent.</p>
+
+<h2>Pourquoi ta tête n'est pas un tableau de bord</h2>
+<p>Il y a une raison mécanique à tout ça, et elle n'a rien à voir avec ta valeur. Ta mémoire de travail, celle qui garde des éléments actifs « en ce moment », tient environ quatre choses à la fois. Pas quarante. Quatre.</p>
+<div class="stat-single stat-block">
+  <div class="stat-number">4</div>
+  <div class="stat-label">éléments, environ, que ta mémoire de travail garde actifs en même temps</div>
+</div>
+<p>Trois clients actifs, ce n'est pas trois éléments. C'est des dizaines de fils ouverts, qui changent d'état chaque jour. Le débordement n'est pas un défaut de discipline, il est arithmétique. Et chaque fois que tu passes d'un client à l'autre pour vérifier où tu en es, tu paies le prix du <a href="/blog/le-context-switching/">context switching</a> : le temps de recharger tout le contexte de cette relation dans ta tête.</p>
+<p>Ce n'est pas qu'une image. Plus tu ajoutes de fils à surveiller, plus la probabilité qu'un d'entre eux glisse augmente, peu importe ton niveau de rigueur. Les gens très organisés ne retiennent pas plus de choses que toi. Ils en retiennent moins, parce qu'ils ont sorti le reste de leur tête.</p>
+<p>Autrement dit, tu utilises l'outil le plus cher que tu possèdes, ton attention, pour faire le travail le moins créatif qui soit : te souvenir. Et pendant que ta tête sert de tableau de bord, elle ne sert pas à ton vrai métier.</p>
+
+<h2>Sortir de ta tête qui attend quoi</h2>
+<p>La solution n'est pas de mieux te concentrer, ni d'avoir « une meilleure mémoire ». C'est de sortir le tableau de ta tête. De déposer, à un seul endroit, qui attend quoi et depuis quand, pour ne plus avoir à le reconstruire mentalement chaque matin.</p>
+<p>Le principe est simple : ce qui est écrit à un endroit fiable, tu peux le lâcher. Ton cerveau arrête de monter la garde sur un fil dès qu'il a la preuve que ce fil est noté ailleurs. C'est aussi ce qui te permet de faire remonter <a href="/blog/relances-oubliees-clients-travailleur-autonome/">les relances que tu échappes</a> avant qu'elles ne coûtent un contrat.</p>
+<p>Concrètement, ça ne veut pas dire bâtir un système lourd. Ça veut dire un réflexe : dès qu'un fil s'ouvre, tu le déposes, en une phrase. « Client B, attend ma réponse, depuis mardi. » Trois secondes. Ce petit geste, répété, remplace des heures de veille mentale.</p>
+<div class="article-highlight">Les gens qui n'échappent pas de balles n'ont pas une meilleure mémoire. Ils ont une meilleure habitude de tout déposer.</div>
+<div class="stat-comparison stat-block">
+  <div class="stat-compare-item">
+    <div class="stat-compare-label">Dans ta tête</div>
+    <div class="stat-compare-number muted">3</div>
+    <div class="stat-compare-sub">clients, des dizaines de fils</div>
+  </div>
+  <div class="stat-compare-divider">→</div>
+  <div class="stat-compare-item">
+    <div class="stat-compare-label highlight">À un seul endroit</div>
+    <div class="stat-compare-number">1</div>
+    <div class="stat-compare-sub">coup d'oeil pour tout revoir</div>
+  </div>
+</div>
+
+<h2>Un seul endroit où déposer qui attend quoi</h2>
+<p>Soyons clairs sur ce qu'est Vector, et sur ce qu'il n'est pas. Ce n'est pas un CRM, et il ne devine pas tes clients à ta place. C'est plus simple, et plus utile au quotidien : un seul endroit où tu déposes qui attend quoi. Ce que tu y mets, tu le revois d'un coup d'oeil, au lieu de le porter dans ta tête.</p>
+<p>Une fois que c'est déposé, Arthur, le planificateur de Vector, monte ta journée à partir de là et te rappelle les fils à relancer au bon moment. Tu gardes le contrôle, c'est toi qui décides. Mais tu cesses d'être le seul disque dur où vit l'état de chaque relation.</p>
+<div class="article-note"><div class="note-label">À retenir</div><p>Vector ne suit pas tes clients à ta place. Il te donne un seul endroit où déposer qui attend quoi, pour que ta tête arrête de servir de tableau de bord.</p></div>
+<p>Le vrai soulagement n'est pas de suivre tes clients plus vite. C'est d'arrêter de les suivre de tête. Quand qui attend quoi vit ailleurs que dans ton crâne, tu peux enfin être présent à la tâche du moment, sans la petite alarme de fond qui te demande ce que tu es en train d'oublier.</p>
+<div class="article-cta">
+  <p class="article-cta-title">Et si qui attend quoi vivait ailleurs que dans ta tête ?</p>
+  <p>Vector te donne un seul endroit où déposer tes fils clients, et Arthur monte ta journée à partir de là. Tu peux l'essayer gratuitement pendant 14 jours, plan Accélération, sans carte de crédit.</p>
+  <a class="cta-button" href="/essai">Essayer Vector →</a>
+</div></article>
+<div class="article-share">
+<p class="article-share-label">Partage cet article</p>
+<div class="share-buttons"><button class="share-btn" onclick="shareArticle('facebook')"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</button><button class="share-btn" onclick="shareArticle('x')"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</button><button class="share-btn" onclick="shareArticle('linkedin')"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</button><button class="share-btn" onclick="shareArticle('copy')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;flex-shrink:0;fill:none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Copier le lien</button><button class="share-btn" onclick="shareArticle('instagram')"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.69.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</button></div>
+</div>
+<div class="article-nav"><a class="article-nav-btn" href="/blog/admin-invisible-taches-non-facturables/">← Article précédent</a><a class="article-nav-btn" href="/blog/client-qui-tecrit-a-21h/">Article suivant →</a></div>
+</div>
+</main>
+<script src="/analytics.js"></script>
+<script src="/site-chrome.js"></script>
+</body>
+</html>
