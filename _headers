@@ -7,6 +7,11 @@
 /analytics.js
   Cache-Control: public, max-age=300, must-revalidate
 
+# Feuille de style du blog : revalidation rapide pour que les nouveaux styles
+# (composants d'article) apparaissent vite au lieu du cache par défaut de 4 h.
+/blog.css
+  Cache-Control: public, max-age=300, must-revalidate
+
 # Page de signature du NDA bêta : jamais mise en cache (posture no-store, zéro persistance).
 /beta-nda
   Cache-Control: no-store, must-revalidate
