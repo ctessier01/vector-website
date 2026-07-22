@@ -195,6 +195,76 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);col
             color: var(--text-primary);
         }
 
+        /* ── À faire / à éviter (do / dont) ── */
+        .do-dont {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .dd-col {
+            flex: 1;
+            min-width: 220px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem 1.3rem;
+        }
+        .dd-head {
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.02rem;
+            letter-spacing: -0.2px;
+            margin-bottom: 0.6rem;
+        }
+        .dd-do .dd-head { color: var(--accent-lime); }
+        .dd-dont .dd-head { color: var(--text-secondary); }
+        .do-dont ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .do-dont li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .dd-do li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--accent-lime);
+            font-weight: 700;
+        }
+        .dd-dont li::before {
+            content: "\2715";
+            position: absolute;
+            left: 0;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        /* ── Citation manifeste (phrase-choc pleine largeur) ── */
+        .article-manifesto {
+            margin: 2.6rem 0;
+            font-family: 'Red Hat Display', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.35rem, 4.5vw, 1.7rem);
+            line-height: 1.4;
+            letter-spacing: -0.6px;
+            color: var(--text-primary);
+        }
+        .article-manifesto::before {
+            content: "«\00A0";
+            color: var(--accent-lime);
+        }
+        .article-manifesto::after {
+            content: "\00A0»";
+            color: var(--accent-lime);
+        }
+
 
         /* ── Formulaire ebook (CTA article) ── */
         .ebook-form {
