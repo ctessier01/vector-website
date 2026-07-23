@@ -116,12 +116,15 @@
     if (oldError) oldError.remove();
 
     var sourceArticle = (window.VECTOR_ARTICLE && window.VECTOR_ARTICLE.slug) || null;
+    // Quel lead magnet ? Déclaré par le formulaire via data-ebook. Défaut
+    // rétrocompatible : l'ebook anti-surprise (formulaires d'avant l'ajout du champ).
+    var sourceForm = form.getAttribute('data-ebook') || 'ebook_anti_surprise';
     var payload = Object.assign({
       name: form.name.value.trim(),
       last_name: form.last_name ? form.last_name.value.trim() : null,
       email: form.email.value.trim(),
       lang: lng,
-      source_form: 'ebook_anti_surprise',
+      source_form: sourceForm,
       consent_marketing: form.consent_marketing && form.consent_marketing.checked === true,
       source_article: sourceArticle,
       source_url: window.location.href
@@ -137,7 +140,8 @@
       var filename = data.filename || 'Vector-Guide.pdf';
       var firstName = (form.name.value.trim().split(/\s+/)[0]) || (lng === 'fr' ? 'là' : 'there');
       var headingText = (lng === 'fr' ? 'Parfait, ' : 'Perfect, ') + escapeHtml(firstName) + '.';
-      var subheadText = lng === 'fr' ? '« Le système anti-surprise » est prêt.' : '"The anti-surprise system" is ready.';
+      var guideTitle = data.title || (lng === 'fr' ? 'Ton guide' : 'Your guide');
+      var subheadText = lng === 'fr' ? '« ' + escapeHtml(guideTitle) + ' » est prêt.' : '"' + escapeHtml(guideTitle) + '" is ready.';
       var buttonText = lng === 'fr' ? '📄 Télécharger le guide maintenant' : '📄 Download the guide now';
       var emailNote = lng === 'fr' ? 'Une copie est aussi en route vers ta boîte courriel.' : 'A copy is also on its way to your inbox.';
       var teaserText = lng === 'fr'
@@ -158,7 +162,7 @@
         '</div>';
       var ctaCard = form.closest('.ebook-cta') || form.parentElement;
       ctaCard.innerHTML = successHTML;
-      trackEvent('download_started', { source_form: 'ebook_anti_surprise', article: sourceArticle || null });
+      trackEvent('download_started', { source_form: sourceForm, article: sourceArticle || null });
     } catch (err) {
       button.disabled = false; button.textContent = originalText;
       var errMsg = lng === 'fr'

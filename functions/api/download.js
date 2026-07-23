@@ -46,6 +46,12 @@ const LEAD_MAGNETS = {
         file_en: 'anti-surprise-v1-en-b9c4e1.pdf',
         download_filename_fr: 'Vector-Systeme-anti-surprise.pdf',
         download_filename_en: 'Vector-Anti-surprise-System.pdf'
+    },
+    'ebook_vendre_sans_travestir': {
+        file_fr: 'vendre-sans-travestir-v1-fr-bb118b.pdf',
+        file_en: 'vendre-sans-travestir-v1-en-38eb0b.pdf',
+        download_filename_fr: 'Vector-Vendre-sans-te-travestir.pdf',
+        download_filename_en: 'Vector-Selling-Without-Faking-It.pdf'
     }
     // Synchroniser avec ebook-request.js
 };
