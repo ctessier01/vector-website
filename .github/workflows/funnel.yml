@@ -1,0 +1,74 @@
+# Mini-funnel des lead magnets : declencheur horaire.
+#
+# Les Cloudflare Pages Functions n'ont pas de cron natif. Ce workflow se
+# contente d'appeler /api/funnel-run ; toute la logique (qui recoit quoi,
+# quand, et la garantie LCAP de 14 jours) vit dans la base et la Function.
+#
+# La Function refuse elle-meme d'envoyer hors de la fenetre 9h-17h (Est),
+# donc un declenchement horaire en UTC est sans danger.
+#
+# Prerequis :
+#   - Secret GitHub            : FUNNEL_CRON_SECRET (Settings > Secrets > Actions)
+#   - Variable Cloudflare Pages : FUNNEL_CRON_SECRET (meme valeur)
+name: Mini-funnel ebooks
+
+on:
+  schedule:
+    # Toutes les heures, a la 17e minute (evite les pics de charge GitHub
+    # a l'heure pile, ou les executions sont souvent retardees).
+    - cron: '17 * * * *'
+  workflow_dispatch:        # declenchement manuel depuis l'onglet Actions
+    inputs:
+      force:
+        description: "Ignorer la fenetre horaire 9h-17h (tests)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: funnel-run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Declencher les envois dus
+        env:
+          SECRET: ${{ secrets.FUNNEL_CRON_SECRET }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ -z "$SECRET" ]; then
+            echo "::error::Le secret FUNNEL_CRON_SECRET n'est pas configure dans le depot."
+            exit 1
+          fi
+
+          # ?force=1 uniquement lors d'un declenchement manuel coche : ignore
+          # la fenetre horaire, pour pouvoir tester a n'importe quelle heure.
+          URL="https://vectorplanning.ai/api/funnel-run"
+          if [ "$FORCE" = "true" ]; then
+            URL="$URL?force=1"
+            echo "Mode force : la fenetre horaire 9h-17h est ignoree."
+          fi
+
+          code=$(curl -sS -o response.json -w "%{http_code}" \
+                   --max-time 60 \
+                   -X POST \
+                   -H "X-Funnel-Secret: $SECRET" \
+                   "$URL")
+
+          echo "HTTP $code"
+          cat response.json
+          echo
+
+          if [ "$code" != "200" ]; then
+            echo "::error::L'execution du funnel a echoue (HTTP $code)."
+            exit 1
+          fi
+
+          # Remonte les echecs d'envoi en avertissement, sans faire echouer le
+          # job : un echec ponctuel sera reessaye a l'execution suivante.
+          failed=$(grep -o '"failed":[0-9]*' response.json | cut -d: -f2)
+          if [ -n "$failed" ] && [ "$failed" != "0" ]; then
+            echo "::warning::$failed envoi(s) en echec, ils seront reessayes."
+          fi
