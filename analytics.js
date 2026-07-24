@@ -73,7 +73,7 @@
           page_type: payload.page_type, page_slug: payload.page_slug || null,
           article_id: payload.article_id || null, lang: payload.lang || null
         }, attr))
-      });
+      }).then(function (r) { if (!r.ok) console.warn('[analytics] page_view_events rejeté (' + r.status + ')', payload.page_type); }).catch(function () {});
     } catch (e) {}
   }
   function trackPageView(opts) {
@@ -100,7 +100,7 @@
           event_type: eventType, lead_id: leadId || null, lead_kind: leadKind || null,
           page_slug: slug, metadata: metadata || {}
         }, attr))
-      });
+      }).then(function (r) { if (!r.ok) console.warn('[analytics] marketing_events rejeté (' + r.status + ')', eventType); }).catch(function () {});
     } catch (e) {}
   }
 
