@@ -63,7 +63,7 @@ const FUNNEL_COPY = {
                 cta: 'Ouvrir le guide',
                 cta_kind: 'download',
                 body: [
-                    "Tu as téléchargé « Le système anti-surprise » il y a quelques jours. Si tu ne l'as pas encore ouvert, aucun jugement : c'est exactement le genre de chose qui glisse quand la semaine est pleine.",
+                    "Tu as téléchargé « Le système anti-surprise » il y a trois jours. Si tu ne l'as pas encore ouvert, aucun jugement : c'est exactement le genre de chose qui glisse quand la semaine est pleine.",
                     "Si tu veux un point d'entrée, commence par l'étape 2 : l'inventaire de capacité. C'est la plus courte du guide, et c'est elle qui donne son sens à la projection de l'étape 1. Elle tient en un calcul :"
                 ],
                 calc: ['40 heures théoriques par semaine', "moins 16 heures d'admin, de courriels, de transitions et d'imprévus", '= 24 heures réellement disponibles pour livrer'],
@@ -78,7 +78,7 @@ const FUNNEL_COPY = {
                 cta: 'Open the guide',
                 cta_kind: 'download',
                 body: [
-                    'You downloaded "The anti-surprise system" a few days ago. If you haven\'t opened it yet, no judgment: that\'s exactly the kind of thing that slips when the week is full.',
+                    'You downloaded "The anti-surprise system" three days ago. If you haven\'t opened it yet, no judgment: that\'s exactly the kind of thing that slips when the week is full.',
                     'If you want an entry point, start with step 2: the capacity inventory. It\'s the shortest one in the guide, and it\'s what gives the step 1 projection its meaning. It fits in one calculation:'
                 ],
                 calc: ['40 theoretical hours per week', 'minus 16 hours of admin, email, transitions and interruptions', '= 24 hours actually available to deliver'],
@@ -95,7 +95,7 @@ const FUNNEL_COPY = {
                 cta: 'Essayer Vector gratuitement',
                 cta_kind: 'site',
                 body: [
-                    "Si tu as installé ne serait-ce que la projection 14 jours depuis que tu as le guide, tu as déjà réglé la moitié du problème.",
+                    "Ça fait une semaine. Si tu as installé ne serait-ce que la projection 14 jours, tu as déjà réglé la moitié du problème.",
                     "Le guide se termine sur une idée que je veux te répéter, parce que c'est la question qu'on me pose le plus.",
                     "Le système manuel fonctionne très bien tant que tu as une ou deux dizaines de tâches en vol. Passé une trentaine, ce n'est pas la méthode qui casse, c'est son coût d'entretien. Chaque tâche qui bouge en déplace d'autres, et il faut re-vérifier ce qui entre en collision avec quoi. Tu finis par passer plus de temps à tenir le système à jour qu'à faire le travail.",
                     "C'est pour ce moment précis qu'on a bâti Vector. Tu gardes la méthode, Arthur s'occupe de l'entretien : la projection se tient à jour toute seule, la capacité se calcule sur ton historique réel, et tu reçois une alerte dès qu'une échéance entre en zone à risque.",
@@ -110,7 +110,7 @@ const FUNNEL_COPY = {
                 cta: 'Try Vector free',
                 cta_kind: 'site',
                 body: [
-                    "If you've set up even just the 14-day projection since you got the guide, you've already solved half the problem.",
+                    "It's been a week. If you've set up even just the 14-day projection, you've already solved half the problem.",
                     "The guide ends on an idea I want to repeat here, because it's the question I get most.",
                     "The manual system works very well as long as you have one or two dozen tasks in flight. Past thirty, it isn't the method that breaks, it's its maintenance cost. Every task that moves displaces others, and you have to re-check what collides with what. You end up spending more time keeping the system current than doing the work.",
                     "That's exactly the moment we built Vector for. You keep the method, Arthur handles the upkeep: the projection stays current on its own, capacity is computed from your real history, and you get an alert as soon as a deadline enters the risk zone.",
