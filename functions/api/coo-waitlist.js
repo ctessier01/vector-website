@@ -168,8 +168,8 @@ async function sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, c
     const planLabel = (PLAN_LABELS[plan] || PLAN_LABELS.delegation)[isEn ? 'en' : 'fr'];
 
     const subject = isEn
-        ? `You're on the ${planLabel} waitlist: Alfred is coming`
-        : `Tu es sur la liste d'attente ${planLabel} : Alfred arrive`;
+        ? `You're on the waitlist for Alfred, Vector's COO`
+        : `Tu es sur la liste d'attente pour Alfred, le COO de Vector`;
     const html = isEn
         ? buildEmailEN(safeName, planLabel, unsubUrl, consentMarketing)
         : buildEmailFR(safeName, planLabel, unsubUrl, consentMarketing);
