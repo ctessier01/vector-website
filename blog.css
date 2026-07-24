@@ -439,7 +439,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);col
             letter-spacing: -3px;
         }
 
-        .stat-unit { font-size: 1.6rem; letter-spacing: -0.5px; }
+        .stat-unit { font-size: 1.6rem; letter-spacing: -0.5px; margin-left: 0.2em; }
 
         .stat-label {
             color: var(--text-secondary);

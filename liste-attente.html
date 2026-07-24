@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Alfred, ton Chief Operating Officer, exécute bientôt les petites tâches répétitives qui grugent tes journées. Inscris-toi à la liste d'attente des plans Délégation et Propulsion." name="description"/>
+<meta content="index, follow" name="robots"/>
+<title>Liste d'attente : Alfred, ton Chief Operating Officer — Vector</title>
+<link href="https://vectorplanning.ai/liste-attente" rel="canonical"/>
+<link href="https://vectorplanning.ai/liste-attente" hreflang="x-default" rel="alternate"/>
+<link href="https://vectorplanning.ai/liste-attente" hreflang="fr" rel="alternate"/>
+<link href="https://vectorplanning.ai/en/waitlist" hreflang="en" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="https://vectorplanning.ai/liste-attente" property="og:url"/>
+<meta content="Alfred, ton Chief Operating Officer, arrive" property="og:title"/>
+<meta content="Arthur planifie déjà tes journées. Bientôt, Alfred les exécute. Inscris-toi pour être parmi les premiers avertis." property="og:description"/>
+<meta content="https://vectorplanning.ai/og-image_3.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="fr_CA" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Alfred, ton Chief Operating Officer, arrive" name="twitter:title"/>
+<meta content="https://vectorplanning.ai/og-image_3.png" name="twitter:image"/>
+<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjUgMTAgMTEwIDEyMCI+PGNpcmNsZSBmaWxsPSIjMUMyMDMwIiBjeD0iNjAiIGN5PSI4MCIgcj0iNDYiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI0OCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxMSIgcng9IjQiLz48cmVjdCBmaWxsPSIjM0RBQTAwIiB4PSI1NiIgeT0iMjYiIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiByeD0iMyIvPjxjaXJjbGUgZmlsbD0iIzNEQUEwMCIgY3g9IjMzLjYiIGN5PSI0Mi4zIiByPSI1LjUiLz48Y2lyY2xlIGZpbGw9IiMzREFBMDAiIGN4PSI4Ni40IiBjeT0iNDIuMyIgcj0iNS41Ii8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI0MiIgeTI9IjUxIiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjYwIiB5MT0iODAiIHgyPSI3NiIgeTI9IjU1IiBzdHJva2U9IiM4QkZGM0MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBmaWxsPSIjOEJGRjNDIiBjeD0iNjAiIGN5PSI4MCIgcj0iMTAiLz48L3N2Zz4=" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="/blog.css" rel="stylesheet"/>
+<style>
+  main { max-width: 1080px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+  /* ── Héros ── */
+  .wl-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: start; }
+  .wl-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-lime);
+    border: 1px solid var(--border); background: rgba(139,255,60,0.07);
+    padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.4rem;
+  }
+  .wl-hero h1 {
+    font-family: 'Red Hat Display', sans-serif; font-weight: 800;
+    font-size: 3rem; line-height: 1.05; letter-spacing: -1.2px;
+    color: var(--text-primary); margin-bottom: 1.1rem;
+  }
+  .wl-hero h1 .hl { color: var(--accent-lime); }
+  .wl-sub { font-size: 1.12rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.6rem; }
+  .wl-sub strong { color: var(--text-primary); font-weight: 600; }
+  .wl-trust { font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .wl-trust .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-lime); flex-shrink: 0; }
+
+  /* ── Carte formulaire ── */
+  .wl-form-card { margin-top: 0; text-align: left; }
+  .wl-form-card .article-cta-title { color: var(--accent-lime); font-size: 1.8rem; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 0.85rem; }
+
+  /* ── Le formulaire (repris de la page Tarifs) ── */
+  .waitlist { margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .waitlist input[type="text"],
+  .waitlist input[type="email"] {
+    width: 100%; padding: 0.7rem 0.9rem; border-radius: 9px;
+    border: 1px solid var(--border-soft); background: var(--bg-primary);
+    color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  }
+  .waitlist input:focus { outline: none; border-color: var(--accent-lime); }
+  .waitlist .cta-button { width: 100%; margin-top: 0.3rem; cursor: pointer; border: none; }
+  .waitlist-consent {
+    display: flex; gap: 0.45rem; align-items: flex-start;
+    font-size: 0.74rem; color: var(--text-secondary); line-height: 1.4; cursor: pointer;
+  }
+  .waitlist-consent input { margin-top: 0.15rem; flex-shrink: 0; }
+  .waitlist-msg { font-size: 0.82rem; margin-top: 0.3rem; min-height: 1em; }
+
+  /* ── Sections ── */
+  .wl-section { margin-top: 4.5rem; }
+  .wl-section h2 {
+    font-family: 'Red Hat Display', sans-serif; font-weight: 800;
+    font-size: 1.9rem; letter-spacing: -0.6px; color: var(--text-primary); margin-bottom: 0.7rem;
+  }
+  .wl-section h2 .hl { color: var(--accent-lime); }
+  .wl-section > p.lead { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.8rem; }
+  .wl-section > p.lead strong { color: var(--text-primary); font-weight: 600; }
+
+  /* ── Ce qu'Alfred fait ── */
+  .wl-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .wl-point {
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 14px; padding: 1.4rem 1.4rem;
+  }
+  .wl-point .ico {
+    font-family: 'Red Hat Display', sans-serif; font-weight: 800; font-size: 1.3rem;
+    color: var(--accent-lime); line-height: 1; margin-bottom: 0.7rem;
+  }
+  .wl-point h3 {
+    font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 1.05rem;
+    color: var(--text-primary); margin-bottom: 0.35rem;
+  }
+  .wl-point p { font-size: 0.92rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+
+  /* ── Les deux plans ── */
+  .wl-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-top: 0.5rem; }
+  .wl-plan {
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 16px; padding: 1.7rem 1.6rem; position: relative;
+  }
+  .wl-plan.featured { border-color: var(--accent-lime); box-shadow: 0 0 0 1px var(--accent-lime); }
+  .wl-plan-badge {
+    display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary);
+    border: 1px solid var(--border-soft); border-radius: 999px; padding: 0.2rem 0.6rem; margin-bottom: 0.9rem;
+  }
+  .wl-plan-name { font-family: 'Red Hat Display', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text-primary); }
+  .wl-plan-tag { color: var(--text-secondary); font-size: 0.95rem; margin: 0.3rem 0 1rem; }
+  .wl-plan-price { font-family: 'Red Hat Display', sans-serif; font-weight: 700; color: var(--text-primary); font-size: 1.25rem; margin-bottom: 1.1rem; }
+  .wl-plan-price span { color: var(--text-secondary); font-size: 0.8rem; font-weight: 500; }
+  .wl-feats { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+  .wl-feats li { position: relative; padding-left: 1.65rem; font-size: 0.94rem; color: var(--text-secondary); line-height: 1.45; }
+  .wl-feats li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--accent-lime); font-weight: 800; }
+  .wl-feats li strong { color: var(--text-primary); font-weight: 600; }
+  .wl-feats li.muted { color: var(--text-secondary); opacity: 0.65; font-style: italic; }
+  .wl-feats li.muted::before { content: ''; }
+
+  /* ── CTA de fin ── */
+  .wl-final { text-align: center; margin-top: 4.5rem; }
+  .wl-final h2 { font-size: 2.1rem; }
+  .wl-final .lead { margin-left: auto; margin-right: auto; max-width: 62ch; }
+  .wl-final-btn {
+    display: inline-block; margin-top: 1.2rem; background: var(--accent-lime); color: var(--bg-primary);
+    font-family: 'Red Hat Display', sans-serif; font-weight: 700; font-size: 1.05rem;
+    padding: 0.95rem 2rem; border-radius: 11px; text-decoration: none; transition: background 0.2s;
+  }
+  .wl-final-btn:hover { background: #7CE82F; }
+
+  @media (max-width: 880px) {
+    .wl-hero { grid-template-columns: 1fr; gap: 2rem; }
+    .wl-hero h1 { font-size: 2.3rem; }
+    .wl-points { grid-template-columns: 1fr; }
+    .wl-plans { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ════════ HÉROS ════════ -->
+  <section class="wl-hero">
+    <div>
+      <div class="wl-eyebrow">À venir · Liste d'attente</div>
+      <h1>Rencontre Alfred, ton <span class="hl">Chief Operating Officer</span>.</h1>
+      <p class="wl-sub">
+        Arthur planifie déjà tes journées. Bientôt, <strong>Alfred les exécute</strong>. Il prend en
+        charge les petites tâches répétitives qui grugent tes journées, pour rendre tes heures à
+        ce que toi seul peux faire. Laisse ton courriel : on t'écrit dès qu'il est disponible.
+      </p>
+      <div class="wl-trust"><span class="dot"></span> On te contacte au lancement, sans engagement. Désinscription en un clic.</div>
+    </div>
+
+    <div class="article-cta wl-form-card" id="inscription">
+      <p class="article-cta-title">Sois parmi les premiers</p>
+      <p>Inscris-toi à la liste d'attente d'Alfred. On te prévient dès qu'il est prêt à travailler pour toi.</p>
+      <form class="waitlist" onsubmit="return joinWaitlist(event, 'delegation')">
+        <input type="text" name="name" placeholder="Ton prénom *" required autocomplete="given-name" maxlength="80">
+        <input type="text" name="last_name" placeholder="Ton nom de famille *" required autocomplete="family-name" maxlength="80">
+        <input type="email" name="email" placeholder="Ton courriel *" required autocomplete="email" maxlength="180">
+        <label class="waitlist-consent">
+          <input type="checkbox" name="consent_marketing" value="1">
+          <span>Tiens-moi aussi au courant des nouveautés Vector. Désinscription en un clic.</span>
+        </label>
+        <button type="submit" class="cta-button">M'aviser au lancement</button>
+        <p class="waitlist-msg" data-plan="delegation"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ════════ POURQUOI ALFRED ════════ -->
+  <section class="wl-section">
+    <h2>Tu ne gardes pas les petites tâches parce qu'elles sont <span class="hl">difficiles</span>.</h2>
+    <p class="lead">
+      Tu les gardes parce qu'elles sont faciles, et qu'elles te donnent l'impression d'accomplir quelque chose. Redimensionner une image,
+      relancer une facture, trier trois courriels : chacune prend dix minutes, et ensemble elles
+      avalent tes journées. <strong>Alfred est là pour ça.</strong>
+    </p>
+    <div class="wl-points">
+      <div class="wl-point">
+        <div class="ico">01</div>
+        <h3>Il propose son aide</h3>
+        <p>Dès qu'une tâche inscrite dans un projet peut être prise en charge, Alfred lève la main. Tu n'as pas à y penser.</p>
+      </div>
+      <div class="wl-point">
+        <div class="ico">02</div>
+        <h3>Il exécute, tu décides</h3>
+        <p>Alfred fait le travail répétitif et sans jugement. Les décisions, la relation client, ta signature : ça reste à toi.</p>
+      </div>
+      <div class="wl-point">
+        <div class="ico">03</div>
+        <h3>Il travaille avec Arthur</h3>
+        <p>Ton Chief Planning Officer planifie, ton Chief Operating Officer exécute. La même équipe, du plan à l'action.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ LES DEUX PLANS ════════ -->
+  <section class="wl-section">
+    <h2>Deux plans, deux niveaux de <span class="hl">délégation</span></h2>
+    <p class="lead">
+      Alfred arrive avec <strong>Délégation</strong> et prend toute son ampleur avec <strong>Propulsion</strong>.
+      La liste d'attente est la même : inscris-toi une fois, on te guide vers le bon plan au lancement.
+    </p>
+    <div class="wl-plans">
+      <div class="wl-plan featured">
+        <span class="wl-plan-badge">À venir</span>
+        <div class="wl-plan-name">Délégation</div>
+        <p class="wl-plan-tag">Pour que tu opères à une autre échelle.</p>
+        <div class="wl-plan-price">79 $ <span>/ mois · prix indicatif</span></div>
+        <ul class="wl-feats">
+          <li>Tout <strong>Accélération</strong></li>
+          <li><strong>Alfred, ton Chief Operating Officer</strong>, qui exécute des tâches à la demande</li>
+          <li>Il te propose son aide dès qu'il peut accomplir une tâche inscrite dans un projet</li>
+          <li>Vue Gantt multi-projets globale</li>
+          <li class="muted">Détails finalisés au lancement</li>
+        </ul>
+      </div>
+      <div class="wl-plan">
+        <span class="wl-plan-badge">À venir</span>
+        <div class="wl-plan-name">Propulsion</div>
+        <p class="wl-plan-tag">Pour que plus rien ne t'arrête.</p>
+        <div class="wl-plan-price">119 $ <span>/ mois · prix indicatif</span></div>
+        <ul class="wl-feats">
+          <li>Tout <strong>Délégation</strong></li>
+          <li>Des <strong>employés IA</strong> qui prennent en charge tes tâches récurrentes et fastidieuses</li>
+          <li>Rapports avec image de marque personnalisée</li>
+          <li class="muted">Détails finalisés au lancement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA FINAL ════════ -->
+  <section class="wl-section wl-final">
+    <h2>Ton temps mérite mieux que des tâches à <span class="hl">dix minutes</span>.</h2>
+    <p class="lead">
+      Inscris-toi maintenant : tu seras parmi les premiers avertis quand Alfred sera disponible.
+    </p>
+    <a class="wl-final-btn" href="#inscription">Rejoindre la liste d'attente →</a>
+  </section>
+
+</main>
+
+<script>window.VECTOR_PAGE={page_type:'lead_magnet',page_slug:'coo-waitlist',lang:'fr'};</script>
+<script>
+  // ── Liste d'attente Alfred (Chief Operating Officer) -> POST /api/coo-waitlist ──
+  function _cleanReferer(){ try { if (!document.referrer) return null; var u = new URL(document.referrer); if (u.hostname === location.hostname) return null; return u.hostname + u.pathname; } catch(e){ return null; } }
+  function getAttribution(){
+    var p = new URLSearchParams(location.search);
+    var cur = { utm_source:p.get('utm_source'), utm_medium:p.get('utm_medium'), utm_campaign:p.get('utm_campaign'), utm_term:p.get('utm_term'), utm_content:p.get('utm_content'), referer_url:_cleanReferer() };
+    var stored = null;
+    try { var raw = sessionStorage.getItem('vector_attr'); if (raw) stored = JSON.parse(raw); else if (cur.utm_source || cur.utm_medium || cur.utm_campaign) { sessionStorage.setItem('vector_attr', JSON.stringify(cur)); } } catch(e){}
+    var a = stored || cur;
+    return { utm_source:a.utm_source||null, utm_medium:a.utm_medium||null, utm_campaign:a.utm_campaign||null, utm_term:a.utm_term||null, utm_content:a.utm_content||null, referer_url:(a.referer_url!=null?a.referer_url:_cleanReferer()) };
+  }
+
+  var PAGE_LANG = 'fr';
+  var WL = {
+    required: "Indique ton prénom, ton nom et ton courriel.",
+    sending:  "Envoi…",
+    success:  "C'est noté, on t'écrit dès qu'Alfred est disponible.",
+    error:    "Une erreur est survenue. Réessaie dans un instant.",
+    network:  "Connexion impossible. Vérifie ton réseau et réessaie."
+  };
+
+  async function joinWaitlist(event, plan) {
+    event.preventDefault();
+    var form = event.target;
+    var msgEl = form.querySelector('.waitlist-msg');
+    var btn = form.querySelector('button[type="submit"]');
+    var name = form.querySelector('input[name="name"]').value.trim();
+    var lastName = form.querySelector('input[name="last_name"]').value.trim();
+    var email = form.querySelector('input[name="email"]').value.trim();
+    var consent = form.querySelector('input[name="consent_marketing"]').checked;
+
+    if (!name || !lastName || !email) {
+      msgEl.textContent = WL.required;
+      msgEl.style.color = 'var(--accent-lime)';
+      return false;
+    }
+
+    var label = btn.textContent;
+    btn.textContent = WL.sending;
+    btn.disabled = true;
+
+    try {
+      var payload = Object.assign({
+        name: name, last_name: lastName, email: email,
+        plan: plan, lang: PAGE_LANG, consent_marketing: consent,
+        source_url: window.location.href
+      }, getAttribution());
+      var response = await fetch('/api/coo-waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (response.ok) {
+        msgEl.textContent = WL.success;
+        msgEl.style.color = 'var(--accent-lime)';
+        form.querySelector('input[name="name"]').value = '';
+        form.querySelector('input[name="last_name"]').value = '';
+        form.querySelector('input[name="email"]').value = '';
+        form.querySelector('input[name="consent_marketing"]').checked = false;
+      } else {
+        msgEl.textContent = WL.error;
+        msgEl.style.color = '#ff6b6b';
+      }
+    } catch (err) {
+      msgEl.textContent = WL.network;
+      msgEl.style.color = '#ff6b6b';
+    }
+
+    btn.textContent = label;
+    btn.disabled = false;
+    return false;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { getAttribution(); });
+</script>
+<script src="/analytics.js"></script>
+<script src="/site-chrome.js"></script>
+</body>
+</html>
