@@ -168,8 +168,8 @@ async function sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, c
     const planLabel = (PLAN_LABELS[plan] || PLAN_LABELS.delegation)[isEn ? 'en' : 'fr'];
 
     const subject = isEn
-        ? `You're on the ${planLabel} waitlist — Vector`
-        : `Tu es sur la liste d'attente ${planLabel} — Vector`;
+        ? `You're on the ${planLabel} waitlist: Alfred is coming`
+        : `Tu es sur la liste d'attente ${planLabel} : Alfred arrive`;
     const html = isEn
         ? buildEmailEN(safeName, planLabel, unsubUrl, consentMarketing)
         : buildEmailFR(safeName, planLabel, unsubUrl, consentMarketing);
@@ -355,7 +355,7 @@ ${bodyHtml}
 function buildEmailFR(name, planLabel, unsubUrl, consentMarketing) {
     const body =
 `          <p style="margin:0 0 1.2rem;">Bonjour ${name},</p>
-          <p style="margin:0 0 1.2rem;">C'est noté : tu es sur la liste d'attente pour le plan <strong>${escapeHtml(planLabel)}</strong> de Vector. Merci de ton intérêt — ça nous aide à prioriser ce qu'on bâtit.</p>
+          <p style="margin:0 0 1.2rem;">C'est noté : tu es sur la liste d'attente pour le plan <strong>${escapeHtml(planLabel)}</strong> de Vector, celui qui t'amènera Alfred, ton Chief Operating Officer. Merci de ton intérêt, ça nous aide à prioriser ce qu'on bâtit.</p>
           <p style="margin:0 0 1.2rem;">Je t'écrirai dès que ce plan sera prêt à être lancé, avec les détails et ton accès. Tu n'as rien d'autre à faire d'ici là.</p>
           <p style="margin:0 0 1.2rem;">Une question entre-temps ? Réponds simplement à ce courriel. Je le lis.</p>
           <p style="margin:0 0 0.3rem;">À bientôt,</p>
@@ -372,7 +372,7 @@ function buildTextFR(name, planLabel, unsubUrl, consentMarketing) {
         : `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente ${planLabel} sur vectorplanning.ai.\n\nSe retirer de la liste : ${unsubUrl}`;
     return `Bonjour ${name},
 
-C'est noté : tu es sur la liste d'attente pour le plan ${planLabel} de Vector. Merci de ton intérêt — ça nous aide à prioriser ce qu'on bâtit.
+C'est noté : tu es sur la liste d'attente pour le plan ${planLabel} de Vector, celui qui t'amènera Alfred, ton Chief Operating Officer. Merci de ton intérêt, ça nous aide à prioriser ce qu'on bâtit.
 
 Je t'écrirai dès que ce plan sera prêt à être lancé, avec les détails et ton accès. Tu n'as rien d'autre à faire d'ici là.
 
@@ -391,7 +391,7 @@ ${note}`;
 function buildEmailEN(name, planLabel, unsubUrl, consentMarketing) {
     const body =
 `          <p style="margin:0 0 1.2rem;">Hello ${name},</p>
-          <p style="margin:0 0 1.2rem;">You're on the waitlist for Vector's <strong>${escapeHtml(planLabel)}</strong> plan. Thanks for your interest — it helps us prioritize what we build.</p>
+          <p style="margin:0 0 1.2rem;">You're on the waitlist for Vector's <strong>${escapeHtml(planLabel)}</strong> plan, the one that brings you Alfred, your Chief Operating Officer. Thanks for your interest, it helps us prioritize what we build.</p>
           <p style="margin:0 0 1.2rem;">I'll write as soon as this plan is ready to launch, with the details and your access. Nothing else to do on your end until then.</p>
           <p style="margin:0 0 1.2rem;">A question in the meantime? Just reply to this email. I read every one.</p>
           <p style="margin:0 0 0.3rem;">Talk soon,</p>
@@ -408,7 +408,7 @@ function buildTextEN(name, planLabel, unsubUrl, consentMarketing) {
         : `You're receiving this email because you joined the ${planLabel} waitlist on vectorplanning.ai.\n\nRemove yourself from the list: ${unsubUrl}`;
     return `Hello ${name},
 
-You're on the waitlist for Vector's ${planLabel} plan. Thanks for your interest — it helps us prioritize what we build.
+You're on the waitlist for Vector's ${planLabel} plan, the one that brings you Alfred, your Chief Operating Officer. Thanks for your interest, it helps us prioritize what we build.
 
 I'll write as soon as this plan is ready to launch, with the details and your access. Nothing else to do on your end until then.
 
