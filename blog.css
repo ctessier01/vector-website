@@ -108,6 +108,20 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-primary);col
             .ebook-cta .article-cta-title { font-size: 1.35rem; }
         }
 
+        .ebook-cta-cover {
+            display: block;
+            width: 190px;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto 1.6rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+        }
+        @media (max-width: 600px) {
+            .ebook-cta-cover { width: 150px; margin-bottom: 1.3rem; }
+        }
+
         .article-cta-title {
             font-family: 'Red Hat Display', sans-serif;
             font-size: 1.35rem;
