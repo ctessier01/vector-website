@@ -1,15 +1,19 @@
 /**
  * Cloudflare Pages Function — POST /api/waitlist
  *
- * Inscription à la LISTE D'ATTENTE des plans à venir (Délégation / Propulsion),
- * depuis le formulaire « M'aviser au lancement » de la page tarifs.
+ * Inscription aux LISTES D'ATTENTE de Vector :
+ *   - plans à venir (Délégation / Propulsion), formulaire de la page tarifs
+ *   - ouverture de Vector (lancement), pages /liste-attente-lancement et
+ *     /en/launch-waitlist
+ * Le type de liste est porté par `plan` et résolu dans la table LISTES.
  *
  * Pipeline distinct d'/api/early-adopter (bêta) et d'/api/ebook-request (lead magnets).
  * Écrit dans sa propre table : public.waitlist_leads.
  *
- * Reçoit { name, email, plan, lang, consent_marketing, source_url,
+ * Reçoit { name, last_name, email, plan, lang, consent_marketing, source_url,
  *          utm_source, utm_medium, utm_campaign, utm_term, utm_content, referer_url }
- *   - plan : 'delegation' | 'propulsion' (obligatoire)
+ *   - plan : 'delegation' | 'propulsion' | 'lancement' (obligatoire)
+ *   - last_name : nullable (les formulaires d'avant l'ajout du champ n'en envoient pas)
  *   - consent_marketing : booléen (case décochée par défaut). N'est PAS requis pour
  *     l'avis de lancement (qui relève de la demande de l'usager) ; ne gate que les
  *     communications marketing plus larges.
@@ -28,9 +32,18 @@
 const DEFAULT_FROM = 'Vector <support@mail.vectorplanning.ai>';
 const DEFAULT_REPLY_TO = 'support@vectorplanning.ai';
 
-const PLAN_LABELS = {
-    delegation: { fr: 'Délégation', en: 'Delegation' },
-    propulsion: { fr: 'Propulsion', en: 'Propulsion' }
+/**
+ * Listes d'attente servies par cet endpoint.
+ *   - delegation / propulsion : plans à venir, formulaire de la page Tarifs
+ *   - lancement               : ouverture de Vector, pages /liste-attente-lancement
+ *                               et /en/launch-waitlist
+ * `slug` et `source` alimentent l'event de conversion, pour qu'on puisse
+ * distinguer les origines dans marketing_events.
+ */
+const LISTES = {
+    delegation: { fr: 'Délégation', en: 'Delegation', slug: 'pricing', source: 'pricing_waitlist' },
+    propulsion: { fr: 'Propulsion', en: 'Propulsion', slug: 'pricing', source: 'pricing_waitlist' },
+    lancement:  { fr: 'Lancement',  en: 'Launch',     slug: 'launch-waitlist', source: 'launch_waitlist' }
 };
 
 
@@ -47,6 +60,8 @@ export async function onRequestPost(context) {
         }
 
         const name = typeof data.name === 'string' ? data.name.trim() : '';
+        // Nullable : les formulaires d'avant l'ajout du champ n'envoient rien.
+        const lastName = typeof data.last_name === 'string' ? (data.last_name.trim().slice(0, 80) || null) : null;
         const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
         const lang = data.lang === 'en' ? 'en' : 'fr';
         const plan = typeof data.plan === 'string' ? data.plan.trim().toLowerCase() : '';
@@ -56,7 +71,8 @@ export async function onRequestPost(context) {
 
         if (!name || name.length > 80) return jsonError('Invalid name', 400);
         if (!email || email.length > 180 || !isValidEmail(email)) return jsonError('Invalid email', 400);
-        if (plan !== 'delegation' && plan !== 'propulsion') return jsonError('Invalid plan', 400);
+        const liste = LISTES[plan];
+        if (!liste) return jsonError('Invalid plan', 400);
 
         // ── 2. Configuration ──────────────────────────────────────────
         const requiredEnv = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'IP_HASH_SECRET'];
@@ -85,6 +101,7 @@ export async function onRequestPost(context) {
         // ── 4. INSERT du lead ─────────────────────────────────────────
         const insertPayload = Object.assign({
             name: name,
+            last_name: lastName,
             email: email,
             lang: lang,
             plan: plan,
@@ -117,8 +134,8 @@ export async function onRequestPost(context) {
             event_type: 'signup_waitlist',
             lead_id: lead.id,
             lead_kind: 'waitlist',
-            page_slug: 'pricing',
-            metadata: { source: 'pricing_waitlist', plan: plan }
+            page_slug: liste.slug,
+            metadata: { source: liste.source, plan: plan }
         }, utm);
 
         const eventPromise = fetch(`${env.SUPABASE_URL}/rest/v1/marketing_events`, {
@@ -160,7 +177,22 @@ export async function onRequestPost(context) {
 async function sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, consentMarketing, leadId, supabaseHeaders }) {
     const safeName = escapeHtml((name.split(/\s+/)[0]) || name);
     const isEn = lang === 'en';
-    const planLabel = (PLAN_LABELS[plan] || PLAN_LABELS.delegation)[isEn ? 'en' : 'fr'];
+    const liste = LISTES[plan] || LISTES.delegation;
+    const planLabel = liste[isEn ? 'en' : 'fr'];
+
+    // Le lancement a sa propre voix : on n'attend pas un plan, on attend l'ouverture.
+    if (plan === 'lancement') {
+        const subject = isEn
+            ? 'Your spot is reserved for the launch — Vector'
+            : 'Ta place est réservée pour le lancement — Vector';
+        const html = isEn
+            ? buildLaunchEmailEN(safeName, unsubUrl, consentMarketing)
+            : buildLaunchEmailFR(safeName, unsubUrl, consentMarketing);
+        const text = isEn
+            ? buildLaunchTextEN(name, unsubUrl, consentMarketing)
+            : buildLaunchTextFR(name, unsubUrl, consentMarketing);
+        return await deliver({ env, email, subject, html, text, unsubUrl, leadId, supabaseHeaders });
+    }
 
     const subject = isEn
         ? `You're on the ${planLabel} waitlist — Vector`
@@ -172,6 +204,11 @@ async function sendConfirmationEmail({ env, lang, plan, name, email, unsubUrl, c
         ? buildTextEN(name, planLabel, unsubUrl, consentMarketing)
         : buildTextFR(name, planLabel, unsubUrl, consentMarketing);
 
+    return await deliver({ env, email, subject, html, text, unsubUrl, leadId, supabaseHeaders });
+}
+
+/** Envoi Resend + marquage du lead. Commun aux deux types de liste. */
+async function deliver({ env, email, subject, html, text, unsubUrl, leadId, supabaseHeaders }) {
     try {
         const resendRes = await fetch('https://api.resend.com/emails', {
             method: 'POST',
@@ -295,6 +332,87 @@ ${bodyHtml}
 
 
 // ── FR ─────────────────────────────────────────────────────────────────────
+
+// ── Liste d'attente de lancement ───────────────────────────────────────────
+
+function buildLaunchEmailFR(name, unsubUrl, consentMarketing) {
+    const body =
+`          <p style="margin:0 0 1.2rem;">Bonjour ${name},</p>
+          <p style="margin:0 0 1.2rem;">C'est confirmé : <strong>ta place est réservée</strong>. Vector ouvre au début de l'automne, et tu seras parmi les premiers avertis.</p>
+          <p style="margin:0 0 1.2rem;">Si ton inscription fait partie des 50 premières, le bonus s'applique tout seul à l'ouverture : 21 jours d'essai du plan Accélération au lieu de 14, et 100 crédits IA utilisables sur n'importe quel plan, même le plan Fondation gratuit.</p>
+          <p style="margin:0 0 1.2rem;">D'ici là, je t'écrirai de temps en temps pour te donner de quoi arriver prêt quand la charge remontera. Tu n'as rien d'autre à faire.</p>
+          <p style="margin:0 0 1.2rem;">Une question entre-temps ? Réponds simplement à ce courriel. Je le lis.</p>
+          <p style="margin:0 0 0.3rem;">À bientôt,</p>
+          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
+    const lien = `<div style="margin-top:12px;"><a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se retirer de la liste en un clic</a></div>`;
+    const footer = consentMarketing
+        ? `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente de lancement sur vectorplanning.ai. Tu as aussi accepté de recevoir nos nouveautés.${lien}`
+        : `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente de lancement sur vectorplanning.ai.${lien}`;
+    return emailShell('fr', body, footer);
+}
+
+function buildLaunchTextFR(name, unsubUrl, consentMarketing) {
+    const note = consentMarketing
+        ? `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente de lancement sur vectorplanning.ai. Tu as aussi accepté de recevoir nos nouveautés.`
+        : `Tu reçois ce courriel parce que tu t'es inscrit·e à la liste d'attente de lancement sur vectorplanning.ai.`;
+    return `Bonjour ${name},
+
+C'est confirmé : ta place est réservée. Vector ouvre au début de l'automne, et tu seras parmi les premiers avertis.
+
+Si ton inscription fait partie des 50 premières, le bonus s'applique tout seul à l'ouverture : 21 jours d'essai du plan Accélération au lieu de 14, et 100 crédits IA utilisables sur n'importe quel plan, même le plan Fondation gratuit.
+
+D'ici là, je t'écrirai de temps en temps pour te donner de quoi arriver prêt quand la charge remontera. Tu n'as rien d'autre à faire.
+
+Une question entre-temps ? Réponds simplement à ce courriel. Je le lis.
+
+À bientôt,
+Chantal · Vector
+
+---
+${note}
+
+Se retirer de la liste : ${unsubUrl}`;
+}
+
+function buildLaunchEmailEN(name, unsubUrl, consentMarketing) {
+    const body =
+`          <p style="margin:0 0 1.2rem;">Hello ${name},</p>
+          <p style="margin:0 0 1.2rem;">You're confirmed: <strong>your spot is reserved</strong>. Vector opens in early fall, and you'll be among the first to hear about it.</p>
+          <p style="margin:0 0 1.2rem;">If your signup is among the first 50, the bonus applies on its own at opening: a 21-day trial of the Acceleration plan instead of 14, and 100 AI credits usable on any subscription plan, even the free Foundation plan.</p>
+          <p style="margin:0 0 1.2rem;">Until then, I'll write now and then with things to help you show up ready when the load climbs back. Nothing else to do on your end.</p>
+          <p style="margin:0 0 1.2rem;">A question in the meantime? Just reply to this email. I read every one.</p>
+          <p style="margin:0 0 0.3rem;">Talk soon,</p>
+          <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
+    const lien = `<div style="margin-top:12px;"><a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Remove yourself from the list in one click</a></div>`;
+    const footer = consentMarketing
+        ? `You're receiving this email because you joined the launch waitlist on vectorplanning.ai. You also opted in to receive our news.${lien}`
+        : `You're receiving this email because you joined the launch waitlist on vectorplanning.ai.${lien}`;
+    return emailShell('en', body, footer);
+}
+
+function buildLaunchTextEN(name, unsubUrl, consentMarketing) {
+    const note = consentMarketing
+        ? `You're receiving this email because you joined the launch waitlist on vectorplanning.ai. You also opted in to receive our news.`
+        : `You're receiving this email because you joined the launch waitlist on vectorplanning.ai.`;
+    return `Hello ${name},
+
+You're confirmed: your spot is reserved. Vector opens in early fall, and you'll be among the first to hear about it.
+
+If your signup is among the first 50, the bonus applies on its own at opening: a 21-day trial of the Acceleration plan instead of 14, and 100 AI credits usable on any subscription plan, even the free Foundation plan.
+
+Until then, I'll write now and then with things to help you show up ready when the load climbs back. Nothing else to do on your end.
+
+A question in the meantime? Just reply to this email. I read every one.
+
+Talk soon,
+Chantal · Vector
+
+---
+${note}
+
+Remove yourself from the list: ${unsubUrl}`;
+}
+
 
 function buildEmailFR(name, planLabel, unsubUrl, consentMarketing) {
     const body =
