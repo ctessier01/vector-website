@@ -132,7 +132,7 @@ const FUNNEL_COPY = {
         day14: {
             fr: {
                 subject: 'Quand la méthode commence à peser',
-                cta: 'Essayer Vector gratuitement',
+                cta: 'Rejoindre la liste d\'attente',
                 cta_kind: 'site',
                 body: [
                     "Déjà deux semaines depuis que tu as téléchargé « Le système anti-surprise ». Si tu as installé la projection 14 jours et pris l'habitude du check-in, tu as réglé la plus grande partie du problème.",
@@ -140,7 +140,7 @@ const FUNNEL_COPY = {
                     "Le système manuel tient très bien à un ou deux projets. À partir de trois, ce n'est pas la méthode qui casse, c'est son coût d'entretien. Chaque projet ajouté ne coûte pas seulement son propre entretien : il coûte aussi la vérification de sa compatibilité avec tous les autres. À cinq projets, tu maintiens cinq plans mais tu vérifies dix paires d'interactions possibles.",
                     "Le guide chiffre ça à environ 2 h 30 par semaine. C'est plus de 10 % des 24 heures livrables que tu avais calculées, passées à organiser le travail plutôt qu'à le faire. Et la charge mentale de garder cinq projets en tête, elle, ne se chronomètre pas.",
                     "C'est pour ce moment précis qu'on a bâti Vector. Tu gardes la méthode, Arthur s'occupe de l'entretien : la projection se tient à jour toute seule, la capacité se calcule sur ton historique réel, et tu reçois une alerte dès qu'une échéance entre en zone à risque.",
-                    "Le plan Fondation est gratuit à vie, sans carte de crédit, et tu as 14 jours du plan Accélération complet à l'inscription pour voir ce que ça donne sur tes vraies tâches."
+                    "Vector ouvre au début de l'automne. En t'inscrivant à la liste d'attente maintenant, tu seras averti dès l'ouverture, et les 50 premières inscriptions obtiennent 21 jours d'essai du plan Accélération au lieu de 14, plus 100 crédits IA en cadeau."
                 ],
                 calc: null,
                 after: ["Et si le manuel te suffit, garde-le, sincèrement. Le but du guide n'était pas de te vendre quelque chose, c'était de rendre tes semaines prévisibles."],
@@ -148,7 +148,7 @@ const FUNNEL_COPY = {
             },
             en: {
                 subject: 'When the method starts to weigh',
-                cta: 'Try Vector free',
+                cta: 'Join the waitlist',
                 cta_kind: 'site',
                 body: [
                     'Already two weeks since you downloaded "The anti-surprise system." If you\'ve set up the 14-day projection and built the check-in habit, you\'ve solved most of the problem.',
@@ -156,7 +156,7 @@ const FUNNEL_COPY = {
                     "The manual system holds up very well at one or two projects. Past three, it isn't the method that breaks, it's its maintenance cost. Every project you add doesn't just cost its own upkeep: it also costs checking how it collides with all the others. At five projects, you maintain five plans but you check ten possible pairs of interactions.",
                     "The guide puts that at roughly two and a half hours a week. That's more than 10% of the 24 deliverable hours you calculated, spent organizing the work instead of doing it. And the mental load of holding five projects in your head doesn't show up on any clock.",
                     "That's exactly the moment we built Vector for. You keep the method, Arthur handles the upkeep: the projection stays current on its own, capacity is computed from your real history, and you get an alert as soon as a deadline enters the risk zone.",
-                    "The Foundation plan is free for life, no credit card, and you get 14 days of the full Acceleration plan at signup to see what it does on your real tasks."
+                    "Vector opens in early fall. Joining the waitlist now means you hear about it the day we open, and the first 50 signups get a 21-day Acceleration trial instead of 14, plus 100 AI credits as a gift."
                 ],
                 calc: null,
                 after: ["And if manual is enough for you, keep it, sincerely. The goal of the guide wasn't to sell you something, it was to make your weeks predictable."],
@@ -250,14 +250,14 @@ const FUNNEL_COPY = {
         day14: {
             fr: {
                 subject: 'Quand la constance devient le vrai travail',
-                cta: 'Essayer Vector gratuitement',
+                cta: 'Rejoindre la liste d\'attente',
                 cta_kind: 'site',
                 body: [
                     "Déjà deux semaines depuis que tu as téléchargé le guide « Vendre sans te travestir ». Si tu as écrit ta phrase claire et choisi tes trois canaux, tu as déjà fait le plus dur.",
                     "Le guide se termine sur une idée que je veux te répéter, parce que c'est là que la plupart des bonnes intentions de vente meurent.",
                     "Vendre au calme ne repose pas sur le talent, mais sur la constance : tes trois canaux tenus, tes relances faites à J+2, J+7 et J+21, mois après mois. Et c'est précisément ce que la charge mentale du solo fait échouer. Tu ne sautes pas une semaine par manque de volonté, tu la sautes parce que ta tête est déjà pleine du travail client.",
                     "C'est pour ce moment-là qu'on a bâti Vector. Tes trois canaux deviennent des tâches récurrentes tenues plutôt que des bonnes intentions, tes relances sont programmées et te reviennent au bon moment, et tu n'as plus à te demander à qui tu devais reparler. La conversation reste à toi, c'est la seule chose que personne ne peut faire à ta place.",
-                    "Le plan Fondation est gratuit à vie, sans carte de crédit, et tu as 14 jours du plan Accélération complet à l'inscription pour voir ce que ça donne sur tes vraies relances."
+                    "Vector ouvre au début de l'automne. En t'inscrivant à la liste d'attente maintenant, tu seras averti dès l'ouverture, et les 50 premières inscriptions obtiennent 21 jours d'essai du plan Accélération au lieu de 14, plus 100 crédits IA en cadeau."
                 ],
                 calc: null,
                 after: [
@@ -267,14 +267,14 @@ const FUNNEL_COPY = {
             },
             en: {
                 subject: 'When consistency becomes the real work',
-                cta: 'Try Vector free',
+                cta: 'Join the waitlist',
                 cta_kind: 'site',
                 body: [
                     'Already two weeks since you downloaded "Selling Without Faking It." If you\'ve written your clear sentence and picked your three channels, you\'ve already done the hard part.',
                     "The guide ends on an idea I want to repeat here, because it's where most good sales intentions die.",
                     "Selling calmly doesn't rest on talent, it rests on consistency: your three channels held, your follow-ups sent at day 2, day 7 and day 21, month after month. And that's exactly what the mental load of working solo breaks. You don't skip a week for lack of will, you skip it because your head is already full of client work.",
                     "That's the moment we built Vector for. Your three channels become recurring tasks that actually hold instead of good intentions, your follow-ups are scheduled and come back to you at the right time, and you stop wondering who you were supposed to get back to. The conversation stays yours, it's the one thing nobody can do for you.",
-                    'The Foundation plan is free for life, no credit card, and you get 14 days of the full Acceleration plan at signup to see what it does on your real follow-ups.'
+                    'Vector opens in early fall. Joining the waitlist now means you hear about it the day we open, and the first 50 signups get a 21-day Acceleration trial instead of 14, plus 100 AI credits as a gift.'
                 ],
                 calc: null,
                 after: [
@@ -378,7 +378,10 @@ export async function onRequestPost(context) {
             if (!column) { skipped++; continue; }
 
             try {
-                let ctaUrl = `${siteUrl}/?utm_source=funnel&utm_medium=email&utm_campaign=${encodeURIComponent(lead.source_form)}&utm_content=${step}`;
+                // Vector n'est pas encore ouvert : le CTA « site » mène à la liste
+                // d'attente de lancement. À l'ouverture, remettre `${siteUrl}/`.
+                const pageSite = lang === 'en' ? '/en/launch-waitlist' : '/liste-attente-lancement';
+                let ctaUrl = `${siteUrl}${pageSite}?utm_source=funnel&utm_medium=email&utm_campaign=${encodeURIComponent(lead.source_form)}&utm_content=${step}`;
                 if (copy.cta_kind === 'download') {
                     const token = await generateDownloadToken({
                         leadId: lead.id, resourceKey: lead.source_form, lang, secret: env.IP_HASH_SECRET
