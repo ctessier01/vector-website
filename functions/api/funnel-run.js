@@ -64,12 +64,12 @@ const FUNNEL_COPY = {
                 cta_kind: 'download',
                 body: [
                     "Tu as téléchargé « Le système anti-surprise » il y a trois jours. Si tu ne l'as pas encore ouvert, aucun jugement : c'est exactement le genre de chose qui glisse quand la semaine est pleine.",
-                    "Si tu veux un point d'entrée, commence par l'étape 2 : l'inventaire de capacité. C'est la plus courte du guide, et c'est elle qui donne son sens à la projection de l'étape 1. Elle tient en un calcul :"
+                    "Si tu veux un point d'entrée, commence par la deuxième étape : l'inventaire de capacité. C'est la plus courte du guide, et c'est elle qui donne son sens à la projection de la première. Elle tient en un calcul :"
                 ],
                 calc: ['40 heures théoriques par semaine', "moins 16 heures d'admin, de courriels, de transitions et d'imprévus", '= 24 heures réellement disponibles pour livrer'],
                 after: [
                     'La plupart des solopreneurs planifient 40 heures de travail dans 24 heures de capacité.',
-                    "Fais le calcul avec tes vrais chiffres, ça prend cinq minutes. Ta projection 14 jours se compare alors à un chiffre réel au lieu d'un chiffre imaginaire, et c'est à partir de là que tout le reste du système tient."
+                    "Fais le calcul avec tes vrais chiffres, ça prend cinq minutes. Ta projection 14 jours se compare alors à un chiffre réel au lieu d'un chiffre imaginaire, et c'est à partir de là que tout le reste du système tient. Retiens ce nombre de 24 heures : on va y revenir."
                 ],
                 signoff: 'Bonne semaine,'
             },
@@ -79,25 +79,66 @@ const FUNNEL_COPY = {
                 cta_kind: 'download',
                 body: [
                     'You downloaded "The anti-surprise system" three days ago. If you haven\'t opened it yet, no judgment: that\'s exactly the kind of thing that slips when the week is full.',
-                    'If you want an entry point, start with step 2: the capacity inventory. It\'s the shortest one in the guide, and it\'s what gives the step 1 projection its meaning. It fits in one calculation:'
+                    'If you want an entry point, start with the second step: the capacity inventory. It\'s the shortest one in the guide, and it\'s what gives the first step\'s projection its meaning. It fits in one calculation:'
                 ],
                 calc: ['40 theoretical hours per week', 'minus 16 hours of admin, email, transitions and interruptions', '= 24 hours actually available to deliver'],
                 after: [
                     'Most solopreneurs plan 40 hours of work into 24 hours of capacity.',
-                    'Do the math with your real numbers, it takes five minutes. Your 14-day projection then compares against a real number instead of an imaginary one, and that\'s where the rest of the system starts to hold.'
+                    'Do the math with your real numbers, it takes five minutes. Your 14-day projection then compares against a real number instead of an imaginary one, and that\'s where the rest of the system starts to hold. Keep that 24-hour number in mind: we\'ll come back to it.'
                 ],
                 signoff: 'Have a good week,'
             }
         },
         day7: {
             fr: {
+                subject: 'Les 20 minutes qui tiennent le système',
+                cta: 'Ouvrir le guide',
+                cta_kind: 'download',
+                body: [
+                    "Une semaine depuis le guide. Si tu as fait ton inventaire de capacité, tu sais maintenant combien d'heures tu as vraiment. Il reste à empêcher ce chiffre de vieillir.",
+                    "C'est le rôle de la quatrième étape, le check-in du dimanche. Sans rituel hebdomadaire, ta projection 14 jours devient obsolète en quelques jours : elle finit par décrire une semaine qui n'existe plus. 20 minutes, trois questions :"
+                ],
+                calc: [
+                    "qu'est-ce qui a glissé cette semaine, et où c'est atterri",
+                    "qu'est-ce qui s'en vient dans 14 jours que je n'avais pas anticipé",
+                    'est-ce que ma capacité réelle a changé'
+                ],
+                after: [
+                    "Le moment compte autant que les questions. Le dimanche soir te donne assez de recul pour voir la semaine qui finit, et assez de proximité pour que l'ajustement serve à quelque chose. Si ton dimanche est sacré, bascule au lundi matin, avant de commencer à travailler. Jamais le vendredi en fin de journée : tu es fatigué, tu survoles, et tu repars le lundi avec un système non recalibré.",
+                    "Une remarque tirée du guide, et c'est souvent la découverte du premier check-in : une tâche qui glisse trois fois de suite n'est pas une tâche en retard. C'est une tâche mal définie ou mal estimée."
+                ],
+                signoff: 'Bonne semaine,'
+            },
+            en: {
+                subject: 'The 20 minutes that hold the system together',
+                cta: 'Open the guide',
+                cta_kind: 'download',
+                body: [
+                    "A week since the guide. If you've done your capacity inventory, you now know how many hours you actually have. What's left is keeping that number from going stale.",
+                    "That's what the fourth step is for, the Sunday check-in. Without a weekly ritual, your 14-day projection goes stale within days: it ends up describing a week that no longer exists. 20 minutes, three questions:"
+                ],
+                calc: [
+                    'what slipped this week, and where it landed',
+                    "what's coming in the next 14 days that I hadn't anticipated",
+                    'has my real capacity changed'
+                ],
+                after: [
+                    "The timing matters as much as the questions. Sunday evening gives you enough distance to see the week that's ending, and enough proximity for the adjustment to count. If Sunday is sacred to you, move it to Monday morning, before you start working. Never Friday at the end of the day: you're tired, you skim, and you start the next week with a system that was never recalibrated.",
+                    "One note from the guide, and it's often the first check-in's real discovery: a task that slips three times in a row isn't a task running late. It's a task that's poorly defined or poorly estimated."
+                ],
+                signoff: 'Have a good week,'
+            }
+        },
+        day14: {
+            fr: {
                 subject: 'Quand la méthode commence à peser',
                 cta: 'Essayer Vector gratuitement',
                 cta_kind: 'site',
                 body: [
-                    "Ça fait une semaine. Si tu as installé ne serait-ce que la projection 14 jours, tu as déjà réglé la moitié du problème.",
+                    "Déjà deux semaines depuis que tu as téléchargé « Le système anti-surprise ». Si tu as installé la projection 14 jours et pris l'habitude du check-in, tu as réglé la plus grande partie du problème.",
                     "Le guide se termine sur une idée que je veux te répéter, parce que c'est la question qu'on me pose le plus.",
-                    "Le système manuel fonctionne très bien tant que tu as une ou deux dizaines de tâches en vol. Passé une trentaine, ce n'est pas la méthode qui casse, c'est son coût d'entretien. Chaque tâche qui bouge en déplace d'autres, et il faut re-vérifier ce qui entre en collision avec quoi. Tu finis par passer plus de temps à tenir le système à jour qu'à faire le travail.",
+                    "Le système manuel tient très bien à un ou deux projets. À partir de trois, ce n'est pas la méthode qui casse, c'est son coût d'entretien. Chaque projet ajouté ne coûte pas seulement son propre entretien : il coûte aussi la vérification de sa compatibilité avec tous les autres. À cinq projets, tu maintiens cinq plans mais tu vérifies dix paires d'interactions possibles.",
+                    "Le guide chiffre ça à environ 2 h 30 par semaine. C'est plus de 10 % des 24 heures livrables que tu avais calculées, passées à organiser le travail plutôt qu'à le faire. Et la charge mentale de garder cinq projets en tête, elle, ne se chronomètre pas.",
                     "C'est pour ce moment précis qu'on a bâti Vector. Tu gardes la méthode, Arthur s'occupe de l'entretien : la projection se tient à jour toute seule, la capacité se calcule sur ton historique réel, et tu reçois une alerte dès qu'une échéance entre en zone à risque.",
                     "Le plan Fondation est gratuit à vie, sans carte de crédit, et tu as 14 jours du plan Accélération complet à l'inscription pour voir ce que ça donne sur tes vraies tâches."
                 ],
@@ -110,9 +151,10 @@ const FUNNEL_COPY = {
                 cta: 'Try Vector free',
                 cta_kind: 'site',
                 body: [
-                    "It's been a week. If you've set up even just the 14-day projection, you've already solved half the problem.",
+                    'Already two weeks since you downloaded "The anti-surprise system." If you\'ve set up the 14-day projection and built the check-in habit, you\'ve solved most of the problem.',
                     "The guide ends on an idea I want to repeat here, because it's the question I get most.",
-                    "The manual system works very well as long as you have one or two dozen tasks in flight. Past thirty, it isn't the method that breaks, it's its maintenance cost. Every task that moves displaces others, and you have to re-check what collides with what. You end up spending more time keeping the system current than doing the work.",
+                    "The manual system holds up very well at one or two projects. Past three, it isn't the method that breaks, it's its maintenance cost. Every project you add doesn't just cost its own upkeep: it also costs checking how it collides with all the others. At five projects, you maintain five plans but you check ten possible pairs of interactions.",
+                    "The guide puts that at roughly two and a half hours a week. That's more than 10% of the 24 deliverable hours you calculated, spent organizing the work instead of doing it. And the mental load of holding five projects in your head doesn't show up on any clock.",
                     "That's exactly the moment we built Vector for. You keep the method, Arthur handles the upkeep: the projection stays current on its own, capacity is computed from your real history, and you get an alert as soon as a deadline enters the risk zone.",
                     "The Foundation plan is free for life, no credit card, and you get 14 days of the full Acceleration plan at signup to see what it does on your real tasks."
                 ],
