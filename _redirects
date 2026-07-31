@@ -1,3 +1,9 @@
-# Liens courts de campagne -> accueil + UTM + ancre #early-access
-/li  /?utm_source=linkedin&utm_medium=social&utm_campaign=beta-testeurs#early-access  302
-/fb  /?utm_source=facebook&utm_medium=social&utm_campaign=beta-testeurs#early-access  302
+# Liens courts de campagne -> liste d'attente de lancement
+/li  /liste-attente-lancement?utm_source=linkedin&utm_medium=social&utm_campaign=liste-attente  302
+/fb  /liste-attente-lancement?utm_source=facebook&utm_medium=social&utm_campaign=liste-attente  302
+
+# Vector n'est pas encore ouvert : l'essai gratuit mene a la liste d'attente.
+# Redirections TEMPORAIRES (302). A retirer le jour de l'ouverture pour que
+# /essai et /en/essai reprennent du service tels quels.
+/essai     /liste-attente-lancement  302
+/en/essai  /en/launch-waitlist       302
