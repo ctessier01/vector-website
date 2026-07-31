@@ -121,8 +121,145 @@ const FUNNEL_COPY = {
                 signoff: 'Talk soon,'
             }
         }
+    },
+    'ebook_vendre_sans_travestir': {
+        title_fr: 'Vendre sans te travestir',
+        title_en: 'Selling Without Faking It',
+        day3: {
+            fr: {
+                subject: "La phrase à préparer d'avance",
+                cta: 'Ouvrir le guide',
+                cta_kind: 'download',
+                body: [
+                    "Tu as téléchargé « Vendre sans te travestir » il y a trois jours. Si tu ne l'as pas encore ouvert, aucun jugement : c'est exactement le genre de chose qui glisse quand la semaine est pleine.",
+                    "Si tu veux un point d'entrée, commence par le premier mouvement : la phrase claire. C'est le plus court du guide, et il règle la situation la plus fréquente, celle où on te demande ce que tu fais et où tu t'entends répondre trois phrases molles. Il tient en trois morceaux :"
+                ],
+                calc: [
+                    "pour qui : le type de personne que tu aides, pas « tout le monde »",
+                    "quel problème : ce que tu lui enlèves concrètement",
+                    "quel résultat : ce à quoi son entreprise ressemble après"
+                ],
+                after: [
+                    "Écris la tienne, puis dis-la à voix haute trois fois. Si elle sonne comme un slogan, enlève un mot. Elle doit sonner comme toi.",
+                    "Ça donne quelque chose comme : « J'aide les designers indépendants à être payés à temps, surtout quand relancer un client les met mal à l'aise. » Il n'y a rien à vendre là-dedans, juste de quoi permettre à l'autre de savoir en cinq secondes s'il vient de rencontrer la bonne personne."
+                ],
+                signoff: 'Bonne semaine,'
+            },
+            en: {
+                subject: 'The sentence to prepare in advance',
+                cta: 'Open the guide',
+                cta_kind: 'download',
+                body: [
+                    'You downloaded "Selling Without Faking It" three days ago. If you haven\'t opened it yet, no judgment: that\'s exactly the kind of thing that slips when the week is full.',
+                    "If you want an entry point, start with the first move: the clear sentence. It's the shortest one in the guide, and it fixes the most common situation, the one where someone asks what you do and you hear yourself give three limp sentences. It fits in three pieces:"
+                ],
+                calc: [
+                    'who for: the type of person you help, not "everyone"',
+                    'what problem: what you remove or solve for them, concretely',
+                    'what result: what their business looks like after'
+                ],
+                after: [
+                    'Write yours, then say it out loud three times. If it sounds like a slogan, cut a word. It should sound like you.',
+                    'It comes out something like: "I help independent designers get paid on time, especially when chasing a client makes them uncomfortable." There\'s nothing to sell in there, just enough for the other person to know in five seconds whether they just met the right person.'
+                ],
+                signoff: 'Have a good week,'
+            }
+        },
+        day7: {
+            fr: {
+                subject: 'Les ventes ne se perdent pas sur un non',
+                cta: 'Ouvrir le guide',
+                cta_kind: 'download',
+                body: [
+                    "Une semaine depuis le guide. Si tu as ta phrase claire, l'entrée en matière est réglée. Il reste ce qui vient après, et c'est là que le plus de ventes se perdent.",
+                    "La plupart ne se perdent pas sur un non. Elles se perdent sur un silence, un « je vais y penser » que personne ne relance. Le cinquième mouvement du guide règle ça avec une cadence courte et espacée, qui ne demande jamais deux fois la même chose :"
+                ],
+                calc: [
+                    "J+2 : un mot court qui résume votre échange et laisse la décision ouverte",
+                    "J+7 : une chose utile, une ressource ou un exemple, sans rien demander",
+                    "J+21 : la porte laissée ouverte, « écris-moi si le moment revient »"
+                ],
+                after: [
+                    "Trois relances, puis tu arrêtes. Respecter le non fait partie de la méthode, et c'est justement ce qui te rend facile à recommander.",
+                    "Si tu as un « je vais y penser » qui traîne depuis quelques semaines, c'est le moment d'essayer ou de compléter ta série de relances."
+                ],
+                signoff: 'Bonne semaine,'
+            },
+            en: {
+                subject: "Sales aren't lost on a no",
+                cta: 'Open the guide',
+                cta_kind: 'download',
+                body: [
+                    "A week since the guide. If you have your clear sentence, the opening is handled. What's left is what comes after, and that's where most sales are lost.",
+                    'Most aren\'t lost on a no. They\'re lost in silence, an "I\'ll think about it" that nobody follows up on. The fifth move in the guide handles that with a short, spaced cadence that never asks for the same thing twice:'
+                ],
+                calc: [
+                    'Day 2: a short note summing up your conversation, decision left open',
+                    'Day 7: one useful thing, a resource or an example, asking for nothing',
+                    'Day 21: the door left open, "write me if the timing comes back"'
+                ],
+                after: [
+                    "Three follow-ups, then you stop. Respecting the no is part of the method, and it's exactly what makes you easy to recommend.",
+                    'If you have an "I\'ll think about it" that\'s been sitting for a few weeks, this is the moment to start or finish your follow-up series.'
+                ],
+                signoff: 'Have a good week,'
+            }
+        },
+        day14: {
+            fr: {
+                subject: 'Quand la constance devient le vrai travail',
+                cta: 'Essayer Vector gratuitement',
+                cta_kind: 'site',
+                body: [
+                    "Déjà deux semaines depuis que tu as téléchargé le guide « Vendre sans te travestir ». Si tu as écrit ta phrase claire et choisi tes trois canaux, tu as déjà fait le plus dur.",
+                    "Le guide se termine sur une idée que je veux te répéter, parce que c'est là que la plupart des bonnes intentions de vente meurent.",
+                    "Vendre au calme ne repose pas sur le talent, mais sur la constance : tes trois canaux tenus, tes relances faites à J+2, J+7 et J+21, mois après mois. Et c'est précisément ce que la charge mentale du solo fait échouer. Tu ne sautes pas une semaine par manque de volonté, tu la sautes parce que ta tête est déjà pleine du travail client.",
+                    "C'est pour ce moment-là qu'on a bâti Vector. Tes trois canaux deviennent des tâches récurrentes tenues plutôt que des bonnes intentions, tes relances sont programmées et te reviennent au bon moment, et tu n'as plus à te demander à qui tu devais reparler. La conversation reste à toi, c'est la seule chose que personne ne peut faire à ta place.",
+                    "Le plan Fondation est gratuit à vie, sans carte de crédit, et tu as 14 jours du plan Accélération complet à l'inscription pour voir ce que ça donne sur tes vraies relances."
+                ],
+                calc: null,
+                after: [
+                    "Et si un carnet et un rappel sur ton téléphone suffisent à te tenir, garde-les, sincèrement. Le but du guide n'était pas de te vendre quelque chose, c'était de te débarrasser du personnage."
+                ],
+                signoff: 'À bientôt,'
+            },
+            en: {
+                subject: 'When consistency becomes the real work',
+                cta: 'Try Vector free',
+                cta_kind: 'site',
+                body: [
+                    'Already two weeks since you downloaded "Selling Without Faking It." If you\'ve written your clear sentence and picked your three channels, you\'ve already done the hard part.',
+                    "The guide ends on an idea I want to repeat here, because it's where most good sales intentions die.",
+                    "Selling calmly doesn't rest on talent, it rests on consistency: your three channels held, your follow-ups sent at day 2, day 7 and day 21, month after month. And that's exactly what the mental load of working solo breaks. You don't skip a week for lack of will, you skip it because your head is already full of client work.",
+                    "That's the moment we built Vector for. Your three channels become recurring tasks that actually hold instead of good intentions, your follow-ups are scheduled and come back to you at the right time, and you stop wondering who you were supposed to get back to. The conversation stays yours, it's the one thing nobody can do for you.",
+                    'The Foundation plan is free for life, no credit card, and you get 14 days of the full Acceleration plan at signup to see what it does on your real follow-ups.'
+                ],
+                calc: null,
+                after: [
+                    "And if a notebook and a phone reminder are enough to keep you on track, keep them, sincerely. The goal of the guide wasn't to sell you something, it was to get rid of the character."
+                ],
+                signoff: 'Talk soon,'
+            }
+        }
     }
-    // Ajouter ici la séquence de « Vendre sans te travestir » quand elle sera écrite.
+};
+
+/**
+ * Rang du suivi dans la séquence, pour le pied de page.
+ * Le courriel de livraison (J+0) n'est PAS un suivi : la numérotation
+ * commence à J+3. Les colonnes `funnel_email_N_sent_at` gardent leur
+ * décalage historique (1 = livraison, 2 = J+3, 3 = J+7, 4 = J+14).
+ */
+const RANG_SUIVI = {
+    day3:  { fr: 'le premier de trois suivis',  en: 'the first of three follow-ups' },
+    day7:  { fr: 'le deuxième de trois suivis', en: 'the second of three follow-ups' },
+    day14: { fr: 'le dernier des trois suivis', en: 'the last of the three follow-ups' }
+};
+
+const COLONNE_ENVOI = {
+    day3:  'funnel_email_2_sent_at',
+    day7:  'funnel_email_3_sent_at',
+    day14: 'funnel_email_4_sent_at'
 };
 
 
@@ -195,7 +332,8 @@ export async function onRequestPost(context) {
             const copy = magnet[step][lang];
             if (!copy) { skipped++; continue; }
 
-            const column = step === 'day3' ? 'funnel_email_2_sent_at' : 'funnel_email_3_sent_at';
+            const column = COLONNE_ENVOI[step];
+            if (!column) { skipped++; continue; }
 
             try {
                 let ctaUrl = `${siteUrl}/?utm_source=funnel&utm_medium=email&utm_campaign=${encodeURIComponent(lead.source_form)}&utm_content=${step}`;
@@ -211,7 +349,7 @@ export async function onRequestPost(context) {
                 const ok = await sendEmail({
                     env, lang, copy, ctaUrl, unsubUrl, guideTitle,
                     name: firstName(lead.name), to: lead.email,
-                    stepIndex: step === 'day3' ? 2 : 3
+                    step: step
                 });
                 if (!ok) { failed++; continue; }
 
@@ -251,13 +389,15 @@ export async function onRequestPost(context) {
 // Envoi
 // ──────────────────────────────────────────────────────────────────────────
 
-async function sendEmail({ env, lang, copy, ctaUrl, unsubUrl, guideTitle, name, to, stepIndex }) {
+async function sendEmail({ env, lang, copy, ctaUrl, unsubUrl, guideTitle, name, to, step }) {
     const isEn = lang === 'en';
     const safeName = escapeHtml(name);
 
+    const rang = (RANG_SUIVI[step] || RANG_SUIVI.day3)[isEn ? 'en' : 'fr'];
+    const unsubLink = `<div style="margin-top:12px;"><a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">${isEn ? 'Unsubscribe in one click' : 'Se désinscrire en un clic'}</a></div>`;
     const footer = isEn
-        ? `You're receiving this email because you downloaded "${escapeHtml(guideTitle)}" on vectorplanning.ai. This is follow-up ${stepIndex} of at most three related to that guide. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Unsubscribe in one click</a>.`
-        : `Tu reçois ce courriel parce que tu as téléchargé « ${escapeHtml(guideTitle)} » sur vectorplanning.ai. C'est le suivi ${stepIndex} sur un maximum de trois liés à ce guide. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se désinscrire en un clic</a>.`;
+        ? `You're receiving this email because you downloaded "${escapeHtml(guideTitle)}" on vectorplanning.ai. This is ${rang} related to that guide.${unsubLink}`
+        : `Tu reçois ce courriel parce que tu as téléchargé « ${escapeHtml(guideTitle)} » sur vectorplanning.ai. C'est ${rang} liés à ce guide.${unsubLink}`;
 
     let bodyHtml = `          <p style="margin:0 0 1.2rem;">${isEn ? 'Hello' : 'Bonjour'} ${safeName},</p>\n`;
     for (const p of copy.body) bodyHtml += `          <p style="margin:0 0 1.2rem;">${escapeHtml(p)}</p>\n`;
@@ -366,6 +506,7 @@ function json(obj, status = 200) {
 function normalizeStep(kind) {
     if (kind === 'funnel_day3') return 'day3';
     if (kind === 'funnel_day7' || kind === 'funnel_day10') return 'day7';
+    if (kind === 'funnel_day14') return 'day14';
     return null;
 }
 

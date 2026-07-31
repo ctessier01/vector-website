@@ -91,7 +91,7 @@ export async function onRequestPost(context) {
 // en plus de status/unsubscribed_at (marketing_leads a consent_marketing).
 const LEAD_TABLES = [
     { name: 'marketing_leads',      extra: { consent_marketing: false } },
-    { name: 'early_adopter_leads',  extra: {} },
+    { name: 'early_adopter_leads',  extra: { consent_marketing: false } },
     { name: 'coo_waitlist_leads',       extra: { consent_marketing: false } },
     { name: 'waitlist_leads',        extra: { consent_marketing: false } }
 ];

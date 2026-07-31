@@ -422,9 +422,10 @@ function ctaButton(href, label) {
 }
 
 function buildEmailFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
+    const unsubLink = `<div style="margin-top:12px;"><a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se désinscrire en un clic</a></div>`;
     const footer = consentMarketing
-        ? `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine). <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se désinscrire en un clic</a>.`
-        : `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Se désinscrire en un clic</a>.`;
+        ? `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Tu as aussi accepté de recevoir nos conseils de planification par courriel (max 1 par semaine).${unsubLink}`
+        : `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours.${unsubLink}`;
     const body =
 `          <p style="margin:0 0 1.2rem;">Bonjour ${name},</p>
           <p style="margin:0 0 1.2rem;">Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.</p>
@@ -469,9 +470,10 @@ ${note}`;
 // ──────────────────────────────────────────────────────────────────────────
 
 function buildEmailEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
+    const unsubLink = `<div style="margin-top:12px;"><a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Unsubscribe in one click</a></div>`;
     const footer = consentMarketing
-        ? `You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week). <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Unsubscribe in one click</a>.`
-        : `You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days. <a href="${unsubUrl}" style="color:#6b7290;text-decoration:underline;">Unsubscribe in one click</a>.`;
+        ? `You're receiving this email because you downloaded a guide on vectorplanning.ai. You also opted in to receive our planning tips (max 1 per week).${unsubLink}`
+        : `You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days.${unsubLink}`;
     const body =
 `          <p style="margin:0 0 1.2rem;">Hello ${name},</p>
           <p style="margin:0 0 1.2rem;">You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.</p>
