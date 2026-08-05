@@ -197,7 +197,7 @@
       case 'copy':
         navigator.clipboard.writeText(url).then(function () { showToast(fr ? 'Lien copié !' : 'Link copied!'); }); break;
       case 'instagram':
-        navigator.clipboard.writeText(url).then(function () { showToast(fr ? 'Lien copié — colle-le dans ta story.' : 'Link copied — paste it in your story.'); }); break;
+        navigator.clipboard.writeText(url).then(function () { showToast(fr ? 'Lien copié, colle-le dans ta story.' : 'Link copied, paste it in your story.'); }); break;
     }
   }
 

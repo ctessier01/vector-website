@@ -438,11 +438,11 @@ function buildEmailFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
         : `Tu reçois ce courriel parce que tu as téléchargé un guide sur vectorplanning.ai. Nous t'enverrons au maximum trois courriels de suivi liés à ce guide sur les 14 prochains jours.${unsubLink}`;
     const body =
 `          <p style="margin:0 0 1.2rem;">Bonjour ${name},</p>
-          <p style="margin:0 0 1.2rem;">Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.</p>
+          <p style="margin:0 0 1.2rem;">Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire. Mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.</p>
           <p style="margin:0 0 0.3rem;"><strong>${escapeHtml(magnet.title_fr)}</strong></p>
           <p style="margin:0;color:#6b7290;">${escapeHtml(magnet.subtitle_fr)}</p>
 ${ctaButton(downloadUrl, 'Télécharger le guide (PDF)')}
-          <p style="margin:0 0 1.2rem;">Lis-le cette semaine — il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.</p>
+          <p style="margin:0 0 1.2rem;">Lis-le cette semaine : il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.</p>
           <p style="margin:0 0 1.2rem;">Si tu as une question ou un commentaire après l'avoir lu, réponds simplement à ce courriel. Je le lis.</p>
           <p style="margin:0 0 0.3rem;">Bonne lecture,</p>
           <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
@@ -456,14 +456,14 @@ function buildTextFR(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
 
     return `Bonjour ${name},
 
-Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire — mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.
+Tu as déjà téléchargé ton guide directement après avoir rempli le formulaire. Mais comme promis, je t'envoie aussi le lien par courriel pour que tu puisses le retrouver facilement plus tard.
 
 ${magnet.title_fr}
 ${magnet.subtitle_fr}
 
 Télécharger le guide (PDF) : ${downloadUrl}
 
-Lis-le cette semaine — il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.
+Lis-le cette semaine : il est conçu pour être appliqué, pas étudié. Garde un crayon proche, il y a trois petits exercices au fil de la lecture.
 
 Si tu as une question ou un commentaire après l'avoir lu, réponds simplement à ce courriel. Je le lis.
 
@@ -486,11 +486,11 @@ function buildEmailEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
         : `You're receiving this email because you downloaded a guide on vectorplanning.ai. We'll send you at most three follow-up emails related to this guide over the next 14 days.${unsubLink}`;
     const body =
 `          <p style="margin:0 0 1.2rem;">Hello ${name},</p>
-          <p style="margin:0 0 1.2rem;">You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.</p>
+          <p style="margin:0 0 1.2rem;">You already downloaded your guide right after filling out the form. But as promised, I'm also sending you the link by email so you can find it easily later.</p>
           <p style="margin:0 0 0.3rem;"><strong>${escapeHtml(magnet.title_en)}</strong></p>
           <p style="margin:0;color:#6b7290;">${escapeHtml(magnet.subtitle_en)}</p>
 ${ctaButton(downloadUrl, 'Download the guide (PDF)')}
-          <p style="margin:0 0 1.2rem;">Read it this week — it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.</p>
+          <p style="margin:0 0 1.2rem;">Read it this week: it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.</p>
           <p style="margin:0 0 1.2rem;">If you have any question or comment after reading it, just reply to this email. I read every one.</p>
           <p style="margin:0 0 0.3rem;">Happy reading,</p>
           <p style="margin:0;"><strong>Chantal</strong> · Vector</p>`;
@@ -504,14 +504,14 @@ function buildTextEN(name, magnet, downloadUrl, unsubUrl, consentMarketing) {
 
     return `Hello ${name},
 
-You already downloaded your guide right after filling out the form — but as promised, I'm also sending you the link by email so you can find it easily later.
+You already downloaded your guide right after filling out the form. But as promised, I'm also sending you the link by email so you can find it easily later.
 
 ${magnet.title_en}
 ${magnet.subtitle_en}
 
 Download the guide (PDF): ${downloadUrl}
 
-Read it this week — it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.
+Read it this week: it's built to be applied, not studied. Keep a pen nearby; there are three small exercises along the way.
 
 If you have any question or comment after reading it, just reply to this email. I read every one.
 
