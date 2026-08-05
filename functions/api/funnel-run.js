@@ -283,6 +283,122 @@ const FUNNEL_COPY = {
                 signoff: 'Talk soon,'
             }
         }
+    },
+    'ebook_imprevu_sante': {
+        title_fr: "Préparer l'imprévu de santé",
+        title_en: 'Planning for Unplanned Sick Days',
+        day3: {
+            fr: {
+                subject: "La pièce qu'on abandonne le plus vite",
+                cta: 'Ouvrir le guide',
+                cta_kind: 'download',
+                body: [
+                    "Trois jours depuis le guide. Des quatre pièces du filet, il y en a une que presque tout le monde laisse tomber, et c'est pourtant celle qui tient les trois autres : la marge dans ton agenda.",
+                    "On la laisse tomber pour une raison légitime. Garder 20 % de ton horaire libre, c'est 20 % de revenus qui ne rentrent pas, pour une ou deux maladies par année. Sauf que la marge ne dort pas en attendant que tu tombes malade. Fais le calcul sur une semaine ordinaire :"
+                ],
+                calc: [
+                    '5 jours planifiés à 100 %',
+                    "moins le client qui répond trois jours en retard, l'appel qui déborde, le livrable qui revient avec des corrections",
+                    '= une semaine qui déraille avant même que tu sois malade'
+                ],
+                after: [
+                    "Ces imprévus-là arrivent toutes les semaines, pas une fois par année. La maladie n'en est que la version la plus grosse. La marge se rentabilise donc bien avant le jour où tu tombes, et ce jour-là, elle te donne la seule chose qui compte : deux jours qui se replacent sans qu'une échéance ait à bouger.",
+                    "Un détail du guide qui change tout : donne-lui un nom dans ton calendrier. Une plage appelée « Tampon » se défend toute seule, une case blanche attire un rendez-vous et disparaît dès le premier client pressé."
+                ],
+                signoff: 'Bonne semaine,'
+            },
+            en: {
+                subject: 'The piece people drop fastest',
+                cta: 'Open the guide',
+                cta_kind: 'download',
+                body: [
+                    "Three days since the guide. Of the four pieces of the net, there's one almost everyone lets go of, and it's the one holding up the other three: the margin in your calendar.",
+                    "People drop it for a fair reason. Keeping 20% of your schedule free is 20% of income not coming in, for one or two illnesses a year. Except the margin isn't sitting idle waiting for you to get sick. Run the numbers on an ordinary week:"
+                ],
+                calc: [
+                    '5 days planned at 100%',
+                    'minus the client who answers three days late, the call that runs long, the deliverable that comes back with revisions',
+                    '= a week that derails before you were even sick'
+                ],
+                after: [
+                    "Those surprises show up every week, not once a year. Illness is only their biggest version. So the margin pays for itself long before the day you go down, and on that day it gives you the one thing that matters: two days that slot back in without a single deadline having to move.",
+                    'One detail from the guide that changes everything: give it a name in your calendar. A block called "Buffer" defends itself, a white square attracts a meeting and disappears at the first client in a hurry.'
+                ],
+                signoff: 'Have a good week,'
+            }
+        },
+        day7: {
+            fr: {
+                subject: "Les deux ou trois personnes à contacter avant d'en avoir besoin",
+                cta: 'Ouvrir le guide',
+                cta_kind: 'download',
+                body: [
+                    "Une semaine depuis le guide. Si ta marge est bloquée dans l'agenda, tu absorbes déjà la grande majorité des imprévus. Reste le cas qu'aucune marge ne rattrape : l'échéance qui ne bouge pas.",
+                    "La plupart de tes livrables peuvent glisser de 48 heures sans conséquence. Un lancement, un événement, un dossier qui te ferait perdre le client, non. C'est pour ceux-là, et seulement ceux-là, que la troisième pièce existe :"
+                ],
+                calc: [
+                    "Deux ou trois personnes de ton domaine, à qui tu confierais un client",
+                    "une entente réciproque : je te couvre si tu tombes, tu me couvres si je tombe",
+                    "= la seule pièce qui couvre ce que tu ne peux pas déplacer"
+                ],
+                after: [
+                    "La demande est plus simple qu'elle en a l'air, parce qu'elle va dans les deux sens. Presque personne ne refuse, parce que tout le monde dans ce métier a déjà eu ce matin-là. Et comme ces gens ont leur propre charge de travail, vises-en deux ou trois plutôt qu'un seul : celui à qui tu penses en premier peut très bien être débordé ce jour-là.",
+                    "Trois questions à régler pendant que tu es en forme, parce qu'elles sont impossibles à négocier avec de la fièvre : qui facture qui, à quel tarif, et qui garde la relation client. La réponse la plus simple fonctionne presque toujours, elle est à la page 10 du guide."
+                ],
+                signoff: 'Bonne semaine,'
+            },
+            en: {
+                subject: 'The two or three people to line up before you need them',
+                cta: 'Open the guide',
+                cta_kind: 'download',
+                body: [
+                    "A week since the guide. If your margin is blocked in the calendar, you're already absorbing the vast majority of surprises. What's left is the one case no margin catches: the deadline that doesn't move.",
+                    "Most of your deliverables can slip 48 hours without consequence. A launch, an event, a file that would cost you the client, not so. Those are the only ones the third piece exists for:"
+                ],
+                calc: [
+                    "Two or three people in your field you'd hand a client to",
+                    'a reciprocal pact: I cover you if you go down, you cover me if I go down',
+                    "= the only piece that covers what you can't move"
+                ],
+                after: [
+                    "The ask is simpler than it sounds, because it runs both ways. Almost nobody refuses, because everyone in this line of work has had that morning. And since those people carry their own workload, aim for two or three rather than one: the person you think of first may well be swamped that day.",
+                    "Three questions to settle while you're well, because they're impossible to negotiate with a fever: who invoices whom, at what rate, and who keeps the client relationship. The simplest answer works almost every time, and it's on page 10 of the guide."
+                ],
+                signoff: 'Have a good week,'
+            }
+        },
+        day14: {
+            fr: {
+                subject: 'Le filet se défait tout seul',
+                cta: "Rejoindre la liste d'attente",
+                cta_kind: 'site',
+                body: [
+                    "Déjà deux semaines depuis que tu as téléchargé « Préparer l'imprévu de santé ». Si tes messages sont écrits, ta marge nommée et tes deux ou trois collaborateurs de secours contactés, tu as monté ton filet en une seule séance.",
+                    "Le guide se termine sur une idée que je veux te répéter, parce que c'est là que ça casse pour la plupart des gens.",
+                    "Monter le filet prend deux heures. Le garder tendu, c'est autre chose. La marge se fait manger par un client pressé, parce qu'une case libre ressemble toujours à de la disponibilité. Le dossier de relais devient périmé sans que tu t'en aperçoives. Et le jour J, la question la plus difficile reste entière : qu'est-ce qui est vraiment immuable cette semaine, et qu'est-ce qui peut bouger de 48 heures ? Avec de la fièvre, tout a l'air urgent.",
+                    "C'est pour ce moment précis qu'on a bâti Vector. Ta marge est planifiée et défendue dans ton calendrier au lieu de disparaître à la première demande, tu vois d'un coup d'œil ce qui est réellement immuable, et après deux jours d'arrêt ton plan se réorganise tout seul plutôt que de te demander de tout replanifier manuellement.",
+                    "Vector ouvre au début de l'automne. En t'inscrivant à la liste d'attente maintenant, tu seras averti dès l'ouverture, et les 50 premières inscriptions obtiennent 21 jours d'essai du plan Accélération au lieu de 14, plus 100 crédits IA de plus en cadeau."
+                ],
+                calc: null,
+                after: ["Et si ton filet tient très bien à la main, garde-le, sincèrement. Le but du guide n'était pas de te vendre quelque chose, c'était de t'enlever le droit de travailler malade."],
+                signoff: 'À bientôt,'
+            },
+            en: {
+                subject: 'The net comes undone on its own',
+                cta: 'Join the waitlist',
+                cta_kind: 'site',
+                body: [
+                    'Already two weeks since you downloaded "Planning for Unplanned Sick Days." If your messages are written, your margin is named and your two or three backup people are lined up, you built your net in a single sitting.',
+                    "The guide ends on an idea I want to repeat here, because this is where it breaks for most people.",
+                    "Building the net takes two hours. Keeping it strung is another matter. The margin gets eaten by a client in a hurry, because a free slot always looks like availability. The handoff file goes stale without you noticing. And on the day, the hardest question is still wide open: what is genuinely immovable this week, and what can move by 48 hours? With a fever, everything looks urgent.",
+                    "That's exactly the moment we built Vector for. Your margin is planned and defended in your calendar instead of vanishing at the first request, you see at a glance what's genuinely immovable, and after two days off your plan reorganizes itself instead of asking you to replan everything by hand.",
+                    'Vector opens in early fall. Joining the waitlist now means you hear about it the day we open, and the first 50 signups get a 21-day Acceleration trial instead of 14, plus 100 extra AI credits as a gift.'
+                ],
+                calc: null,
+                after: ["And if your net holds fine by hand, keep it, sincerely. The goal of the guide wasn't to sell you something, it was to take away your right to work sick."],
+                signoff: 'Talk soon,'
+            }
+        }
     }
 };
 

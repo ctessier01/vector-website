@@ -65,6 +65,16 @@ const LEAD_MAGNETS = {
         file_en: 'vendre-sans-travestir-v1-en-38eb0b.pdf',
         download_filename_fr: 'Vector-Vendre-sans-te-travestir.pdf',
         download_filename_en: 'Vector-Selling-Without-Faking-It.pdf'
+    },
+    'ebook_imprevu_sante': {
+        title_fr: "Préparer l'imprévu de santé",
+        title_en: 'Planning for Unplanned Sick Days',
+        subtitle_fr: "Le filet en 4 pièces pour t'arrêter deux jours sans que tout s'écroule",
+        subtitle_en: 'The four-piece net that lets you stop for two days without everything collapsing',
+        file_fr: 'imprevu-sante-v1-fr-e975c4.pdf',
+        file_en: 'imprevu-sante-v1-en-df1947.pdf',
+        download_filename_fr: 'Vector-Preparer-l-imprevu-de-sante.pdf',
+        download_filename_en: 'Vector-Planning-for-Unplanned-Sick-Days.pdf'
     }
     // Futurs lead magnets ici. Exemple :
     // 'checklist_delegation': {

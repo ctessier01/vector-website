@@ -52,6 +52,12 @@ const LEAD_MAGNETS = {
         file_en: 'vendre-sans-travestir-v1-en-38eb0b.pdf',
         download_filename_fr: 'Vector-Vendre-sans-te-travestir.pdf',
         download_filename_en: 'Vector-Selling-Without-Faking-It.pdf'
+    },
+    'ebook_imprevu_sante': {
+        file_fr: 'imprevu-sante-v1-fr-e975c4.pdf',
+        file_en: 'imprevu-sante-v1-en-df1947.pdf',
+        download_filename_fr: 'Vector-Preparer-l-imprevu-de-sante.pdf',
+        download_filename_en: 'Vector-Planning-for-Unplanned-Sick-Days.pdf'
     }
     // Synchroniser avec ebook-request.js
 };
