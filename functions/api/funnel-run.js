@@ -420,6 +420,23 @@ const COLONNE_ENVOI = {
     day14: 'funnel_email_4_sent_at'
 };
 
+/**
+ * Étiquette descriptive écrite dans `last_email_kind`.
+ *
+ * Purement informatif : la cadence est décidée par `next_email_kind` de la
+ * vue, qui se calcule sur les colonnes `funnel_email_N_sent_at`, jamais sur
+ * cette étiquette. Elle sert aux statistiques par type de courriel.
+ *
+ * Auparavant un ternaire à deux branches écrivait 'funnel_day7' pour tout ce
+ * qui n'était pas J+3, ce qui aurait classé un J+14 parmi les J+7. Sans effet
+ * tant que la vue n'émet pas 'funnel_day14', mais faux le jour où elle le fera.
+ */
+const KIND_PAR_ETAPE = {
+    day3:  'funnel_day3',
+    day7:  'funnel_day7',
+    day14: 'funnel_day14'
+};
+
 
 export async function onRequestPost(context) {
     const { request, env } = context;
@@ -519,7 +536,7 @@ export async function onRequestPost(context) {
                 const patch = {};
                 patch[column] = nowIso;
                 patch.last_email_sent_at = nowIso;
-                patch.last_email_kind = step === 'day3' ? 'funnel_day3' : 'funnel_day7';
+                patch.last_email_kind = KIND_PAR_ETAPE[step] || 'funnel_day7';
 
                 const patchRes = await fetch(
                     `${env.SUPABASE_URL}/rest/v1/marketing_leads?id=eq.${lead.id}&${column}=is.null`,
