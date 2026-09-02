@@ -72,6 +72,14 @@
     color: var(--text-primary); margin-bottom: 0.3rem;
   }
   .lm-step p { font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .lm-toc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lm-toc-item {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 0.5rem 1rem 0.5rem 0.7rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text-primary); font-weight: 500;
+  }
+  .lm-toc-item .n { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--accent-lime); font-size: 0.9rem; }
   .lm-insight {
     background: linear-gradient(180deg, rgba(139,255,60,0.07), rgba(139,255,60,0.02));
     border: 1px solid var(--border); border-left: 4px solid var(--accent-lime);
@@ -152,55 +160,17 @@
   </section>
 
   <section class="lm-section">
-    <h2>Le filet en <span class="hl">4 pièces</span>, plus le protocole</h2>
+    <h2>Ce qu'il y a <span class="hl">dans le guide</span></h2>
     <p class="lead">
-      Les pièces 1 et 2 te donnent le droit de t'arrêter. Les pièces 3 et 4 gèrent le monde
-      extérieur pendant ton absence. Le protocole les enchaîne le jour J, pour que tu n'aies rien
-      à inventer avec de la fièvre.
+      Quatre pièces à monter une seule fois, plus un protocole pour le jour J. Le détail, les
+      montants et les modèles prêts à copier sont dans le PDF.
     </p>
-    <div class="lm-steps">
-      <div class="lm-step">
-        <div class="n">01</div>
-        <div>
-          <h3>Le coussin</h3>
-          <p>Absorbe la perte de revenu. L'argent qui te donne le droit de t'arrêter sans calculer.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">02</div>
-        <div>
-          <h3>La marge</h3>
-          <p>Absorbe le décalage. Un horaire qui plie au lieu de casser quand deux jours sautent.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">03</div>
-        <div>
-          <h3>Le réseau de secours</h3>
-          <p>Absorbe l'immuable. Qui prend le relais sur ce qui ne peut vraiment pas attendre.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">04</div>
-        <div>
-          <h3>Les messages prêts d'avance</h3>
-          <p>Gèrent tes clients pendant ton absence, sans que tu aies à écrire quoi que ce soit fiévreux.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">05</div>
-        <div>
-          <h3>Le protocole du jour J</h3>
-          <p>Décide à ta place, dans le bon ordre, au moment où tu n'as pas la tête à réfléchir.</p>
-        </div>
-      </div>
-      <div class="lm-step" style="border-color: var(--border); background: rgba(139,255,60,0.05);">
-        <div class="n">+</div>
-        <div>
-          <h3>Prêt en moins de 2 h</h3>
-          <p>Trois des quatre pièces se règlent aujourd'hui. Le coussin se monte ensuite, à ton rythme.</p>
-        </div>
-      </div>
+    <div class="lm-toc">
+      <span class="lm-toc-item"><span class="n">01</span> Le coussin</span>
+      <span class="lm-toc-item"><span class="n">02</span> La marge</span>
+      <span class="lm-toc-item"><span class="n">03</span> Le réseau de secours</span>
+      <span class="lm-toc-item"><span class="n">04</span> Les messages prêts d'avance</span>
+      <span class="lm-toc-item"><span class="n">+</span> Le protocole du jour J</span>
     </div>
   </section>
 

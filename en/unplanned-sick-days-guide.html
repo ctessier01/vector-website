@@ -72,6 +72,14 @@
     color: var(--text-primary); margin-bottom: 0.3rem;
   }
   .lm-step p { font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .lm-toc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lm-toc-item {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 0.5rem 1rem 0.5rem 0.7rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text-primary); font-weight: 500;
+  }
+  .lm-toc-item .n { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--accent-lime); font-size: 0.9rem; }
   .lm-insight {
     background: linear-gradient(180deg, rgba(139,255,60,0.07), rgba(139,255,60,0.02));
     border: 1px solid var(--border); border-left: 4px solid var(--accent-lime);
@@ -151,55 +159,17 @@
   </section>
 
   <section class="lm-section">
-    <h2>The <span class="hl">four-piece</span> net, plus the protocol</h2>
+    <h2>What's <span class="hl">inside the guide</span></h2>
     <p class="lead">
-      Pieces 1 and 2 give you the right to stop. Pieces 3 and 4 handle the outside world while
-      you're gone. The protocol chains them on the day it happens, so you have nothing to invent
-      with a fever.
+      Four pieces to build once, plus a protocol for the day it happens. The details, the numbers
+      and the copy-paste templates are in the PDF.
     </p>
-    <div class="lm-steps">
-      <div class="lm-step">
-        <div class="n">01</div>
-        <div>
-          <h3>The cushion</h3>
-          <p>Absorbs the lost income. The money that gives you the right to stop without doing the math.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">02</div>
-        <div>
-          <h3>The margin</h3>
-          <p>Absorbs the delay. A schedule that bends instead of breaking when two days drop out.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">03</div>
-        <div>
-          <h3>The backup network</h3>
-          <p>Absorbs the immovable. Who covers what truly cannot wait while you're down.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">04</div>
-        <div>
-          <h3>The messages written in advance</h3>
-          <p>Handle your clients while you're gone, so you never have to write anything feverish.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">05</div>
-        <div>
-          <h3>The protocol for the day</h3>
-          <p>Decides for you, in the right order, at the moment your head isn't clear enough to think.</p>
-        </div>
-      </div>
-      <div class="lm-step" style="border-color: var(--border); background: rgba(139,255,60,0.05);">
-        <div class="n">+</div>
-        <div>
-          <h3>Ready in under 2 h</h3>
-          <p>Three of the four pieces get done today. The cushion builds after, at your own pace.</p>
-        </div>
-      </div>
+    <div class="lm-toc">
+      <span class="lm-toc-item"><span class="n">01</span> The cushion</span>
+      <span class="lm-toc-item"><span class="n">02</span> The margin</span>
+      <span class="lm-toc-item"><span class="n">03</span> The backup network</span>
+      <span class="lm-toc-item"><span class="n">04</span> The messages written in advance</span>
+      <span class="lm-toc-item"><span class="n">+</span> The protocol for the day</span>
     </div>
   </section>
 
