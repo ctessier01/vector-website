@@ -156,7 +156,10 @@ export async function onRequestGet(context) {
                       `Les téléchargements antérieurs ne sont comptés que dans la vue « Tout » (compteur cumulé).`;
         }
 
+        // Toujours afficher les ebooks connus, même sans activité sur la période.
         const knownOrder = Object.keys(LEAD_MAGNET_TITLES);
+        for (const k of knownOrder) ensure(k);
+
         const keys = Object.keys(agg).sort((x, y) => {
             const ix = knownOrder.indexOf(x), iy = knownOrder.indexOf(y);
             if (ix === -1 && iy === -1) return x.localeCompare(y);
