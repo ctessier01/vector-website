@@ -72,6 +72,14 @@
     color: var(--text-primary); margin-bottom: 0.3rem;
   }
   .lm-step p { font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .lm-toc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lm-toc-item {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 0.5rem 1rem 0.5rem 0.7rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text-primary); font-weight: 500;
+  }
+  .lm-toc-item .n { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--accent-lime); font-size: 0.9rem; }
   .lm-insight {
     background: linear-gradient(180deg, rgba(139,255,60,0.07), rgba(139,255,60,0.02));
     border: 1px solid var(--border); border-left: 4px solid var(--accent-lime);
@@ -149,35 +157,18 @@
   </section>
 
   <section class="lm-section">
-    <h2>The <span class="hl">5 steps</span> of the system</h2>
+    <h2>What's <span class="hl">inside the guide</span></h2>
     <p class="lead">
-      Three installs you do once, two rituals you maintain. About 20 minutes a week once it's running.
+      Five steps: three installs you do once, two rituals you maintain. The details, the thresholds
+      and the exercises are in the PDF.
     </p>
-    <div class="lm-steps">
-      <div class="lm-step">
-        <div class="n">01</div>
-        <div><h3>The 14-day projection</h3><p>See conflicts forming a week ahead, instead of discovering them the night before.</p></div>
-      </div>
-      <div class="lm-step">
-        <div class="n">02</div>
-        <div><h3>The capacity inventory</h3><p>How many hours you really have to deliver. Hint: it isn't 40. The 60 % rule.</p></div>
-      </div>
-      <div class="lm-step">
-        <div class="n">03</div>
-        <div><h3>Intentional buffers</h3><p>Time reserved for nothing, which stops one slip from breaking your whole week.</p></div>
-      </div>
-      <div class="lm-step">
-        <div class="n">04</div>
-        <div><h3>The Sunday check-in</h3><p>Twenty minutes, three questions. What turns a frozen plan into a living system.</p></div>
-      </div>
-      <div class="lm-step">
-        <div class="n">05</div>
-        <div><h3>Early warning signals</h3><p>The four indicators that a project is slipping, well before the deadline.</p></div>
-      </div>
-      <div class="lm-step" style="border-color: var(--border); background: rgba(139,255,60,0.05);">
-        <div class="n">+</div>
-        <div><h3>Three exercises</h3><p>To do as you read, pen in hand. The guide is built to be applied, not studied.</p></div>
-      </div>
+    <div class="lm-toc">
+      <span class="lm-toc-item"><span class="n">01</span> The 14-day projection</span>
+      <span class="lm-toc-item"><span class="n">02</span> The capacity inventory</span>
+      <span class="lm-toc-item"><span class="n">03</span> Intentional buffers</span>
+      <span class="lm-toc-item"><span class="n">04</span> The Sunday check-in</span>
+      <span class="lm-toc-item"><span class="n">05</span> Early warning signals</span>
+      <span class="lm-toc-item"><span class="n">+</span> Three exercises</span>
     </div>
   </section>
 

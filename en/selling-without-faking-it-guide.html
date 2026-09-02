@@ -72,6 +72,14 @@
     color: var(--text-primary); margin-bottom: 0.3rem;
   }
   .lm-step p { font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .lm-toc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lm-toc-item {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 0.5rem 1rem 0.5rem 0.7rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text-primary); font-weight: 500;
+  }
+  .lm-toc-item .n { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--accent-lime); font-size: 0.9rem; }
   .lm-insight {
     background: linear-gradient(180deg, rgba(139,255,60,0.07), rgba(139,255,60,0.02));
     border: 1px solid var(--border); border-left: 4px solid var(--accent-lime);
@@ -151,54 +159,18 @@
   </section>
 
   <section class="lm-section">
-    <h2>The <span class="hl">5-move</span> method</h2>
+    <h2>What's <span class="hl">inside the guide</span></h2>
     <p class="lead">
-      None of them relies on charisma. All of them rely on clarity and listening. One conversation
-      at a time, you sell in a way that fits you.
+      Five moves built on clarity and listening, not charisma. The details, the formulas and the
+      exercises are in the PDF.
     </p>
-    <div class="lm-steps">
-      <div class="lm-step">
-        <div class="n">01</div>
-        <div>
-          <h3>The clear sentence</h3>
-          <p>Answer "what do you do?" without shrinking, with one sentence prepared in advance.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">02</div>
-        <div>
-          <h3>The conversation, not the pitch</h3>
-          <p>Ask questions instead of reciting. Selling becomes an exchange, not a performance.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">03</div>
-        <div>
-          <h3>Your three channels</h3>
-          <p>Pick three places to be findable and stick to them. Consistency beats scattering.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">04</div>
-        <div>
-          <h3>Quiet presence</h3>
-          <p>Stay available without ever harassing. All the space between silence and pushing.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">05</div>
-        <div>
-          <h3>The honest follow-up</h3>
-          <p>Come back without forcing, to recover a conversation that stayed open with no reply.</p>
-        </div>
-      </div>
-      <div class="lm-step" style="border-color: var(--border); background: rgba(139,255,60,0.05);">
-        <div class="n">+</div>
-        <div>
-          <h3>Three exercises</h3>
-          <p>To do pen in hand, as you read. The guide is built to be applied, not studied.</p>
-        </div>
-      </div>
+    <div class="lm-toc">
+      <span class="lm-toc-item"><span class="n">01</span> The clear sentence</span>
+      <span class="lm-toc-item"><span class="n">02</span> The conversation, not the pitch</span>
+      <span class="lm-toc-item"><span class="n">03</span> Your three channels</span>
+      <span class="lm-toc-item"><span class="n">04</span> Quiet presence</span>
+      <span class="lm-toc-item"><span class="n">05</span> The honest follow-up</span>
+      <span class="lm-toc-item"><span class="n">+</span> Three exercises</span>
     </div>
   </section>
 

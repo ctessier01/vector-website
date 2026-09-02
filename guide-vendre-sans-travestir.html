@@ -72,6 +72,14 @@
     color: var(--text-primary); margin-bottom: 0.3rem;
   }
   .lm-step p { font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .lm-toc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lm-toc-item {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 0.5rem 1rem 0.5rem 0.7rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text-primary); font-weight: 500;
+  }
+  .lm-toc-item .n { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--accent-lime); font-size: 0.9rem; }
   .lm-insight {
     background: linear-gradient(180deg, rgba(139,255,60,0.07), rgba(139,255,60,0.02));
     border: 1px solid var(--border); border-left: 4px solid var(--accent-lime);
@@ -152,54 +160,18 @@
   </section>
 
   <section class="lm-section">
-    <h2>La méthode en <span class="hl">5 mouvements</span></h2>
+    <h2>Ce qu'il y a <span class="hl">dans le guide</span></h2>
     <p class="lead">
-      Aucun ne repose sur le charisme. Tous reposent sur la clarté et l'écoute. Une conversation
-      à la fois, tu vends d'une manière qui te ressemble.
+      Cinq mouvements qui reposent sur la clarté et l'écoute, pas sur le charisme. Le détail, les
+      formules et les exercices sont dans le PDF.
     </p>
-    <div class="lm-steps">
-      <div class="lm-step">
-        <div class="n">01</div>
-        <div>
-          <h3>La phrase claire</h3>
-          <p>Répondre au « tu fais quoi ? » sans te ratatiner, avec une phrase préparée d'avance.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">02</div>
-        <div>
-          <h3>La conversation, pas le pitch</h3>
-          <p>Poser des questions au lieu de réciter. La vente devient un échange, plus une performance.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">03</div>
-        <div>
-          <h3>Tes trois canaux</h3>
-          <p>Choisir trois endroits où être trouvable et t'y tenir. La régularité bat la dispersion.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">04</div>
-        <div>
-          <h3>La présence tranquille</h3>
-          <p>Rester disponible sans jamais harceler. Tout l'espace entre le silence et le forcing.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">05</div>
-        <div>
-          <h3>Le suivi honnête</h3>
-          <p>Revenir sans forcer, pour rattraper une conversation restée ouverte sans réponse.</p>
-        </div>
-      </div>
-      <div class="lm-step" style="border-color: var(--border); background: rgba(139,255,60,0.05);">
-        <div class="n">+</div>
-        <div>
-          <h3>Trois exercices</h3>
-          <p>À faire crayon à la main, au fil de la lecture. Le guide est fait pour être appliqué, pas étudié.</p>
-        </div>
-      </div>
+    <div class="lm-toc">
+      <span class="lm-toc-item"><span class="n">01</span> La phrase claire</span>
+      <span class="lm-toc-item"><span class="n">02</span> La conversation, pas le pitch</span>
+      <span class="lm-toc-item"><span class="n">03</span> Tes trois canaux</span>
+      <span class="lm-toc-item"><span class="n">04</span> La présence tranquille</span>
+      <span class="lm-toc-item"><span class="n">05</span> Le suivi honnête</span>
+      <span class="lm-toc-item"><span class="n">+</span> Trois exercices</span>
     </div>
   </section>
 

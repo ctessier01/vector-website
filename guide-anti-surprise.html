@@ -84,6 +84,14 @@
     color: var(--text-primary); margin-bottom: 0.3rem;
   }
   .lm-step p { font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .lm-toc { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lm-toc-item {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--bg-secondary); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 0.5rem 1rem 0.5rem 0.7rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text-primary); font-weight: 500;
+  }
+  .lm-toc-item .n { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--accent-lime); font-size: 0.9rem; }
 
   /* ── Bloc « le vrai problème » ── */
   .lm-insight {
@@ -171,56 +179,20 @@
     </div>
   </section>
 
-  <!-- ════════ LES 5 ÉTAPES ════════ -->
+  <!-- ════════ CE QU'IL Y A DANS LE GUIDE ════════ -->
   <section class="lm-section">
-    <h2>Les <span class="hl">5 étapes</span> du système</h2>
+    <h2>Ce qu'il y a <span class="hl">dans le guide</span></h2>
     <p class="lead">
-      Trois installations que tu fais une fois, deux rituels que tu maintiens. Environ
-      20 minutes par semaine une fois en place.
+      Cinq étapes : trois installations que tu fais une fois, deux rituels que tu maintiens. Le
+      détail, les seuils et les exercices sont dans le PDF.
     </p>
-    <div class="lm-steps">
-      <div class="lm-step">
-        <div class="n">01</div>
-        <div>
-          <h3>La projection 14 jours</h3>
-          <p>Voir les conflits se former une semaine d'avance, au lieu de les découvrir la veille.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">02</div>
-        <div>
-          <h3>L'inventaire de capacité</h3>
-          <p>Combien d'heures tu as vraiment pour livrer. Indice : ce n'est pas 40. La règle des 60 %.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">03</div>
-        <div>
-          <h3>Les buffers intentionnels</h3>
-          <p>Du temps réservé pour rien, qui empêche un seul dérapage de casser toute ta semaine.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">04</div>
-        <div>
-          <h3>Le check-in du dimanche</h3>
-          <p>Vingt minutes, trois questions. Ce qui transforme un plan figé en système vivant.</p>
-        </div>
-      </div>
-      <div class="lm-step">
-        <div class="n">05</div>
-        <div>
-          <h3>Les signaux précoces</h3>
-          <p>Les quatre indicateurs qui annoncent qu'un projet glisse, bien avant l'échéance.</p>
-        </div>
-      </div>
-      <div class="lm-step" style="border-color: var(--border); background: rgba(139,255,60,0.05);">
-        <div class="n">+</div>
-        <div>
-          <h3>Trois exercices</h3>
-          <p>À faire au fil de la lecture, crayon à la main. Le guide est fait pour être appliqué, pas étudié.</p>
-        </div>
-      </div>
+    <div class="lm-toc">
+      <span class="lm-toc-item"><span class="n">01</span> La projection 14 jours</span>
+      <span class="lm-toc-item"><span class="n">02</span> L'inventaire de capacité</span>
+      <span class="lm-toc-item"><span class="n">03</span> Les buffers intentionnels</span>
+      <span class="lm-toc-item"><span class="n">04</span> Le check-in du dimanche</span>
+      <span class="lm-toc-item"><span class="n">05</span> Les signaux précoces</span>
+      <span class="lm-toc-item"><span class="n">+</span> Trois exercices</span>
     </div>
   </section>
 
