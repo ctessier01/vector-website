@@ -124,12 +124,11 @@ export async function onRequestGet(context) {
             return errorPage('file_not_found', 404);
         }
 
-        // ── 6. Incrément du compteur (non-bloquant) ───────────────────
-        const incrementPromise = incrementDownloadCount({
-            env,
-            leadId
-        });
-        context.waitUntil(incrementPromise);
+        // ── 6. Incrément du compteur + journal daté (non-bloquant) ────
+        // Le compteur (marketing_leads.download_count) donne le total cumulé ;
+        // l'événement daté dans marketing_events permet le filtrage par date.
+        context.waitUntil(incrementDownloadCount({ env, leadId }));
+        context.waitUntil(logDownloadEvent({ env, leadId, resourceKey, lang }));
 
         // ── 7. Stream du PDF au client ────────────────────────────────
         const headers = new Headers();
@@ -221,6 +220,44 @@ async function verifyToken(token, secret) {
             expiry: payload.e
         }
     };
+}
+
+
+// ──────────────────────────────────────────────────────────────────────────
+// Journal daté du téléchargement (pour le filtrage par date du tableau de bord)
+// ──────────────────────────────────────────────────────────────────────────
+
+/**
+ * Écrit un événement horodaté par téléchargement réel du PDF dans
+ * marketing_events. On réutilise le type autorisé `download_started` (le CHECK
+ * de la table n'accepte pas de nouveau type), en le distinguant de l'événement
+ * client (soumission du formulaire) par metadata.kind = 'file_fetch'.
+ *
+ * Chaque récupération du PDF (bouton immédiat, lien courriel, re-téléchargement)
+ * crée une ligne. La somme par source_form sur une fenêtre de dates donne les
+ * téléchargements réels de la période.
+ */
+async function logDownloadEvent({ env, leadId, resourceKey, lang }) {
+    try {
+        await fetch(`${env.SUPABASE_URL}/rest/v1/marketing_events`, {
+            method: 'POST',
+            headers: {
+                'apikey': env.SUPABASE_SERVICE_ROLE_KEY,
+                'Authorization': `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                event_type: 'download_started',
+                lead_id: leadId || null,
+                lead_kind: 'ebook',
+                page_slug: null,
+                metadata: { source_form: resourceKey, lang: lang, kind: 'file_fetch' }
+            })
+        });
+    } catch (err) {
+        console.error('Download event log failed (non-blocking):', err);
+    }
 }
 
 
